@@ -1,4 +1,4 @@
-import ListingCard from "@/components/cards";
+
 import Image from "next/image";
 
 export default function HomePage() {
@@ -55,17 +55,7 @@ export default function HomePage() {
 
   return (
     <>
-    <div className="bg-white">
-    <main className="max-w-7xl h-full bg-white mx-auto px-4 py-10">
-      <h2 className="text-2xl text-black font-bold mb-6">Collections</h2>
-
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {collections.map((item, i) => (
-          <ListingCard key={i} {...item} />
-        ))}
-      </div>
-    </main>
-    </div>
+    <div></div>
     </>
   );
 }
