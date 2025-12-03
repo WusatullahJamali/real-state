@@ -34,7 +34,7 @@ export default function CompareAgents() {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-100 p-4 sm:p-8">
-      <div className="w-full max-w-4xl bg-white p-8 md:p-10 rounded-3xl shadow-lg">
+      <div className="w-full max-w-4xl bg-white p-8 md:p-10 rounded-3xl ">
         <div className="grid lg:grid-cols-2 gap-10 items-center">
           {/* LEFT SIDE: Steps + Search */}
           <div className="order-2 lg:order-1">

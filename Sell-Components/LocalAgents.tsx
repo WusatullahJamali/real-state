@@ -48,9 +48,7 @@ const AgentComparisonItem: React.FC<{ agent: Agent }> = ({ agent }) => (
       className="
         relative w-20 h-20 rounded-full mb-2 
         ring-2 ring-[#0077c0]/40 
-        transition 
-        group-hover:shadow-[0_0_15px_#0077c0]
-        group-hover:ring-[#0077c0]
+        transition
       "
     >
       <img
@@ -60,7 +58,7 @@ const AgentComparisonItem: React.FC<{ agent: Agent }> = ({ agent }) => (
       />
 
       {/* Experience Badge — Blue */}
-      <div className="absolute bottom-0 right-0 w-6 h-6 flex items-center justify-center rounded-full bg-[#0077c0] text-white text-xs font-bold ring-1 ring-white shadow-md">
+      <div className="absolute bottom-0 right-0 w-6 h-6 flex items-center justify-center rounded-full bg-[#0077c0] text-white text-xs font-bold ring-1 ring-white">
         {agent.experienceYears}
       </div>
     </div>
@@ -78,7 +76,7 @@ const AgentComparisonItem: React.FC<{ agent: Agent }> = ({ agent }) => (
 export default function LocalAgents() {
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-4xl bg-white p-6 md:p-8 rounded-3xl shadow-lg">
+      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl">
         {/* Header */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center border-b border-gray-200 pb-5">
           <div className="md:col-span-2">
@@ -94,7 +92,7 @@ export default function LocalAgents() {
           <div className="flex justify-start md:justify-end">
             <button
               onClick={() => console.log("Compare Agents Now")}
-              className="flex items-center space-x-1 py-2 px-5 text-white text-sm font-semibold bg-[#0077c0] rounded-full shadow-md hover:opacity-90 transition"
+              className="flex items-center space-x-1 py-2 px-5 text-white text-sm font-semibold bg-[#0077c0] rounded-full hover:opacity-90 transition"
             >
               <span>Compare Agents Now</span>
               <span>&rarr;</span>
