@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Hero from "./rent/Hero";
 
 export default function HomePage() {
   const collections = [

@@ -164,7 +164,7 @@ export default function Navbar() {
     <motion.nav
       animate={{ y: showNav ? 0 : -100 }}
       transition={{ duration: 0.3 }}
-      className="w-full bg-white shadow sticky top-0 z-100"
+      className="w-full bg-white shadow sticky top-0 z-50"
     >
       <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
 
@@ -182,7 +182,22 @@ export default function Navbar() {
               onMouseEnter={() => setActiveMenu(item)}
               onMouseLeave={() => setActiveMenu(null)}
             >
-              <span className="hover:underline">{item}</span>
+              {/* If Buy, Sell, or Rent, make it a Link */}
+              {item === "Buy" ? (
+                <Link href="/" className="hover:underline">{item}</Link>
+              ) : item === "Sell" ? (
+                <Link href="/sell" className="hover:underline">{item}</Link>
+              ) : item === "Rent" ? (
+                <Link href="/rent" className="hover:underline">{item}</Link>
+              ) : item === "Mortgage" ? (
+                <Link href="/mortgege" className="hover:underline">{item}</Link>
+              ): item === "Find an Agent" ?(
+                <Link href="/find an agent" className="hover:underline">{item}</Link>
+              ): item === "My Home" ?(
+                <Link href="/my home" className="hover:underline">{item}</Link>
+              ):(
+                <span className="hover:underline">{item}</span>
+              )}
 
               {/* Mega Dropdown */}
               <AnimatePresence>
@@ -217,11 +232,10 @@ export default function Navbar() {
 
         {/* Right Side Links */}
         <div className="hidden md:flex items-center space-x-4">
-         
           <Link href="#" className="hover:underline font-medium">Manage Rentals</Link>
           <Link href="#" className="hover:underline font-medium">Advertise</Link>
-          <Link href="#" className="hover:underline font-medium">Login</Link>
-          <Link href="#" className="px-4 py-2 bg-black text-white rounded hover:bg-neutral-800 transition">
+          <Link href="/login" className="hover:underline font-medium">Login</Link>
+          <Link href="signUp" className="px-4 py-2 bg-black text-white rounded hover:bg-neutral-800 transition">
             Signup
           </Link>
         </div>
@@ -248,24 +262,31 @@ export default function Navbar() {
             <ul className="p-4 space-y-4 font-medium">
               {menuItems.map((item) => (
                 <li key={item}>
-                  <details className="border-b pb-2">
-                    <summary className="py-2 cursor-pointer">{item}</summary>
-                    <ul className="pl-4 pt-2 space-y-2 text-sm">
-                      {dropdownContent[item].map((row, i) => (
-                        <li key={i}>{row}</li>
-                      ))}
-                    </ul>
-                  </details>
+                  {item === "Buy" ? (
+                    <Link href="/" className="hover:underline">{item}</Link>
+                  ) : item === "Sell" ? (
+                    <Link href="/sell" className="hover:underline">{item}</Link>
+                  ) : item === "Rent" ? (
+                    <Link href="/rent" className="hover:underline">{item}</Link>
+                  ) : (
+                    <details className="border-b pb-2">
+                      <summary className="py-2 cursor-pointer">{item}</summary>
+                      <ul className="pl-4 pt-2 space-y-2 text-sm">
+                        {dropdownContent[item].map((row, i) => (
+                          <li key={i}>{row}</li>
+                        ))}
+                      </ul>
+                    </details>
+                  )}
                 </li>
               ))}
 
               {/* Right-side links */}
               <li className="pt-4 flex flex-col space-y-2">
-                
                 <Link href="#" className="hover:underline">Manage Rentals</Link>
                 <Link href="#" className="hover:underline">Advertise</Link>
-                <Link href="#" className="hover:underline">Login</Link>
-                <Link href="#" className="px-4 py-2 bg-black text-white hover:bg-neutral-800 transition">
+                <Link href="/login" className="hover:underline">Login</Link>
+                <Link href="/signUp" className="px-4 py-2 bg-black text-white hover:bg-neutral-800 transition">
                   Signup
                 </Link>
               </li>
