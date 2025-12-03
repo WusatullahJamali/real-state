@@ -194,7 +194,7 @@ export default function Navbar() {
               ): item === "Find an Agent" ?(
                 <Link href="/find an agent" className="hover:underline">{item}</Link>
               ): item === "My Home" ?(
-                <Link href="/my home" className="hover:underline">{item}</Link>
+                <Link href="/myhome" className="hover:underline">{item}</Link>
               ):(
                 <span className="hover:underline">{item}</span>
               )}
@@ -232,8 +232,8 @@ export default function Navbar() {
 
         {/* Right Side Links */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link href="#" className="hover:underline font-medium">Manage Rentals</Link>
-          <Link href="#" className="hover:underline font-medium">Advertise</Link>
+          <Link href="/managerentals" className="hover:underline font-medium">Manage Rentals</Link>
+          <Link href="advertise" className="hover:underline font-medium">Advertise</Link>
           <Link href="/login" className="hover:underline font-medium">Login</Link>
           <Link href="signUp" className="px-4 py-2 bg-black text-white rounded hover:bg-neutral-800 transition">
             Signup

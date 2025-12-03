@@ -1,10 +1,10 @@
 import React from 'react'
-import Hero3 from './Hero3'
-import Tool from './Tool'
-import Rate from './Rate'
-import Loan from './Loan'
-import Comon from './Comon'
-import MFooter from './MFooter'
+import Hero3 from '../../../mortgage components/Hero3'
+import Tool from '../../../mortgage components/Tool'
+import Rate from '../../../mortgage components/Rate'
+import Loan from '../../../mortgage components/Loan'
+import Comon from '../../../mortgage components/Comon'
+import MFooter from '../../../mortgage components/MFooter'
 
 const page = () => {
   return (

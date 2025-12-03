@@ -1,9 +1,9 @@
-import ACards from "./ACards";
-import AdviceCardsRow from "./AdviceCard";
-import Footer2 from "./Footer2";
-import Hero from "./Hero";
-import Hero2 from "./Hero2";
-import GeoFooter from "./Footer3";
+import ACards from "../../../rent components/ACards";
+import AdviceCardsRow from "../../../rent components/AdviceCard";
+import Footer2 from "../../../rent components/Footer2";
+import Hero from "../../../rent components/Hero";
+import Hero2 from "../../../rent components/Hero2";
+import GeoFooter from "../../../rent components/Footer3";
 
 export default function Page() {
   return (
