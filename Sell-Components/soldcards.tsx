@@ -90,7 +90,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
   const isContact = price.toLowerCase().includes("contact");
 
   return (
-    <div className="w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md hover:shadow-lg transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
+    <div className="w-64 shrink-0 mx-2 bg-white rounded-xl border border-gray-100 transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03]">
       <div className="relative h-40 overflow-hidden rounded-t-xl">
         <img
           src={imageUrl}
@@ -102,7 +102,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
             e.currentTarget.onerror = null;
           }}
         />
-        <span className="absolute top-2 left-2 bg-red-600 text-white text-xs font-bold px-2 py-1 rounded-full shadow-md">
+        <span className="absolute top-2 left-2 bg-[#301366] text-white text-xs font-bold px-2 py-1 rounded-full">
           SOLD
         </span>
       </div>
@@ -113,12 +113,12 @@ const HomeCard: React.FC<HomeCardProps> = ({
         </p>
         <h3
           className={`text-lg font-bold mb-2 flex items-center ${
-            isContact ? "text-indigo-600" : "text-gray-900"
+            isContact ? "text-gray-900" : "text-gray-900"
           }`}
         >
           {isContact ? (
             <>
-              <DollarSign className="w-4 h-4 mr-1 text-blue-600" />
+              <DollarSign className="w-4 h-4 mr-1 text-yellow-500" />
               {price}
             </>
           ) : (
@@ -128,23 +128,23 @@ const HomeCard: React.FC<HomeCardProps> = ({
 
         <div className="flex justify-between text-xs font-medium text-gray-700 mb-1.5 -mt-3 pt-1 border-t border-gray-100">
           <div className="flex items-center space-x-1">
-            <Bed className="w-3 h-3 text-blue-600" />
+            <Bed className="w-3 h-3 text-yellow-500" />
             <span className="font-bold">{details.beds}</span>
             <span className="text-gray-500">bed</span>
           </div>
           <div className="flex items-center space-x-1">
-            <Bath className="w-3 h-3 text-blue-600" />
+            <Bath className="w-3 h-3 text-yellow-500" />
             <span className="font-bold">{details.baths}</span>
             <span className="text-gray-500">bath</span>
           </div>
           <div className="flex items-center space-x-1">
-            <LayoutGrid className="w-3 h-3 text-blue-600" />
+            <LayoutGrid className="w-3 h-3 text-yellow-500" />
             <span className="font-bold">{details.sqft.toLocaleString()}</span>
             <span className="text-gray-500">sqft</span>
           </div>
         </div>
 
-        <button className="w-full py-1.5 bg-blue-50 text-blue-600 font-semibold rounded-md hover:bg-blue-100 transition duration-200 text-sm">
+        <button className="w-full py-1.5 bg-yellow-50 text-yellow-500 font-semibold rounded-md hover:bg-yellow-100 transition duration-200 text-sm">
           View Details
         </button>
       </div>
@@ -168,7 +168,7 @@ export default function RecentlySoldHomes() {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-5xl bg-white p-6 md:p-8 rounded-3xl shadow-lg">
+      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b pb-4 mb-6">
           <div>
@@ -182,7 +182,7 @@ export default function RecentlySoldHomes() {
           </div>
           <a
             href="#"
-            className="flex items-center text-blue-600 hover:text-blue-800 font-bold mt-3 md:mt-0 transition text-sm"
+            className="flex items-center text-yellow-500 hover:text-yellow-700 font-bold mt-3 md:mt-0 transition text-sm"
           >
             Homes similar to yours
             <MoveRight className="w-4 h-4 ml-1.5" />
@@ -194,7 +194,7 @@ export default function RecentlySoldHomes() {
           {/* Left button */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full hidden lg:block"
           >
             <ArrowLeft className="w-5 h-5 text-gray-700" />
           </button>
@@ -214,7 +214,7 @@ export default function RecentlySoldHomes() {
           {/* Right button */}
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full hidden lg:block"
           >
             <ArrowRight className="w-5 h-5 text-gray-700" />
           </button>
