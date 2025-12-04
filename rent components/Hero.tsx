@@ -9,7 +9,7 @@ const Hero = () => {
       className="relative w-full h-[85vh] flex items-center justify-center bg-cover bg-center"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1502673530728-f79b4cab31b1')",
+          "url('/hero.jpg')",
       }}
     >
       {/* Overlay */}

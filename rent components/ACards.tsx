@@ -6,12 +6,12 @@ import Image from "next/image";
 const ACards = () => {
   const cards = [
     {
-      img: "/apartment.png", // replace with your image in public folder
+      img: "/apartment.avif", // replace with your image in public folder
       text: "Looking for apartments for rent in your area?",
       linkText: "Find apartments near you",
     },
     {
-      img: "/landlord.png", // replace with your image in public folder
+      img: "/rentcards.svg", // replace with your image in public folder
       text: "Want to list your rental for free in minutes?",
       linkText: "Learn about landlord tools by Avail",
     },
@@ -35,7 +35,7 @@ const ACards = () => {
             </div>
             <p className="text-gray-800 text-lg md:text-xl">
               {card.text}{" "}
-              <span className="text-blue-600 font-bold underline cursor-pointer hover:text-blue-700 transition">
+              <span className="text-yellow-600 font-bold underline cursor-pointer hover:text-yellow-700 transition">
                 {card.linkText}
               </span>
             </p>

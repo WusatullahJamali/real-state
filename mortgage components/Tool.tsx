@@ -8,22 +8,22 @@ const Tool = () => {
     {
       title: "Mortgage Calculator",
       description: "Calculate your monthly mortgage payment.",
-      icon: <Calculator className="w-10 h-10 text-blue-500" />
+      icon: <Calculator className="w-10 h-10 text-yellow-500" />
     },
     {
       title: "Affordability Calculator",
       description: "Calculate the price of a home you can afford.",
-      icon: <Home className="w-10 h-10 text-blue-500" />
+      icon: <Home className="w-10 h-10 text-yellow-500" />
     },
     {
       title: "Rent or Buy Calculator",
       description: "Estimate when it makes sense to buy or rent.",
-      icon: <DollarSign className="w-10 h-10 text-blue-500" />
+      icon: <DollarSign className="w-10 h-10 text-yellow-500" />
     },
     {
       title: "Refinance Calculator",
       description: "Decide if mortgage refinancing is right for you.",
-      icon: <RefreshCcw className="w-10 h-10 text-blue-500" />
+      icon: <RefreshCcw className="w-10 h-10 text-yellow-500" />
     }
   ]
 

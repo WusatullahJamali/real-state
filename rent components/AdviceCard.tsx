@@ -1,15 +1,15 @@
 "use client"
 import React from 'react';
-import { Home, Building, Key, CreditCard } from 'lucide-react'; // Using lucide-react icons
+import { Home, Building, Key, CreditCard } from 'lucide-react';
 
-const AdviceCard = ({ icon: Icon, title, description }) => {
+const AdviceCard = ({ icon: Icon, title, description}:any) => {
   return (
-    <div className="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-xl shadow-xl p-6 hover:scale-105 transform transition-all duration-300">
-      <div className="flex items-center justify-center w-12 h-12 mb-4 bg-white/20 rounded-full">
-        <Icon className="w-6 h-6 text-white" />
+    <div className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+      <div className="mb-4">
+        <Icon className="w-10 h-10 text-yellow-500" />
       </div>
-      <h2 className="text-xl font-bold mb-2">{title}</h2>
-      <p className="text-sm">{description}</p>
+      <h2 className="text-xl font-semibold mb-2 text-black">{title}</h2>
+      <p className="text-black">{description}</p>
     </div>
   );
 };
@@ -23,18 +23,24 @@ const AdviceCardsRow = () => {
   ];
 
   return (
-    <div className="bg-white py-12">
-      <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
-        {cards.map((card, index) => (
-          <AdviceCard 
-            key={index} 
-            icon={card.icon} 
-            title={card.title} 
-            description={card.description} 
-          />
-        ))}
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-7xl mx-auto px-6">
+        <h2 className="text-3xl font-bold text-center mb-12 text-gray-900">
+          Services
+        </h2>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+          {cards.map((card, index) => (
+            <AdviceCard 
+              key={index} 
+              icon={card.icon} 
+              title={card.title} 
+              description={card.description} 
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </section>
   );
 };
 

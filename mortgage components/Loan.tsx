@@ -14,7 +14,7 @@ const Loan = () => {
         {/* Table */}
         <div className="overflow-x-auto">
           <table className="min-w-full bg-white rounded-xl shadow overflow-hidden">
-            <thead className="bg-blue-500 text-white">
+            <thead className="bg-yellow-500 text-white">
               <tr>
                 <th className="py-3 px-4 text-left">Loan type</th>
                 <th className="py-3 px-4 text-left">Income requirements</th>
@@ -56,7 +56,7 @@ const Loan = () => {
                     <b>USDA 30-year fixed</b>
                     <div className="text-sm text-gray-500">For homes located in a rural area.</div>
                   </div>
-                  <button className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 transition text-sm">View guide</button>
+                  <button className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600 transition text-sm">View guide</button>
                 </td>
                 <td className="py-4 px-4">Requires an income of less than 115% of what's typical for the area.</td>
                 <td className="py-4 px-4">No down payment required.</td>
@@ -73,7 +73,7 @@ const Loan = () => {
                     <b>VA 30-year fixed</b>
                     <div className="text-sm text-gray-500">Only applies to Veterans or their spouses.</div>
                   </div>
-                  <button className="bg-blue-500 text-white py-1 px-3 rounded hover:bg-blue-600 transition text-sm">View guide</button>
+                  <button className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600 transition text-sm">View guide</button>
                 </td>
                 <td className="py-4 px-4">Income requirements vary by lender.</td>
                 <td className="py-4 px-4">No down payment required.</td>

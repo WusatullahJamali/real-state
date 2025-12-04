@@ -54,7 +54,7 @@ export default function GeoFooter() {
 
           <button
             onClick={() => setShowMarkets(!showMarkets)}
-            className="mt-3 text-sm text-black font-medium flex items-center gap-1 hover:text-blue-600 transition"
+            className="mt-3 text-sm text-black font-medium flex items-center gap-1 hover:text-yellow-600 transition"
           >
             {showMarkets ? "See less" : "See more"} {showMarkets ? "▲" : "▼"}
           </button>
@@ -85,7 +85,7 @@ export default function GeoFooter() {
 
           <button
             onClick={() => setShowApartments(!showApartments)}
-            className="mt-3 text-sm text-black font-medium flex items-center gap-1 hover:text-blue-600 transition"
+            className="mt-3 text-sm text-black font-medium flex items-center gap-1 hover:text-yellow-600 transition"
           >
             {showApartments ? "See less" : "See more"} {showApartments ? "▲" : "▼"}
           </button>

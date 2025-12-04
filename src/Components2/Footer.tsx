@@ -20,7 +20,7 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="bg-black text-white pt-14 pb-8 relative z-50">
+    <footer className="bg-white text-black pt-14 pb-8 relative z-50">
 
       {/* Container */}
       <div className="max-w-7xl mx-auto px-6 md:px-10 grid gap-12 md:grid-cols-5">
@@ -32,7 +32,7 @@ const Footer = () => {
             {[Facebook, X, Linkedin, Instagram, Youtube].map((Icon, i) => (
               <Icon
                 key={i}
-                className="w-6 h-6 text-white hover:text-gray-300 transition-all duration-300 transform hover:scale-105 cursor-pointer"
+                className="w-6 h-6 text-black hover:text-gray-700 transition-all duration-300 transform hover:scale-105 cursor-pointer"
               />
             ))}
           </div>
@@ -49,7 +49,7 @@ const Footer = () => {
             {companyLinks.map((link, i) => (
               <li
                 key={i}
-                className="cursor-pointer text-gray-300 hover:text-white hover:underline hover:underline-offset-4 transition"
+                className="cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
               >
                 {link}
               </li>
@@ -58,7 +58,7 @@ const Footer = () => {
 
           <button
             onClick={() => setShowMoreCompany(!showMoreCompany)}
-            className="flex items-center text-sm text-gray-300 hover:text-white transition"
+            className="flex items-center text-sm text-gray-600 hover:text-black transition"
           >
             {showMoreCompany ? "Show Less" : "Show More"}
             <ChevronDown
@@ -66,7 +66,7 @@ const Footer = () => {
             />
           </button>
 
-          <span className="text-gray-500 mt-4 text-sm block hover:text-gray-400 cursor-pointer transition">
+          <span className="text-gray-500 mt-4 text-sm block hover:text-gray-700 cursor-pointer transition">
             Do Not Sell or Share My Personal Information
           </span>
         </div>
@@ -77,16 +77,16 @@ const Footer = () => {
 
           <a
             href="#"
-            className="w-40 block rounded-lg overflow-hidden hover:opacity-90 hover:scale-105 transition"
+            className="w-40 block rounded-lg overflow-hidden hover:opacity-80 hover:scale-105 transition"
           >
-            <img src="/appstore.png" alt="App Store" />
+            <img src="/app_store.svg" alt="App Store" />
           </a>
 
           <a
             href="#"
-            className="w-40 block rounded-lg overflow-hidden hover:opacity-90 hover:scale-105 transition"
+            className="w-40 block rounded-lg overflow-hidden hover:opacity-80 hover:scale-105 transition"
           >
-            <img src="/googleplay.png" alt="Google Play" />
+            <img src="/playstor3.png" alt="Google Play" />
           </a>
         </div>
 
@@ -100,7 +100,7 @@ const Footer = () => {
           ].map((link, i) => (
             <li
               key={i}
-              className="list-none cursor-pointer text-gray-300 hover:text-white hover:underline hover:underline-offset-4 transition"
+              className="list-none cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
             >
               {link}
             </li>
@@ -118,7 +118,7 @@ const Footer = () => {
             {newsLinks.map((link, i) => (
               <li
                 key={i}
-                className="cursor-pointer text-gray-300 hover:text-white hover:underline hover:underline-offset-4 transition"
+                className="cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
               >
                 {link}
               </li>
@@ -127,7 +127,7 @@ const Footer = () => {
 
           <button
             onClick={() => setShowMoreNews(!showMoreNews)}
-            className="flex items-center text-sm text-gray-300 hover:text-white transition"
+            className="flex items-center text-sm text-gray-600 hover:text-black transition"
           >
             {showMoreNews ? "Show Less" : "Show More"}
             <ChevronDown
@@ -138,10 +138,10 @@ const Footer = () => {
       </div>
 
       {/* Divider */}
-      <div className="border-t border-gray-700 mt-12 mb-6"></div>
+      <div className="border-t border-gray-300 mt-12 mb-6"></div>
 
       {/* Bottom */}
-      <div className="text-center text-gray-400 text-sm">
+      <div className="text-center text-gray-500 text-sm">
         © 1995-2025 National Association of REALTORS® and Move, Inc. All rights reserved.
       </div>
     </footer>

@@ -49,9 +49,9 @@ const Rate = () => {
 
           {/* Links */}
           <div className="flex gap-4 flex-wrap mb-6">
-            <Link href="#" className="text-blue-500 font-medium hover:underline">30-years fixed</Link>
-            <Link href="#" className="text-blue-500 font-medium hover:underline">15-years fixed</Link>
-            <Link href="#" className="text-blue-500 font-medium hover:underline">5-years fixed</Link>
+            <Link href="#" className="text-yellow-500 font-medium hover:underline">30-years fixed</Link>
+            <Link href="#" className="text-yellow-500 font-medium hover:underline">15-years fixed</Link>
+            <Link href="#" className="text-yellow-500 font-medium hover:underline">5-years fixed</Link>
           </div>
 
           {/* Rate Plans */}
@@ -65,7 +65,7 @@ const Rate = () => {
                   <li>Rate: {plan.rate}</li>
                   <li>{plan.fees}</li>
                 </ul>
-                <button className="mt-auto bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 transition">
+                <button className="mt-auto bg-yellow-500 text-white py-2 px-4 rounded-lg hover:bg-yellow-600 transition">
                   Get your quote
                 </button>
               </div>
@@ -78,7 +78,7 @@ const Rate = () => {
           <h2 className="text-xl font-semibold mb-4">
             Shop around for providers based on your financial criteria
           </h2>
-          <button className="bg-blue-500 text-white py-2 px-6 rounded-lg hover:bg-blue-600 transition mb-4">
+          <button className="bg-yellow-500 text-white py-2 px-6 rounded-lg hover:bg-yellow-600 transition mb-4">
             View more providers
           </button>
           <p className="text-gray-500 text-sm mb-2">Advertising disclosure</p>

@@ -9,7 +9,7 @@ const Hero4 = () => {
       className="relative w-full h-[85vh] flex items-center justify-center bg-cover bg-center"
       style={{
         backgroundImage:
-          "url('https://images.unsplash.com/photo-1502673530728-f79b4cab31b1')",
+          "url('/hero.jpg')",
       }}
     >
       {/* Overlay */}
@@ -46,7 +46,7 @@ const Hero4 = () => {
             className="flex-1 mx-3 outline-none text-black text-lg"
           />
 
-          {/* Filter Dropdown */}
+          
           
         </div>
       </div>

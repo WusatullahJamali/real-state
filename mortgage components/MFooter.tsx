@@ -41,7 +41,7 @@ const MFooter = () => {
     "North Dakota", "South Dakota"
   ];
 
-  const renderList = (items, show, setShow, suffix = " mortgage rates") => (
+  const renderList = (items:any, show:any, setShow:any, suffix = " mortgage rates") => (
     <div>
       <ul className="space-y-2">
         <li>
@@ -50,7 +50,7 @@ const MFooter = () => {
       </ul>
       {show && (
         <ul className="mt-2 space-y-2">
-          {items.slice(1).map((item, idx) => (
+          {items.slice(1).map((item:any, idx:any) => (
             <li key={idx}>
               <a href="#" className="hover:underline text-sm">{item}{suffix}</a>
             </li>
@@ -59,7 +59,7 @@ const MFooter = () => {
       )}
       <button
         onClick={() => setShow(!show)}
-        className="mt-2 text-sm text-blue-500 font-medium flex items-center hover:underline"
+        className="mt-2 text-sm text-yellow-500 font-medium flex items-center hover:underline"
       >
         {show ? "See less" : "See more"}
         <span className="ml-1">{show ? "▲" : "▼"}</span>

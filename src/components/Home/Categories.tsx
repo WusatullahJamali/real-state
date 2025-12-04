@@ -18,8 +18,24 @@ const REALTOR_BLUE = "#0077c0";
 const DARK_TEXT = "#2f363b";
 const LIGHT_BG = "#f8f8f8";
 
+// --- Types ---
+type TabKey = "Buying" | "Renting" | "Selling";
+
+interface Card {
+  title: string;
+  description: string;
+  linkText: string;
+  href: string;
+  Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+}
+
+interface TabContent {
+  heading: string;
+  cards: Card[];
+}
+
 // --- Tab Data ---
-const TAB_DATA = {
+const TAB_DATA: Record<TabKey, TabContent> = {
   Buying: {
     heading: `Discover your path to <span style="color:${REALTOR_BLUE}">Homeownership</span>`,
     cards: [
@@ -110,12 +126,12 @@ const TAB_DATA = {
 };
 
 const HomeDiscovery = () => {
-  const [activeTab, setActiveTab] = useState("Buying");
+  const [activeTab, setActiveTab] = useState<TabKey>("Buying");
   const [showCards, setShowCards] = useState(true);
 
   const activeContent = useMemo(() => TAB_DATA[activeTab], [activeTab]);
 
-  const handleTabClick = (tab) => {
+  const handleTabClick = (tab: TabKey) => {
     if (tab === activeTab) return;
 
     setShowCards(false);
@@ -125,7 +141,7 @@ const HomeDiscovery = () => {
     }, 150);
   };
 
-  const CardContainer = ({ card }) => (
+  const CardContainer: React.FC<{ card: Card }> = ({ card }) => (
     <div className="group flex flex-col justify-between h-full p-3 space-y-3 bg-white rounded-xl shadow-md border border-gray-100 transition duration-300 hover:shadow-xl hover:border-[#0077c0] transform hover:-translate-y-1">
       <div className="flex justify-between items-start mb-2">
         <h3 className="text-lg font-semibold text-[#2f363b] pr-4">{card.title}</h3>
@@ -160,7 +176,7 @@ const HomeDiscovery = () => {
             {Object.keys(TAB_DATA).map((tabKey) => (
               <button
                 key={tabKey}
-                onClick={() => handleTabClick(tabKey)}
+                onClick={() => handleTabClick(tabKey as TabKey)}
                 className={`px-5 py-2 text-base font-medium rounded-full transition-all duration-300 ${
                   activeTab === tabKey
                     ? "bg-[#0077c0] text-white shadow-md"
