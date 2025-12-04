@@ -166,11 +166,11 @@ export default function Navbar() {
       transition={{ duration: 0.3 }}
       className="w-full bg-white shadow sticky top-0 z-50"
     >
-      <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+      <div className="max-w-7xl text-black mx-auto px-6 py-3 flex items-center justify-between">
 
         {/* Logo */}
         <Link href="/" className="flex items-center">
-          <Image src="/logo-brand2.svg" alt="Logo" width={120} height={40} className="object-contain" />
+          <Image src="/logo.svg" alt="Logo" width={120} height={40} className="object-contain" />
         </Link>
 
         {/* Desktop Menu */}

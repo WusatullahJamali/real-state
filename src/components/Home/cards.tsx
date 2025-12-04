@@ -9,12 +9,7 @@ interface ListingCardProps {
   href: string;
 }
 
-export default function ListingCard({
-  title,
-  count,
-  img,
-  href,
-}: ListingCardProps) {
+export default function ListingCard({ title, count, img, href }: ListingCardProps) {
   return (
     <Link
       href={href}
@@ -28,7 +23,7 @@ export default function ListingCard({
           className="object-cover group-hover:scale-105 transition-all duration-300"
         />
 
-        {/* Overlay hhhhh*/}
+        {/* Overlay */}
         <div className="absolute inset-0 bg-black/30"></div>
 
         {/* Top Overlay Content */}
