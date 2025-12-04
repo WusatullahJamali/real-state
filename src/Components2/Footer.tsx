@@ -1,23 +1,43 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { Facebook, X, Linkedin, Instagram, Youtube, ChevronDown } from "lucide-react"
+import React, { useState } from "react";
+import {
+  Facebook,
+  X,
+  Linkedin,
+  Instagram,
+  Youtube,
+  ChevronDown,
+} from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
-  const [showMoreCompany, setShowMoreCompany] = useState(false)
-  const [showMoreNews, setShowMoreNews] = useState(false)
+  const [showMoreCompany, setShowMoreCompany] = useState(false);
+  const [showApartments, setShowApartments] = useState(false);
 
-  const companyLinks = [
-    "About us", "Careers", "Accessibility", "Feedback", "Media room",
-    "Ad Choices", "Advertise with us", "Agent support", "Privacy",
-    "Terms", "Home Made", "Tech Blog", "Agent Blog", "Sitemap"
-  ]
+  const exploreLinks = [
+    "Search & Explore",
+    "Home For Sale",
+    "Home For Rent",
+    "To Buy Home",
+    "Sell Your Home",
+    "Shop Now",
+    "Sitemap",
+  ];
 
-  const newsLinks = [
-    "Barrons","Financial News","Harper Collins","Mansion Global","MarketWatch","New York Post",
-    "REA Group","Storyful","Wall Street Journal","Makaan.com","Housing.com","PropTiger.com",
-    "News Corp Australia","News UK"
-  ]
+  const aboutUsLinks = ["Feedback", "Privacy", "Terms", "FAQs", "Contact Us"];
+
+  const apartmentLinks = [
+    "Industrial",
+    "Development",
+    "Home Town",
+    "Office",
+    "Health Care",
+    "Banglow",
+    "House",
+    "Flat Share",
+    "Park Home",
+  ];
 
   return (
     <footer className="bg-white text-black pt-14 pb-8 relative z-50">
@@ -36,7 +56,6 @@ const Footer = () => {
               />
             ))}
           </div>
-        </div>
 
         {/* Company */}
         <div className="space-y-3">
@@ -54,7 +73,7 @@ const Footer = () => {
                 {link}
               </li>
             ))}
-          </ul>
+          </div>
 
           <button
             onClick={() => setShowMoreCompany(!showMoreCompany)}
@@ -145,7 +164,7 @@ const Footer = () => {
         © 1995-2025 National Association of REALTORS® and Move, Inc. All rights reserved.
       </div>
     </footer>
-  )
-}
+  );
+};
 
 export default Footer

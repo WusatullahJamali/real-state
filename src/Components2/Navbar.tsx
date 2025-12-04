@@ -221,6 +221,7 @@ export default function Navbar() {
                 </li>
               ))}
 
+<<<<<<< Updated upstream
               {/* Mobile Right-side buttons */}
               <li className="pt-4 flex flex-col space-y-3 border-t">
                 <Link
@@ -229,6 +230,15 @@ export default function Navbar() {
                 >
                   <User className="w-4 h-4" />
                   REGISTER/LOGIN
+=======
+              {/* Right-side links */}
+              <li className="pt-4 flex flex-col space-y-2">
+                <Link href="#" className="hover:underline">Manage Rentals</Link>
+                <Link href="#" className="hover:underline">Advertise</Link>
+                <Link href="/login" className="hover:underline">Login</Link>
+                <Link href="/SignUp" className="px-4 py-2 bg-black text-white hover:bg-neutral-800 transition">
+                  Signup
+>>>>>>> Stashed changes
                 </Link>
                 <Link
   href="/add-property"
@@ -256,4 +266,26 @@ export default function Navbar() {
       </AnimatePresence>
     </motion.nav>
   );
+<<<<<<< Updated upstream
 }
+=======
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+>>>>>>> Stashed changes

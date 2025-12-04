@@ -129,9 +129,32 @@ const HomeDiscovery = () => {
   const [activeTab, setActiveTab] = useState<TabKey>("Buying");
   const [showCards, setShowCards] = useState(true);
 
-  const activeContent = useMemo(() => TAB_DATA[activeTab], [activeTab]);
+  const activeContent = useMemo(() => TAB_DATA[activeTab as keyof typeof TAB_DATA], [activeTab]);
 
+<<<<<<< Updated upstream
   const handleTabClick = (tab: TabKey) => {
+=======
+  interface Card {
+    title: string;
+    description: string;
+    linkText: string;
+    href: string;
+    Icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  }
+
+  interface TabContent {
+    heading: string;
+    cards: Card[];
+  }
+
+  interface TabDataType {
+    Buying: TabContent;
+    Renting: TabContent;
+    Selling: TabContent;
+  }
+
+  const handleTabClick = (tab: string): void => {
+>>>>>>> Stashed changes
     if (tab === activeTab) return;
 
     setShowCards(false);
@@ -141,7 +164,11 @@ const HomeDiscovery = () => {
     }, 150);
   };
 
+<<<<<<< Updated upstream
   const CardContainer: React.FC<{ card: Card }> = ({ card }) => (
+=======
+  const CardContainer = ({ card }: { card: Card }) => (
+>>>>>>> Stashed changes
     <div className="group flex flex-col justify-between h-full p-3 space-y-3 bg-white rounded-xl shadow-md border border-gray-100 transition duration-300 hover:shadow-xl hover:border-[#0077c0] transform hover:-translate-y-1">
       <div className="flex justify-between items-start mb-2">
         <h3 className="text-lg font-semibold text-[#2f363b] pr-4">{card.title}</h3>
