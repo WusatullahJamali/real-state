@@ -1,7 +1,9 @@
-"use client"
-import React from "react"
-import { motion, Variants, easeOut } from "framer-motion";
+"use client";
 
+import React from "react";
+import { motion, Variants } from "framer-motion";
+
+// ---------------- TERMS DATA ----------------
 const terms = [
   {
     title: "Assumable mortgage",
@@ -102,18 +104,25 @@ const Comon = () => {
     opacity: 1,
     y: 0,
     scale: 1,
+    transition: { duration: 0.5, ease: "easeOut" },
+  },
+};
+
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
     transition: {
-      duration: 0.5,
-      ease: "easeOut", // ✅ string works in v10+
+      staggerChildren: 0.12,
     },
   },
 };
 
-
+// ---------------- MAIN COMPONENT ----------------
+const Common = () => {
   return (
-    <section className="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-100">
+    <section className="py-16 bg-linear-to-br from-yellow-50 via-orange-50 to-yellow-100">
       <div className="max-w-7xl mx-auto px-6">
-        {/* Animated Header */}
+        {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -128,7 +137,7 @@ const Comon = () => {
           </p>
         </motion.div>
 
-        {/* Animated Grid */}
+        {/* TERMS GRID */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -190,7 +199,7 @@ const Comon = () => {
         </motion.div>
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Comon
+export default Common;
