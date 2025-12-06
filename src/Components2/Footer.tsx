@@ -6,13 +6,10 @@ import {
   X,
   Linkedin,
   Instagram,
-  ChevronDown, // Keeping ChevronDown import just in case, but it's not used in the final JSX
 } from "lucide-react";
 import Image from "next/image";
 
 const Footer = () => {
-  // Removed useState for showMoreCompany and showApartments
-
   const exploreLinks = [
     "Search & Explore",
     "Home For Sale",
@@ -37,6 +34,16 @@ const Footer = () => {
     "Park Home",
   ];
 
+  const productLinks = [
+    "Leads & Branding",
+    "ListHub",
+    "Moving.com",
+    "International Properties",
+    "Avail",
+    "UpNest",
+    "Builder Solutions",
+  ];
+
   return (
     <footer className="bg-white text-black pt-14 pb-8 relative z-50">
 
@@ -58,7 +65,6 @@ const Footer = () => {
           {/* 2. SEARCH & EXPLORE */}
           <div>
             <h2 className="font-bold text-lg mb-3">Search & Explore</h2>
-            {/* Using <ul> for semantic list structure */}
             <ul className="space-y-1 text-sm">
               {exploreLinks.map((link, i) => (
                 <li
@@ -71,11 +77,9 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* 3. APARTMENT TYPES - All links visible */}
+          {/* 3. APARTMENT TYPES */}
           <div>
             <h2 className="font-bold text-lg mb-3">Apartment Types</h2>
-
-            {/* Removed dynamic maxHeight style */}
             <ul className="space-y-1 text-sm">
               {apartmentLinks.map((link, i) => (
                 <li
@@ -86,14 +90,11 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-            {/* Removed Show More/Less button */}
           </div>
 
-          {/* 4. ABOUT US - All links visible */}
+          {/* 4. ABOUT US */}
           <div>
             <h2 className="font-bold text-lg mb-3">About Us</h2>
-
-            {/* Removed dynamic maxHeight style */}
             <ul className="space-y-1 text-sm">
               {aboutUsLinks.map((link, i) => (
                 <li
@@ -104,7 +105,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-            {/* Removed Show More/Less button */}
           </div>
 
           {/* 5. GET THE APP */}
@@ -115,7 +115,7 @@ const Footer = () => {
             </p>
 
             <div className="flex flex-row items-center gap-4">
-              <a href="https://play.google.com/store/apps" target="_blank">
+              <a href="https://play.google.com/store/apps" target="_blank" rel="noopener noreferrer">
                 <Image
                   src="/playstore2.png"
                   alt="Google Play"
@@ -125,7 +125,7 @@ const Footer = () => {
                 />
               </a>
 
-              <a href="https://apps.apple.com/" target="_blank">
+              <a href="https://apps.apple.com/" target="_blank" rel="noopener noreferrer">
                 <Image
                   src="/appstore2.png"
                   alt="App Store"
@@ -135,43 +135,25 @@ const Footer = () => {
                 />
               </a>
             </div>
-
           </div>
         </div>
 
         {/* Divider */}
         <div className="border-t border-gray-300"></div>
 
-          <a
-            href="#"
-            className="w-40 block rounded-lg overflow-hidden hover:opacity-80 hover:scale-105 transition"
-          >
-            <img src="/app_store.svg" alt="App Store" />
-          </a>
-
-          <a
-            href="#"
-            className="w-40 block rounded-lg overflow-hidden hover:opacity-80 hover:scale-105 transition"
-          >
-            <img src="/playstor3.png" alt="Google Play" />
-          </a>
-        </div>
-
-        {/* Products */}
-        <div className="space-y-2">
+        {/* Products Section */}
+        <div className="space-y-2 mt-10">
           <h2 className="font-bold text-lg">Products</h2>
-
-          {[
-            "Leads & Branding","ListHub","Moving.com","International Properties",
-            "Avail","UpNest","Builder Solutions"
-          ].map((link, i) => (
-            <li
-              key={i}
-              className="list-none cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
-            >
-              {link}
-            </li>
-          ))}
+          <ul className="space-y-1 text-sm">
+            {productLinks.map((link, i) => (
+              <li
+                key={i}
+                className="list-none cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
+              >
+                {link}
+              </li>
+            ))}
+          </ul>
         </div>
 
         {/* News Corp */}
