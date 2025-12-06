@@ -1,5 +1,6 @@
 "use client";
 
+
 import React, { useRef, useCallback } from "react";
 import {
   Bed,
@@ -11,6 +12,7 @@ import {
   DollarSign,
 } from "lucide-react";
 
+
 // --- Interfaces ---
 interface HomeDetail {
   beds: number;
@@ -18,6 +20,7 @@ interface HomeDetail {
   sqft: number;
   lotSize?: string;
 }
+
 
 interface HomeCardProps {
   id: string;
@@ -28,6 +31,7 @@ interface HomeCardProps {
   address2: string;
   imageUrl: string;
 }
+
 
 // --- Mock Data ---
 const homesData: HomeCardProps[] = [
@@ -78,6 +82,7 @@ const homesData: HomeCardProps[] = [
   },
 ];
 
+
 // --- Home Card Component ---
 const HomeCard: React.FC<HomeCardProps> = ({
   status,
@@ -88,6 +93,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
   imageUrl,
 }) => {
   const isContact = price.toLowerCase().includes("contact");
+
 
   return (
     <div className="w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md  transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
@@ -106,6 +112,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
           SOLD
         </span>
       </div>
+
 
       <div className="p-3">
         <p className="text-xs font-semibold text-gray-500 mb-1 tracking-wide uppercase">
@@ -144,17 +151,16 @@ const HomeCard: React.FC<HomeCardProps> = ({
           </div>
         </div>
 
-        <button className="w-full py-1.5 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-400 transition duration-200 text-sm">
-          View Details
         </button>
-      </div>
     </div>
   );
 };
 
+
 // --- Main Component ---
 export default function RecentlySoldHomes() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
 
   const scroll = useCallback((direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -165,6 +171,7 @@ export default function RecentlySoldHomes() {
       });
     }
   }, []);
+
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-100 p-4">
@@ -189,12 +196,13 @@ export default function RecentlySoldHomes() {
           </a>
         </div>
 
+
         {/* Carousel */}
         <div className="relative">
           {/* Left button */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full hidden lg:block"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
           >
             <ArrowLeft className="w-5 h-5 text-gray-700" />
           </button>
@@ -211,15 +219,17 @@ export default function RecentlySoldHomes() {
             ))}
           </div>
 
+
           {/* Right button */}
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full hidden lg:block"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
           >
             <ArrowRight className="w-5 h-5 text-gray-700" />
           </button>
         </div>
       </div>
+
 
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {

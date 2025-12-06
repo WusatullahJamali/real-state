@@ -1,112 +1,94 @@
 "use client";
 
+
 import React from "react";
+import { House, Activity, History } from "lucide-react"; // Using lucide-react for the icons
 
-// --- Configuration Colors ---
-const PRIMARY_BLUE = "#0077c0"; // New theme blue
 
-// --- Interfaces ---
-interface Agent {
-  name: string;
-  detail: string;
-  imageUrl: string;
-  experienceYears: number;
+// --- 1. Define Types ---
+interface FeatureItem {
+  icon: React.ElementType; // To allow passing the Lucide icon component
+  title: string;
+  description: string;
 }
 
-// --- Mock Data ---
-const MOCK_AGENTS: Agent[] = [
+
+// --- 2. Sample Data ---
+const featureData: FeatureItem[] = [
   {
-    name: "Gregg Klar",
-    detail: "Gregg's Team, Keller WI.",
-    imageUrl: "agent1.jpeg",
-    experienceYears: 7,
+    // Icon resembling a house on a monitor/desktop
+    icon: House,
+    title: "See where you fit",
+    description: "See what similar homes in the area have recently sold for",
   },
   {
-    name: "Sarah Chen",
-    detail: "Home Equity Group, CA.",
-    imageUrl: "agent2.jpeg",
-    experienceYears: 12,
+    // Icon resembling a light bulb/sunburst for insights
+    icon: Activity,
+    title: "Get the full picture",
+    description:
+      "View sales activity in your market by browsing similar homes for sale",
   },
   {
-    name: "Alex Rios",
-    detail: "Rios Realty, FL.",
-    imageUrl: "agent3.jpeg",
-    experienceYears: 3,
-  },
-  {
-    name: "Maria Bell",
-    detail: "Bell Properties, TX.",
-    imageUrl: "agent4.jpeg",
-    experienceYears: 15,
+    // Icon resembling a stock chart/sales trend
+    icon: History,
+    title: "Stay in the know",
+    description:
+      "Access sales history and assessments for properties you're interested in",
   },
 ];
 
-// --- Agent Component ---
-const AgentComparisonItem: React.FC<{ agent: Agent }> = ({ agent }) => (
-  <div className="group flex flex-col items-center text-center p-3 hover:bg-gray-50 rounded-xl transition cursor-pointer">
-    <div
-      className="
-        relative w-20 h-20 rounded-full mb-2 
-        ring-2 ring-[#0077c0]/40 
-        transition
-      "
-    >
-      <img
-        src={agent.imageUrl}
-        alt={agent.name}
-        className="w-full h-full rounded-full object-cover border-2 border-white"
-      />
 
-      {/* Experience Badge — Blue */}
-      <div className="absolute bottom-0 right-0 w-6 h-6 flex items-center justify-center rounded-full bg-[#0077c0] text-white text-xs font-bold ring-1 ring-white">
-        {agent.experienceYears}
-      </div>
-    </div>
+// --- 3. Feature Card Component (Internal) ---
+const FeatureCard: React.FC<{ item: FeatureItem }> = ({ item }) => {
+  const IconComponent = item.icon;
 
-    <p className="text-base font-bold text-gray-900">{agent.name}</p>
-    <p className="text-xs text-gray-500">{agent.detail}</p>
 
-    <p className="text-[15px] font-semibold mt-1 px-2 py-1 rounded-full bg-[#e6f5ff] text-[#0077c0]">
-      {agent.experienceYears} Years Experience.
-    </p>
-  </div>
-);
-
-// --- Main Component ---
-export default function LocalAgents() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl">
-        {/* Header */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-center border-b border-gray-200 pb-5">
-          <div className="md:col-span-2">
-            <h1 className="text-2xl font-semibold text-gray-900">
-              Find Skilled Local Experts
-            </h1>
-            <p className="text-gray-600 text-sm">
-              Access our curated network of experienced real estate
-              professionals.
-            </p>
-          </div>
+    <div className="flex w-80 flex-col items-center text-center p-4">
+      {/* Icon: Large size, dark grey color */}
+      <div className="mb-2">
+        <IconComponent className="w-12 h-12 text-yellow-500" />
+      </div>
 
-          <div className="flex justify-start md:justify-end">
-            <button
-              onClick={() => console.log("Compare Agents Now")}
-              className="flex items-center space-x-1 py-2 px-5 text-white text-sm font-semibold bg-[#0077c0] rounded-full hover:opacity-90 transition"
-            >
-              <span>Compare Agents Now</span>
-              <span>&rarr;</span>
-            </button>
-          </div>
+
+      {/* Title */}
+      <h3 className="text-xl font-semibold text-[#301366] mb-1">
+        {item.title}
+      </h3>
+
+
+      {/* Description */}
+      <p className="text-base text-gray-600 max-w-xs">{item.description}</p>
+    </div>
+  );
+};
+
+
+// --- 4. Main Grid Component ---
+const FeatureGrid: React.FC = () => {
+  return (
+    // Light background matching the image
+    <section className="bg-white -mt-8 sm:py-24">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header Text */}
+        <div className="text-center mb-10 max-w-4xl mx-auto">
+          <p className="text-2xl sm:text-3xl text-[#301366] leading-relaxed font-bold">
+            When it comes to selling, information is power. So make the very
+            best calls with the very latest property info.
+          </p>
         </div>
 
-        {/* Agents Grid */}
-        <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-y-4 gap-x-2">
-          {MOCK_AGENTS.map((agent) => (
-            <AgentComparisonItem key={agent.name} agent={agent} />
+
+        {/* Feature Grid: 3 columns on medium screens and up */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {featureData.map((item, index) => (
+            <FeatureCard key={index} item={item} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
-}
+};
+
+
+export default FeatureGrid;
