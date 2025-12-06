@@ -1,5 +1,6 @@
 "use client"
 import React from "react"
+import { motion, Variants, easeOut } from "framer-motion";
 
 const terms = [
   {
@@ -64,7 +65,7 @@ const terms = [
   {
     title: "Reverse mortgage",
     description:
-      "A reverse mortgage allows seniors to borrow against the value of their homes. It doesn’t need to be repaid until the borrower moves, sells, or dies.",
+      "A reverse mortgage allows seniors to borrow against the value of their homes. It doesn't need to be repaid until the borrower moves, sells, or dies.",
   },
   {
     title: "Step-by-step Guide",
@@ -83,26 +84,110 @@ const terms = [
 ]
 
 const Comon = () => {
-  return (
-    <section className="py-16 bg-yellow-50">
-      <div className="max-w-7xl mx-auto px-6">
-        <h1 className="text-3xl font-bold text-center mb-12 text-black">
-          Common Mortgage Terms
-        </h1>
+  // Container animation
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  // Card animation
+  const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 50, scale: 0.9 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut", // ✅ string works in v10+
+    },
+  },
+};
+
+
+  return (
+    <section className="py-16 bg-gradient-to-br from-yellow-50 via-orange-50 to-yellow-100">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* Animated Header */}
+        <motion.div
+          initial={{ opacity: 0, y: -30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-3">
+            Common Mortgage Terms
+          </h1>
+          <p className="text-gray-600 text-lg">
+            Understanding the language of home financing
+          </p>
+        </motion.div>
+
+        {/* Animated Grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
           {terms.map((term, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white border border-yellow-300 p-6 rounded-2xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 cursor-pointer"
+              variants={cardVariants}
+              whileHover={{ 
+                y: -8, 
+                scale: 1.02,
+                transition: { duration: 0.3 }
+              }}
+              className="group relative bg-white border border-yellow-300 p-6 rounded-2xl shadow-md hover:shadow-2xl transition-shadow overflow-hidden cursor-pointer"
             >
-              <h2 className="text-xl font-semibold mb-3 text-yellow-700">
-                {term.title}
-              </h2>
-              <p className="text-gray-800 text-sm leading-relaxed">{term.description}</p>
-            </div>
+              {/* Animated Background Accent */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                whileHover={{ scale: 1.5, opacity: 0.1 }}
+                transition={{ duration: 0.5 }}
+                className="absolute top-0 right-0 w-32 h-32 bg-yellow-400 rounded-full -mr-16 -mt-16"
+              />
+
+              {/* Content */}
+              <div className="relative z-10">
+                <motion.h2 
+                  className="text-xl font-semibold mb-3 text-yellow-700 group-hover:text-yellow-600 transition-colors"
+                  initial={{ x: -10, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 }}
+                >
+                  {term.title}
+                </motion.h2>
+                
+                <motion.p 
+                  className="text-gray-700 text-sm leading-relaxed"
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.05 + 0.2 }}
+                >
+                  {term.description}
+                </motion.p>
+              </div>
+
+              {/* Hover Indicator */}
+              <motion.div
+                initial={{ width: 0 }}
+                whileHover={{ width: "100%" }}
+                transition={{ duration: 0.4 }}
+                className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-yellow-400 to-orange-400"
+              />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   )

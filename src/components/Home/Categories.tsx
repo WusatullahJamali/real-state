@@ -150,15 +150,21 @@ const HomeDiscovery = () => {
     Selling: TabContent;
   }
 
+<<<<<<< Updated upstream
   const handleTabClick = (tab: string): void => {
     if (tab === activeTab) return;
+=======
+ const handleTabClick = (tab: TabKey): void => {
+  if (tab === activeTab) return;
 
-    setShowCards(false);
-    setTimeout(() => {
-      setActiveTab(tab);
-      setShowCards(true);
-    }, 150);
-  };
+  setShowCards(false);
+  setTimeout(() => {
+    setActiveTab(tab); 
+    setShowCards(true);
+  }, 150);
+};
+>>>>>>> Stashed changes
+
 
   const CardContainer = ({ card }: { card: Card }) => (
     <div className="group flex flex-col justify-between h-full p-3 space-y-3 bg-white rounded-xl shadow-md border border-gray-100 transition duration-300 hover:shadow-xl hover:border-[#0077c0] transform hover:-translate-y-1">

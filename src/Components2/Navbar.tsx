@@ -24,50 +24,44 @@ export default function Navbar() {
   }, [lastScroll]);
 
   // Mega menu content
-  const dropdownContent: { [key: string]: string[] } = {
+  const dropdownContent: { [key: string]: Array<string | { text: string; href: string }> } = {
     "FOR SALE": [
-      "Homes for sale",
+      { text: "Homes for sale", href: "/homes-for-sale" },
+      { text: "New Construction For Sale", href: "/new-construction" },
+      { text: "Explore the neighborhood", href: "/explore the neighborhood" },
+      { text: "Housing market trends", href: "/housing market trends" },
+      { text: "Recently sold homes", href: "/recently sold homes" },
+      
+      
      
-     
-      "New Construction For Sale",
-      
-      
-      "Explore the neighborhood",
-      "Housing market trends",
-      
-      
-      "Recently sold homes",
     ],
     "FOR RENT": [
-      "Apartments for rent",
-      "Houses for rent",
-      
-   
-      "Contact rent landlord",
-      
-      
-      "Manage rentals",
-      "List your rentals",
+      { text: "Apartments for rent", href: "/apartments for rent" },
+      { text: "Houses for rent", href: "/houses for rent" },
+      { text: "Contact rent landlord", href: "/contact rent landlord" },
+      { text: "Manage rentals", href: "/manage rentals" },
+      { text: "List your rentals", href: "/list your rentals" },
      
     ],
     PROPERTY: [
-      "Property search",
-      "Property types",
+       { text: "Property search", href: "/property search" },
+       { text: "Property types", href: "/property types" },
+       { text: "Property valuation", href: "/property valuation" },
+       { text: "Property investment", href: "/property investment" },
+       { text: "Commercial property", href: "/commercial property" },
+       { text: "Residential property", href: "/residential property" },
+       { text: "Property listings", href: "/property listings" },
       
-      "Property valuation",
-      "Property investment",
-      "Commercial property",
-      "Residential property",
-      "Property listings",
     ],
     PAGES: [
-      "About us",
-      "Contact us",
-      "FAQ",
-      "Blog",
-      "Terms of service",
-      "Privacy policy",
-      "Careers",
+       { text: "About us", href: "/about" },
+       { text: "Contact us", href: "/contact" },
+       { text: "FAQ", href: "/faq" },
+       { text: "Blog", href: "/blog" },
+       { text: "Terms of service", href: "/terms of service" },
+       { text: "Privacy policy", href: "/privacy policy" },
+       { text: "Careers", href: "/careers" },   
+     
     ],
   };
 
@@ -132,14 +126,28 @@ export default function Navbar() {
                     className="absolute left-0 top-full mt-2 w-64 bg-white border shadow-xl rounded-lg p-4 z-50"
                   >
                     <ul className="space-y-2">
-                      {dropdownContent[item.name].map((row, i) => (
-                        <li
-                          key={i}
-                          className="text-gray-600 hover:text-yellow-500 hover:pl-2 transition-all cursor-pointer text-sm"
-                        >
-                          {row}
-                        </li>
-                      ))}
+                      {dropdownContent[item.name].map((row, i) => {
+                        const isLink = typeof row === 'object' && 'href' in row;
+                        const text = isLink ? row.text : row;
+                        const href = isLink ? row.href : '#';
+                        
+                        return (
+                          <li key={i}>
+                            {isLink ? (
+                              <Link
+                                href={href}
+                                className="block text-gray-600 hover:text-yellow-500 hover:pl-2 transition-all text-sm"
+                              >
+                                {text}
+                              </Link>
+                            ) : (
+                              <span className="block text-gray-600 hover:text-yellow-500 hover:pl-2 transition-all cursor-pointer text-sm">
+                                {text}
+                              </span>
+                            )}
+                          </li>
+                        );
+                      })}
                     </ul>
                   </motion.div>
                 )}
@@ -175,85 +183,127 @@ export default function Navbar() {
           ☰
         </button>
       </div>
+{/* Mobile Menu */}
+<AnimatePresence>
+  {mobileOpen && (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.25 }}
+      className="lg:hidden bg-white border-t shadow-lg overflow-hidden"
+    >
+      <ul className="p-4 space-y-3 text-sm font-medium">
+        {menuItems.map((item) => {
+          const isOpen = activeMenu === item.name;
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.25 }}
-            className="lg:hidden bg-white border-t shadow-lg overflow-hidden"
-          >
-            <ul className="p-4 space-y-3 text-sm font-medium">
-              {menuItems.map((item) => (
-                <li key={item.name}>
-                  {item.hasDropdown ? (
-                    <details className="group">
-                      <summary className="py-2 cursor-pointer text-gray-700 hover:text-yellow-500 flex items-center justify-between">
-                        {item.name}
-                        <ChevronDown className="w-4 h-4 group-open:rotate-180 transition-transform" />
-                      </summary>
-                      <ul className="pl-4 pt-2 space-y-2">
-                        {dropdownContent[item.name].map((row, i) => (
-                          <li
-                            key={i}
-                            className="text-gray-600 hover:text-yellow-500 cursor-pointer"
-                          >
-                            {row}
-                          </li>
-                        ))}
-                      </ul>
-                    </details>
-                  ) : (
-                    <Link
-                      href={item.href}
-                      className={`block py-2 ${
-                        item.name === "HOME"
-                          ? "text-yellow-500"
-                          : "text-gray-700 hover:text-yellow-500"
+          return (
+            <li key={item.name} className="relative">
+              {item.hasDropdown ? (
+                <div className="flex justify-between items-center">
+                  {/* Parent link */}
+                  <Link
+                    href={item.href}
+                    className="py-2 text-gray-700 hover:text-yellow-500 flex-1"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+
+                  {/* Arrow button */}
+                  <button
+                    className="p-2"
+                    onClick={() =>
+                      setActiveMenu(isOpen ? null : item.name)
+                    }
+                  >
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform ${
+                        isOpen ? "rotate-180" : ""
                       }`}
-                    >
-                      {item.name}
-                    </Link>
-                  )}
-                </li>
-              ))}
-
-              {/* Mobile Right-side buttons */}
-              <li className="pt-4 flex flex-col space-y-3 border-t">
+                    />
+                  </button>
+                </div>
+              ) : (
                 <Link
-                  href="/login"
-                  className="flex items-center gap-2 py-2 text-gray-700 hover:text-yellow-500"
+                  href={item.href}
+                  className="block py-2 text-gray-700 hover:text-yellow-500"
+                  onClick={() => setMobileOpen(false)}
                 >
-                  <User className="w-4 h-4" />
-                  REGISTER/LOGIN
+                  {item.name}
                 </Link>
-                <Link
-  href="/add-property"
-  className="relative flex items-center justify-center gap-2 
-  px-6 py-3 w-[230px] h-[48px] 
-  bg-gray-900 text-white font-semibold text-sm cursor-pointer 
-  overflow-hidden shadow-md transition-all duration-300 
-  active:translate-x-[5px] active:translate-y-[5px] group"
-  style={{ borderRadius: "0px" }}
->
-  <span
-    className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 
-    transition-all duration-300 group-hover:translate-x-full 
-    group-hover:-translate-y-1/2 group-hover:rounded-none"
-    style={{ borderRadius: "0px" }}
-  ></span>
+              )}
 
-  <Plus className="w-4 h-4 relative z-10" />
-  <span className="relative z-10">ADD PROPERTY</span>
-</Link>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              {/* Dropdown items */}
+              {item.hasDropdown && isOpen && (
+                <ul className="pl-4 pt-2 space-y-2">
+                  {dropdownContent[item.name].map((row, i) => {
+                    const isLink =
+                      typeof row === "object" && "href" in row;
+                    const text = isLink ? row.text : row;
+                    const href = isLink ? row.href : "#";
+
+                    return (
+                      <li key={i}>
+                        {isLink ? (
+                          <Link
+                            href={href}
+                            className="block text-gray-600 hover:text-yellow-500"
+                            onClick={() => setMobileOpen(false)}
+                          >
+                            {text}
+                          </Link>
+                        ) : (
+                          <span className="block text-gray-600 cursor-default">
+                            {text}
+                          </span>
+                        )}
+                      </li>
+                    );
+                  })}
+                </ul>
+              )}
+            </li>
+          );
+        })}
+
+        {/* Right-side links */}
+        <li className="pt-4 flex flex-col space-y-2">
+          <Link
+            href="/login"
+            className="hover:underline"
+            onClick={() => setMobileOpen(false)}
+          >
+            Register/Login
+          </Link>
+          <Link
+            href="/SignUp"
+            className="px-4 py-2 bg-black text-white hover:bg-neutral-800 transition"
+            onClick={() => setMobileOpen(false)}
+          >
+            Signup
+          </Link>
+          <Link
+            href="/add-property"
+            className="relative flex items-center justify-center gap-2 
+              px-6 py-3 w-[230px] h-[48px] 
+              bg-gray-900 text-white font-semibold text-sm cursor-pointer 
+              overflow-hidden shadow-md transition-all duration-300 
+              active:translate-x-[5px] active:translate-y-[5px] group"
+            onClick={() => setMobileOpen(false)}
+          >
+            <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
+            <Plus className="w-4 h-4 relative z-10" />
+            <span className="relative z-10">ADD PROPERTY</span>
+          </Link>
+        </li>
+      </ul>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+
+
     </motion.nav>
   );
 }
