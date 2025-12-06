@@ -1,128 +1,144 @@
 "use client";
 
-export default function LoginPage() {
+import Image from "next/image";
+import { useState } from "react";
+import Link from "next/link";
+
+export default function LoginPopup() {
+  const [show, setShow] = useState(true);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4">
-      <div className="bg-white text-black w-full max-w-md rounded-xl shadow-lg p-6 relative">
+    <>
+      {show && (
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl min-h-[480px] shadow-xl w-full max-w-3xl relative overflow-hidden">
 
-        {/* Header */}
-        <h2 className="text-xl font-semibold mb-6 text-center">
-          Log in or create an account
-        </h2>
+            {/* Close Button */}
+            <button
+              onClick={() => setShow(false)}
+              className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+            >
+              ×
+            </button>
 
-        {/* Email + Name + Password Form */}
-        <form className="flex flex-col gap-4">
-          {/* Name */}
-          <div className="flex flex-col">
-            <label htmlFor="name" className="mb-1 font-medium">
-              Full Name <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="name"
-              type="text"
-              placeholder="Enter your full name"
-              required
-              className="border border-gray-300 text-gray-800 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+            <div className="flex flex-col md:flex-row">
+
+              {/* Left Image */}
+              <div className="hidden md:block w-1/2 relative">
+             <Image
+                src="/apart2.avif"
+                  alt="apartment"
+                fill
+                     className="object-cover"
+                  />
           </div>
 
-          {/* Email */}
-          <div className="flex flex-col">
-            <label htmlFor="email" className="mb-1 font-medium">
-              Email address <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="email"
-              type="email"
-              placeholder="Enter your email"
-              required
-              className="border border-gray-300 text-gray-800 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
+
+              {/* Right Login Form */}
+              <div className="w-full md:w-1/2 p-6">
+
+                <h2 className="text-2xl font-bold text-gray-800 text-center mb-2">
+                  Log In
+                </h2>
+               
+
+               <p className="text-sm text-gray-600 text-center mb-6">
+             Don’t have an account?{" "}
+                     <Link href="/SignUp" className="text-[#efb93f] cursor-pointer hover:underline">
+              Sign Up
+                  </Link>
+                 </p>
+
+
+                {/* Form */}
+                <form className="space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-black">
+                      Email Address
+                    </label>
+                    <input
+                      type="email"
+                      placeholder="Type email"
+                      className="w-full mt-1 text-black px-4 py-2 border rounded-lg  "
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-black">
+                      Password
+                    </label>
+                    <input
+                      type="password"
+                      placeholder="Type password"
+                      className="w-full mt-1 px-4 py-2 text-black border rounded-lg  "
+                    />
+                  </div>
+
+                  <div className="flex items-center justify-between text-sm">
+                    <label className="flex items-center gap-2">
+                      <input type="checkbox" />
+                      <span className="text-black">Remember Me</span>
+                    </label>
+                    <a href="#" className="text-gray-600 hover:underline">
+                      Forgot Password?
+                    </a>
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full bg-[#efb93f] cursor-pointer  text-white py-2.5 rounded-lg font-medium"
+                  >
+                    Log In
+                  </button>
+                </form>
+
+                {/* Social Icons */}
+               <div className="mt-6 text-center">
+  <p className="text-gray-500 text-sm">Or continue with</p>
+  <div className="flex justify-center gap-4 mt-3">
+    
+    {/* Google */}
+    <a
+      href="https://accounts.google.com/signin"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        className="cursor-pointer"
+        src="/google-logo2.png"
+        alt="google"
+        width={50}
+        height={50}
+      />
+    </a>
+
+    {/* Facebook */}
+    <a
+      href="https://www.facebook.com/login/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Image
+        className="cursor-pointer pt-1.5"
+        src="/facebook.png"
+        alt="facebook"
+        width={40}
+        height={44}
+      />
+    </a>
+
+  </div>
+
+
+
+
+                </div>
+              </div>
+            </div>
+
           </div>
-
-          {/* Password */}
-          <div className="flex flex-col">
-            <label htmlFor="password" className="mb-1 font-medium">
-              Password <span className="text-red-500">*</span>
-            </label>
-            <input
-              id="password"
-              type="password"
-              placeholder="Enter your password"
-              required
-              className="border border-gray-300 text-gray-800 rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-            />
-          </div>
-
-          {/* Continue Button */}
-          <button
-            type="submit"
-            className="bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
-          >
-            Continue
-          </button>
-
-          <div className="flex items-center justify-center gap-2 text-gray-500 text-sm my-2">
-            <span className="border-b border-gray-400 w-1/3"></span>
-            <span>or</span>
-            <span className="border-b border-gray-400 w-1/3"></span>
-          </div>
-        </form>
-
-        {/* Social Login */}
-        <div className="flex flex-col gap-3 mt-4">
-          <a
-            href="https://accounts.google.com/signin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
-          >
-            <span aria-hidden className="text-xl font-semibold text-[#4285F4]">G</span>
-            Continue with Google
-          </a>
-          <a
-            href="https://www.facebook.com/login/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
-          >
-            <span aria-hidden className="text-xl font-semibold text-[#1877F2]">f</span>
-            Continue with Facebook
-          </a>
-          <a
-            href="https://appleid.apple.com/sign-in"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 border border-gray-300 rounded-lg py-2 hover:bg-gray-100 transition"
-          >
-            <span aria-hidden className="text-xl font-semibold">A</span>
-            Continue with Apple
-          </a>
         </div>
-
-        {/* Real Estate Agent / Account Links */}
-        <div className="text-center mt-6 space-y-2">
-          <p>Are you a real estate agent?</p>
-          <div className="flex justify-center gap-2 flex-wrap">
-            <a href="/login" className="text-blue-600 hover:underline">Log in</a>
-            <span>or</span>
-            <a href="/register" className="text-blue-600 hover:underline">Create an account</a>
-          </div>
-          <div>
-            <a href="/purchase-products" className="text-blue-600 hover:underline mt-2 inline-block">Purchase products</a>
-          </div>
-        </div>
-
-        {/* Terms & Privacy */}
-        <div className="text-center text-sm mt-6 space-y-1">
-          <p>By creating an account you agree to Samarix.com</p>
-          <div className="flex justify-center gap-1 flex-wrap">
-            <a href="/terms" className="text-blue-600 hover:underline">Terms of Use</a>
-            <span>and</span>
-            <a href="/privacy" className="text-blue-600 hover:underline">Privacy Policy</a>
-          </div>
-        </div>
-      </div>
-    </div>
+      )}
+    </>
   );
 }

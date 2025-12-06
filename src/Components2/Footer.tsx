@@ -1,29 +1,47 @@
-"use client"
+"use client";
 
-import React, { useState } from "react"
-import { Facebook, X, Linkedin, Instagram, Youtube, ChevronDown } from "lucide-react"
+import React from "react";
+import {
+  Facebook,
+  X,
+  Linkedin,
+  Instagram,
+  ChevronDown, // Keeping ChevronDown import just in case, but it's not used in the final JSX
+} from "lucide-react";
+import Image from "next/image";
 
 const Footer = () => {
-  const [showMoreCompany, setShowMoreCompany] = useState(false)
-  const [showMoreNews, setShowMoreNews] = useState(false)
+  // Removed useState for showMoreCompany and showApartments
 
-  const companyLinks = [
-    "About us", "Careers", "Accessibility", "Feedback", "Media room",
-    "Ad Choices", "Advertise with us", "Agent support", "Privacy",
-    "Terms", "Home Made", "Tech Blog", "Agent Blog", "Sitemap"
-  ]
+  const exploreLinks = [
+    "Search & Explore",
+    "Home For Sale",
+    "Home For Rent",
+    "To Buy Home",
+    "Sell Your Home",
+    "Shop Now",
+    "Sitemap",
+  ];
 
-  const newsLinks = [
-    "Barrons","Financial News","Harper Collins","Mansion Global","MarketWatch","New York Post",
-    "REA Group","Storyful","Wall Street Journal","Makaan.com","Housing.com","PropTiger.com",
-    "News Corp Australia","News UK"
-  ]
+  const aboutUsLinks = ["Feedback", "Privacy", "Terms", "FAQs", "Contact Us"];
+
+  const apartmentLinks = [
+    "Industrial",
+    "Development",
+    "Home Town",
+    "Office",
+    "Health Care",
+    "Banglow",
+    "House",
+    "Flat Share",
+    "Park Home",
+  ];
 
   return (
     <footer className="bg-white text-black pt-14 pb-8 relative z-50">
 
-      {/* Container */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 grid gap-12 md:grid-cols-5">
+        {/* ----------- 5 COLUMNS IN ONE ROW ----------- */}
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 pb-12">
 
         {/* Social */}
         <div className="space-y-5">
@@ -36,44 +54,93 @@ const Footer = () => {
               />
             ))}
           </div>
+
+          {/* 2. SEARCH & EXPLORE */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">Search & Explore</h2>
+            {/* Using <ul> for semantic list structure */}
+            <ul className="space-y-1 text-sm">
+              {exploreLinks.map((link, i) => (
+                <li
+                  key={i}
+                  className="list-none cursor-pointer hover:underline hover:underline-offset-4 transition-all"
+                >
+                  {link}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* 3. APARTMENT TYPES - All links visible */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">Apartment Types</h2>
+
+            {/* Removed dynamic maxHeight style */}
+            <ul className="space-y-1 text-sm">
+              {apartmentLinks.map((link, i) => (
+                <li
+                  key={i}
+                  className="cursor-pointer hover:underline hover:underline-offset-4 transition-all"
+                >
+                  {link}
+                </li>
+              ))}
+            </ul>
+            {/* Removed Show More/Less button */}
+          </div>
+
+          {/* 4. ABOUT US - All links visible */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">About Us</h2>
+
+            {/* Removed dynamic maxHeight style */}
+            <ul className="space-y-1 text-sm">
+              {aboutUsLinks.map((link, i) => (
+                <li
+                  key={i}
+                  className="cursor-pointer hover:underline hover:underline-offset-4 transition-all"
+                >
+                  {link}
+                </li>
+              ))}
+            </ul>
+            {/* Removed Show More/Less button */}
+          </div>
+
+          {/* 5. GET THE APP */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">Get the App</h2>
+            <p className="text-gray-700 text-sm mb-3">
+              Download on Google Play Store or App Store
+            </p>
+
+            <div className="flex flex-row items-center gap-4">
+              <a href="https://play.google.com/store/apps" target="_blank">
+                <Image
+                  src="/playstore2.png"
+                  alt="Google Play"
+                  width={120}
+                  height={48}
+                  className="h-12 w-auto"
+                />
+              </a>
+
+              <a href="https://apps.apple.com/" target="_blank">
+                <Image
+                  src="/appstore2.png"
+                  alt="App Store"
+                  width={120}
+                  height={48}
+                  className="h-12 w-auto"
+                />
+              </a>
+            </div>
+
+          </div>
         </div>
 
-        {/* Company */}
-        <div className="space-y-3">
-          <h2 className="font-bold text-lg">Company</h2>
-
-          <ul
-            className="space-y-2 overflow-hidden transition-all duration-300"
-            style={{ maxHeight: showMoreCompany ? "650px" : "110px" }}
-          >
-            {companyLinks.map((link, i) => (
-              <li
-                key={i}
-                className="cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
-              >
-                {link}
-              </li>
-            ))}
-          </ul>
-
-          <button
-            onClick={() => setShowMoreCompany(!showMoreCompany)}
-            className="flex items-center text-sm text-gray-600 hover:text-black transition"
-          >
-            {showMoreCompany ? "Show Less" : "Show More"}
-            <ChevronDown
-              className={`w-4 h-4 ml-1 transition-transform ${showMoreCompany ? "rotate-180" : ""}`}
-            />
-          </button>
-
-          <span className="text-gray-500 mt-4 text-sm block hover:text-gray-700 cursor-pointer transition">
-            Do Not Sell or Share My Personal Information
-          </span>
-        </div>
-
-        {/* Get App */}
-        <div className="space-y-4">
-          <h2 className="font-bold text-lg">Get the app</h2>
+        {/* Divider */}
+        <div className="border-t border-gray-300"></div>
 
           <a
             href="#"
@@ -145,7 +212,7 @@ const Footer = () => {
         © 1995-2025 National Association of REALTORS® and Move, Inc. All rights reserved.
       </div>
     </footer>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;
