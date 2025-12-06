@@ -90,7 +90,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
   const isContact = price.toLowerCase().includes("contact");
 
   return (
-    <div className="w-64 shrink-0 mx-2 bg-white rounded-xl border border-gray-100 transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03]">
+    <div className="w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md  transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
       <div className="relative h-40 overflow-hidden rounded-t-xl">
         <img
           src={imageUrl}
@@ -144,7 +144,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
           </div>
         </div>
 
-        <button className="w-full py-1.5 bg-yellow-50 text-yellow-500 font-semibold rounded-md hover:bg-yellow-100 transition duration-200 text-sm">
+        <button className="w-full py-1.5 bg-yellow-500 text-black font-semibold rounded-md hover:bg-yellow-400 transition duration-200 text-sm">
           View Details
         </button>
       </div>
@@ -168,7 +168,7 @@ export default function RecentlySoldHomes() {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl">
+      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl ">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b pb-4 mb-6">
           <div>
@@ -182,7 +182,7 @@ export default function RecentlySoldHomes() {
           </div>
           <a
             href="#"
-            className="flex items-center text-yellow-500 hover:text-yellow-700 font-bold mt-3 md:mt-0 transition text-sm"
+            className="flex items-center text-yellow-500 hover:text-yellow-400 font-bold mt-3 md:mt-0 transition text-sm"
           >
             Homes similar to yours
             <MoveRight className="w-4 h-4 ml-1.5" />

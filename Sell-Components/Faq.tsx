@@ -35,7 +35,10 @@ const faqs: Faq[] = [
   },
 ];
 
-export default function Faqs() {
+const FAQ: React.FC<FAQProps> = ({
+  iconColor = "#000000", // Arrow color black
+  questionMarkColor = "#FACC15", // Yellow
+}) => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const toggleFaq = (index: number) => {
@@ -43,39 +46,77 @@ export default function Faqs() {
   };
 
   return (
-    <section className="bg-white py-12" data-testid="faq-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">
-          Frequently asked questions
-        </h2>
+    // Outer container ensures full width and centers the content
+    <div className="bg-white w-full flex justify-center">
+      {/* MAIN CONTENT CONTAINER: Set to max-w-7xl and centered (mx-auto).
+        This replaces the non-standard 'w-7xl' class.
+      */}
+      <div className="max-w-7xl w-full px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+        {/* Title Container: Remains centered within the max-w-7xl parent */}
+        <div className="mx-auto mb-10 lg:mb-14 text-center">
+          <h2 className="text-2xl font-bold md:text-4xl md:leading-tight text-gray-900">
+            You might be wondering...
+          </h2>
+        </div>
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
+        {/* Accordion Items Container: Now also set to max-w-7xl to fill the space */}
+        <div className="max-w-5xl mx-auto divide-y divide-gray-200">
+          {faqData.map((item, index) => {
+            const isOpen = index === openIndex;
+
             return (
-              <div
-                key={index}
-                className="border border-gray-200 rounded-lg overflow-hidden"
-              >
+              <div key={index} className="py-4 first:pt-0 last:pb-0">
                 <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none"
-                  aria-expanded={isOpen}
+                  className="flex justify-between items-start w-full focus:outline-none gap-x-4"
+                  onClick={() => toggleAccordion(index)}
                 >
-                  <span className="text-left text-gray-900 font-medium">
-                    {faq.question}
-                  </span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {isOpen && (
-                  <div className="p-4 text-gray-700 border-t border-gray-200">
-                    <p>{faq.answer}</p>
+                  {/* Left question mark icon */}
+                  <svg
+                    className="shrink-0 mt-1 w-6 h-6"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke={questionMarkColor}
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <circle cx={12} cy={12} r={10} />
+                    <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
+                    <path d="M12 17h.01" />
+                  </svg>
+
+                  <div className="grow text-left">
+                    <h3 className="md:text-lg font-semibold text-gray-800">
+                      {item.question}
+                    </h3>
                   </div>
-                )}
+
+                  {/* Right arrow icon */}
+                  <svg
+                    className={`w-5 h-5 mt-1 transition-transform duration-300 ${
+                      isOpen ? "rotate-180" : "rotate-0"
+                    }`}
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke={iconColor}
+                    strokeWidth={2}
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M19 9l-7 7-7-7" />
+                  </svg>
+                </button>
+
+                {/* Smooth answer using Tailwind max-height transition */}
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${
+                    isOpen ? "max-h-96 mt-2" : "max-h-0"
+                  }`}
+                >
+                  <p className="text-gray-600 pl-10">{item.answer}</p>
+                </div>
               </div>
             );
           })}

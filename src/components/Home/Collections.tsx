@@ -4,25 +4,59 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
+import Image from "next/image";
+import Link from "next/link";
 
 import ListingCard from "@/components/Home/cards";
 
 export default function CollectionsSection() {
   const collections = [
-    { title: "Recommended Homes", count: 17, img: "/img1.webp", href: "/recommended" },
-    { title: "New Listings", count: 7, img: "/img2.avif", href: "/new-listings" },
-    { title: "Price Reduced", count: 14, img: "/img3.webp", href: "/price-reduced" },
+    {
+      title: "Recommended Homes",
+      count: 17,
+      img: "/img1.webp",
+      href: "/recommended",
+    },
+    {
+      title: "New Listings",
+      count: 7,
+      img: "/img2.avif",
+      href: "/new-listings",
+    },
+    {
+      title: "Price Reduced",
+      count: 14,
+      img: "/img3.webp",
+      href: "/price-reduced",
+    },
     { title: "Open Houses", count: 3, img: "/img4.jpeg", href: "/open-houses" },
-    { title: "Recently Sold", count: 168, img: "/img5.jpg", href: "/open-houses" },
-    { title: "New Constructions", count: 32, img: "/img6.webp", href: "/open-houses" },
-    { title: "New Home Communities", count: 2, img: "/img7.jpg", href: "/open-houses" },
+    {
+      title: "Recently Sold",
+      count: 168,
+      img: "/img5.jpg",
+      href: "/open-houses",
+    },
+    {
+      title: "New Constructions",
+      count: 32,
+      img: "/img6.webp",
+      href: "/open-houses",
+    },
+    {
+      title: "New Home Communities",
+      count: 2,
+      img: "/img7.jpg",
+      href: "/open-houses",
+    },
     { title: "Land", count: 29, img: "/img8.jpg", href: "/open-houses" },
   ];
 
   return (
     <div className="bg-white">
       <main className="max-w-7xl mx-auto px-4 py-10">
-        <h2 className="text-2xl text-black font-bold mb-6">Property Collections</h2>
+        <h2 className="text-2xl text-black font-bold mb-6">
+          Property Collections
+        </h2>
 
         <div className="relative pb-16">
           <Swiper
@@ -32,8 +66,6 @@ export default function CollectionsSection() {
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             pagination={{
               clickable: true,
-              dynamicBullets: true,
-              el: ".swiper-pagination-custom",
             }}
             breakpoints={{
               480: { slidesPerView: 1.5, spaceBetween: 15 },
@@ -45,15 +77,31 @@ export default function CollectionsSection() {
           >
             {collections.map((item, i) => (
               <SwiperSlide key={i} className="flex justify-center">
-                <ListingCard {...item} />
+                <Link href={item.href}>
+                  <a className="relative group cursor-pointer rounded-lg overflow-hidden w-full">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      width={300}
+                      height={200}
+                      className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                    />
+                    <div className="absolute inset-0 bg-black bg-opacity-40 group-hover:bg-opacity-50 transition-all flex flex-col justify-end p-4">
+                      <h3 className="text-white font-bold text-lg">
+                        {item.title}
+                      </h3>
+                      <p className="text-white text-sm">
+                        {item.count} properties
+                      </p>
+                    </div>
+                  </a>
+                </Link>
               </SwiperSlide>
             ))}
           </Swiper>
 
-          {/* Pagination container below slider */}
-          <div className="swiper-pagination-custom flex justify-center mt-4 space-x-2">
-            {/* Tailwind styling will be applied via Swiper classes */}
-          </div>
+          {/* Swiper Pagination */}
+          <div className="swiper-pagination mt-4 flex justify-center"></div>
         </div>
       </main>
     </div>
