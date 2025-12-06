@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 
 // --- Colors ---
-const REALTOR_BLUE = "#0077c0";
+const REALTOR_BLUE = "#efb93f";
 const DARK_TEXT = "#2f363b";
 const LIGHT_BG = "#f8f8f8";
 
@@ -173,14 +173,14 @@ const HomeDiscovery = () => {
       <div className="flex justify-between items-start mb-2">
         <h3 className="text-lg font-semibold text-[#2f363b] pr-4">{card.title}</h3>
         <card.Icon
-          className="w-6 h-6 text-[#0077c0] shrink-0 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5"
+          className="w-6 h-6 text-[#efb93f] shrink-0 transition-all duration-300 ease-out group-hover:scale-110 group-hover:-translate-y-0.5"
           aria-hidden="true"
         />
       </div>
       <p className="text-sm text-[#2f363b] grow">{card.description}</p>
       <a
         href={card.href}
-        className="mt-6 text-[#0077c0] font-medium hover:text-[#005a9c] transition duration-150 flex items-center"
+        className="mt-6 text-[#efb93f] font-medium hover:text-[#efb91f] transition duration-150 flex items-center"
       >
         {card.linkText}
         <span className="ml-1 transition-transform duration-200 group-hover:translate-x-1">

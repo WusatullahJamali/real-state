@@ -32,8 +32,8 @@ export default function PromoBanner() {
         {/* CTA Button */}
         <Link
           href="/explore"
-          className="px-4 py-2 bg-blue-600 text-white rounded-lg text-sm sm:text-base 
-                     hover:bg-blue-700 transition flex-shrink-0"
+          className="px-4 py-2 bg-yellow-500 text-white rounded-lg text-sm sm:text-base 
+                     hover:bg-yellow-600 transition flex-shrink-0"
         >
           Explore Now
         </Link>

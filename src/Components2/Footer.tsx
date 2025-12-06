@@ -1,19 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import {
   Facebook,
   X,
   Linkedin,
   Instagram,
-  Youtube,
-  ChevronDown,
+  ChevronDown, // Keeping ChevronDown import just in case, but it's not used in the final JSX
 } from "lucide-react";
 import Image from "next/image";
 
 const Footer = () => {
-  const [showMoreCompany, setShowMoreCompany] = useState(false);
-  const [showApartments, setShowApartments] = useState(false);
+  // Removed useState for showMoreCompany and showApartments
 
   const exploreLinks = [
     "Search & Explore",
@@ -42,8 +40,8 @@ const Footer = () => {
   return (
     <footer className="bg-white text-black pt-14 pb-8 relative z-50">
 
-      {/* Container */}
-      <div className="max-w-7xl mx-auto px-6 md:px-10 grid gap-12 md:grid-cols-5">
+        {/* ----------- 5 COLUMNS IN ONE ROW ----------- */}
+        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-5 pb-12">
 
         {/* Social */}
         <div className="space-y-5">
@@ -57,42 +55,92 @@ const Footer = () => {
             ))}
           </div>
 
-        {/* Company */}
-        <div className="space-y-3">
-          <h2 className="font-bold text-lg">Company</h2>
-
-          <ul
-            className="space-y-2 overflow-hidden transition-all duration-300"
-            style={{ maxHeight: showMoreCompany ? "650px" : "110px" }}
-          >
-            {companyLinks.map((link, i) => (
-              <li
-                key={i}
-                className="cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
-              >
-                {link}
-              </li>
-            ))}
+          {/* 2. SEARCH & EXPLORE */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">Search & Explore</h2>
+            {/* Using <ul> for semantic list structure */}
+            <ul className="space-y-1 text-sm">
+              {exploreLinks.map((link, i) => (
+                <li
+                  key={i}
+                  className="list-none cursor-pointer hover:underline hover:underline-offset-4 transition-all"
+                >
+                  {link}
+                </li>
+              ))}
+            </ul>
           </div>
 
-          <button
-            onClick={() => setShowMoreCompany(!showMoreCompany)}
-            className="flex items-center text-sm text-gray-600 hover:text-black transition"
-          >
-            {showMoreCompany ? "Show Less" : "Show More"}
-            <ChevronDown
-              className={`w-4 h-4 ml-1 transition-transform ${showMoreCompany ? "rotate-180" : ""}`}
-            />
-          </button>
+          {/* 3. APARTMENT TYPES - All links visible */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">Apartment Types</h2>
 
-          <span className="text-gray-500 mt-4 text-sm block hover:text-gray-700 cursor-pointer transition">
-            Do Not Sell or Share My Personal Information
-          </span>
+            {/* Removed dynamic maxHeight style */}
+            <ul className="space-y-1 text-sm">
+              {apartmentLinks.map((link, i) => (
+                <li
+                  key={i}
+                  className="cursor-pointer hover:underline hover:underline-offset-4 transition-all"
+                >
+                  {link}
+                </li>
+              ))}
+            </ul>
+            {/* Removed Show More/Less button */}
+          </div>
+
+          {/* 4. ABOUT US - All links visible */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">About Us</h2>
+
+            {/* Removed dynamic maxHeight style */}
+            <ul className="space-y-1 text-sm">
+              {aboutUsLinks.map((link, i) => (
+                <li
+                  key={i}
+                  className="cursor-pointer hover:underline hover:underline-offset-4 transition-all"
+                >
+                  {link}
+                </li>
+              ))}
+            </ul>
+            {/* Removed Show More/Less button */}
+          </div>
+
+          {/* 5. GET THE APP */}
+          <div>
+            <h2 className="font-bold text-lg mb-3">Get the App</h2>
+            <p className="text-gray-700 text-sm mb-3">
+              Download on Google Play Store or App Store
+            </p>
+
+            <div className="flex flex-row items-center gap-4">
+              <a href="https://play.google.com/store/apps" target="_blank">
+                <Image
+                  src="/playstore2.png"
+                  alt="Google Play"
+                  width={120}
+                  height={48}
+                  className="h-12 w-auto"
+                />
+              </a>
+
+              <a href="https://apps.apple.com/" target="_blank">
+                <Image
+                  src="/appstore2.png"
+                  alt="App Store"
+                  width={120}
+                  height={48}
+                  className="h-12 w-auto"
+                />
+              </a>
+            </div>
+
+          </div>
         </div>
 
-        {/* Get App */}
-        <div className="space-y-4">
-          <h2 className="font-bold text-lg">Get the app</h2>
+        {/* Divider */}
+        <div className="border-t border-gray-300"></div>
 
           <a
             href="#"
@@ -167,4 +215,4 @@ const Footer = () => {
   );
 };
 
-export default Footer
+export default Footer;

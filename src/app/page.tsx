@@ -1,5 +1,29 @@
-const page = () => {
-  return <div>page</div>;
-};
+import Hero from "@/components/Home/Hero";
+import Hero2 from "@/components/Home/Hero2";
+import Startbutton from "@/components/Home/Startbutton";
+import Categories from "@/components/Home/Categories";
+import NeighborhoodCards from "@/components/Home/NeighbourCard";
+import Footer1 from "@/components/Home/Footer1";
+import Footer2 from "@/components/Home/Footer2";
+import ProductSlider from "@/components/Home/PropertySlider";
 
-export default page;
+import CollectionsSection from "@/components/Home/Collections";
+import RecentPropertiesSection from "@/components/Home/RecentProperty";
+
+export default function HomePage() {
+  return (
+    <>
+      <Hero />
+
+      <CollectionsSection />
+
+      <Startbutton />
+      <Categories />
+      <ProductSlider />
+      <Hero2 />
+      <Footer1 />
+      <Footer2 />
+      <RecentPropertiesSection/>
+    </>
+  );
+}
