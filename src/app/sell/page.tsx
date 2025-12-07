@@ -1,15 +1,17 @@
+"use client"
 import React from "react";
-import CompareAgents from "../../../Sell-Components/Compare-Agent";
-import LocalAgents from "../../../Sell-Components/LocalAgents";
-import Tracker from "../../../Sell-Components/Tracker";
-import SoldCards from "../../../Sell-Components/soldcards";
-import FAQ from "../../../Sell-Components/Faq";
+import Tracker from "../../components/Sell-Components/Tracker";
+import SoldCards from "../../components/Sell-Components/soldcards";
+import FAQ from "../../components/Sell-Components/Faq";
+import CompareAgents from "../../components/Sell-Components/Compare-Agent";
+import FeatureGrid from "../../components/Sell-Components/LocalAgents";
 
 const Page = () => {
   return (
     <>
       <CompareAgents />
-      <LocalAgents />
+      {/* <HeroSection /> */}
+      <FeatureGrid />
       <Tracker />
       <SoldCards />
       <FAQ />

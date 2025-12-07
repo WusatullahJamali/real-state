@@ -162,19 +162,7 @@ const Footer = () => {
         <div className="space-y-3">
           <h2 className="font-bold text-lg">News Corp</h2>
 
-          <ul
-            className="space-y-2 overflow-hidden transition-all duration-300"
-            style={{ maxHeight: showMoreNews ? "650px" : "110px" }}
-          >
-            {newsLinks.map((link, i) => (
-              <li
-                key={i}
-                className="cursor-pointer text-gray-600 hover:text-black hover:underline hover:underline-offset-4 transition"
-              >
-                {link}
-              </li>
-            ))}
-          </ul>
+        
 
           <button
             onClick={() => setShowMoreNews(!showMoreNews)}

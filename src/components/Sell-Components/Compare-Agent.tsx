@@ -5,6 +5,7 @@ import Image from "next/image"; // Import Next.js Image component
 import { Check, Search, MoveRight } from "lucide-react";
 import Link from "next/link";
 
+
 // --- Carousel Data ---
 const CAROUSEL_IMAGES = ["/sample-proposals.png", "/c2.png", "/c3.png"];
 

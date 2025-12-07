@@ -1,6 +1,5 @@
 "use client";
 
-
 import React, { useRef, useCallback } from "react";
 import {
   Bed,
@@ -12,7 +11,6 @@ import {
   DollarSign,
 } from "lucide-react";
 
-
 // --- Interfaces ---
 interface HomeDetail {
   beds: number;
@@ -20,7 +18,6 @@ interface HomeDetail {
   sqft: number;
   lotSize?: string;
 }
-
 
 interface HomeCardProps {
   id: string;
@@ -31,7 +28,6 @@ interface HomeCardProps {
   address2: string;
   imageUrl: string;
 }
-
 
 // --- Mock Data ---
 const homesData: HomeCardProps[] = [
@@ -82,7 +78,6 @@ const homesData: HomeCardProps[] = [
   },
 ];
 
-
 // --- Home Card Component ---
 const HomeCard: React.FC<HomeCardProps> = ({
   status,
@@ -94,9 +89,9 @@ const HomeCard: React.FC<HomeCardProps> = ({
 }) => {
   const isContact = price.toLowerCase().includes("contact");
 
-
   return (
-    <div className="w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md  transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
+    <div className="w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
+      {/* Image */}
       <div className="relative h-40 overflow-hidden rounded-t-xl">
         <img
           src={imageUrl}
@@ -113,16 +108,13 @@ const HomeCard: React.FC<HomeCardProps> = ({
         </span>
       </div>
 
-
+      {/* Content */}
       <div className="p-3">
         <p className="text-xs font-semibold text-gray-500 mb-1 tracking-wide uppercase">
           {status}
         </p>
-        <h3
-          className={`text-lg font-bold mb-2 flex items-center ${
-            isContact ? "text-gray-900" : "text-gray-900"
-          }`}
-        >
+
+        <h3 className="text-lg font-bold mb-2 flex items-center text-gray-900">
           {isContact ? (
             <>
               <DollarSign className="w-4 h-4 mr-1 text-yellow-500" />
@@ -139,11 +131,13 @@ const HomeCard: React.FC<HomeCardProps> = ({
             <span className="font-bold">{details.beds}</span>
             <span className="text-gray-500">bed</span>
           </div>
+
           <div className="flex items-center space-x-1">
             <Bath className="w-3 h-3 text-yellow-500" />
             <span className="font-bold">{details.baths}</span>
             <span className="text-gray-500">bath</span>
           </div>
+
           <div className="flex items-center space-x-1">
             <LayoutGrid className="w-3 h-3 text-yellow-500" />
             <span className="font-bold">{details.sqft.toLocaleString()}</span>
@@ -151,16 +145,18 @@ const HomeCard: React.FC<HomeCardProps> = ({
           </div>
         </div>
 
-        </button>
+        <div className="mt-2 text-xs text-gray-600">
+          <p>{address1}</p>
+          <p>{address2}</p>
+        </div>
+      </div>
     </div>
   );
 };
 
-
 // --- Main Component ---
 export default function RecentlySoldHomes() {
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-
 
   const scroll = useCallback((direction: "left" | "right") => {
     if (scrollContainerRef.current) {
@@ -172,10 +168,9 @@ export default function RecentlySoldHomes() {
     }
   }, []);
 
-
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-gray-100 p-4">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl ">
+      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b pb-4 mb-6">
           <div>
@@ -196,10 +191,9 @@ export default function RecentlySoldHomes() {
           </a>
         </div>
 
-
         {/* Carousel */}
         <div className="relative">
-          {/* Left button */}
+          {/* Left Button */}
           <button
             onClick={() => scroll("left")}
             className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
@@ -219,8 +213,7 @@ export default function RecentlySoldHomes() {
             ))}
           </div>
 
-
-          {/* Right button */}
+          {/* Right Button */}
           <button
             onClick={() => scroll("right")}
             className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
@@ -230,7 +223,7 @@ export default function RecentlySoldHomes() {
         </div>
       </div>
 
-
+      {/* Hide scrollbars */}
       <style jsx global>{`
         .scrollbar-hide::-webkit-scrollbar {
           display: none;
