@@ -1,10 +1,9 @@
-import React from 'react'
-import Hero3 from '../../../mortgage components/Hero3'
-import Tool from '../../../mortgage components/Tool'
-import Rate from '../../../mortgage components/Rate'
-import Loan from '../../../mortgage components/Loan'
-import Comon from '../../../mortgage components/Comon'
-import MFooter from '../../../mortgage components/MFooter'
+import Common from '@/components/mortgage components/Comon'
+import Hero3 from '@/components/mortgage components/Hero3'
+import Loan from '@/components/mortgage components/Loan'
+import MFooter from '@/components/mortgage components/MFooter'
+import Rate from '@/components/mortgage components/Rate'
+import Tool from '@/components/mortgage components/Tool'
 
 const page = () => {
   return (
@@ -13,7 +12,7 @@ const page = () => {
       <Tool />
       <Rate />
       <Loan />
-      <Comon />
+      <Common />
       <MFooter />
     </div>
   )
