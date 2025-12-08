@@ -24,16 +24,15 @@ export default function Navbar() {
   }, [lastScroll]);
 
   // Mega menu content
-  const dropdownContent: { [key: string]: Array<string | { text: string; href: string }> } = {
+  const dropdownContent: {
+    [key: string]: Array<string | { text: string; href: string }>;
+  } = {
     "FOR SALE": [
-      { text: "Homes for sale", href: "/homes-for-sale" },
+      { text: "Home for sale", href: "/home-for-sale" },
       { text: "New Construction For Sale", href: "/new-construction" },
       { text: "Explore the neighborhood", href: "/explore the neighborhood" },
       { text: "Housing market trends", href: "/housing market trends" },
       { text: "Recently sold homes", href: "/recently sold homes" },
-      
-      
-     
     ],
     "FOR RENT": [
       { text: "Apartments for rent", href: "/apartments for rent" },
@@ -41,19 +40,18 @@ export default function Navbar() {
       { text: "Contact rent landlord", href: "/contact rent landlord" },
       { text: "Manage rentals", href: "/manage rentals" },
       { text: "List your rentals", href: "/list your rentals" },
-     
     ],
     PROPERTY: [
-       { text: "Property search", href: "/property search" },
-       { text: "Property types", href: "/property types" },
-       { text: "Property valuation", href: "/property valuation" },
-       { text: "Property investment", href: "/property investment" },
-       { text: "Commercial property", href: "/commercial property" },
-       { text: "Residential property", href: "/residential property" },
-       { text: "Property listings", href: "/property listings" },
-      
+      { text: "Property search", href: "/property search" },
+      { text: "Property types", href: "/property types" },
+      { text: "Property valuation", href: "/property valuation" },
+      { text: "Property investment", href: "/property investment" },
+      { text: "Commercial property", href: "/commercial property" },
+      { text: "Residential property", href: "/residential property" },
+      { text: "Property listings", href: "/property listings" },
     ],
     PAGES: [
+<<<<<<< Updated upstream
        { text: "About us", href: "/about" },
        { text: "Contact us", href: "/contact" },
        { text: "FAQ", href: "/faq" },
@@ -62,6 +60,15 @@ export default function Navbar() {
        { text: "Privacy policy", href: "/privacy" },
        { text: "Careers", href: "/careers" },   
      
+=======
+      { text: "About us", href: "/about" },
+      { text: "Contact us", href: "/contact" },
+      { text: "FAQ", href: "/faq" },
+      { text: "Blog", href: "/blog" },
+      { text: "Terms of service", href: "/terms of service" },
+      { text: "Privacy policy", href: "/privacy policy" },
+      { text: "Careers", href: "/careers" },
+>>>>>>> Stashed changes
     ],
   };
 
@@ -127,10 +134,10 @@ export default function Navbar() {
                   >
                     <ul className="space-y-2">
                       {dropdownContent[item.name].map((row, i) => {
-                        const isLink = typeof row === 'object' && 'href' in row;
+                        const isLink = typeof row === "object" && "href" in row;
                         const text = isLink ? row.text : row;
-                        const href = isLink ? row.href : '#';
-                        
+                        const href = isLink ? row.href : "#";
+
                         return (
                           <li key={i}>
                             {isLink ? (
@@ -183,127 +190,124 @@ export default function Navbar() {
           ☰
         </button>
       </div>
-{/* Mobile Menu */}
-<AnimatePresence>
-  {mobileOpen && (
-    <motion.div
-      initial={{ height: 0, opacity: 0 }}
-      animate={{ height: "auto", opacity: 1 }}
-      exit={{ height: 0, opacity: 0 }}
-      transition={{ duration: 0.25 }}
-      className="lg:hidden bg-white border-t shadow-lg overflow-hidden"
-    >
-      <ul className="p-4 space-y-3 text-sm font-medium">
-        {menuItems.map((item) => {
-          const isOpen = activeMenu === item.name;
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="lg:hidden bg-white border-t shadow-lg overflow-hidden"
+          >
+            <ul className="p-4 space-y-3 text-sm font-medium">
+              {menuItems.map((item) => {
+                const isOpen = activeMenu === item.name;
 
-          return (
-            <li key={item.name} className="relative">
-              {item.hasDropdown ? (
-                <div className="flex justify-between items-center">
-                  {/* Parent link */}
-                  <Link
-                    href={item.href}
-                    className="py-2 text-gray-700 hover:text-yellow-500 flex-1"
-                    onClick={() => setMobileOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
+                return (
+                  <li key={item.name} className="relative">
+                    {item.hasDropdown ? (
+                      <div className="flex justify-between items-center">
+                        {/* Parent link */}
+                        <Link
+                          href={item.href}
+                          className="py-2 text-gray-700 hover:text-yellow-500 flex-1"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
 
-                  {/* Arrow button */}
-                  <button
-                    className="p-2"
-                    onClick={() =>
-                      setActiveMenu(isOpen ? null : item.name)
-                    }
-                  >
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform ${
-                        isOpen ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                </div>
-              ) : (
+                        {/* Arrow button */}
+                        <button
+                          className="p-2"
+                          onClick={() =>
+                            setActiveMenu(isOpen ? null : item.name)
+                          }
+                        >
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform ${
+                              isOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      </div>
+                    ) : (
+                      <Link
+                        href={item.href}
+                        className="block py-2 text-gray-700 hover:text-yellow-500"
+                        onClick={() => setMobileOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+
+                    {/* Dropdown items */}
+                    {item.hasDropdown && isOpen && (
+                      <ul className="pl-4 pt-2 space-y-2">
+                        {dropdownContent[item.name].map((row, i) => {
+                          const isLink =
+                            typeof row === "object" && "href" in row;
+                          const text = isLink ? row.text : row;
+                          const href = isLink ? row.href : "#";
+
+                          return (
+                            <li key={i}>
+                              {isLink ? (
+                                <Link
+                                  href={href}
+                                  className="block text-gray-600 hover:text-yellow-500"
+                                  onClick={() => setMobileOpen(false)}
+                                >
+                                  {text}
+                                </Link>
+                              ) : (
+                                <span className="block text-gray-600 cursor-default">
+                                  {text}
+                                </span>
+                              )}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    )}
+                  </li>
+                );
+              })}
+
+              {/* Right-side links */}
+              <li className="pt-4 flex flex-col space-y-2">
                 <Link
-                  href={item.href}
-                  className="block py-2 text-gray-700 hover:text-yellow-500"
+                  href="/login"
+                  className="hover:underline"
                   onClick={() => setMobileOpen(false)}
                 >
-                  {item.name}
+                  Register/Login
                 </Link>
-              )}
-
-              {/* Dropdown items */}
-              {item.hasDropdown && isOpen && (
-                <ul className="pl-4 pt-2 space-y-2">
-                  {dropdownContent[item.name].map((row, i) => {
-                    const isLink =
-                      typeof row === "object" && "href" in row;
-                    const text = isLink ? row.text : row;
-                    const href = isLink ? row.href : "#";
-
-                    return (
-                      <li key={i}>
-                        {isLink ? (
-                          <Link
-                            href={href}
-                            className="block text-gray-600 hover:text-yellow-500"
-                            onClick={() => setMobileOpen(false)}
-                          >
-                            {text}
-                          </Link>
-                        ) : (
-                          <span className="block text-gray-600 cursor-default">
-                            {text}
-                          </span>
-                        )}
-                      </li>
-                    );
-                  })}
-                </ul>
-              )}
-            </li>
-          );
-        })}
-
-        {/* Right-side links */}
-        <li className="pt-4 flex flex-col space-y-2">
-          <Link
-            href="/login"
-            className="hover:underline"
-            onClick={() => setMobileOpen(false)}
-          >
-            Register/Login
-          </Link>
-          <Link
-            href="/SignUp"
-            className="px-4 py-2 bg-black text-white hover:bg-neutral-800 transition"
-            onClick={() => setMobileOpen(false)}
-          >
-            Signup
-          </Link>
-          <Link
-            href="/add-property"
-            className="relative flex items-center justify-center gap-2 
+                <Link
+                  href="/SignUp"
+                  className="px-4 py-2 bg-black text-white hover:bg-neutral-800 transition"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Signup
+                </Link>
+                <Link
+                  href="/add-property"
+                  className="relative flex items-center justify-center gap-2 
               px-6 py-3 w-[230px] h-[48px] 
               bg-gray-900 text-white font-semibold text-sm cursor-pointer 
               overflow-hidden shadow-md transition-all duration-300 
               active:translate-x-[5px] active:translate-y-[5px] group"
-            onClick={() => setMobileOpen(false)}
-          >
-            <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
-            <Plus className="w-4 h-4 relative z-10" />
-            <span className="relative z-10">ADD PROPERTY</span>
-          </Link>
-        </li>
-      </ul>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-
-
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
+                  <Plus className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">ADD PROPERTY</span>
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
