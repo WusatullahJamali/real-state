@@ -10,7 +10,7 @@ export default function LoginPopup() {
   return (
     <>
       {show && (
-        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50 p-4">
+        <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-85 p-4">
           <div className="bg-white rounded-2xl min-h-[480px] shadow-xl w-full max-w-3xl relative overflow-hidden">
 
             {/* Close Button */}

@@ -1,14 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Facebook,
-  X,
-  Linkedin,
-  Instagram,
-  Youtube,
-  ChevronDown,
-} from "lucide-react";
+import { Facebook, X, Linkedin, Instagram, Youtube } from "lucide-react";
 
 const Footer = () => {
   const [showMoreNews, setShowMoreNews] = useState(false);
@@ -48,16 +41,14 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-white text-black pt-14 pb-8 relative z-50">
+    <footer className="bg-white text-black pt-10 pb-4 relative z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* GRID: 4 Columns on Desktop (Linear Line) */}
-        {/* This structure puts the four main sections on one line for large screens */}
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4 pb-12">
-          {/* ------------ COLUMN 1: SOCIAL + GET THE APP ------------ */}
-          <div className="space-y-6">
+        {/* Footer Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 text-center sm:text-left">
+          {/* COLUMN 1: SOCIAL + GET THE APP */}
+          <div className="flex flex-col items-center sm:items-start space-y-6">
             <h2 className="font-bold text-lg">Connect with us</h2>
-
-            <div className="flex space-x-4">
+            <div className="flex justify-center sm:justify-start space-x-4">
               {[Facebook, X, Linkedin, Instagram, Youtube].map((Icon, i) => (
                 <Icon
                   key={i}
@@ -66,14 +57,12 @@ const Footer = () => {
               ))}
             </div>
 
-            {/* Get the App */}
-            <div>
-              <h2 className="font-bold text-lg mb-3">Get the App</h2>
+            <div className="mt-4">
+              <h2 className="font-bold text-lg mb-2">Get the App</h2>
               <p className="text-gray-700 text-sm mb-3">
                 Download on Google Play Store or App Store
               </p>
-
-              <div className="flex flex-row items-center gap-4">
+              <div className="flex justify-center sm:justify-start gap-4">
                 <a
                   href="https://play.google.com/store/apps"
                   target="_blank"
@@ -84,7 +73,6 @@ const Footer = () => {
                     Google Play
                   </div>
                 </a>
-
                 <a
                   href="https://apps.apple.com/"
                   target="_blank"
@@ -99,10 +87,25 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Search & Explore */}
-          <div>
-            <h2 className="font-bold text-lg mb-3">Search & Explore</h2>
-            <ul className="space-y-1 text-sm">
+          {/* COLUMN 2: ABOUT US */}
+          <div className="space-y-6">
+            <h2 className="font-bold text-lg mb-2">About Us</h2>
+            <ul className="space-y-2 text-sm">
+              {aboutUsLinks.map((link, i) => (
+                <li
+                  key={i}
+                  className="cursor-pointer hover:underline hover:underline-offset-4 transition-all"
+                >
+                  {link}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* COLUMN 3: SEARCH & EXPLORE */}
+          <div className="space-y-6">
+            <h2 className="font-bold text-lg mb-2">Search & Explore</h2>
+            <ul className="space-y-2 text-sm">
               {exploreLinks.map((link, i) => (
                 <li
                   key={i}
@@ -114,10 +117,10 @@ const Footer = () => {
             </ul>
           </div>
 
-          {/* Apartment Types */}
-          <div>
-            <h2 className="font-bold text-lg mb-3">Apartment Types</h2>
-            <ul className="space-y-1 text-sm">
+          {/* COLUMN 4: APARTMENT TYPES */}
+          <div className="space-y-6">
+            <h2 className="font-bold text-lg mb-2">Apartment Types</h2>
+            <ul className="space-y-2 text-sm">
               {apartmentLinks.map((link, i) => (
                 <li
                   key={i}
@@ -128,63 +131,15 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-
-          {/* ------------ COLUMN 4: ABOUT US + PRODUCTS ------------ */}
-          <div className="space-y-6">
-            <div>
-              <h2 className="font-bold text-lg mb-3">About Us</h2>
-              <ul className="space-y-2 text-sm">
-                {aboutUsLinks.map((link, i) => (
-                  <li
-                    key={i}
-                    className="cursor-pointer hover:underline hover:underline-offset-4 transition-all"
-                  >
-                    {link}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-           
-          </div>
         </div>
-        
-        {/* Divider and Bottom elements are correctly placed outside the grid to span full width */}
-        <div className="border-t border-gray-300 mt-12 mb-6"></div>
+
+        {/* Divider */}
+        <div className="border-t border-gray-300 mt-12 mb-4"></div>
 
         {/* Bottom */}
         <div className="text-center text-gray-500 text-sm">
-          © 1995-2025 National Association of REALTORS® and Move, Inc. All
-          rights reserved.
+          © 2025 Samarix Association of REALTORS®. All rights reserved.
         </div>
-
-        {/* News Corp */}
-        <div className="space-y-3">
-          <h2 className="font-bold text-lg">News Corp</h2>
-
-        
-
-          <button
-            onClick={() => setShowMoreNews(!showMoreNews)}
-            className="flex items-center text-sm text-gray-600 hover:text-black transition"
-          >
-            {showMoreNews ? "Show Less" : "Show More"}
-            <ChevronDown
-              className={`w-4 h-4 ml-1 transition-transform ${
-                showMoreNews ? "rotate-180" : ""
-              }`}
-            />
-          </button>
-        </div>
-      </div>
-
-      {/* Divider */}
-      <div className="border-t border-gray-300 mt-12 mb-6"></div>
-
-      {/* Bottom */}
-      <div className="text-center text-gray-500 text-sm">
-        © 1995-2025 National Association of REALTORS® and Move, Inc. All rights
-        reserved.
       </div>
     </footer>
   );
