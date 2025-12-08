@@ -43,37 +43,38 @@ export default function Faqs() {
   };
 
   return (
-    <section className="bg-white py-12" data-testid="faq-section">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently asked questions</h2>
+   <section className="bg-white py-12" data-testid="faq-section">
+  <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently asked questions</h2>
 
-        <div className="space-y-4">
-          {faqs.map((faq, index) => {
-            const isOpen = openIndex === index;
-            return (
-              <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
-                <button
-                  onClick={() => toggleFaq(index)}
-                  className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none"
-                  aria-expanded={isOpen}
-                >
-                  <span className="text-left text-gray-900 font-medium">{faq.question}</span>
-                  <ChevronDown
-                    className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
-                      isOpen ? "rotate-180" : ""
-                    }`}
-                  />
-                </button>
-                {isOpen && (
-                  <div className="p-4 text-gray-700 border-t border-gray-200">
-                    <p>{faq.answer}</p>
-                  </div>
-                )}
+    <div className="space-y-4">
+      {faqs.map((faq, index) => {
+        const isOpen = openIndex === index;
+        return (
+          <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
+            <button
+              onClick={() => toggleFaq(index)}
+              className="w-full flex justify-between items-center p-4 bg-gray-50 hover:bg-gray-100 focus:outline-none"
+              aria-expanded={isOpen}
+            >
+              <span className="text-left text-gray-900 font-medium">{faq.question}</span>
+              <ChevronDown
+                className={`w-5 h-5 text-gray-500 transition-transform duration-200 ${
+                  isOpen ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            {isOpen && (
+              <div className="p-4 text-gray-700 border-t border-gray-200">
+                <p>{faq.answer}</p>
               </div>
-            );
-          })}
-        </div>
-      </div>
-    </section>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>
+
   );
 }

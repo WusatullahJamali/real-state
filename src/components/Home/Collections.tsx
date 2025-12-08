@@ -19,55 +19,66 @@ export default function CollectionsSection() {
     { title: "Land", count: 29, img: "/img8.jpg", href: "/land" },
   ];
 
-  return (
-    <div className="bg-white">
-      <main className="max-w-7xl mx-auto px-4 py-10">
-        <h2 className="text-2xl text-black font-bold mb-6">
-          Property Collections
-        </h2>
+  const rows = [collections.slice(0, 4), collections.slice(4)];
 
-        <div className="relative pb-16">
+  return (
+    <section className="bg-gray-50 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-4xl font-bold text-black mb-3">Property Collections</h2>
+          <p className="text-gray-700 text-lg max-w-2xl mx-auto">
+            Explore our curated property collections for every buyer and investor.
+          </p>
+        </div>
+
+        {/* Two Rows of Swipers */}
+        {rows.map((row, idx) => (
           <Swiper
+            key={idx}
             modules={[Autoplay, Pagination]}
             spaceBetween={20}
             slidesPerView={1}
-            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            autoplay={{ delay: 3500, disableOnInteraction: false }}
             pagination={{ clickable: true }}
             breakpoints={{
-              480: { slidesPerView: 1.5, spaceBetween: 15 },
+              480: { slidesPerView: 1.2, spaceBetween: 15 },
               640: { slidesPerView: 2, spaceBetween: 20 },
-              768: { slidesPerView: 3, spaceBetween: 20 },
-              1024: { slidesPerView: 4, spaceBetween: 20 },
+              768: { slidesPerView: 3, spaceBetween: 24 },
+              1024: { slidesPerView: 4, spaceBetween: 28 },
             }}
-            className="w-full h-full"
+            className="mb-12"
           >
-            {collections.map((item, i) => (
+            {row.map((item, i) => (
               <SwiperSlide key={i} className="flex justify-center">
                 <Link
                   href={item.href}
-                  className="relative group cursor-pointer rounded-lg overflow-hidden w-full"
+                  className="relative w-full group cursor-pointer rounded-xl overflow-hidden transition-transform duration-500 hover:scale-105"
                 >
-                  <Image
-                    src={item.img}
-                    alt={item.title}
-                    width={350}
-                    height={220}
-                    priority
-                    className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                  {/* Image container to maintain rounded corners */}
+                  <div className="w-full h-56 relative rounded-xl overflow-hidden">
+                    <Image
+                      src={item.img}
+                      alt={item.title}
+                      fill
+                      className="object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
 
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/50 transition-all flex flex-col justify-end p-4">
-                    <h3 className="text-white font-bold text-lg">{item.title}</h3>
-                    <p className="text-white text-sm">{item.count} properties</p>
+                    {/* Overlay */}
+                    <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/40 to-transparent rounded-xl">
+                      <h3 className="text-white font-bold text-xl">{item.title}</h3>
+                      <p className="text-white text-sm">{item.count} properties</p>
+                      <span className="mt-2 inline-block px-6 py-1 bg-yellow-500 text-black text-sm font-semibold rounded-lg transition-all group-hover:bg-yellow-400">
+                        View Collection
+                      </span>
+                    </div>
                   </div>
                 </Link>
               </SwiperSlide>
             ))}
           </Swiper>
-
-          <div className="swiper-pagination mt-4 flex justify-center"></div>
-        </div>
-      </main>
-    </div>
+        ))}
+      </div>
+    </section>
   );
 }
