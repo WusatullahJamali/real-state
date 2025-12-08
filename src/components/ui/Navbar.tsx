@@ -58,8 +58,8 @@ export default function Navbar() {
        { text: "Contact us", href: "/contact" },
        { text: "FAQ", href: "/faq" },
        { text: "Blog", href: "/blog" },
-       { text: "Terms of service", href: "/terms of service" },
-       { text: "Privacy policy", href: "/privacy policy" },
+       { text: "Terms of service", href: "/terms" },
+       { text: "Privacy policy", href: "/privacy" },
        { text: "Careers", href: "/careers" },   
      
     ],
