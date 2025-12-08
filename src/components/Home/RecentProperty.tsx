@@ -151,7 +151,7 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
         {/* Location */}
         <div className="mb-2 text-sm text-gray-500 flex items-center">
           <svg
-            className="w-4 h-4 mr-1 text-yellow-600"
+            className="w-4 h-4 mr-1 text-yellow-500"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -162,14 +162,14 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
               clipRule="evenodd"
             ></path>
           </svg>
-          <a href="#" className="hover:text-yellow-700 transition-colors">
+          <a href="#" className="hover:text-yellow-500 transition-colors">
             {property.city}
           </a>
         </div>
 
         {/* Title */}
         <h5 className="text-xl font-semibold mb-3">
-          <a href="#" className="hover:text-yellow-700 transition-colors">
+          <a href="#" className="hover:text-yellow-500 transition-colors">
             {property.title}
           </a>
         </h5>
@@ -200,7 +200,7 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
           </div>
           <a
             href="#"
-            className="inline-flex items-center justify-center px-4 py-2 bg-yellow-600 text-white text-sm font-medium rounded-lg hover:bg-yellow-700 transition-colors"
+            className="inline-flex items-center justify-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg  transition-colors"
           >
             View Details
           </a>
@@ -222,7 +222,7 @@ export default function RecentPropertiesSection() {
 
   const TabButton: React.FC<{ id: Tab; label: string }> = ({ id, label }) => {
     const isActive = activeTab === id;
-    const activeClasses = "text-white bg-yellow-600";
+    const activeClasses = "text-white bg-yellow-500";
     const inactiveClasses =
       "text-gray-700 bg-white border border-gray-300 hover:bg-gray-50";
 
@@ -241,14 +241,14 @@ export default function RecentPropertiesSection() {
   };
 
   return (
-    <section className="py-16 bg-gray-50">
+    <section className="py-16 bg-white">
       {/* Replaces: <div class="container"> */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Replaces: <div class="row mb-50 wow fadeInUp" data-wow-delay="200ms"> */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
           {/* Section Title */}
           <div className="mb-6 lg:mb-0">
-            <span className="text-sm font-medium text-[#efb93f] uppercase tracking-wider">
+            <span className="text-sm font-medium text-yellow-500 uppercase tracking-wider">
               Comfort Building
             </span>
             <h2 className="text-4xl font-bold text-gray-900 mt-1">
@@ -258,7 +258,7 @@ export default function RecentPropertiesSection() {
 
           {/* Tab Navigation */}
           {/* Replaces: <ul class="nav nav-tabs" id="myTab6" role="tablist"> */}
-          <div className="flex flex-wrap gap-4" role="tablist">
+          <div className="flex flex-wrap gap-4 text-yellow-500" role="tablist">
             <TabButton id="sale" label="For Sale" />
             <TabButton id="rent" label="For Rent" />
           </div>
