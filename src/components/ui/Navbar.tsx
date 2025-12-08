@@ -297,6 +297,7 @@ export default function Navbar() {
               bg-gray-900 text-white font-semibold text-sm cursor-pointer 
               overflow-hidden shadow-md transition-all duration-300 
               active:translate-x-[5px] active:translate-y-[5px] group"
+<<<<<<< Updated upstream
                   onClick={() => setMobileOpen(false)}
                 >
                   <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
@@ -308,6 +309,20 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+=======
+            onClick={() => setMobileOpen(false)}
+          >
+            <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
+            <Plus className="w-4 h-4 relative z-10" />
+            <span className="relative z-10">ADD PROPERTY</span>
+          </Link>
+        </li>
+      </ul>
+    </motion.div>
+  )}
+</AnimatePresence>
+
+>>>>>>> Stashed changes
     </motion.nav>
   );
 }

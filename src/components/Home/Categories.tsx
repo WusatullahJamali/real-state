@@ -184,7 +184,7 @@ const HomeDiscovery = () => {
                 onClick={() => handleTabClick(tabKey as TabKey)}
                 className={`px-5 py-2 text-base font-medium rounded-full transition-all duration-300 ${
                   activeTab === tabKey
-                    ? "bg-[#0077c0] text-white shadow-md"
+                    ? "bg-yellow-500 text-white shadow-md"
                     : "text-[#2f363b] hover:bg-gray-100"
                 }`}
               >

@@ -20,9 +20,9 @@ export default function HomePage() {
       <Startbutton />
       <Categories />
       <ProductSlider />
-      <Hero2 />
-      <Footer1 />
-      <Footer2 />
+      {/* <Hero2 /> */}
+      {/* <Footer1 />
+      <Footer2 /> */}
       <RecentPropertiesSection/>
     </>
   );

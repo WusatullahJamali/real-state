@@ -52,7 +52,7 @@ const FAQ: React.FC<FAQProps> = ({
         {/* Title */}
         <div className="mx-auto mb-10 lg:mb-14 text-center">
           <h2 className="text-2xl font-bold md:text-4xl text-gray-900">
-            You might be wondering...
+            Frequently Asked Questions
           </h2>
         </div>
 

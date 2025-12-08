@@ -45,8 +45,8 @@ export default function CompareAgents() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-12 rounded-3xl border border-gray-100">
+    <div className="min-h-[80vh] flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl bg-white p-6 md:p-12 rounded-3xl  ">
         {/* Header Section */}
         <div className="text-center pb-8 mb-8 border-b border-gray-200">
           <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-600 leading-snug">
@@ -104,7 +104,7 @@ export default function CompareAgents() {
                       placeholder-gray-500
                       focus:outline-none
                       focus:ring-2 focus:ring-yellow-400
-                      focus:border-blue-500
+                      
                       transition duration-200
                       text-gray-900
                       text-lg
@@ -113,25 +113,38 @@ export default function CompareAgents() {
                   />
                 </div>
 
-                <Link
-                  href="/add-property"
-                  className="relative flex items-center justify-center gap-2 px-6 h-12 w-[250px] bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300 group"
-                >
-                  <span
-                    className="absolute w-[250px] h-[250px] bg-yellow-500 -left-full top-0 
-                    transition-all duration-300 group-hover:translate-x-full 
-                    group-hover:-translate-y-1/2 group-hover:rounded-none"
-                  ></span>
+               <Link
+  href="/add-property"
+  className={`
+    relative flex items-center justify-center gap-2
+    px-6 py-3 w-[220px] md:w-[250px] h-12
+    font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300
+    active:translate-x-[5px] active:translate-y-[5px] group
 
-                  <MoveRight className="w-4 h-4 relative z-10 text-white" />
-                  <span className="relative z-10">ADD PROPERTY</span>
-                </Link>
+    bg-yellow-500 text-black        /* MOBILE BUTTON FULL YELLOW */
+    md:bg-gray-900 md:text-white    /* DESKTOP BUTTON BLACK */
+  `}
+  style={{ borderRadius: "0px" }}
+>
+  {/* Yellow hover animation (only on desktop) */}
+  <span
+    className="
+      absolute w-[250px] h-[250px] bg-yellow-500 -left-full top-0
+      transition-all duration-300
+      group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none
+      hidden md:block   /* HIDE ON MOBILE */
+    "
+  ></span>
+
+  <MoveRight className="w-4 h-4 relative z-10" />
+  <span className="relative z-10">ADD PROPERTY</span>
+</Link>
               </div>
             </form>
           </div>
 
           {/* RIGHT SIDE: Carousel */}
-          <div className="order-1 lg:order-2 flex items-center justify-center relative p-6 bg-blue-50 rounded-2xl shadow-inner h-[400px]">
+          <div className="order-1 lg:order-2 flex items-center justify-center relative p-6 bg-white rounded-2xl shadow-inner h-[400px]">
             {CAROUSEL_IMAGES.map((src, index) => (
               <Image
                 key={index}
@@ -146,9 +159,9 @@ export default function CompareAgents() {
               />
             ))}
 
-            <div className="absolute -bottom-2 right-4 text-xs text-gray-400">
+            {/* <div className="absolute -bottom-2 right-4 text-xs text-gray-400">
               Data privacy guaranteed.
-            </div>
+            </div> */}
 
             {/* Carousel Dots */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
