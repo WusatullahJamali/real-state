@@ -1,7 +1,7 @@
-"use client"
+"use client";
 
-import React from 'react'
-import Link from 'next/link'
+import React from "react";
+import Link from "next/link";
 
 const Rate = () => {
   const ratePlans = [
@@ -10,32 +10,37 @@ const Rate = () => {
       apr: "5.833%",
       payment: "$1,868/mo",
       rate: "5.750%",
-      fees: "Fees $2,909 Includes 0.909 points ($2,909)"
+      fees: "Fees $2,909 Includes 0.909 points ($2,909)",
     },
     {
       title: "30-year fixed NMLS 2059741",
       apr: "5.833%",
       payment: "$1,868/mo",
       rate: "5.750%",
-      fees: "Fees $2,909 Includes 0.909 points ($2,909)"
+      fees: "Fees $2,909 Includes 0.909 points ($2,909)",
     },
     {
       title: "30-year fixed NMLS 2059741",
       apr: "5.833%",
       payment: "$1,868/mo",
       rate: "5.750%",
-      fees: "Fees $2,909 Includes 0.909 points ($2,909)"
-    }
-  ]
+      fees: "Fees $2,909 Includes 0.909 points ($2,909)",
+    },
+  ];
 
   return (
+<<<<<<< Updated upstream
     <section className="py-16 bg-gray-50 text-black">
+=======
+    <section className="py-16 text-black bg-gray-50">
+>>>>>>> Stashed changes
       <div className="max-w-7xl mx-auto px-6">
-
         {/* Header */}
         <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold mb-2">Rates</h1>
-          <p className="text-sm text-gray-500">Data provided by 3rd party RateUpdate.com</p>
+          <h1 className="text-3xl font-bold text-black mb-2">Rates</h1>
+          <p className="text-sm text-gray-500">
+            Data provided by 3rd party RateUpdate.com
+          </p>
         </div>
 
         {/* Average Rate */}
@@ -44,20 +49,39 @@ const Rate = () => {
           <p className="text-lg font-bold">6.278% APR</p>
           <p className="text-lg font-bold mb-4">6.251% Rate</p>
           <p className="text-gray-500 text-sm mb-4">
-            Averages are provided for informational purposes only and are based on averages for PA. Disclosures.
+            Averages are provided for informational purposes only and are based
+            on averages for PA. Disclosures.
           </p>
 
           {/* Links */}
           <div className="flex gap-4 flex-wrap mb-6">
-            <Link href="#" className="text-yellow-500 font-medium hover:underline">30-years fixed</Link>
-            <Link href="#" className="text-yellow-500 font-medium hover:underline">15-years fixed</Link>
-            <Link href="#" className="text-yellow-500 font-medium hover:underline">5-years fixed</Link>
+            <Link
+              href="#"
+              className="text-yellow-500 font-medium hover:underline"
+            >
+              30-years fixed
+            </Link>
+            <Link
+              href="#"
+              className="text-yellow-500 font-medium hover:underline"
+            >
+              15-years fixed
+            </Link>
+            <Link
+              href="#"
+              className="text-yellow-500 font-medium hover:underline"
+            >
+              5-years fixed
+            </Link>
           </div>
 
           {/* Rate Plans */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {ratePlans.map((plan, idx) => (
-              <div key={idx} className="bg-gray-100 p-5 rounded-xl shadow hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between">
+              <div
+                key={idx}
+                className="bg-gray-100 p-5 rounded-xl shadow hover:shadow-lg transition-shadow duration-300 flex flex-col justify-between"
+              >
                 <ul className="mb-4 space-y-1 text-sm">
                   <li className="font-semibold">{plan.title}</li>
                   <li>APR: {plan.apr}</li>
@@ -83,16 +107,19 @@ const Rate = () => {
           </button>
           <p className="text-gray-500 text-sm mb-2">Advertising disclosure</p>
           <p className="text-gray-500 text-sm">
-            Payments do not include taxes or insurance premiums. Actual payments will be greater with taxes and insurance included. Rate and product details.{" "}
+            Payments do not include taxes or insurance premiums. Actual payments
+            will be greater with taxes and insurance included. Rate and product
+            details.{" "}
             <span className="font-medium">
-              Rate data provided by RateUpdate.com. Displayed by ICB, a division of Mortgage Research Center, NMLS #1907, Equal Housing Opportunity.
+              Rate data provided by RateUpdate.com. Displayed by ICB, a division
+              of Mortgage Research Center, NMLS #1907, Equal Housing
+              Opportunity.
             </span>
           </p>
         </div>
-
       </div>
     </section>
-  )
-}
+  );
+};
 
-export default Rate
+export default Rate;
