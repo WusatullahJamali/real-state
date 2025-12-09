@@ -2,9 +2,9 @@
 
 "use client";
 
-import { FC } from "react";
+import { FC, useRef } from "react";
 import Head from "next/head";
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import Link from "next/link";
 import { MoveRight } from "lucide-react";
 
@@ -89,15 +89,18 @@ const GuideStep: FC<GuideStepProps> = ({ step, isEven }) => {
 
   return (
     <motion.div
-      className="flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-16 border-b border-gray-100 py-10"
+      // Removed 'group' class since there are no more hover effects requested
+      className="flex flex-col lg:flex-row items-start lg:items-stretch gap-8 lg:gap-16 py-10"
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.2 }}
       transition={{ duration: 0.5 }}
     >
-      {/* TEXT CONTENT */}
-      <div className={`w-full lg:w-1/2 ${orderClass}`}>
-        <p className="text-sm font-semibold text-yellow-600 mb-2 tracking-wide uppercase">
+      {/* TEXT CONTENT CARD (No border, no hover effects) */}
+      <div
+        className={`w-full lg:w-1/2 ${orderClass} flex flex-col p-6 rounded-xl transition-all duration-300 ease-in-out`}
+      >
+        <p className="text-sm font-semibold text-yellow-600 mb-2 tracking-widee">
           Step {step.id}
         </p>
 
@@ -107,17 +110,23 @@ const GuideStep: FC<GuideStepProps> = ({ step, isEven }) => {
 
         <p className="text-gray-600 mb-4">{step.shortDescription}</p>
 
-        <p className="text-gray-700 leading-relaxed">{step.detailedContent}</p>
+        <p className="text-gray-700 leading-relaxed grow">
+          {step.detailedContent}
+        </p>
       </div>
 
-      {/* IMAGE */}
-      <div className="w-full lg:w-1/2">
-        <div className="bg-gray-50 rounded-xl p-4 overflow-hidden shadow-sm">
-          <div className="aspect-video overflow-hidden rounded-lg">
+      {/* IMAGE CARD (Border and hover classes removed, height classes maintained) */}
+      <div className="w-full lg:w-1/2 lg:min-h-full">
+        <div
+          // Removed border, border-gray-300, and all group-hover classes
+          className="bg-gray-50 rounded-xl overflow-hidden shadow-sm h-full flex items-center justify-center p-4 transition-all duration-300 ease-in-out"
+        >
+          {/* Inner image wrapper */}
+          <div className="overflow-hidden rounded-lg h-full w-full">
             <img
               src={step.imageSrc}
               alt={step.imageAlt}
-              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              className="w-full h-full object-cover transition-transform duration-300"
             />
           </div>
         </div>
@@ -148,6 +157,36 @@ const WhatsAppConsultationButton: FC = () => {
 
 // ---------------- MAIN PAGE ----------------
 const SellHomeGuidePage: FC = () => {
+  // 1. Reference the container of the steps for accurate scroll tracking
+  const stepsContainerRef = useRef(null);
+
+  // 2. Target the scrollable area and get the progress
+  const { scrollYProgress } = useScroll({
+    target: stepsContainerRef,
+    offset: ["start end", "end end"],
+  });
+
+  // Smooth the scroll progress for a softer animation
+  const smoothProgress = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001,
+  });
+
+  // 3. Map the scroll progress (0 to 1) to the height of the line (0% to 100%)
+  const lineHeight = useTransform(smoothProgress, [0, 1], ["0%", "100%"]);
+
+  // 4. Map the scroll progress to the CSS box-shadow for the glow effect
+  const shadow = useTransform(
+    smoothProgress,
+    [0, 0.5, 1], // Input values (scroll progress)
+    [
+      "0 0 5px rgba(253, 224, 71, 0.2)", // Start (subtle glow)
+      "0 0 15px rgba(253, 224, 71, 0.8)", // Middle (strong glow)
+      "0 0 5px rgba(253, 224, 71, 0.2)", // End (subtle glow)
+    ]
+  );
+
   return (
     <>
       <Head>
@@ -158,9 +197,9 @@ const SellHomeGuidePage: FC = () => {
         />
       </Head>
 
-      <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden">
+      <div className="min-h-screen bg-white text-gray-900 overflow-x-hidden relative">
         {/* MAIN CONTENT */}
-        <main className="pt-14 pb-16">
+        <main className="pt-14 pb-16 relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* HERO */}
             <motion.div
@@ -174,9 +213,9 @@ const SellHomeGuidePage: FC = () => {
               </p>
 
               <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-600 leading-snug">
-                The Ultimate Guide to{" "}
+                The Ultimate Guide to{"  "}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-600 to-yellow-400">
-                  Selling Your Home
+                  dream lifeeam
                 </span>
               </h1>
 
@@ -186,12 +225,32 @@ const SellHomeGuidePage: FC = () => {
               </p>
             </motion.div>
 
-            {/* STEPS */}
-            <section className="space-y-8">
+            {/* STEPS CONTAINER (The target for the divider line) */}
+            <section ref={stepsContainerRef} className="space-y-8 relative">
+              {/* ANIMATED VERTICAL DIVIDER LINE */}
+              {/* Positioned absolutely within the stepsContainerRef */}
+              <motion.div
+                className="hidden lg:block absolute left-1/2 transform -translate-x-1/2 w-0.5 z-0 top-0"
+                style={{
+                  backgroundColor: "rgb(253, 224, 71)", // Bold Yellow Color
+                  boxShadow: shadow, // Apply the animated shadow
+                  height: lineHeight, // Height is driven by scroll progress
+                  pointerEvents: "none",
+                }}
+              />
+
+              {/* MAPPING OF GUIDE STEPS */}
               {guideSteps.map((step, index) => (
-                <GuideStep key={step.id} step={step} isEven={index % 2 !== 0} />
+                <div
+                  key={step.id}
+                  // Added z-10 here to ensure content sits above the absolute line
+                  className="lg:px-12 relative z-10"
+                >
+                  <GuideStep step={step} isEven={index % 2 !== 0} />
+                </div>
               ))}
             </section>
+            {/* The line will start at the top edge of the section and end at the bottom edge */}
           </div>
         </main>
 
