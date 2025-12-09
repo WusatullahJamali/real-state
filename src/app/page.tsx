@@ -1,14 +1,16 @@
 import Hero from "@/components/Home/Hero";
-import Hero2 from "@/components/Home/Hero2";
+// import Hero2 from "@/components/Home/Hero2";
 import Startbutton from "@/components/Home/Startbutton";
 import Categories from "@/components/Home/Categories";
-import NeighborhoodCards from "@/components/Home/NeighbourCard";
-import Footer1 from "@/components/Home/Footer1";
-import Footer2 from "@/components/Home/Footer2";
+// import NeighborhoodCards from "@/components/Home/NeighbourCard";
+// import Footer1 from "@/components/Home/Footer1";
+// import Footer2 from "@/components/Home/Footer2";
 import ProductSlider from "@/components/Home/PropertySlider";
 
 import CollectionsSection from "@/components/Home/Collections";
 import RecentPropertiesSection from "@/components/Home/RecentProperty";
+import BlogPage from "@/components/blog components/BlogPage";
+
 
 export default function HomePage() {
   return (
@@ -24,6 +26,8 @@ export default function HomePage() {
       {/* <Footer1 />
       <Footer2 /> */}
       <RecentPropertiesSection/>
+      <BlogPage/>
+      
     </>
   );
 }
