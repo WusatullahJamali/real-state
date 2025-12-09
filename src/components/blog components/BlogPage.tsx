@@ -99,7 +99,7 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-[#fffdf5] text-black">
       {/* HERO */}
-      <section className="relative py-32 text-center overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-400">
+      <section className="relative py-32 text-center overflow-hidden bg-linear-to-r from-yellow-500 to-yellow-400">
         <div className="absolute inset-0 bg-black/10 backdrop-blur-sm" />
 
         <h1 className="relative text-6xl text-black font-extrabold tracking-tight">

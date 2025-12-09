@@ -28,9 +28,9 @@ export default function Navbar() {
     [key: string]: Array<string | { text: string; href: string }>;
   } = {
     "FOR SALE": [
-      { text: "Home for sale", href: "/home-for-sale" },
+      { text: "Home for sale", href: "/sell/home-for-sale" },
       { text: "New Construction For Sale", href: "/new-construction" },
-      { text: "Explore the neighborhood", href: "/explore the neighborhood" },
+      { text: "Explore the neighborhood", href: "/sell/neighbourhood" },
       { text: "Housing market trends", href: "/housing market trends" },
       { text: "Recently sold homes", href: "/recently sold homes" },
     ],
@@ -56,7 +56,11 @@ export default function Navbar() {
       { text: "FAQ", href: "/faq" },
       { text: "Blog", href: "/blog" },
       { text: "Terms of service", href: "/terms-of-service" },
+<<<<<<< Updated upstream
       { text: "Privacy policy", href: "/privacy-policy" },
+=======
+      { text: "Privacy policy", href: "/privacy policy" },
+>>>>>>> Stashed changes
       { text: "Careers", href: "/careers" },
     ],
   };
@@ -163,7 +167,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/add-property"
-            className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] h-[40px] bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300 active:translate-x-[5px] active:translate-y-[5px] group"
+            className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] h-10 bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300 active:translate-x-[5px] active:translate-y-[5px] group"
           >
             <span className="absolute w-[180px] h-[180px] bg-yellow-500 rounded-full -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
             <Plus className="w-4 h-4 relative z-10" />
@@ -282,10 +286,11 @@ export default function Navbar() {
                 <Link
                   href="/add-property"
                   className="relative flex items-center justify-center gap-2 
-              px-6 py-3 w-[230px] h-[48px] 
+              px-6 py-3 w-[230px] h-12 
               bg-gray-900 text-white font-semibold text-sm cursor-pointer 
               overflow-hidden shadow-md transition-all duration-300 
               active:translate-x-[5px] active:translate-y-[5px] group"
+<<<<<<< Updated upstream
             onClick={() => setMobileOpen(false)}
           >
             <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
@@ -298,6 +303,19 @@ export default function Navbar() {
   )}
 </AnimatePresence>
 
+=======
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
+                  <Plus className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">ADD PROPERTY</span>
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
+>>>>>>> Stashed changes
     </motion.nav>
   );
 }

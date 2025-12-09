@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React from "react";
 import Tracker from "../../components/Sell-Components/Tracker";
 import SoldCards from "../../components/Sell-Components/soldcards";
@@ -15,8 +15,8 @@ const Page = () => {
       <FeatureGrid />
       <Tracker />
       <SoldCards />
-      
-      <Guide/>
+
+      <Guide />
       <FAQ />
     </>
   );
