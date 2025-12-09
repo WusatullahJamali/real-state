@@ -12,21 +12,17 @@ export default function Navbar() {
   const [showNav, setShowNav] = useState(true);
   const [lastScroll, setLastScroll] = useState(0);
 
-  // Scroll behavior: hide on scroll down, show on scroll up
   useEffect(() => {
-    const handleScroll = () => {
-      const currentScroll = window.scrollY;
-      setShowNav(currentScroll < lastScroll || currentScroll < 50);
-      setLastScroll(currentScroll);
+    const onScroll = () => {
+      const y = window.scrollY;
+      setShowNav(y < lastScroll || y < 50);
+      setLastScroll(y);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
   }, [lastScroll]);
 
-  // Mega menu content
-  const dropdownContent: {
-    [key: string]: Array<string | { text: string; href: string }>;
-  } = {
+  const dropdownContent: Record<string, { text: string; href: string }[]> = {
     "FOR SALE": [
       { text: "Home for sale", href: "/sell/home-for-sale" },
       { text: "New Construction For Sale", href: "/new-construction" },
@@ -60,6 +56,9 @@ export default function Navbar() {
       { text: "Privacy policy", href: "/privacy-policy" },
 =======
       { text: "Privacy policy", href: "/privacy policy" },
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
       { text: "Careers", href: "/careers" },
     ],
@@ -74,6 +73,33 @@ export default function Navbar() {
     { name: "CONTACT US", href: "/contact", hasDropdown: false },
   ];
 
+  const renderDropdown = (name: string) => (
+    <AnimatePresence>
+      {activeMenu === name && (
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: 10 }}
+          transition={{ duration: 0.2 }}
+          className="absolute left-0 top-full mt-2 w-64 bg-white border shadow-xl rounded-lg p-4 z-50"
+        >
+          <ul className="space-y-2">
+            {dropdownContent[name].map((i, idx) => (
+              <li key={idx}>
+                <Link
+                  href={i.href}
+                  className="block text-gray-600 hover:text-yellow-500 hover:pl-2 transition-all text-sm"
+                >
+                  {i.text}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+
   return (
     <motion.nav
       animate={{ y: showNav ? 0 : -100 }}
@@ -81,15 +107,8 @@ export default function Navbar() {
       className="w-full bg-white shadow-sm sticky top-0 z-50 border-b"
     >
       <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
         <Link href="/" className="flex items-center">
-          <Image
-            src="/logo.svg"
-            alt="Logo"
-            width={140}
-            height={45}
-            className="object-contain"
-          />
+          <Image src="/logo.svg" alt="Logo" width={140} height={45} />
         </Link>
 
         {/* Desktop Menu */}
@@ -115,74 +134,40 @@ export default function Navbar() {
                 )}
               </Link>
 
-              {/* Mega Dropdown */}
-              <AnimatePresence>
-                {activeMenu === item.name && dropdownContent[item.name] && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute left-0 top-full mt-2 w-64 bg-white border shadow-xl rounded-lg p-4 z-50"
-                  >
-                    <ul className="space-y-2">
-                      {dropdownContent[item.name].map((row, i) => {
-                        const isLink = typeof row === "object" && "href" in row;
-                        const text = isLink ? row.text : row;
-                        const href = isLink ? row.href : "#";
-
-                        return (
-                          <li key={i}>
-                            {isLink ? (
-                              <Link
-                                href={href}
-                                className="block text-gray-600 hover:text-yellow-500 hover:pl-2 transition-all text-sm"
-                              >
-                                {text}
-                              </Link>
-                            ) : (
-                              <span className="block text-gray-600 hover:text-yellow-500 hover:pl-2 transition-all cursor-pointer text-sm">
-                                {text}
-                              </span>
-                            )}
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </motion.div>
-                )}
-              </AnimatePresence>
+              {item.hasDropdown && renderDropdown(item.name)}
             </li>
           ))}
         </ul>
 
-        {/* Right Side Buttons */}
+        {/* Right Buttons */}
         <div className="hidden lg:flex items-center space-x-3">
           <Link
             href="/login"
-            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-yellow-500 transition font-medium text-sm"
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-yellow-500 transition text-sm"
           >
-            <User className="w-4 h-4" />
-            REGISTER/LOGIN
+            <User className="w-4 h-4" /> REGISTER/LOGIN
           </Link>
+
+          {/* Add Property */}
           <Link
             href="/add-property"
+<<<<<<< Updated upstream
             className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] h-10 bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300 active:translate-x-[5px] active:translate-y-[5px] group"
+=======
+            className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] bg-gray-900 text-white text-sm font-semibold overflow-hidden group"
+>>>>>>> Stashed changes
           >
-            <span className="absolute w-[180px] h-[180px] bg-yellow-500 rounded-full -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
+            <span className="absolute w-[180px] h-[180px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2" />
             <Plus className="w-4 h-4 relative z-10" />
             <span className="relative z-10">ADD PROPERTY</span>
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-2xl text-gray-700"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
+        <button className="lg:hidden text-2xl" onClick={() => setMobileOpen(!mobileOpen)}>
           ☰
         </button>
       </div>
+
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
@@ -191,89 +176,52 @@ export default function Navbar() {
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.25 }}
-            className="lg:hidden bg-white border-t shadow-lg overflow-hidden"
+            className="lg:hidden bg-white border-t shadow-lg"
           >
             <ul className="p-4 space-y-3 text-sm font-medium">
               {menuItems.map((item) => {
                 const isOpen = activeMenu === item.name;
 
                 return (
-                  <li key={item.name} className="relative">
-                    {item.hasDropdown ? (
-                      <div className="flex justify-between items-center">
-                        {/* Parent link */}
-                        <Link
-                          href={item.href}
-                          className="py-2 text-gray-700 hover:text-yellow-500 flex-1"
-                          onClick={() => setMobileOpen(false)}
-                        >
-                          {item.name}
-                        </Link>
-
-                        {/* Arrow button */}
-                        <button
-                          className="p-2"
-                          onClick={() =>
-                            setActiveMenu(isOpen ? null : item.name)
-                          }
-                        >
-                          <ChevronDown
-                            className={`w-4 h-4 transition-transform ${
-                              isOpen ? "rotate-180" : ""
-                            }`}
-                          />
-                        </button>
-                      </div>
-                    ) : (
+                  <li key={item.name}>
+                    <div className="flex justify-between items-center">
                       <Link
                         href={item.href}
-                        className="block py-2 text-gray-700 hover:text-yellow-500"
+                        className="py-2 text-gray-700 hover:text-yellow-500 flex-1"
                         onClick={() => setMobileOpen(false)}
                       >
                         {item.name}
                       </Link>
-                    )}
 
-                    {/* Dropdown items */}
+                      {item.hasDropdown && (
+                        <button className="p-2" onClick={() => setActiveMenu(isOpen ? null : item.name)}>
+                          <ChevronDown className={`w-4 h-4 transition-transform ${isOpen && "rotate-180"}`} />
+                        </button>
+                      )}
+                    </div>
+
                     {item.hasDropdown && isOpen && (
                       <ul className="pl-4 pt-2 space-y-2">
-                        {dropdownContent[item.name].map((row, i) => {
-                          const isLink =
-                            typeof row === "object" && "href" in row;
-                          const text = isLink ? row.text : row;
-                          const href = isLink ? row.href : "#";
-
-                          return (
-                            <li key={i}>
-                              {isLink ? (
-                                <Link
-                                  href={href}
-                                  className="block text-gray-600 hover:text-yellow-500"
-                                  onClick={() => setMobileOpen(false)}
-                                >
-                                  {text}
-                                </Link>
-                              ) : (
-                                <span className="block text-gray-600 cursor-default">
-                                  {text}
-                                </span>
-                              )}
-                            </li>
-                          );
-                        })}
+                        {dropdownContent[item.name].map((i, idx) => (
+                          <li key={idx}>
+                            <Link
+                              href={i.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="block text-gray-600 hover:text-yellow-500"
+                            >
+                              {i.text}
+                            </Link>
+                          </li>
+                        ))}
                       </ul>
                     )}
                   </li>
                 );
               })}
 
-              {/* Right-side links */}
+              {/* Login / Signup */}
               <li className="pt-4 flex flex-col space-y-2">
-                <Link
-                  href="/login"
-                  className="hover:underline"
-                  onClick={() => setMobileOpen(false)}
-                >
+                <Link href="/login" onClick={() => setMobileOpen(false)} className="hover:underline">
                   Register/Login
                 </Link>
                 <Link
@@ -283,8 +231,11 @@ export default function Navbar() {
                 >
                   Signup
                 </Link>
+
+                {/* Mobile Add Property */}
                 <Link
                   href="/add-property"
+<<<<<<< Updated upstream
                   className="relative flex items-center justify-center gap-2 
               px-6 py-3 w-[230px] h-12 
               bg-gray-900 text-white font-semibold text-sm cursor-pointer 
@@ -307,6 +258,12 @@ export default function Navbar() {
                   onClick={() => setMobileOpen(false)}
                 >
                   <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
+=======
+                  className="relative flex items-center justify-center gap-2 px-6 py-3 w-[230px] bg-gray-900 text-white overflow-hidden group"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2" />
+>>>>>>> Stashed changes
                   <Plus className="w-4 h-4 relative z-10" />
                   <span className="relative z-10">ADD PROPERTY</span>
                 </Link>
@@ -315,6 +272,9 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     </motion.nav>
   );
