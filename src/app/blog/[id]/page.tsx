@@ -1,16 +1,12 @@
-// src/components/blog components/BlogDetaile.tsx
-interface BlogDetailsProps {
-  params: { id: string };
-}
+import BlogDetails from '@/components/blog components/BlogDetaile'
+import React from 'react'
 
-export default function BlogDetails({ params }: BlogDetailsProps) {
-  const { id } = params;
-
+const page = () => {
   return (
     <div>
-      <h1>Blog Details</h1>
-      <p>Blog ID: {id}</p>
-      {/* You can fetch blog data here using the ID */}
+      <BlogDetails />
     </div>
-  );
+  )
 }
+
+export default page
