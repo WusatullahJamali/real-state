@@ -36,7 +36,7 @@ const containerVariants: Variants = {
 // ---------------- MAIN COMPONENT ----------------
 const Common = () => {
   return (
-    <section className="py-16 bg-linear-to-br from-yellow-50 via-orange-50 to-yellow-100">
+    <section className="py-16 bg-linear-to-br from-yellow-50 via-orange-50 to-yellow-100 text-black">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADER */}

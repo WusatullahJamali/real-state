@@ -1,0 +1,293 @@
+"use client";
+import Link from "next/link";
+import React, { useState } from "react";
+import { FaHeart } from "react-icons/fa";
+
+
+// apartmentData.ts (Mock Data)
+export interface ApartmentType {
+  id: number;
+  title: string;
+  price: number;
+  bedrooms: number;
+  location: string;
+  image: string;
+  description: string;
+  amenities: string[];
+  areaSqFt: number;
+}
+
+export const apartmentList: ApartmentType[] = [
+  {
+    id: 1,
+    title: "Luxury Apartment",
+    price: 1200,
+    bedrooms: 3,
+    location: "Downtown, Karachi",
+    image: "/a1.jpg",
+    description: "A spacious and modern 3-bedroom apartment located in the heart of Downtown, offering panoramic city views and premium finishes.",
+    amenities: ["24/7 Security", "Gym Access", "Pool", "Dedicated Parking"],
+    areaSqFt: 1850,
+  },
+  {
+    id: 2,
+    title: "Modern Studio",
+    price: 800,
+    bedrooms: 1,
+    location: "Bahria Town, Lahore",
+    image: "a2.jpg",
+    description: "Ideal for students or young professionals, this efficient studio offers modern living in a secured community.",
+    amenities: ["Balcony", "Gated Community", "Laundry Facilities"],
+    areaSqFt: 750,
+  },
+  {
+    id: 3,
+    title: "Family Apartment",
+    price: 1000,
+    bedrooms: 2,
+    location: "Clifton, Karachi",
+    image: "/a3.jpg",
+    description: "Comfortable and cozy 2-bedroom unit perfect for a small family, steps away from the Clifton beach.",
+    amenities: ["Kids Play Area", "Power Backup", "Nearby Park"],
+    areaSqFt: 1100,
+  },
+  {
+    id: 4,
+    title: "Penthouse View",
+    price: 1500,
+    bedrooms: 4,
+    location: "DHA Phase 6, Karachi",
+    image: "/a4.jpg",
+    description: "Exclusive penthouse with an expansive terrace, offering a luxurious lifestyle in Karachi's most sought-after defense housing authority.",
+    amenities: ["Private Terrace", "Smart Home Tech", "Servant Quarter"],
+    areaSqFt: 2800,
+  },
+  // ... (Add details for all other apartments)
+];
+
+const Apartment = () => {
+  const [search, setSearch] = useState("");
+  const [bedrooms, setBedrooms] = useState("");
+  const [city, setCity] = useState("");
+  const [sort, setSort] = useState("");
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  const toggleFav = (id: number) => {
+    if (favorites.includes(id)) {
+      setFavorites(favorites.filter((fav) => fav !== id));
+    } else {
+      setFavorites([...favorites, id]);
+    }
+  };
+
+  const apartments = [
+    {
+      id: 1,
+      title: "Luxury Apartment",
+      price: 1200,
+      bedrooms: 3,
+      location: "Downtown, Karachi",
+      image: "/a1.jpg",
+    },
+    {
+      id: 2,
+      title: "Modern Studio",
+      price: 800,
+      bedrooms: 1,
+      location: "Bahria Town, Lahore",
+      image: "a2.jpg",
+    },
+    {
+      id: 3,
+      title: "Family Apartment",
+      price: 1000,
+      bedrooms: 2,
+      location: "Clifton, Karachi",
+      image: "/a3.jpg",
+    },
+    {
+      id: 4,
+      title: "Penthouse View",
+      price: 1500,
+      bedrooms: 4,
+      location: "DHA Phase 6, Karachi",
+      image: "/a4.jpg",
+    },
+    {
+      id: 5,
+      title: "Executive Residence",
+      price: 1100,
+      bedrooms: 3,
+      location: "Gulberg, Lahore",
+      image: "/a5.jpg",
+    },
+    {
+      id: 6,
+      title: "Stylish Loft",
+      price: 950,
+      bedrooms: 2,
+      location: "Islamabad",
+      image: "/a6.avif",
+    },
+    {
+      id: 7,
+      title: "Budget Studio",
+      price: 650,
+      bedrooms: 1,
+      location: "Johar Town, Lahore",
+      image: "a7.jpg",
+    },
+    {
+      id: 8,
+      title: "Corner Apartment",
+      price: 1050,
+      bedrooms: 3,
+      location: "F-11 Islamabad",
+      image: "/a8.jpg",
+    },
+    {
+      id: 9,
+      title: "Luxury High Rise",
+      price: 1300,
+      bedrooms: 3,
+      location: "Emaar, Karachi",
+      image: "/a9.jpg",
+    },
+    {
+      id: 10,
+      title: "Student Apartment",
+      price: 550,
+      bedrooms: 1,
+      location: "Rawalpindi",
+      image: "/a10.webp",
+    },
+    {
+      id: 11,
+      title: "Serviced Apartment",
+      price: 1600,
+      bedrooms: 4,
+      location: "Blue Area, Islamabad",
+      image: "/a11.jpg",
+    },
+    {
+      id: 12,
+      title: "Cozy Family Home",
+      price: 850,
+      bedrooms: 2,
+      location: "Peshawar",
+      image: "/a12.jpg",
+    },
+    {
+      id: 13,
+      title: "Cozy Family Home",
+      price: 850,
+      bedrooms: 2,
+      location: "Hyderabad",
+      image: "/ap14.jpg",
+    },
+    {
+      id: 14,
+      title: "Cozy Family Home",
+      price: 850,
+      bedrooms: 2,
+      location: "Lahore",
+      image: "/ap15.jpg",
+    },
+    {
+      id: 15,
+      title: "Cozy Family Home",
+      price: 850,
+      bedrooms: 2,
+      location: "Karachi",
+      image: "/a16.webp",
+    },
+    
+  ];
+
+  // FILTER + SORT
+  const filtered = apartments
+    .filter((apt) => apt.title.toLowerCase().includes(search.toLowerCase()))
+    .filter((apt) => (bedrooms ? apt.bedrooms === Number(bedrooms) : true))
+    .filter((apt) => (city ? apt.location.toLowerCase().includes(city.toLowerCase()) : true))
+    .sort((a, b) => {
+      if (sort === "high") return b.price - a.price;
+      if (sort === "low") return a.price - b.price;
+      return 0;
+    });
+
+  return (
+    <section className="py-14 px-6 bg-gray-100 text-black">
+      <h2 className="text-3xl font-bold text-center mb-10">Apartments for Rent</h2>
+
+      {/* FILTERS */}
+      <div className="grid md:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
+        <input
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="border p-3 rounded"
+        />
+
+        <select onChange={(e) => setBedrooms(e.target.value)} className="border p-3 rounded">
+          <option value="">Bedrooms</option>
+          <option value="1">1 Bed</option>
+          <option value="2">2 Bed</option>
+          <option value="3">3 Bed</option>
+          <option value="4">4 Bed</option>
+        </select>
+
+        <select onChange={(e) => setCity(e.target.value)} className="border p-3 rounded">
+          <option value="">All Cities</option>
+          <option value="Karachi">Karachi</option>
+          <option value="Lahore">Lahore</option>
+          <option value="Islamabad">Islamabad</option>
+          <option value="Peshawar">Peshawar</option>
+          <option value="Hyderabad">Hyderabad</option>
+        </select>
+
+        <select onChange={(e) => setSort(e.target.value)} className="border p-3 rounded">
+          <option value="">Sort Price</option>
+          <option value="low">Low to High</option>
+          <option value="high">High to Low</option>
+        </select>
+      </div>
+
+      {/* LISTINGS */}
+      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {filtered.map((apt) => (
+          <div key={apt.id} className="bg-white shadow rounded-xl overflow-hidden hover:shadow-xl transition cursor-pointer">
+            <div className="relative">
+              <img src={apt.image} className="w-full h-56 object-cover" />
+              <button
+                onClick={() => toggleFav(apt.id)}
+                className="absolute top-3 right-3 bg-white rounded-full p-2 shadow hover:scale-110 transition"
+              >
+                <FaHeart
+                  className={`text-xl ${favorites.includes(apt.id) ? "text-red-500" : "text-gray-400"}`}
+                />
+              </button>
+            </div>
+
+            <div className="p-5">
+              <h3 className="text-xl font-semibold">{apt.title}</h3>
+              <p className="text-gray-500">{apt.location}</p>
+
+              <p className="text-blue-600 font-semibold mt-2">${apt.price}/month</p>
+              <p className="text-sm text-gray-600">{apt.bedrooms} Bedrooms</p>
+
+              <Link
+  // The path is correct, assuming app/apartment/[id]/page.tsx exists
+  href={`/apartment/${apt.id}`} 
+  className="mt-4 block bg-yellow-600 text-white py-2 text-center rounded hover:bg-yellow-700 transition"
+>
+  View Details
+</Link>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+};
+
+export default Apartment;
