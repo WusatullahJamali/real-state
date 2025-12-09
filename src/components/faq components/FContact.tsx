@@ -3,7 +3,7 @@ import React from "react";
 
 const FContact = () => {
   return (
-    <section className="w-full py-16 bg-gray-100">
+    <section className="w-full py-16 bg-gray-100 text-black">
       <div className="max-w-6xl mx-auto px-4 grid lg:grid-cols-2 gap-10">
 
         {/* LEFT  */}
