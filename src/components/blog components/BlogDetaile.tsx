@@ -9,7 +9,7 @@ import { FiArrowLeft } from "react-icons/fi";
 export default function BlogDetails() {
 
   return (
-    <div className="min-h-screen bg-[#fffdf5]">
+    <div className="min-h-screen bg-[#fffdf5] text-black">
 
       {/* HERO */}
       <section className="relative h-[520px]">

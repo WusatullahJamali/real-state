@@ -35,8 +35,8 @@ export default function Navbar() {
       { text: "Recently sold homes", href: "/recently sold homes" },
     ],
     "FOR RENT": [
-      { text: "Apartments for rent", href: "/apartments for rent" },
-      { text: "Houses for rent", href: "/houses for rent" },
+      { text: "Apartments for rent", href: "/apartments-for-rent" },
+      { text: "Houses for rent", href: "/houses-for-rent" },
       { text: "Contact rent landlord", href: "/contact rent landlord" },
       { text: "Manage rentals", href: "/manage rentals" },
       { text: "List your rentals", href: "/list your rentals" },
@@ -51,24 +51,13 @@ export default function Navbar() {
       { text: "Property listings", href: "/property listings" },
     ],
     PAGES: [
-<<<<<<< Updated upstream
-       { text: "About us", href: "/about" },
-       { text: "Contact us", href: "/contact" },
-       { text: "FAQ", href: "/faq" },
-       { text: "Blog", href: "/blog" },
-       { text: "Terms of service", href: "/terms" },
-       { text: "Privacy policy", href: "/privacy" },
-       { text: "Careers", href: "/careers" },   
-     
-=======
       { text: "About us", href: "/about" },
       { text: "Contact us", href: "/contact" },
       { text: "FAQ", href: "/faq" },
       { text: "Blog", href: "/blog" },
-      { text: "Terms of service", href: "/terms of service" },
-      { text: "Privacy policy", href: "/privacy policy" },
+      { text: "Terms of service", href: "/terms-of-service" },
+      { text: "Privacy policy", href: "/privacy-policy" },
       { text: "Careers", href: "/careers" },
->>>>>>> Stashed changes
     ],
   };
 
@@ -297,19 +286,6 @@ export default function Navbar() {
               bg-gray-900 text-white font-semibold text-sm cursor-pointer 
               overflow-hidden shadow-md transition-all duration-300 
               active:translate-x-[5px] active:translate-y-[5px] group"
-<<<<<<< Updated upstream
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
-                  <Plus className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10">ADD PROPERTY</span>
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-        )}
-      </AnimatePresence>
-=======
             onClick={() => setMobileOpen(false)}
           >
             <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
@@ -322,7 +298,6 @@ export default function Navbar() {
   )}
 </AnimatePresence>
 
->>>>>>> Stashed changes
     </motion.nav>
   );
 }
