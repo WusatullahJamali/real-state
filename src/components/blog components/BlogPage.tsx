@@ -97,16 +97,16 @@ export default function BlogPage() {
   });
 
   return (
-    <div className="min-h-screen bg-[#fffdf5] text-black">
+    <div className="min-h-screen bg-white text-black">
       {/* HERO */}
-      <section className="relative py-32 text-center overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-400">
-        <div className="absolute inset-0 bg-black/10 backdrop-blur-sm" />
+      <section className="relative py-32 text-center overflow-hidden bg-yellow-500">
+        <div className="absolute inset-0 backdrop-blur-sm" />
 
-        <h1 className="relative text-6xl text-black font-extrabold tracking-tight">
+        <h1 className="relative text-6xl text-white font-extrabold tracking-tight">
           Real Estate Blog
         </h1>
 
-        <p className="relative text-black/80 mt-4 text-lg max-w-xl mx-auto">
+        <p className="relative text-black mt-4 text-lg max-w-xl mx-auto">
           News, market insights & property investment research across Pakistan.
         </p>
       </section>

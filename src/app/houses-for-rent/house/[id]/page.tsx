@@ -1,11 +1,12 @@
 
-import RentPage from '@/components/houses rent components/RentHouse'
+
+import RentHouseDetail from '@/components/houses rent components/RentDetaile'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-      <RentPage />
+      <RentHouseDetail />
     </div>
   )
 }

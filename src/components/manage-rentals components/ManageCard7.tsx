@@ -1,0 +1,37 @@
+import React from 'react'
+
+const ManageCard7 = () => {
+  return (
+   <div className="py-16 px-6 bg-gray-50 text-black">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center bg-white rounded-3xl shadow-xl overflow-hidden">
+
+        {/* Image Section */}
+        <div className="md:w-1/2 w-full flex items-center justify-center p-8 bg-white">
+          <div className="w-full max-w-md h-full flex items-center justify-center bg-white rounded-2xl p-4">
+            <img
+              src="/m7.png" 
+              alt="Rental Management Illustration"
+              className="w-full h-auto object-contain"
+            />
+          </div>
+        </div>
+
+        {/* Text Content */}
+        <div className="md:w-1/2 w-full p-8 md:p-12 flex flex-col gap-6">
+          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
+          Are you a renter? Avail is here for you, too!
+          </h1>
+          <p className="text-gray-700 text-lg leading-relaxed">
+           Feel secure communicating to Avail verified landlords through the built-in messaging system in Avail. Simplify paying your rent by scheduling payments in advance using either a credit card or direct from your ACH. Build your credit using CreditBoost, enabling you to report on-time rent payments to TransUnion®.
+          </p>
+          <button className="mt-4 bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-yellow-700 transition w-max shadow-lg">
+            Learn More
+          </button>
+        </div>
+
+      </div>
+    </div>
+  )
+}
+
+export default ManageCard7
