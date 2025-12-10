@@ -283,7 +283,6 @@ export default function RecentPropertiesSection() {
             </h2>
           </div>
 
-<<<<<<< Updated upstream
           <div className="flex flex-col sm:flex-row gap-4">
             <div className="flex gap-4">
               <button
@@ -325,26 +324,6 @@ export default function RecentPropertiesSection() {
             <ProductCard key={property.id} property={property} />
           ))}
         </div>
-=======
-          
-          <div className="flex flex-wrap gap-4 text-yellow-500" role="tablist">
-            <TabButton id="sale" label="For Sale" />
-            <TabButton id="rent" label="For Rent" />
-          </div>
-        </div>
-
-   
-        <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {propertiesToShow.map((property) => (
-          
-              <ProductCard key={property.id} property={property} />
-            ))}
-          </div>
-        </div>
-
-      
->>>>>>> Stashed changes
       </div>
     </section>
   );

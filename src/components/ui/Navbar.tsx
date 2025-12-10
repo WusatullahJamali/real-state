@@ -221,43 +221,6 @@ export default function Navbar() {
 
   const getMegaMenu = (name: string) => megaMenuContent[name as keyof typeof megaMenuContent];
 
-<<<<<<< Updated upstream
-  const dropdownContent: Record<string, { text: string; href: string }[]> = {
-    "FOR SALE": [
-      { text: "Home for sale", href: "/sell/home-for-sale" },
-      { text: "New Construction For Sale", href: "/new-construction" },
-      { text: "Explore the neighborhood", href: "/sell/neighbourhood" },
-      { text: "Housing market trends", href: "/housing market trends" },
-      { text: "Recently sold homes", href: "/recently sold homes" },
-    ],
-    "FOR RENT": [
-      { text: "Apartments for rent", href: "/apartments-for-rent" },
-      { text: "Houses for rent", href: "/houses-for-rent" },
-      { text: "Contact rent landlord", href: "/contact-rent-landlord" },
-      { text: "Manage rentals", href: "/manage-rentals" },
-      { text: "List your rentals", href: "/list your rentals" },
-    ],
-    PROPERTY: [
-      { text: "Property search", href: "/property search" },
-      { text: "Property types", href: "/property types" },
-      { text: "Property valuation", href: "/property valuation" },
-      { text: "Property investment", href: "/property investment" },
-      { text: "Commercial property", href: "/commercial property" },
-      { text: "Residential property", href: "/residential property" },
-      { text: "Property listings", href: "/property listings" },
-    ],
-    PAGES: [
-      { text: "About us", href: "/about" },
-      { text: "Contact us", href: "/contact" },
-      { text: "FAQ", href: "/faq" },
-      { text: "Blog", href: "/blog" },
-      { text: "Terms of service", href: "/terms-of-service" },
-      { text: "Privacy policy", href: "/privacy policy" },
-
-      { text: "Careers", href: "/careers" },
-    ],
-  };
-=======
   return (
     <>
       {/* MAIN NAV */}
@@ -267,7 +230,6 @@ export default function Navbar() {
           <Link href="/">
             <Image src="/logo.svg" width={140} height={45} alt="logo" />
           </Link>
->>>>>>> Stashed changes
 
           {/* DESKTOP MENU */}
           <ul className="hidden lg:flex space-x-3 font-medium">
@@ -353,50 +315,14 @@ export default function Navbar() {
             </Link>
           </div>
 
-<<<<<<< Updated upstream
-              {item.hasDropdown && renderDropdown(item.name)}
-            </li>
-          ))}
-        </ul>
-
-        {/* Right Buttons */}
-        <div className="hidden lg:flex items-center space-x-3">
-          <Link
-            href="/login"
-            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-yellow-500 transition text-sm"
-          >
-            <User className="w-4 h-4" /> REGISTER/LOGIN
-          </Link>
-
-          {/* Add Property */}
-          <Link
-            href="/add-property"
-            className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] bg-gray-900 text-white text-sm font-semibold overflow-hidden group"
-          >
-            <span className="absolute w-[180px] h-[180px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2" />
-            <Plus className="w-4 h-4 relative z-10" />
-            <span className="relative z-10">ADD PROPERTY</span>
-          </Link>
-=======
           {/* Mobile Menu Button */}
           <button className="lg:hidden p-2" onClick={() => setMobileOpen(true)}>
             <Menu className="h-6 w-6 text-gray-700" />
           </button>
->>>>>>> Stashed changes
         </div>
       </motion.nav>
 
-<<<<<<< Updated upstream
-        <button
-          className="lg:hidden text-2xl"
-          onClick={() => setMobileOpen(!mobileOpen)}
-        >
-          ☰
-        </button>
-      </div>
-=======
      
->>>>>>> Stashed changes
 
       <AnimatePresence>
         {mobileOpen && (
@@ -429,21 +355,6 @@ export default function Navbar() {
                 </button>
               </div>
 
-<<<<<<< Updated upstream
-                      {item.hasDropdown && (
-                        <button
-                          className="p-2"
-                          onClick={() =>
-                            setActiveMenu(isOpen ? null : item.name)
-                          }
-                        >
-                          <ChevronDown
-                            className={`w-4 h-4 transition-transform ${
-                              isOpen && "rotate-180"
-                            }`}
-                          />
-                        </button>
-=======
               {/* Mobile Menu Items */}
               <ul className="space-y-3">
                 {menuItems.map((item) => {
@@ -508,46 +419,14 @@ export default function Navbar() {
                         >
                           {item.name}
                         </Link>
->>>>>>> Stashed changes
                       )}
                     </li>
                   );
                 })}
               </ul>
 
-<<<<<<< Updated upstream
-                    {item.hasDropdown && isOpen && (
-                      <ul className="pl-4 pt-2 space-y-2">
-                        {dropdownContent[item.name].map((i, idx) => (
-                          <li key={idx}>
-                            <Link
-                              href={i.href}
-                              onClick={() => setMobileOpen(false)}
-                              className="block text-gray-600 hover:text-yellow-500"
-                            >
-                              {i.text}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
-                  </li>
-                );
-              })}
-
-              {/* Login / Signup */}
-              <li className="pt-4 flex flex-col space-y-2">
-                <Link
-                  href="/login"
-                  onClick={() => setMobileOpen(false)}
-                  className="hover:underline"
-                >
-                  Register/Login
-                </Link>
-=======
               {/* Mobile Buttons */}
               <div className="mt-5 border-t pt-5 space-y-3">
->>>>>>> Stashed changes
                 <Link
                   href="/login"
                   className="flex items-center gap-2 text-gray-700 hover:text-yellow-500"
@@ -558,30 +437,17 @@ export default function Navbar() {
 
                 <Link
                   href="/add-property"
-<<<<<<< Updated upstream
-                  className="relative flex items-center justify-center gap-2 px-6 py-3 w-[230px] bg-gray-900 text-white overflow-hidden group"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2" />
-                  <Plus className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10">ADD PROPERTY</span>
-=======
                   className="block text-center bg-yellow-500 text-white py-3 rounded-lg font-semibold hover:bg-yellow-600"
                   onClick={() => setMobileOpen(false)}
                 >
                   <Plus className="w-5 h-5 inline mr-1" />
                   ADD PROPERTY
->>>>>>> Stashed changes
                 </Link>
               </div>
             </motion.div>
           </>
         )}
       </AnimatePresence>
-<<<<<<< Updated upstream
-    </motion.nav>
-=======
     </>
->>>>>>> Stashed changes
   );
 }
