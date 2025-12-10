@@ -1,4 +1,4 @@
-import Apartment from '@/components/apartmentsrent components/Apartment'
+import Apartment from '@/components/apartmentsrent-components/Apartment'
 import React from 'react'
 
 const page = () => {
