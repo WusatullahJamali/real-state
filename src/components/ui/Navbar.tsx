@@ -233,8 +233,8 @@ export default function Navbar() {
     "FOR RENT": [
       { text: "Apartments for rent", href: "/apartments-for-rent" },
       { text: "Houses for rent", href: "/houses-for-rent" },
-      { text: "Contact rent landlord", href: "/contact rent landlord" },
-      { text: "Manage rentals", href: "/manage rentals" },
+      { text: "Contact rent landlord", href: "/contact-rent-landlord" },
+      { text: "Manage rentals", href: "/manage-rentals" },
       { text: "List your rentals", href: "/list your rentals" },
     ],
     PROPERTY: [

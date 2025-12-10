@@ -32,77 +32,77 @@ export default function PrivacyPolicy() {
       title: "Information Collection",
       shortDesc: "We collect information you provide when contacting us or submitting property forms.",
       fullDesc: "This includes your name, email address, phone number, property details, and any other information you voluntarily provide. We collect this data through forms, account registration, property listings, consultation requests, and direct communication. We may also collect technical information such as IP addresses, browser type, and device information to improve our services.",
-      color: "from-blue-500 to-blue-600",
-      bgColor: "bg-blue-50"
+      color: "white",
+      bgColor: "bg-white"
     },
     {
       icon: <FiActivity />,
       title: "Use of Information",
       shortDesc: "Your information helps improve services, communication, and support.",
       fullDesc: "We use your data to provide real estate services, match you with suitable properties, send alerts, improve platform functionality, respond to inquiries, conduct analytics, personalize your experience, and comply with legal obligations. We never use your information beyond your consent.",
-      color: "from-yellow-500 to-orange-500",
-      bgColor: "bg-yellow-50"
+      color: "white",
+      bgColor: "bg-white"
     },
     {
       icon: <FiUsers />,
       title: "Cookies & Tracking",
       shortDesc: "Cookies personalize browsing and enhance user experience.",
       fullDesc: "We use cookies and similar technologies to remember preferences, analyze traffic, provide personalized content, enable social media features, and deliver targeted advertising. You can control cookie settings, but disabling may limit features.",
-      color: "from-purple-500 to-purple-600",
-      bgColor: "bg-purple-50"
+      color: "white",
+      bgColor: "bg-white"
     },
     {
       icon: <FiShare2 />,
       title: "Information Sharing",
       shortDesc: "We only share data with trusted partners under strict conditions.",
       fullDesc: "We may share information with real estate agents (with consent), service providers, legal authorities, business partners for transactions, and potential buyers/sellers with authorization. All third parties are bound by confidentiality agreements and data protection standards.",
-      color: "from-green-500 to-emerald-600",
-      bgColor: "bg-green-50"
+      color: "white",
+      bgColor: "bg-white"
     },
     {
       icon: <FiLock />,
       title: "Security Measures",
       shortDesc: "Industry-standard security protects your information.",
       fullDesc: "Our security includes SSL encryption, secure servers, regular audits, access control, employee training, and incident response procedures. While we strive for maximum security, no method over the internet is 100% secure.",
-      color: "from-red-500 to-red-600",
-      bgColor: "bg-red-50"
+      color: "white",
+      bgColor: "bg-white"
     },
     {
       icon: <FiRefreshCw />,
       title: "Changes to this Policy",
       shortDesc: "We update this policy periodically. Latest version appears here.",
       fullDesc: "We reserve the right to modify this policy at any time. Changes will be posted here with revision date. Significant changes may be emailed or prominently displayed. Continued use constitutes acceptance of updates. Review regularly.",
-      color: "from-indigo-500 to-indigo-600",
-      bgColor: "bg-indigo-50"
+      color: "white",
+      bgColor: "bg-white"
     }
   ];
 
   
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#fffdf5] via-[#fff8e1] to-[#fffdf5] py-16 px-4 relative overflow-hidden">
+    <div className="min-h-screen bg-white py-16 px-4 relative overflow-hidden">
       
       {/* Enhanced Animated Background */}
       <div className="fixed inset-0 pointer-events-none opacity-20">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-yellow-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
-        <div className="absolute top-1/2 left-1/2 w-96 h-96 bg-pink-300 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-2000"></div>
+        <div className="absolute top-1/2 left-1/2 w-96 h-96 rounded-full mix-blend-multiply filter blur-3xl animate-blob animation-delay-4000"></div>
       </div>
 
       <div className="relative max-w-6xl mx-auto">
         
         {/* Enhanced Header */}
-        <header className="relative bg-gradient-to-br from-gray-900 via-black to-gray-900 rounded-3xl p-12 md:p-20 mb-16 overflow-hidden">
+        <header className="relative rounded-3xl p-12 md:p-20 mb-16 overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0id2hpdGUiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4wNSIvPjwvcGF0dGVybj48L2RlZnM+PHJlY3Qgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgZmlsbD0idXJsKCNncmlkKSIvPjwvc3ZnPg==')] opacity-40"></div>
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full blur-3xl opacity-20"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-20"></div>
           
           <div className="relative z-10 text-center">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-yellow-400 to-orange-500 text-black text-sm font-bold px-8 py-3 rounded-full mb-8 animate-pulse">
+            <div className="inline-flex items-center gap-3 text-black text-sm font-bold px-8 py-3 rounded-full mb-8 animate-pulse">
               <FiShield className="text-xl" /> 
               YOUR PRIVACY MATTERS
             </div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-black mb-8 leading-tight tracking-tight">
-              Privacy <span className="text-black bg-clip-text bg-gradient-to-r from-yellow-400 to-orange-500">Policy</span>
+              Privacy <span className="text-black bg-clip-text">Policy</span>
             </h1>
 
             <p className="text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto font-light">
@@ -112,13 +112,13 @@ export default function PrivacyPolicy() {
             </p>
 
             <div className="mt-10 flex flex-wrap justify-center gap-6 text-base text-black">
-              <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full backdrop-blur-sm">
+              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
                 📅 Last Updated: December 2025
               </span>
-              <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full backdrop-blur-sm">
+              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
                 ⏱️ 5 min read
               </span>
-              <span className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-full backdrop-blur-sm">
+              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
                 🔒 GDPR Compliant
               </span>
             </div>
@@ -128,7 +128,7 @@ export default function PrivacyPolicy() {
         {/* Enhanced Quick Navigation */}
         <section className="bg-white rounded-3xl p-8 mb-12 border border-gray-100">
           <h3 className="font-black text-2xl text-black mb-6 flex items-center gap-3">
-            <span className="w-3 h-3 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-full animate-pulse"></span> 
+            <span className="w-3 h-3 bg-white rounded-full animate-pulse"></span> 
             Quick Navigation
           </h3>
           <div className="grid md:grid-cols-3 gap-4">
@@ -198,7 +198,7 @@ export default function PrivacyPolicy() {
             window.scrollTo({ top: 0, behavior: 'smooth' });
             setExpandedSection(null);
           }}
-          className="fixed bottom-8 right-8 bg-gradient-to-br from-yellow-400 to-orange-500 text-black font-bold p-5 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-110 transition-all z-50 group"
+          className="fixed bottom-8 right-8 bg-white text-black font-bold p-5 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-110 transition-all z-50 group"
           aria-label="Back to top"
         >
           <FiArrowUp className="text-2xl group-hover:-translate-y-1 transition-transform" />
