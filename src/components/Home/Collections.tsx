@@ -22,7 +22,7 @@ export default function CollectionsSection() {
   const rows = [collections.slice(0, 4), collections.slice(4)];
 
   return (
-    <section className="bg-gray-50 py-16">
+    <section className="bg-white py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
@@ -56,7 +56,8 @@ export default function CollectionsSection() {
                   className="relative w-full group cursor-pointer rounded-xl overflow-hidden transition-transform duration-500 hover:scale-105"
                 >
                   {/* Image container to maintain rounded corners */}
-                  <div className="w-full h-56 relative rounded-xl overflow-hidden">
+                  <div className="w-full h-72 md:h-80 relative rounded-2xl overflow-hidden shadow-lg group">
+
                     <Image
                       src={item.img}
                       alt={item.title}
