@@ -3,15 +3,7 @@ import React from "react";
 
 const Loan = () => {
   return (
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-    <section className="py-16 bg-gray-50 text-black">
-=======
     <section className="py-16 text-black bg-gray-50">
->>>>>>> Stashed changes
-=======
-    <section className="py-16 bg-gray-50 text-black">
->>>>>>> Stashed changes
       <div className="max-w-7xl mx-auto px-6">
         {/* Title */}
         <div className="mb-8 text-center">
@@ -78,10 +70,10 @@ const Loan = () => {
                   Requires an income of less than 115% of what's typical for the
                   area.
                 </td>
-<<<<<<< Updated upstream
-=======
-                <td className="py-4 px-4">Requires an income of less than 115% of what typical for the area.</td>
->>>>>>> Stashed changes
+                <td className="py-4 px-4">
+                  Requires an income of less than 115% of what typical for the
+                  area.
+                </td>
                 <td className="py-4 px-4">No down payment required.</td>
                 <td className="py-4 px-4">
                   No minimum

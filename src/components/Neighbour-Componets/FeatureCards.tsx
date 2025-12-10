@@ -98,7 +98,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ card }) => {
 const FeaturedCommunitySection: React.FC = () => {
   return (
     <section className="py-12 bg-gray-50 sm:py-16 lg:py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-3xl font-extrabold text-gray-900 text-left mb-8 sm:text-4xl">
           Featured Communities
         </h2>

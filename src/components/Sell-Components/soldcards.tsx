@@ -90,7 +90,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
   const isContact = price.toLowerCase().includes("contact");
 
   return (
-    <div className="w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
+    <div className="min-w-[80%] sm:min-w-[45%] md:min-w-[32%] lg:w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
       {/* Image */}
       <div className="relative h-40 overflow-hidden rounded-t-xl">
         <img
@@ -160,7 +160,10 @@ export default function RecentlySoldHomes() {
 
   const scroll = useCallback((direction: "left" | "right") => {
     if (scrollContainerRef.current) {
-      const cardWidthWithGap = 264; // card width + margin
+      const cardWidthWithGap = scrollContainerRef.current.firstChild
+        ? (scrollContainerRef.current.firstChild as HTMLDivElement)
+            .clientWidth + 16
+        : 264; // fallback
       scrollContainerRef.current.scrollBy({
         left: direction === "right" ? cardWidthWithGap : -cardWidthWithGap,
         behavior: "smooth",
@@ -170,21 +173,21 @@ export default function RecentlySoldHomes() {
 
   return (
     <div className="min-h-[70vh] flex items-center justify-center bg-white p-4">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl">
+      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl relative">
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b pb-4 mb-6">
           <div>
-            <h1 className="text-2xl font-semibold text-gray-900 mb-1">
+            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-1">
               Recently Sold Homes in Colorado Springs, CO
             </h1>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm md:text-base text-gray-500">
               Homes that have sold in the last 6 months in our top housing
               market for 2025
             </p>
           </div>
           <a
             href="#"
-            className="flex items-center text-yellow-500 hover:text-yellow-400 font-bold mt-3 md:mt-0 transition text-sm"
+            className="flex items-center text-yellow-500 hover:text-yellow-400 font-bold mt-3 md:mt-0 transition text-sm md:text-base"
           >
             Homes similar to yours
             <MoveRight className="w-4 h-4 ml-1.5" />
@@ -196,7 +199,7 @@ export default function RecentlySoldHomes() {
           {/* Left Button */}
           <button
             onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg"
           >
             <ArrowLeft className="w-5 h-5 text-gray-700" />
           </button>
@@ -204,7 +207,7 @@ export default function RecentlySoldHomes() {
           {/* Scrollable Cards */}
           <div
             ref={scrollContainerRef}
-            className="flex overflow-x-auto space-x-2 py-3 scrollbar-hide snap-x snap-mandatory"
+            className="flex overflow-x-auto space-x-4 py-3 scrollbar-hide snap-x snap-mandatory"
           >
             {homesData.map((home) => (
               <div key={home.id} className="snap-start">
@@ -216,7 +219,7 @@ export default function RecentlySoldHomes() {
           {/* Right Button */}
           <button
             onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg hidden lg:block"
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg"
           >
             <ArrowRight className="w-5 h-5 text-gray-700" />
           </button>

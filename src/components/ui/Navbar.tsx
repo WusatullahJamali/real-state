@@ -52,14 +52,8 @@ export default function Navbar() {
       { text: "FAQ", href: "/faq" },
       { text: "Blog", href: "/blog" },
       { text: "Terms of service", href: "/terms-of-service" },
-<<<<<<< Updated upstream
-      { text: "Privacy policy", href: "/privacy-policy" },
-=======
       { text: "Privacy policy", href: "/privacy policy" },
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
+
       { text: "Careers", href: "/careers" },
     ],
   };
@@ -151,11 +145,7 @@ export default function Navbar() {
           {/* Add Property */}
           <Link
             href="/add-property"
-<<<<<<< Updated upstream
-            className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] h-10 bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300 active:translate-x-[5px] active:translate-y-[5px] group"
-=======
             className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] bg-gray-900 text-white text-sm font-semibold overflow-hidden group"
->>>>>>> Stashed changes
           >
             <span className="absolute w-[180px] h-[180px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2" />
             <Plus className="w-4 h-4 relative z-10" />
@@ -163,7 +153,10 @@ export default function Navbar() {
           </Link>
         </div>
 
-        <button className="lg:hidden text-2xl" onClick={() => setMobileOpen(!mobileOpen)}>
+        <button
+          className="lg:hidden text-2xl"
+          onClick={() => setMobileOpen(!mobileOpen)}
+        >
           ☰
         </button>
       </div>
@@ -194,8 +187,17 @@ export default function Navbar() {
                       </Link>
 
                       {item.hasDropdown && (
-                        <button className="p-2" onClick={() => setActiveMenu(isOpen ? null : item.name)}>
-                          <ChevronDown className={`w-4 h-4 transition-transform ${isOpen && "rotate-180"}`} />
+                        <button
+                          className="p-2"
+                          onClick={() =>
+                            setActiveMenu(isOpen ? null : item.name)
+                          }
+                        >
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform ${
+                              isOpen && "rotate-180"
+                            }`}
+                          />
                         </button>
                       )}
                     </div>
@@ -221,7 +223,11 @@ export default function Navbar() {
 
               {/* Login / Signup */}
               <li className="pt-4 flex flex-col space-y-2">
-                <Link href="/login" onClick={() => setMobileOpen(false)} className="hover:underline">
+                <Link
+                  href="/login"
+                  onClick={() => setMobileOpen(false)}
+                  className="hover:underline"
+                >
                   Register/Login
                 </Link>
                 <Link
@@ -235,35 +241,10 @@ export default function Navbar() {
                 {/* Mobile Add Property */}
                 <Link
                   href="/add-property"
-<<<<<<< Updated upstream
-                  className="relative flex items-center justify-center gap-2 
-              px-6 py-3 w-[230px] h-12 
-              bg-gray-900 text-white font-semibold text-sm cursor-pointer 
-              overflow-hidden shadow-md transition-all duration-300 
-              active:translate-x-[5px] active:translate-y-[5px] group"
-<<<<<<< Updated upstream
-            onClick={() => setMobileOpen(false)}
-          >
-            <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
-            <Plus className="w-4 h-4 relative z-10" />
-            <span className="relative z-10">ADD PROPERTY</span>
-          </Link>
-        </li>
-      </ul>
-    </motion.div>
-  )}
-</AnimatePresence>
-
-=======
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
-=======
                   className="relative flex items-center justify-center gap-2 px-6 py-3 w-[230px] bg-gray-900 text-white overflow-hidden group"
                   onClick={() => setMobileOpen(false)}
                 >
                   <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2" />
->>>>>>> Stashed changes
                   <Plus className="w-4 h-4 relative z-10" />
                   <span className="relative z-10">ADD PROPERTY</span>
                 </Link>
@@ -272,10 +253,6 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
     </motion.nav>
   );
 }
