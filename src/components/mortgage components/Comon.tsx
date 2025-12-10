@@ -38,7 +38,6 @@ const Common = () => {
   return (
     <section className="py-16 bg-linear-to-br from-yellow-50 via-orange-50 to-yellow-100 text-black">
       <div className="max-w-7xl mx-auto px-6">
-
         {/* HEADER */}
         <motion.div
           initial={{ opacity: 0, y: -30 }}
@@ -82,9 +81,7 @@ const Common = () => {
               />
 
               <div className="relative z-10">
-                <motion.h2
-                  className="text-xl font-semibold mb-3 text-yellow-700 group-hover:text-yellow-600 transition-colors"
-                >
+                <motion.h2 className="text-xl font-semibold mb-3 text-yellow-700 group-hover:text-yellow-600 transition-colors">
                   {term.title}
                 </motion.h2>
 
@@ -97,7 +94,7 @@ const Common = () => {
                 initial={{ width: 0 }}
                 whileHover={{ width: "100%" }}
                 transition={{ duration: 0.4 }}
-                className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-yellow-400 to-orange-400"
+                className="absolute bottom-0 left-0 h-1 bg-linear-to-r from-yellow-400 to-orange-400"
               />
             </motion.div>
           ))}

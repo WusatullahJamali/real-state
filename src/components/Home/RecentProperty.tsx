@@ -13,12 +13,12 @@ interface Property {
   size: string;
   price: string;
   image: string;
+  status: "sale" | "rent";
   batch?: "Hot Offer" | "New Listing" | null;
 }
 
-
-
-const FOR_SALE_PROPERTIES: Property[] = [
+// ----- SALE PROPERTIES -----
+export const FOR_SALE_PROPERTIES: Property[] = [
   {
     id: 1,
     title: "Harmony House",
@@ -28,7 +28,7 @@ const FOR_SALE_PROPERTIES: Property[] = [
     size: "Sq.ft- 234,560",
     price: "$7,656.00",
     image: "/property1.jpg",
-  
+    status: "sale",
     batch: "New Listing",
   },
   {
@@ -36,11 +36,11 @@ const FOR_SALE_PROPERTIES: Property[] = [
     title: "Mountain View Villa",
     city: "Sydney City",
     beds: "02 Beds",
-    baths: "02+ Baths",
+    baths: "02 Baths",
     size: "Sq.ft- 345,556",
     price: "$3,650.00",
     image: "/property2.webp",
-   
+    status: "sale",
     batch: null,
   },
   {
@@ -52,109 +52,163 @@ const FOR_SALE_PROPERTIES: Property[] = [
     size: "Sq.ft- 234,560",
     price: "$17,780.00",
     image: "/property3.webp",
-    
+    status: "sale",
     batch: "Hot Offer",
   },
   {
     id: 4,
-    title: "Sunflower Cottage",
-    city: "Canberra City",
-    beds: "04 Beds",
-    baths: "02 Baths",
-    size: "Sq.ft- 124,560",
-    price: "$9,610.00",
-    image: "/property4.jpg",
-   
-    batch: null,
+    title: "Golden Estate House",
+    city: "Dubai",
+    beds: "05 Beds",
+    baths: "04 Baths",
+    size: "Sq.ft- 400,000",
+    price: "$25,900.00",
+    image: "/h1.jpeg",
+    status: "sale",
+    batch: "New Listing",
   },
   {
     id: 5,
-    title: "Coastal Dream Home",
-    city: "Melbourne City",
+    title: "Royal Palm Residency",
+    city: "Islamabad",
     beds: "06 Beds",
     baths: "05 Baths",
-    size: "Sq.ft- 234,560",
-    price: "$6,656.00",
-    image: "/property5.webp",
-    
+    size: "Sq.ft- 500,230",
+    price: "$32,500.00",
+    image: "/h2.jpg",
+    status: "sale",
     batch: "Hot Offer",
   },
   {
     id: 6,
-    title: "Starlight Manor",
-    city: "London",
-    beds: "03 Beds",
-    baths: "03 Baths",
-    size: "Sq.ft- 234,560",
-    price: "$7,570.00",
-    image: "/property6.webp",
-   
+    title: "Elite Signature Villa",
+    city: "Doha",
+    beds: "04 Beds",
+    baths: "04 Baths",
+    size: "Sq.ft- 350,000",
+    price: "$21,750.00",
+    image: "/h3.jpeg",
+    status: "sale",
     batch: null,
   },
 ];
 
-const FOR_RENT_PROPERTIES: Property[] = [
-  // Using the same data for rent section for simplicity
-  ...FOR_SALE_PROPERTIES,
+// ----- RENT PROPERTIES -----
+export const FOR_RENT_PROPERTIES: Property[] = [
+  {
+    id: 10,
+    title: "Urban Comfort Apartment",
+    city: "Melbourne",
+    beds: "02 Beds",
+    baths: "01 Bath",
+    size: "Sq.ft- 120,000",
+    price: "$1,200.00 /mo",
+    image: "/property4.jpg",
+    status: "rent",
+    batch: "Hot Offer",
+  },
+  {
+    id: 11,
+    title: "City Center Condo",
+    city: "Toronto",
+    beds: "03 Beds",
+    baths: "02 Baths",
+    size: "Sq.ft- 150,340",
+    price: "$2,560.00 /mo",
+    image: "/property5.webp",
+    status: "rent",
+    batch: null,
+  },
+  {
+    id: 12,
+    title: "Budget Family Home",
+    city: "London",
+    beds: "04 Beds",
+    baths: "03 Baths",
+    size: "Sq.ft- 200,000",
+    price: "$1,850.00 /mo",
+    image: "/property6.webp",
+    status: "rent",
+    batch: "New Listing",
+  },
+  {
+    id: 13,
+    title: "Modern Studio Flat",
+    city: "Berlin",
+    beds: "01 Bed",
+    baths: "01 Bath",
+    size: "Sq.ft- 80,000",
+    price: "$950.00 /mo",
+    image: "/h4.avif",
+    status: "rent",
+    batch: "New Listing",
+  },
+  {
+    id: 14,
+    title: "Luxury Penthouse",
+    city: "New York",
+    beds: "03 Beds",
+    baths: "03 Baths",
+    size: "Sq.ft- 210,000",
+    price: "$4,900.00 /mo",
+    image: "/h5.jpg",
+    status: "rent",
+    batch: "Hot Offer",
+  },
+  {
+    id: 15,
+    title: "Cozy Suburban Home",
+    city: "Manchester",
+    beds: "03 Beds",
+    baths: "02 Baths",
+    size: "Sq.ft- 150,000",
+    price: "$1,450.00 /mo",
+    image: "/h6.jpg",
+    status: "rent",
+    batch: null,
+  },
 ];
 
-// --- 3. PRODUCT CARD COMPONENT ---
-
-const HeartIcon: React.FC<{ filled?: boolean }> = ({ filled = false }) => (
-  <svg
-    width="14"
-    height="13"
-    viewBox="0 0 14 14"
-    xmlns="http://www.w3.org/2000/svg"
-    className="w-4 h-4"
-  >
-    <path
-      d="M7.00012 2.40453L6.37273 1.75966C4.90006 0.245917 2.19972 0.76829 1.22495 2.67141C0.767306 3.56653 0.664053 4.8589 1.4997 6.50827C2.30473 8.09639 3.97953 9.99864 7.00012 12.0706C10.0207 9.99864 11.6946 8.09639 12.5005 6.50827C13.3362 4.85803 13.2338 3.56653 12.7753 2.67141C11.8005 0.76829 9.10019 0.245042 7.62752 1.75879L7.00012 2.40453ZM7.00012 13.125C-6.41666 4.25953 2.86912 -2.65995 6.84612 1.00016C6.89862 1.04829 6.95024 1.09816 7.00012 1.14979C7.04949 1.09821 7.10087 1.04859 7.15413 1.00104C11.1302 -2.6617 20.4169 4.25865 7.00012 13.125Z"
-      fill={filled ? "#EF4444" : "#ffffff"} // Fill heart red if favorited
-      stroke={filled ? "none" : "#ffffff"} // Outline if not filled
-    />
-  </svg>
-);
-
+// --- PRODUCT CARD ---
 const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
   return (
     <div className="bg-white rounded-lg text-black shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-      {/* Product Image Section */}
       <div className="relative h-56 w-full">
-        {/* Batch / Hot Offer */}
+        <div
+          className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${
+            property.status === "sale"
+              ? "bg-green-600 text-white"
+              : "bg-blue-600 text-white"
+          }`}
+        >
+          {property.status === "sale" ? "For Sale" : "For Rent"}
+        </div>
+
+        {property.batch === "New Listing" && (
+          <div className="absolute top-4 right-4 z-10 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">
+            NEW LISTING
+          </div>
+        )}
         {property.batch === "Hot Offer" && (
-          <div className="absolute top-4 left-4 z-10 bg-red-600 text-white text-xs font-semibold px-3 py-1 rounded-full">
-            Hot Offer
+          <div className="absolute top-4 right-4 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
+            HOT OFFER
           </div>
         )}
 
-        {/* Favorite Icon */}
-        <button
-          className="absolute top-4 right-4 z-10 bg-white p-2 rounded-full shadow-lg hover:bg-gray-100 transition-colors"
-          aria-label="Add to favorites"
-        >
-          <HeartIcon />
-        </button>
-
-        {/* Image - Simplified static image instead of nested Swiper */}
         <Image
           src={property.image}
           alt={property.title}
           fill
-          sizes="(max-width: 768px) 100vw, 33vw"
           className="object-cover"
         />
       </div>
 
-      {/* Product Content */}
       <div className="p-5">
-        {/* Location */}
         <div className="mb-2 text-sm text-gray-500 flex items-center">
           <svg
             className="w-4 h-4 mr-1 text-yellow-500"
             fill="currentColor"
             viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
           >
             <path
               fillRule="evenodd"
@@ -162,93 +216,66 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
               clipRule="evenodd"
             ></path>
           </svg>
-          <a href="#" className="hover:text-yellow-500 transition-colors">
-            {property.city}
-          </a>
+          {property.city}
         </div>
 
-        {/* Title */}
-        <h5 className="text-xl font-semibold mb-3">
-          <a href="#" className="hover:text-yellow-500 transition-colors">
-            {property.title}
-          </a>
-        </h5>
+        <h5 className="text-xl font-semibold mb-3">{property.title}</h5>
 
-        {/* Features */}
         <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-600 border-b pb-4 mb-4">
-          <li className="flex items-center gap-1">
-            <span className="text-xs font-medium bg-gray-100 px-2 py-0.5 rounded">
+          <li>
+            <span className="text-xs font-medium bg-gray-100 px-2 py-1 rounded">
               {property.beds}
             </span>
           </li>
-          <li className="flex items-center gap-1">
-            <span className="text-xs font-medium bg-gray-100 px-2 py-0.5 rounded">
+          <li>
+            <span className="text-xs font-medium bg-gray-100 px-2 py-1 rounded">
               {property.baths}
             </span>
           </li>
-          <li className="flex items-center gap-1">
-            <span className="text-xs font-medium bg-gray-100 px-2 py-0.5 rounded">
+          <li>
+            <span className="text-xs font-medium bg-gray-100 px-2 py-1 rounded">
               {property.size}
             </span>
           </li>
         </ul>
 
-        {/* Price & Details Button */}
         <div className="flex items-center justify-between">
           <div className="text-2xl font-bold text-gray-900">
             {property.price}
           </div>
-          <a
-            href="#"
-            className="inline-flex items-center justify-center px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg  transition-colors"
-          >
+          <button className="px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg">
             View Details
-          </a>
+          </button>
         </div>
       </div>
     </div>
   );
 };
 
-// --- 4. MAIN SECTION COMPONENT ---
-
+// --- MAIN SECTION ---
 type Tab = "sale" | "rent";
+type FilterType = "all" | "new" | "hot";
 
 export default function RecentPropertiesSection() {
-  const [activeTab, setActiveTab] = useState<Tab>("rent");
+  const [activeTab, setActiveTab] = useState<Tab>("sale");
+  const [filter, setFilter] = useState<FilterType>("all");
 
-  const propertiesToShow =
+  const selectedList =
     activeTab === "sale" ? FOR_SALE_PROPERTIES : FOR_RENT_PROPERTIES;
 
-  const TabButton: React.FC<{ id: Tab; label: string }> = ({ id, label }) => {
-    const isActive = activeTab === id;
-    const activeClasses = "text-white bg-yellow-500";
-    const inactiveClasses =
-      "text-gray-700 bg-white border border-gray-300 hover:bg-gray-50";
-
-    return (
-      <button
-        className={`px-6 py-2 text-sm font-semibold rounded-lg transition-colors ${
-          isActive ? activeClasses : inactiveClasses
-        }`}
-        onClick={() => setActiveTab(id)}
-        aria-selected={isActive}
-        role="tab"
-      >
-        {label}
-      </button>
-    );
-  };
+  const filteredProperties = selectedList.filter((p) => {
+    if (filter === "all") return true;
+    if (filter === "new") return p.batch === "New Listing";
+    if (filter === "hot") return p.batch === "Hot Offer";
+    return true;
+  });
 
   return (
     <section className="py-16 bg-white">
-      {/* Replaces: <div class="container"> */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Replaces: <div class="row mb-50 wow fadeInUp" data-wow-delay="200ms"> */}
         <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
-          {/* Section Title */}
-          <div className="mb-6 lg:mb-0">
-            <span className="text-sm font-medium text-yellow-500 uppercase tracking-wider">
+          <div>
+            <span className="text-sm font-medium text-yellow-500 uppercase">
               Comfort Building
             </span>
             <h2 className="text-4xl font-bold text-gray-900 mt-1">
@@ -256,32 +283,47 @@ export default function RecentPropertiesSection() {
             </h2>
           </div>
 
-          {/* Tab Navigation */}
-          {/* Replaces: <ul class="nav nav-tabs" id="myTab6" role="tablist"> */}
-          <div className="flex flex-wrap gap-4 text-yellow-500" role="tablist">
-            <TabButton id="sale" label="For Sale" />
-            <TabButton id="rent" label="For Rent" />
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex gap-4">
+              <button
+                onClick={() => setActiveTab("sale")}
+                className={`px-6 py-2 text-sm font-semibold rounded-lg ${
+                  activeTab === "sale"
+                    ? "bg-yellow-500 text-white"
+                    : "border bg-white text-gray-700"
+                }`}
+              >
+                For Sale
+              </button>
+              <button
+                onClick={() => setActiveTab("rent")}
+                className={`px-6 py-2 text-sm font-semibold rounded-lg ${
+                  activeTab === "rent"
+                    ? "bg-yellow-500 text-white"
+                    : "border bg-white text-gray-700"
+                }`}
+              >
+                For Rent
+              </button>
+            </div>
+
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as FilterType)}
+              className="px-4 py-2 border rounded-lg text-sm font-medium text-gray-700"
+            >
+              <option value="all">All Listings</option>
+              <option value="new">New Listing</option>
+              <option value="hot">Hot Offer</option>
+            </select>
           </div>
         </div>
 
-        {/* Tab Content */}
-        {/* Replaces: <div class="row">...<div class="tab-content" id="myTabContent6"> */}
-        <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {propertiesToShow.map((property) => (
-              // Replaces: <div class="col-lg-4 col-md-6 col-sm-10 wow fadeInUp" ...>
-              // The animation is represented here by the group-hover effects on the card itself
-              <ProductCard key={property.id} property={property} />
-            ))}
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProperties.map((property) => (
+            <ProductCard key={property.id} property={property} />
+          ))}
         </div>
-
-        {/* Since the original had a "Load More" section, we can add a button here */}
-        {/* <div className="flex justify-center mt-12">
-          <button className="px-8 py-3 bg-gray-200 text-gray-800 font-semibold rounded-lg hover:bg-gray-300 transition-colors">
-            Load More Properties
-          </button>
-        </div> */}
       </div>
     </section>
   );

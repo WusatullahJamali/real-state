@@ -3,7 +3,7 @@ import React from 'react'
 
 const Loan = () => {
   return (
-    <section className="py-16 bg-gray-50 text-black">
+    <section className="py-16 text-black bg-gray-50">
       <div className="max-w-7xl mx-auto px-6">
 
         {/* Title */}
@@ -58,7 +58,14 @@ const Loan = () => {
                   </div>
                   <button className="bg-yellow-500 text-white py-1 px-3 rounded hover:bg-yellow-600 transition text-sm">View guide</button>
                 </td>
-                <td className="py-4 px-4">Requires an income of less than 115% of what's typical for the area.</td>
+                <td className="py-4 px-4">
+                  Requires an income of less than 115% of what's typical for the
+                  area.
+                </td>
+                <td className="py-4 px-4">
+                  Requires an income of less than 115% of what typical for the
+                  area.
+                </td>
                 <td className="py-4 px-4">No down payment required.</td>
                 <td className="py-4 px-4">
                   No minimum

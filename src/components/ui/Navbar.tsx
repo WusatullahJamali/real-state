@@ -56,7 +56,8 @@ export default function Navbar() {
       { text: "FAQ", href: "/faq" },
       { text: "Blog", href: "/blog" },
       { text: "Terms of service", href: "/terms-of-service" },
-      { text: "Privacy policy", href: "/privacy-policy" },
+      { text: "Privacy policy", href: "/privacy policy" },
+
       { text: "Careers", href: "/careers" },
     ],
   };
@@ -163,7 +164,7 @@ export default function Navbar() {
           </Link>
           <Link
             href="/add-property"
-            className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] h-[40px] bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300 active:translate-x-[5px] active:translate-y-[5px] group"
+            className="relative flex items-center justify-center gap-2 px-5 py-2.5 w-[180px] bg-gray-900 text-white text-sm font-semibold overflow-hidden group"
           >
             <span className="absolute w-[180px] h-[180px] bg-yellow-500 rounded-full -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
             <Plus className="w-4 h-4 relative z-10" />
@@ -171,9 +172,8 @@ export default function Navbar() {
           </Link>
         </div>
 
-        {/* Mobile Menu Button */}
         <button
-          className="lg:hidden text-2xl text-gray-700"
+          className="lg:hidden text-2xl"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           ☰
@@ -230,7 +230,22 @@ export default function Navbar() {
                       </Link>
                     )}
 
-                    {/* Dropdown items */}
+                      {item.hasDropdown && (
+                        <button
+                          className="p-2"
+                          onClick={() =>
+                            setActiveMenu(isOpen ? null : item.name)
+                          }
+                        >
+                          <ChevronDown
+                            className={`w-4 h-4 transition-transform ${
+                              isOpen && "rotate-180"
+                            }`}
+                          />
+                        </button>
+                      )}
+                    </div>
+
                     {item.hasDropdown && isOpen && (
                       <ul className="pl-4 pt-2 space-y-2">
                         {dropdownContent[item.name].map((row, i) => {
@@ -267,8 +282,8 @@ export default function Navbar() {
               <li className="pt-4 flex flex-col space-y-2">
                 <Link
                   href="/login"
-                  className="hover:underline"
                   onClick={() => setMobileOpen(false)}
+                  className="hover:underline"
                 >
                   Register/Login
                 </Link>
@@ -281,23 +296,18 @@ export default function Navbar() {
                 </Link>
                 <Link
                   href="/add-property"
-                  className="relative flex items-center justify-center gap-2 
-              px-6 py-3 w-[230px] h-[48px] 
-              bg-gray-900 text-white font-semibold text-sm cursor-pointer 
-              overflow-hidden shadow-md transition-all duration-300 
-              active:translate-x-[5px] active:translate-y-[5px] group"
-            onClick={() => setMobileOpen(false)}
-          >
-            <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
-            <Plus className="w-4 h-4 relative z-10" />
-            <span className="relative z-10">ADD PROPERTY</span>
-          </Link>
-        </li>
-      </ul>
-    </motion.div>
-  )}
-</AnimatePresence>
-
+                  className="relative flex items-center justify-center gap-2 px-6 py-3 w-[230px] bg-gray-900 text-white overflow-hidden group"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2" />
+                  <Plus className="w-4 h-4 relative z-10" />
+                  <span className="relative z-10">ADD PROPERTY</span>
+                </Link>
+              </li>
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   );
 }
