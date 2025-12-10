@@ -1,9 +1,7 @@
 "use client";
 
-
 import React from "react";
 import { House, Activity, History } from "lucide-react"; // Using lucide-react for the icons
-
 
 // --- 1. Define Types ---
 interface FeatureItem {
@@ -12,24 +10,20 @@ interface FeatureItem {
   description: string;
 }
 
-
 // --- 2. Sample Data ---
 const featureData: FeatureItem[] = [
   {
-    // Icon resembling a house on a monitor/desktop
     icon: House,
     title: "See where you fit",
     description: "See what similar homes in the area have recently sold for",
   },
   {
-    // Icon resembling a light bulb/sunburst for insights
     icon: Activity,
     title: "Get the full picture",
     description:
       "View sales activity in your market by browsing similar homes for sale",
   },
   {
-    // Icon resembling a stock chart/sales trend
     icon: History,
     title: "Stay in the know",
     description:
@@ -37,50 +31,45 @@ const featureData: FeatureItem[] = [
   },
 ];
 
-
-// --- 3. Feature Card Component (Internal) ---
+// --- 3. Feature Card Component ---
 const FeatureCard: React.FC<{ item: FeatureItem }> = ({ item }) => {
   const IconComponent = item.icon;
 
-
   return (
-    <div className="flex w-80 flex-col items-center text-center p-4">
-      {/* Icon: Large size, dark grey color */}
-      <div className="mb-2">
+    <div className="flex flex-col items-center text-center p-6 sm:p-8 bg-white rounded-lg shadow-md hover:shadow-lg transition-all">
+      {/* Icon */}
+      <div className="mb-4">
         <IconComponent className="w-12 h-12 text-yellow-500" />
       </div>
 
-
       {/* Title */}
-      <h3 className="text-xl font-semibold text-[#301366] mb-1">
+      <h3 className="text-xl sm:text-2xl font-semibold text-[#301366] mb-2">
         {item.title}
       </h3>
 
-
       {/* Description */}
-      <p className="text-base text-gray-600 max-w-xs">{item.description}</p>
+      <p className="text-base sm:text-lg text-gray-600 max-w-xs">
+        {item.description}
+      </p>
     </div>
   );
 };
 
-
 // --- 4. Main Grid Component ---
 const FeatureGrid: React.FC = () => {
   return (
-    // Light background matching the image
-    <section className="bg-white -mt-8 sm:py-24">
+    <section className="bg-white py-12 sm:py-20 -mt-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header Text */}
-        <div className="text-center mb-10 max-w-4xl mx-auto">
-          <p className="text-2xl sm:text-3xl text-[#301366] leading-relaxed font-bold">
+        <div className="text-center mb-12 max-w-4xl mx-auto px-4 sm:px-0">
+          <p className="text-xl sm:text-2xl lg:text-3xl text-[#301366] leading-relaxed font-bold">
             When it comes to selling, information is power. So make the very
             best calls with the very latest property info.
           </p>
         </div>
 
-
-        {/* Feature Grid: 3 columns on medium screens and up */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        {/* Feature Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 justify-items-center">
           {featureData.map((item, index) => (
             <FeatureCard key={index} item={item} />
           ))}
@@ -89,6 +78,5 @@ const FeatureGrid: React.FC = () => {
     </section>
   );
 };
-
 
 export default FeatureGrid;
