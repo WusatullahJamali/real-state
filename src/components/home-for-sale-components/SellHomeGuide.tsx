@@ -135,26 +135,6 @@ const GuideStep: FC<GuideStepProps> = ({ step, isEven }) => {
   );
 };
 
-// ---------------- WHATSAPP BUTTON ----------------
-const WhatsAppConsultationButton: FC = () => {
-  const whatsappUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
-
-  return (
-    <a
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 z-50"
-    >
-      <img
-        src="/whatsappp.jpg"
-        alt="WhatsApp"
-        className="w-14 h-14 rounded-full shadow-lg"
-      />
-    </a>
-  );
-};
-
 // ---------------- MAIN PAGE ----------------
 const SellHomeGuidePage: FC = () => {
   // 1. Reference the container of the steps for accurate scroll tracking
@@ -213,9 +193,9 @@ const SellHomeGuidePage: FC = () => {
               </p>
 
               <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-600 leading-snug">
-                The Ultimate Guide to{"  "}
+                Your Path to the{"  "}
                 <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-600 to-yellow-400">
-                  dream lifeeam
+                  Perfect Home
                 </span>
               </h1>
 
@@ -253,9 +233,6 @@ const SellHomeGuidePage: FC = () => {
             {/* The line will start at the top edge of the section and end at the bottom edge */}
           </div>
         </main>
-
-        {/* WHATSAPP BUTTON */}
-        <WhatsAppConsultationButton />
       </div>
     </>
   );

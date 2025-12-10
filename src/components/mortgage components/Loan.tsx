@@ -3,11 +3,7 @@ import React from "react";
 
 const Loan = () => {
   return (
-<<<<<<< Updated upstream
-    <section className="py-16 bg-gray-50 text-black">
-=======
     <section className="py-16 text-black bg-gray-50">
->>>>>>> Stashed changes
       <div className="max-w-7xl mx-auto px-6">
         {/* Title */}
         <div className="mb-8 text-center">
