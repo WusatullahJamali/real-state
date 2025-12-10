@@ -6,11 +6,11 @@ import Link from "next/link";
 export default function PromoBanner() {
   return (
     <div className="w-full bg-white flex justify-center py-6">
-      <div
-        className={
-          "w-full max-w-6xl bg-white border border-gray-200 shadow-sm rounded-xl p-4 flex flex-col sm:flex-row items-center sm:items-center gap-4 sm:gap-6"
-        }
-      >
+  <div
+    className="w-full max-w-[1216px] mx-auto bg-white border border-gray-200 shadow-sm rounded-xl 
+               p-4 flex flex-col sm:flex-row items-center gap-6"
+  >
+
         {/* Left Image */}
         <div className="relative w-28 h-16 sm:w-36 sm:h-20 shrink-0">
           <Image

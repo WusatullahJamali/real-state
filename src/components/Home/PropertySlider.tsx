@@ -80,12 +80,12 @@ const products = [
 
 export default function ProductSlider() {
   return (
-    <section className="w-full bg-gradient-to-b from-gray-50 to-white py-16">
+    <section className="w-full bg-white py-16">
       <div className="max-w-7xl mx-auto px-6 md:px-8 lg:px-12 relative">
 
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
+          <h2 className="text-3xl md:text-4xl font-bold text-black mb-3">
             Featured Properties
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">

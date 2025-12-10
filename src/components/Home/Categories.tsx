@@ -13,12 +13,11 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-// --- Colors ---
-const REALTOR_BLUE = "#efb93f";
-const DARK_TEXT = "#2f363b";
-const LIGHT_BG = "#f8f8f8";
 
-// --- Types ---
+const REALTOR_BLUE = "#efb93f";
+
+
+
 type TabKey = "Buying" | "Renting" | "Selling";
 
 interface Card {
@@ -168,50 +167,50 @@ const HomeDiscovery = () => {
   );
 
   return (
-    <section className="py-16 bg-[#f8f8f8] transition-colors duration-500">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-4xl font-extrabold text-[#2f363b] mb-10 text-center">
-          Discover how we can{" "}
-          <span style={{ color: REALTOR_BLUE }}>help you</span>
-        </h2>
+    <section className="py-16 bg-white transition-colors duration-500">
+  <div className="max-w-[80.5rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <h2 className="text-4xl font-extrabold text-[#2f363b] mb-10 text-center">
+      Discover how we can <span style={{ color: REALTOR_BLUE }}>help you</span>
+    </h2>
 
-        {/* Tabs */}
-        <div className="flex justify-center mb-10">
-          <div className="inline-flex rounded-full bg-white p-1 shadow-lg ring-1 ring-gray-200">
-            {Object.keys(TAB_DATA).map((tabKey) => (
-              <button
-                key={tabKey}
-                onClick={() => handleTabClick(tabKey as TabKey)}
-                className={`px-5 py-2 text-base font-medium rounded-full transition-all duration-300 ${
-                  activeTab === tabKey
-                    ? "bg-yellow-500 text-white shadow-md"
-                    : "text-[#2f363b] hover:bg-gray-100"
-                }`}
-              >
-                {tabKey}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        {/* Cards */}
-        <div className="overflow-hidden">
-          <h3
-            className="text-xl font-bold text-[#2f363b] mb-6 text-center transition-opacity duration-300"
-            dangerouslySetInnerHTML={{ __html: activeContent.heading }}
-          />
-          <div
-            className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-opacity duration-150 ease-in-out ${
-              showCards ? "opacity-100" : "opacity-0"
+    {/* Tabs */}
+    <div className="flex justify-center mb-10">
+      <div className="inline-flex rounded-full bg-white p-1 shadow-lg ring-1 ring-gray-200">
+        {Object.keys(TAB_DATA).map((tabKey) => (
+          <button
+            key={tabKey}
+            onClick={() => handleTabClick(tabKey as TabKey)}
+            className={`px-5 py-2 text-base font-medium rounded-full transition-all duration-300 ${
+              activeTab === tabKey
+                ? "bg-yellow-500 text-white shadow-md"
+                : "text-[#2f363b] hover:bg-gray-100"
             }`}
           >
-            {activeContent.cards.map((card, index) => (
-              <CardContainer key={index} card={card} />
-            ))}
-          </div>
-        </div>
+            {tabKey}
+          </button>
+        ))}
       </div>
-    </section>
+    </div>
+
+    {/* Cards */}
+    <div className="overflow-hidden">
+      <h3
+        className="text-xl font-bold text-[#2f363b] mb-6 text-center transition-opacity duration-300"
+        dangerouslySetInnerHTML={{ __html: activeContent.heading }}
+      />
+      <div
+        className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-opacity duration-150 ease-in-out ${
+          showCards ? "opacity-100" : "opacity-0"
+        }`}
+      >
+        {activeContent.cards.map((card, index) => (
+          <CardContainer key={index} card={card} />
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
   );
 };
 
