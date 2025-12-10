@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { categoriesData } from "../Data";
+import { CategoriesDATA } from "./Data";
 
 export default function CategoriesListingPage() {
   return (
@@ -14,10 +14,10 @@ export default function CategoriesListingPage() {
         </h1>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {categoriesData.map((property) => (
+          {CategoriesDATA.map((property) => (
             <Link
               key={property.id}
-              href={`/CategoriesData/${property.id}`}
+             href={`/CategoriesDATA/list/${property.id}`}
               className="block border rounded-xl overflow-hidden shadow hover:shadow-lg transition"
             >
               <Image

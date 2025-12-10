@@ -216,7 +216,7 @@ const Apartment = () => {
     });
 
   return (
-    <section className="py-14 px-6 bg-gray-100 text-black">
+    <section className="py-14 px-6 bg-white text-black">
       <h2 className="text-3xl font-bold text-center mb-10">Apartments for Rent</h2>
 
       {/* FILTERS */}
