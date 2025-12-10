@@ -99,20 +99,24 @@ export default function BlogPage() {
   return (
     <div className="min-h-screen bg-white text-black">
       {/* HERO */}
-      <section className="relative py-32 text-center overflow-hidden bg-yellow-500">
-        <div className="absolute inset-0 backdrop-blur-sm" />
+      <section className="relative py-12 text-center overflow-hidden bg-gradient-to-r from-yellow-500 to-yellow-400">
+  {/* Overlay for subtle effect */}
+  <div className="absolute inset-0 bg-black/10 backdrop-blur-sm rounded-xl" />
 
-        <h1 className="relative text-6xl text-white font-extrabold tracking-tight">
-          Real Estate Blog
-        </h1>
+  <div className="relative max-w-[75rem] mx-auto px-4 sm:px-6 lg:px-8">
+    <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white tracking-tight">
+      Real Estate Blogs
+    </h1>
 
-        <p className="relative text-black mt-4 text-lg max-w-xl mx-auto">
-          News, market insights & property investment research across Pakistan.
-        </p>
-      </section>
+    <p className="mt-4 text-base sm:text-lg md:text-xl text-gray-800 max-w-2xl mx-auto">
+      News, market insights & property investment research across Pakistan.
+    </p>
+  </div>
+</section>
+
 
       {/* SEARCH + FILTER */}
-      <div className="max-w-6xl mx-auto px-6 mt-10 flex flex-wrap gap-4 justify-between items-center">
+      {/* <div className="max-w-6xl mx-auto px-6 mt-10 flex flex-wrap gap-4 justify-between items-center">
         <div className="flex gap-3 flex-wrap">
           {categories.map((c) => (
             <button
@@ -138,7 +142,7 @@ export default function BlogPage() {
             onChange={(e) => setSearchQuery(e.target.value)}
           />
         </div>
-      </div>
+      </div> */}
 
       {/* BLOG CARDS */}
       <div className="max-w-6xl mx-auto px-6 py-20 grid gap-12 md:grid-cols-2 lg:grid-cols-3">

@@ -2,10 +2,10 @@
 import React from 'react'
 
 const Loan = () => {
-  return (
-    <section className="py-16 text-black bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
 
+return (
+  <section className="py-16 bg-gray-50 text-black">
+    <div className="max-w-7xl mx-auto px-6">
         {/* Title */}
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold">Home Loan Options</h1>
@@ -62,10 +62,7 @@ const Loan = () => {
                   Requires an income of less than 115% of what's typical for the
                   area.
                 </td>
-                <td className="py-4 px-4">
-                  Requires an income of less than 115% of what typical for the
-                  area.
-                </td>
+                <td className="py-4 px-4">Requires an income of less than 115% of what typical for the area.</td>
                 <td className="py-4 px-4">No down payment required.</td>
                 <td className="py-4 px-4">
                   No minimum
