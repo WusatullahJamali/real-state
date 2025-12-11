@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -19,33 +20,331 @@ import {
   Menu,
 } from "lucide-react";
 
-// --- Types ---
-type MenuItemType = {
+// --- Types for Mega Menu ---
+interface MegaMenuItem {
   text: string;
   href: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   description?: string;
-};
+}
 
-type MegaMenuColumn = {
+interface MegaColumn {
   title: string;
-  items?: MenuItemType[];
+  items?: MegaMenuItem[];
   isFeatured?: boolean;
-  image?: string;
-  cta?: {
-    text: string;
-    href: string;
-  };
-};
+  cta?: { text: string; href: string };
+}
 
-type MegaMenuContent = {
-  [key: string]: {
-    columns: MegaMenuColumn[];
-  };
-};
+interface MegaMenu {
+  columns: MegaColumn[];
+}
 
-// --- Mega Menu Data ---
-const megaMenuContent: MegaMenuContent = {
+// --- Navbar Component ---
+export default function Navbar() {
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
+
+  const pathname = usePathname();
+
+  // Helper: Check Active Link
+  const isActive = (path: string) =>
+    pathname === path || (path !== "/" && pathname?.startsWith(path));
+
+  // Helper: Dynamic Classes
+  const getNavClass = (path: string, isMobile = false) => {
+    const active = isActive(path);
+    const base = "transition-colors font-medium";
+
+    if (isMobile) {
+      return `${base} block p-3 rounded-lg ${
+        active
+          ? "bg-yellow-50 text-yellow-600 font-bold"
+          : "text-gray-700 hover:bg-gray-50 hover:text-yellow-500"
+      }`;
+    }
+
+    return `${base} px-3 py-2 text-sm xl:text-base whitespace-nowrap ${
+      active
+        ? "text-yellow-500 font-bold"
+        : "text-gray-700 hover:text-yellow-500"
+    }`;
+  };
+
+  return (
+    <>
+      {/* --- DESKTOP NAVBAR --- */}
+      <motion.nav className="bg-white border-b shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-4 flex justify-between items-center gap-4">
+          <Link href="/" className="shrink-0">
+            <Image
+              src="/logo3.jpg"
+              width={100}
+              height={10}
+              alt="logo"
+              className="w-32 md:w-[110px] h-12"
+            />
+          </Link>
+
+          {/* Desktop Links */}
+          <ul className="hidden xl:flex space-x-1 items-center">
+            {menuItems.map((item) => (
+              <li
+                key={item.name}
+                className="relative h-full"
+                onMouseEnter={() =>
+                  item.hasDropdown && setHoveredMenu(item.name)
+                }
+                onMouseLeave={() => setHoveredMenu(null)}
+              >
+                <Link href={item.href} className={getNavClass(item.href)}>
+                  {item.name}
+                </Link>
+
+                {/* Desktop Dropdown */}
+                <AnimatePresence>
+                  {hoveredMenu === item.name &&
+                    item.hasDropdown &&
+                    megaMenuContent[item.name] && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
+                      >
+                        <div
+                          className="p-6 grid gap-6"
+                          style={{
+                            gridTemplateColumns: `repeat(${
+                              megaMenuContent[item.name].columns.length
+                            }, 1fr)`,
+                          }}
+                        >
+                          {megaMenuContent[item.name].columns.map((col, i) => (
+                            <div key={i}>
+                              <h4 className="uppercase text-xs font-bold text-gray-500 mb-4">
+                                {col.title}
+                              </h4>
+
+                              {col.isFeatured ? (
+                                <div className="bg-yellow-50 p-4 rounded-lg">
+                                  <div className="h-24 bg-gray-200 rounded mb-3 flex items-center justify-center text-xs text-gray-500">
+                                    [Image]
+                                  </div>
+                                  <Link
+                                    href={col.cta!.href}
+                                    className="block text-center bg-yellow-600 text-white py-2 rounded-md text-sm font-bold hover:bg-yellow-700"
+                                  >
+                                    {col.cta!.text}
+                                  </Link>
+                                </div>
+                              ) : (
+                                <ul className="space-y-1">
+                                  {col.items?.map((sub, idx) => (
+                                    <li key={idx}>
+                                      <Link
+                                        href={sub.href}
+                                        className="group flex gap-3 p-3 rounded-lg hover:bg-yellow-50 transition"
+                                      >
+                                        <sub.icon className="w-5 h-5 text-gray-500 group-hover:text-yellow-600" />
+                                        <div>
+                                          <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-sm">
+                                            {sub.text}
+                                          </div>
+                                          {sub.description && (
+                                            <p className="text-xs text-gray-500">
+                                              {sub.description}
+                                            </p>
+                                          )}
+                                        </div>
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                </AnimatePresence>
+              </li>
+            ))}
+          </ul>
+
+          {/* Right Actions */}
+          <div className="flex items-center gap-2 md:gap-4">
+            <Link
+              href="/login"
+              className="hidden xl:flex items-center px-3 py-2 text-gray-700 hover:text-yellow-500 font-medium text-sm whitespace-nowrap"
+            >
+              <User className="w-4 h-4 mr-1" /> REGISTER/LOGIN
+            </Link>
+
+            <Link
+              href="/add-property"
+              className="hidden md:flex px-4 py-2.5 bg-yellow-500 text-white rounded-lg font-semibold hover:bg-yellow-600 text-sm whitespace-nowrap items-center"
+            >
+              <Plus className="w-4 h-4 mr-1" /> ADD PROPERTY
+            </Link>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="xl:hidden p-2 hover:bg-gray-100 rounded-md"
+              onClick={() => setMobileOpen(true)}
+            >
+              <Menu className="h-6 w-6 text-gray-700" />
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* --- MOBILE SIDEBAR --- */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black z-60"
+              onClick={() => setMobileOpen(false)}
+            />
+
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              transition={{ type: "tween", duration: 0.3 }}
+              className="fixed top-0 left-0 w-72 h-full bg-white shadow-xl z-70 p-5 overflow-y-auto"
+            >
+              <div className="flex justify-between items-center mb-6 border-b pb-4">
+                <Image src="/logo.svg" width={110} height={35} alt="Logo" />
+                <button
+                  onClick={() => setMobileOpen(false)}
+                  className="p-2 bg-gray-50 rounded-full hover:text-red-500"
+                >
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+
+              <ul className="space-y-2">
+                {menuItems.map((item) => {
+                  const isOpen = mobileExpanded === item.name;
+                  const hasData =
+                    item.hasDropdown && megaMenuContent[item.name];
+
+                  return (
+                    <li
+                      key={item.name}
+                      className="border-b border-gray-100 last:border-0"
+                    >
+                      {hasData ? (
+                        <>
+                          <button
+                            onClick={() =>
+                              setMobileExpanded(isOpen ? null : item.name)
+                            }
+                            className={`flex justify-between items-center w-full text-left ${getNavClass(
+                              item.href,
+                              true
+                            )}`}
+                          >
+                            {item.name}
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform ${
+                                isOpen ? "rotate-180" : ""
+                              }`}
+                            />
+                          </button>
+
+                          <AnimatePresence>
+                            {isOpen && (
+                              <motion.div
+                                initial={{ height: 0 }}
+                                animate={{ height: "auto" }}
+                                exit={{ height: 0 }}
+                                className="overflow-hidden bg-gray-50 rounded-b-lg"
+                              >
+                                <div className="p-4 space-y-4">
+                                  {megaMenuContent[item.name].columns.map(
+                                    (col, i) => (
+                                      <div key={i}>
+                                        <h4 className="uppercase text-[10px] font-bold text-gray-400 mb-2">
+                                          {col.title}
+                                        </h4>
+
+                                        <ul className="space-y-1">
+                                          {col.items?.map((sub, idx) => (
+                                            <li key={idx}>
+                                              <Link
+                                                href={sub.href}
+                                                onClick={() =>
+                                                  setMobileOpen(false)
+                                                }
+                                                className="block py-1.5 text-sm text-gray-600 hover:text-yellow-600 hover:pl-1 transition-all"
+                                              >
+                                                {sub.text}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
+                              </motion.div>
+                            )}
+                          </AnimatePresence>
+                        </>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={() => setMobileOpen(false)}
+                          className={getNavClass(item.href, true)}
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+
+              <div className="mt-6 pt-4 space-y-3">
+                <Link
+                  href="/login"
+                  className="flex justify-center gap-2 w-full py-2.5 border border-gray-300 rounded-lg text-gray-700 font-medium hover:border-yellow-500 hover:text-yellow-500"
+                >
+                  <User className="w-5 h-5" /> Register / Login
+                </Link>
+                <Link
+                  href="/add-property"
+                  className="flex justify-center gap-2 w-full bg-yellow-500 text-white py-3 rounded-lg font-bold hover:bg-yellow-600 shadow-md"
+                >
+                  <Plus className="w-5 h-5" /> ADD PROPERTY
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
+
+// --- DATA DEFINITIONS ----
+const menuItems = [
+  { name: "HOME", href: "/", hasDropdown: false },
+  { name: "FOR SALE", href: "/sell", hasDropdown: true },
+  { name: "FOR RENT", href: "/rent", hasDropdown: true },
+  { name: "PROPERTY", href: "/mortgage", hasDropdown: true },
+  { name: "PAGES", href: "/pages", hasDropdown: true },
+  { name: "CONTACT US", href: "/contact", hasDropdown: false },
+];
+
+// --- Fixed Mega Menu Content ---
+const megaMenuContent: Record<string, MegaMenu> = {
   "FOR SALE": {
     columns: [
       {
@@ -55,19 +354,13 @@ const megaMenuContent: MegaMenuContent = {
             text: "Homes for Sale",
             href: "/sell/home-for-sale",
             icon: Home,
-            description: "Find your dream house or apartment.",
-          },
-          {
-            text: "New Construction",
-            href: "/new-construction",
-            icon: Building,
-            description: "Discover the latest properties.",
+            description: "Find your dream house.",
           },
           {
             text: "Recently Sold",
             href: "/recently-sold-homes",
             icon: House,
-            description: "View current market values.",
+            description: "Market values.",
           },
         ],
       },
@@ -78,42 +371,33 @@ const megaMenuContent: MegaMenuContent = {
             text: "Explore Neighborhoods",
             href: "/sell/neighbourhood",
             icon: Info,
-            description: "Detailed area guides and statistics.",
+            description: "Area guides.",
           },
           {
             text: "Housing Market Trends",
             href: "/housing-market-trends",
             icon: Briefcase,
-            description: "Analysis and forecasts.",
+            description: "Analysis.",
           },
         ],
       },
-      {
-        title: "Featured Service",
-        isFeatured: true,
-        image: "/images/featured-sale.jpg",
-        cta: { text: "Get a Free Home Valuation", href: "/free-valuation" },
-      },
     ],
   },
+
   "FOR RENT": {
     columns: [
       {
         title: "Rental Types",
         items: [
-          {
-            text: "Apartments for Rent",
-            href: "/apartments-for-rent",
-            icon: Building,
-          },
-          { text: "Houses for Rent", href: "/houses-for-rent", icon: House },
+          { text: "Apartments", href: "/apartments-for-rent", icon: Building },
+          { text: "Houses", href: "/houses-for-rent", icon: House },
         ],
       },
       {
         title: "Landlord Resources",
         items: [
           { text: "Manage Rentals", href: "/manage-rentals", icon: Briefcase },
-          { text: "List Your Rentals", href: "/list-your-rentals", icon: Plus },
+          { text: "List Rentals", href: "/list-your-rentals", icon: Plus },
           {
             text: "Contact Landlord",
             href: "/contact-rent-landlord",
@@ -123,6 +407,7 @@ const megaMenuContent: MegaMenuContent = {
       },
     ],
   },
+
   PROPERTY: {
     columns: [
       {
@@ -138,28 +423,16 @@ const megaMenuContent: MegaMenuContent = {
         ],
       },
       {
-        title: "Investment & Types",
+        title: "Investment",
         items: [
-          {
-            text: "Property Investment",
-            href: "/property-investment",
-            icon: Briefcase,
-          },
-          {
-            text: "Commercial Property",
-            href: "/commercial-property",
-            icon: Building,
-          },
-          {
-            text: "Residential Property",
-            href: "/residential-property",
-            icon: House,
-          },
-          { text: "Property Types", href: "/property-types", icon: Layers },
+          { text: "Investment", href: "/property-investment", icon: Briefcase },
+          { text: "Commercial", href: "/commercial-property", icon: Building },
+          { text: "Residential", href: "/residential-property", icon: House },
         ],
       },
     ],
   },
+
   PAGES: {
     columns: [
       {
@@ -180,299 +453,10 @@ const megaMenuContent: MegaMenuContent = {
       {
         title: "Legal",
         items: [
-          { text: "Terms of Service", href: "/terms-of-service", icon: Layers },
-          { text: "Privacy Policy", href: "/privacy-policy", icon: Layers },
+          { text: "Terms", href: "/terms-of-service", icon: Layers },
+          { text: "Privacy", href: "/privacy-policy", icon: Layers },
         ],
       },
     ],
   },
 };
-
-const menuItems = [
-  { name: "HOME", href: "/", hasDropdown: false },
-  { name: "FOR SALE", href: "/sell", hasDropdown: true },
-  { name: "FOR RENT", href: "/rent", hasDropdown: true },
-  { name: "PROPERTY", href: "/mortgege", hasDropdown: true },
-  { name: "PAGES", href: "/pages", hasDropdown: true },
-  { name: "CONTACT US", href: "/contact", hasDropdown: false },
-];
-
-// --- Reusable Mega Item ---
-const MegaMenuItem: React.FC<{ item: MenuItemType; onClick?: () => void }> = ({
-  item,
-  onClick = () => {},
-}) => {
-  const Icon = item.icon;
-  return (
-    <Link
-      href={item.href}
-      onClick={onClick}
-      className="group flex gap-3 p-3 rounded-lg hover:bg-yellow-50 transition"
-    >
-      <Icon className="w-5 h-5 text-gray-500 group-hover:text-yellow-600" />
-      <div>
-        <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-sm">
-          {item.text}
-        </div>
-        {item.description && (
-          <p className="text-xs text-gray-500">{item.description}</p>
-        )}
-      </div>
-    </Link>
-  );
-};
-
-// --- Navbar Component ---
-export default function Navbar() {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  const getMegaMenu = (name: string) =>
-    megaMenuContent[name as keyof typeof megaMenuContent];
-
-  return (
-    <>
-      {/* MAIN NAV */}
-      <motion.nav className="bg-white border-b shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          {/* Logo */}
-          <Link href="/">
-            <Image src="/logo.svg" width={140} height={45} alt="logo" />
-          </Link>
-
-          {/* Desktop Menu */}
-          <ul className="hidden lg:flex space-x-3 font-medium">
-            {menuItems.map((item) => (
-              <li
-                key={item.name}
-                className="relative"
-                onMouseEnter={() =>
-                  item.hasDropdown && setActiveMenu(item.name)
-                }
-                onMouseLeave={() => setActiveMenu(null)}
-              >
-                <Link
-                  href={item.href}
-                  className={`px-4 py-2 transition-colors ${
-                    activeMenu === item.name
-                      ? "text-yellow-500"
-                      : "text-gray-700 hover:text-yellow-500"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-
-                {/* Desktop Mega Menu */}
-                <AnimatePresence>
-                  {activeMenu === item.name &&
-                    item.hasDropdown &&
-                    getMegaMenu(item.name) && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full mt-0 bg-white border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50"
-                        style={{ minWidth: "600px" }}
-                      >
-                        <div
-                          className="p-6 grid gap-6"
-                          style={{
-                            gridTemplateColumns: `repeat(${
-                              getMegaMenu(item.name).columns.length
-                            }, minmax(0, 1fr))`,
-                          }}
-                        >
-                          {getMegaMenu(item.name).columns.map((col, i) => (
-                            <div key={i}>
-                              <h4 className="uppercase text-xs font-bold text-gray-500 mb-4">
-                                {col.title}
-                              </h4>
-
-                              {col.isFeatured && col.cta ? (
-                                <div className="bg-yellow-50 p-4 rounded-lg">
-                                  <div className="h-24 bg-gray-200 rounded mb-3 flex items-center justify-center text-xs text-gray-500">
-                                    [Image Placeholder]
-                                  </div>
-                                  <Link
-                                    href={col.cta.href}
-                                    className="block text-center bg-yellow-600 text-white py-2 rounded-md text-sm font-bold"
-                                  >
-                                    {col.cta.text}
-                                  </Link>
-                                </div>
-                              ) : (
-                                <ul className="space-y-1">
-                                  {col.items?.map((sub, idx) => (
-                                    <li key={idx}>
-                                      <MegaMenuItem item={sub} />
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
-                            </div>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                </AnimatePresence>
-              </li>
-            ))}
-          </ul>
-
-          {/* Desktop Buttons */}
-          <div className="hidden lg:flex items-center space-x-3">
-            <Link
-              href="/login"
-              className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-yellow-500 transition font-medium text-sm"
-            >
-              <User className="w-4 h-4" /> REGISTER/LOGIN
-            </Link>
-            <Link
-              href="/add-property"
-              className="relative flex items-center justify-center gap-2 px-5 py-2.5 bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300 group"
-            >
-              <span className="absolute w-[180px] h-[180px] bg-yellow-500 rounded-full -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
-              <Plus className="w-4 h-4 relative z-10" />
-              <span className="relative z-10">ADD PROPERTY</span>
-            </Link>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="lg:hidden p-2"
-              onClick={() => setMobileOpen(true)}
-            >
-              <Menu className="h-6 w-6 text-gray-700" />
-            </button>
-          </div>
-        </div>
-      </motion.nav>
-
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            {/* Dark Backdrop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-40"
-              onClick={() => setMobileOpen(false)}
-            />
-
-            {/* Mobile Sidebar */}
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
-              transition={{ type: "tween", duration: 0.3 }}
-              className="fixed top-0 left-0 w-72 h-full bg-white shadow-xl z-50 p-5 overflow-y-auto"
-            >
-              {/* Close Button */}
-              <div className="flex justify-between items-center mb-5">
-                <Image src="/logo.svg" width={120} height={40} alt="Logo" />
-                <button
-                  onClick={() => setMobileOpen(false)}
-                  className="p-2 text-gray-700 hover:text-yellow-500"
-                >
-                  <X className="h-6 w-6" />
-                </button>
-              </div>
-
-              {/* Mobile Menu Items */}
-              <ul className="space-y-3">
-                {menuItems.map((item) => {
-                  const isOpen = activeMenu === item.name;
-                  const data = getMegaMenu(item.name);
-
-                  return (
-                    <li key={item.name}>
-                      {item.hasDropdown && data ? (
-                        <>
-                          <button
-                            onClick={() =>
-                              setActiveMenu(isOpen ? null : item.name)
-                            }
-                            className="flex justify-between items-center w-full text-left text-gray-700 hover:text-yellow-500 text-base p-2"
-                          >
-                            {item.name}
-                            <ChevronDown
-                              className={`w-5 h-5 transition-transform ${
-                                isOpen ? "rotate-180" : ""
-                              }`}
-                            />
-                          </button>
-
-                          {/* Dropdown Items */}
-                          <AnimatePresence>
-                            {isOpen && (
-                              <motion.div
-                                initial={{ height: 0 }}
-                                animate={{ height: "auto" }}
-                                exit={{ height: 0 }}
-                                className="pl-4 overflow-hidden"
-                              >
-                                {data.columns.map((col, i) => (
-                                  <div key={i} className="mb-4">
-                                    <h4 className="uppercase text-xs font-bold text-yellow-600 mb-2">
-                                      {col.title}
-                                    </h4>
-                                    <ul>
-                                      {col.items?.map((sub, idx) => (
-                                        <li key={idx}>
-                                          <Link
-                                            href={sub.href}
-                                            onClick={() => setMobileOpen(false)}
-                                            className="block py-1.5 text-gray-600 hover:text-yellow-500"
-                                          >
-                                            {sub.text}
-                                          </Link>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                ))}
-                              </motion.div>
-                            )}
-                          </AnimatePresence>
-                        </>
-                      ) : (
-                        <Link
-                          href={item.href}
-                          onClick={() => setMobileOpen(false)}
-                          className="block p-2 text-gray-700 hover:text-yellow-500"
-                        >
-                          {item.name}
-                        </Link>
-                      )}
-                    </li>
-                  );
-                })}
-              </ul>
-
-              {/* Mobile Buttons */}
-              <div className="mt-5 border-t pt-5 space-y-3">
-                <Link
-                  href="/login"
-                  className="flex items-center gap-2 text-gray-700 hover:text-yellow-500"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <User className="w-5 h-5" /> REGISTER/LOGIN
-                </Link>
-                <Link
-                  href="/add-property"
-                  className="relative flex items-center justify-center gap-2 px-6 py-3 bg-gray-900 text-white font-semibold text-sm cursor-pointer overflow-hidden shadow-md group"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <span className="absolute w-[230px] h-[230px] bg-yellow-500 -left-full top-0 transition-all duration-300 group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none"></span>
-                  <Plus className="w-4 h-4 relative z-10" />
-                  <span className="relative z-10">ADD PROPERTY</span>
-                </Link>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
-  );
-}

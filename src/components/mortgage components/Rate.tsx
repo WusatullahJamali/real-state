@@ -29,31 +29,19 @@ const Rate = () => {
   ];
 
   return (
-<<<<<<< Updated upstream
-    <section className="py-16 text-black bg-gray-50">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h1 className="text-3xl font-bold text-black mb-2">Rates</h1>
-          <p className="text-sm text-gray-500">
-            Data provided by 3rd party RateUpdate.com
-          </p>
-=======
     <section className="py-16 bg-gray-50 text-black">
-
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
         <div className="text-center mb-12">
-
           <h1 className="text-3xl font-bold text-black mb-2">Rates</h1>
           <p className="text-sm text-gray-500">
             Data provided by 3rd party RateUpdate.com
           </p>
 
           <h1 className="text-3xl font-bold mb-2">Rates</h1>
-          <p className="text-sm text-black">Data provided by 3rd party RateUpdate.com</p>
-
->>>>>>> Stashed changes
+          <p className="text-sm text-black">
+            Data provided by 3rd party RateUpdate.com
+          </p>
         </div>
 
         {/* Average Rate */}
