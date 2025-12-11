@@ -2,8 +2,11 @@
 
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
-import { HouseType,houseList } from "@/components/houses rent components/RentHouse"; // adjust the import path
-import { FaHeart, FaBed, FaRulerCombined, FaMapMarkerAlt } from "react-icons/fa";
+import {
+  HouseType,
+  houseList,
+} from "@/components/houses rent components/RentHouse";
+import { Heart, Bed, Ruler, MapPin } from "lucide-react";
 import Link from "next/link";
 
 const RentHouseDetail = () => {
@@ -17,8 +20,13 @@ const RentHouseDetail = () => {
     return (
       <div className="py-20 text-center">
         <h2 className="text-3xl font-bold">House Not Found</h2>
-        <p className="text-gray-500 mt-4">The house you are looking for does not exist.</p>
-        <Link href="/house" className="mt-6 inline-block bg-yellow-600 text-white py-2 px-6 rounded hover:bg-yellow-700 transition">
+        <p className="text-gray-500 mt-4">
+          The house you are looking for does not exist.
+        </p>
+        <Link
+          href="/house"
+          className="mt-6 inline-block bg-yellow-600 text-white py-2 px-6 rounded hover:bg-yellow-700 transition"
+        >
           Back to Houses
         </Link>
       </div>
@@ -42,18 +50,21 @@ const RentHouseDetail = () => {
         {/* Details */}
         <div className="md:w-1/3 flex flex-col gap-5">
           <h1 className="text-3xl font-bold">{house.title}</h1>
-          <p className="text-blue-600 font-bold text-xl">${house.price}/month</p>
+          <p className="text-blue-600 font-bold text-xl">
+            ${house.price}/month
+          </p>
+
           <p className="text-gray-600 flex items-center gap-2">
-            <FaMapMarkerAlt /> {house.location}
+            <MapPin size={18} /> {house.location}
           </p>
 
           {/* Badges */}
           <div className="flex items-center gap-6 text-gray-700 mt-2">
             <div className="flex items-center gap-1">
-              <FaBed /> {house.bedrooms} Beds
+              <Bed size={18} /> {house.bedrooms} Beds
             </div>
             <div className="flex items-center gap-1">
-              <FaRulerCombined /> {house.areaSqFt} sqft
+              <Ruler size={18} /> {house.areaSqFt} sqft
             </div>
           </div>
 
@@ -62,7 +73,10 @@ const RentHouseDetail = () => {
             <h3 className="font-semibold mb-2">Amenities:</h3>
             <div className="flex flex-wrap gap-2">
               {house.amenities.map((am, i) => (
-                <span key={i} className="text-xs bg-gray-200 px-2 py-1 rounded-full">
+                <span
+                  key={i}
+                  className="text-xs bg-gray-200 px-2 py-1 rounded-full"
+                >
                   {am}
                 </span>
               ))}
@@ -79,10 +93,17 @@ const RentHouseDetail = () => {
           <button
             onClick={toggleFavorite}
             className={`mt-6 flex items-center justify-center gap-2 py-3 rounded-full text-white font-bold transition ${
-              favorite ? "bg-red-500 hover:bg-red-600" : "bg-yellow-600 hover:bg-yellow-700"
+              favorite
+                ? "bg-red-500 hover:bg-red-600"
+                : "bg-yellow-600 hover:bg-yellow-700"
             }`}
           >
-            <FaHeart /> {favorite ? "Favorited" : "Add to Favorites"}
+            <Heart
+              size={20}
+              fill={favorite ? "white" : "transparent"}
+              strokeWidth={2}
+            />
+            {favorite ? "Favorited" : "Add to Favorites"}
           </button>
 
           <Link
