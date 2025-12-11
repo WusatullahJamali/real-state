@@ -175,7 +175,7 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
     <div className="bg-white rounded-lg text-black shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       <div className="relative h-56 w-full">
         <div
-          className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${
+           className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${
             property.status === "sale"
               ? "bg-green-600 text-white"
               : "bg-blue-600 text-white"
@@ -253,8 +253,8 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
 };
 
 // --- MAIN SECTION ---
-type Tab = "sale" | "rent";
-type FilterType = "all" | "new" | "hot";
+ type Tab = "sale" | "rent";
+ type FilterType = "all" | "new" | "hot";
 
 export default function RecentPropertiesSection() {
   const [activeTab, setActiveTab] = useState<Tab>("sale");
