@@ -21,7 +21,7 @@ export default function CategoriesListingPage() {
               className="block border rounded-xl overflow-hidden shadow hover:shadow-lg transition"
             >
               <Image
-                src={property.image}
+                src={property.images[0]}
                 alt={property.title}
                 width={500}
                 height={300}
