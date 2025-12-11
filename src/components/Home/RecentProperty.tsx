@@ -174,10 +174,17 @@ interface TabButtonProps {
   active?: boolean;
   onClick?: (id: "sale" | "rent") => void;
 }
-const TabButton: React.FC<TabButtonProps> = ({ id, label, active, onClick }) => (
+const TabButton: React.FC<TabButtonProps> = ({
+  id,
+  label,
+  active,
+  onClick,
+}) => (
   <button
     className={`px-4 py-2 rounded-lg font-semibold transition ${
-      active ? "bg-yellow-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+      active
+        ? "bg-yellow-500 text-white"
+        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
     }`}
     onClick={() => onClick && onClick(id)}
   >
@@ -185,15 +192,13 @@ const TabButton: React.FC<TabButtonProps> = ({ id, label, active, onClick }) => 
   </button>
 );
 
-
-
 // --- PRODUCT CARD ---
 const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
   return (
     <div className="bg-white rounded-lg text-black shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
       <div className="relative h-56 w-full">
         <div
-           className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${
+          className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${
             property.status === "sale"
               ? "bg-green-600 text-white"
               : "bg-blue-600 text-white"
@@ -271,8 +276,8 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
 };
 
 // --- MAIN SECTION ---
- type Tab = "sale" | "rent";
- type FilterType = "all" | "new" | "hot";
+type Tab = "sale" | "rent";
+type FilterType = "all" | "new" | "hot";
 
 export default function RecentPropertiesSection() {
   const [activeTab, setActiveTab] = useState<Tab>("sale");
@@ -301,24 +306,47 @@ export default function RecentPropertiesSection() {
             </h2>
           </div>
 
-          
-          <div className="flex flex-wrap gap-4 text-yellow-500" role="tablist">
-            <TabButton id="sale" label="For Sale" />
-            <TabButton id="rent" label="For Rent" />
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex gap-4">
+              <button
+                onClick={() => setActiveTab("sale")}
+                className={`px-6 py-2 text-sm font-semibold rounded-lg ${
+                  activeTab === "sale"
+                    ? "bg-yellow-500 text-white"
+                    : "border bg-white text-gray-700"
+                }`}
+              >
+                For Sale
+              </button>
+              <button
+                onClick={() => setActiveTab("rent")}
+                className={`px-6 py-2 text-sm font-semibold rounded-lg ${
+                  activeTab === "rent"
+                    ? "bg-yellow-500 text-white"
+                    : "border bg-white text-gray-700"
+                }`}
+              >
+                For Rent
+              </button>
+            </div>
+
+            <select
+              value={filter}
+              onChange={(e) => setFilter(e.target.value as FilterType)}
+              className="px-4 py-2 border rounded-lg text-sm font-medium text-gray-700"
+            >
+              <option value="all">All Listings</option>
+              <option value="new">New Listing</option>
+              <option value="hot">Hot Offer</option>
+            </select>
           </div>
         </div>
 
-   
-       <div className="w-full">
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {selectedList.map((property) => (
-      <ProductCard key={property.id} property={property} />
-    ))}
-  </div>
-</div>
-
-
-      
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filteredProperties.map((property) => (
+            <ProductCard key={property.id} property={property} />
+          ))}
+        </div>
       </div>
     </section>
   );
