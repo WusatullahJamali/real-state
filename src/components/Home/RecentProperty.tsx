@@ -168,6 +168,24 @@ export const FOR_RENT_PROPERTIES: Property[] = [
     batch: null,
   },
 ];
+interface TabButtonProps {
+  id: "sale" | "rent";
+  label: string;
+  active?: boolean;
+  onClick?: (id: "sale" | "rent") => void;
+}
+const TabButton: React.FC<TabButtonProps> = ({ id, label, active, onClick }) => (
+  <button
+    className={`px-4 py-2 rounded-lg font-semibold transition ${
+      active ? "bg-yellow-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+    }`}
+    onClick={() => onClick && onClick(id)}
+  >
+    {label}
+  </button>
+);
+
+
 
 // --- PRODUCT CARD ---
 const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
@@ -283,49 +301,6 @@ export default function RecentPropertiesSection() {
             </h2>
           </div>
 
-<<<<<<< Updated upstream
-          <div className="flex flex-col sm:flex-row gap-4">
-            <div className="flex gap-4">
-              <button
-                onClick={() => setActiveTab("sale")}
-                className={`px-6 py-2 text-sm font-semibold rounded-lg ${
-                  activeTab === "sale"
-                    ? "bg-yellow-500 text-white"
-                    : "border bg-white text-gray-700"
-                }`}
-              >
-                For Sale
-              </button>
-              <button
-                onClick={() => setActiveTab("rent")}
-                className={`px-6 py-2 text-sm font-semibold rounded-lg ${
-                  activeTab === "rent"
-                    ? "bg-yellow-500 text-white"
-                    : "border bg-white text-gray-700"
-                }`}
-              >
-                For Rent
-              </button>
-            </div>
-
-            <select
-              value={filter}
-              onChange={(e) => setFilter(e.target.value as FilterType)}
-              className="px-4 py-2 border rounded-lg text-sm font-medium text-gray-700"
-            >
-              <option value="all">All Listings</option>
-              <option value="new">New Listing</option>
-              <option value="hot">Hot Offer</option>
-            </select>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProperties.map((property) => (
-            <ProductCard key={property.id} property={property} />
-          ))}
-        </div>
-=======
           
           <div className="flex flex-wrap gap-4 text-yellow-500" role="tablist">
             <TabButton id="sale" label="For Sale" />
@@ -334,17 +309,16 @@ export default function RecentPropertiesSection() {
         </div>
 
    
-        <div className="w-full">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {propertiesToShow.map((property) => (
-          
-              <ProductCard key={property.id} property={property} />
-            ))}
-          </div>
-        </div>
+       <div className="w-full">
+  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    {selectedList.map((property) => (
+      <ProductCard key={property.id} property={property} />
+    ))}
+  </div>
+</div>
+
 
       
->>>>>>> Stashed changes
       </div>
     </section>
   );

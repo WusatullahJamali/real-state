@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
-import { HouseType,houseList } from "./RentHouse"; // adjust the import path
-import { FaHeart, FaBed, FaRulerCombined, FaMapMarkerAlt } from "react-icons/fa";
+import { HouseType, houseList } from "./RentHouse"; // adjust the import path
+import { Heart, Bed, Ruler, MapPin } from "lucide-react";
 import Link from "next/link";
 
 const RentHouseDetail = () => {
@@ -18,7 +18,10 @@ const RentHouseDetail = () => {
       <div className="py-20 text-center">
         <h2 className="text-3xl font-bold">House Not Found</h2>
         <p className="text-gray-500 mt-4">The house you are looking for does not exist.</p>
-        <Link href="/house" className="mt-6 inline-block bg-yellow-600 text-white py-2 px-6 rounded hover:bg-yellow-700 transition">
+        <Link
+          href="/house"
+          className="mt-6 inline-block bg-yellow-600 text-white py-2 px-6 rounded hover:bg-yellow-700 transition"
+        >
           Back to Houses
         </Link>
       </div>
@@ -44,16 +47,16 @@ const RentHouseDetail = () => {
           <h1 className="text-3xl font-bold">{house.title}</h1>
           <p className="text-yellow-600 font-bold text-xl">${house.price}/month</p>
           <p className="text-gray-600 flex items-center gap-2">
-            <FaMapMarkerAlt /> {house.location}
+            <MapPin className="w-4 h-4" /> {house.location}
           </p>
 
           {/* Badges */}
           <div className="flex items-center gap-6 text-gray-700 mt-2">
             <div className="flex items-center gap-1">
-              <FaBed /> {house.bedrooms} Beds
+              <Bed className="w-4 h-4" /> {house.bedrooms} Beds
             </div>
             <div className="flex items-center gap-1">
-              <FaRulerCombined /> {house.areaSqFt} sqft
+              <Ruler className="w-4 h-4" /> {house.areaSqFt} sqft
             </div>
           </div>
 
@@ -82,7 +85,7 @@ const RentHouseDetail = () => {
               favorite ? "bg-red-500 hover:bg-red-600" : "bg-yellow-600 hover:bg-yellow-700"
             }`}
           >
-            <FaHeart /> {favorite ? "Favorited" : "Add to Favorites"}
+            <Heart className="w-5 h-5" /> {favorite ? "Favorited" : "Add to Favorites"}
           </button>
 
           <Link
