@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
-
+import Image from "next/image";
+import { div } from "framer-motion/client";
 const RecentSold = () => {
   const [activeView, setActiveView] = useState("list");
   const [filters, setFilters] = useState({
@@ -68,14 +69,16 @@ const RecentSold = () => {
   });
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <>
+    <div className="w-full bg-white">
+    <div className="max-w-7xl mx-auto p-6 bg-white">
       {/* Search Bar */}
-      <div className="mb-6 flex flex-wrap gap-3">
+      <div className="mb-6 flex flex-wrap gap-3 text-black">
         <div className="flex-1 relative min-w-[250px]">
           <input
             type="text"
             placeholder="Search by address or city"
-            className="w-full px-6 py-3 pr-12 border-2 border-gray-300 rounded-full focus:outline-none focus:border-gray-400"
+            className="w-full px-6 py-3 pr-12 border-2 text-black border-gray-300 rounded-full focus:outline-none focus:border-gray-400"
             value={filters.search}
             onChange={(e) => setFilters({ ...filters, search: e.target.value })}
           />
@@ -109,13 +112,13 @@ const RecentSold = () => {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-3 mb-6">
-        <div className="flex items-center gap-2 px-4 py-2 border-2 border-gray-300 rounded-full hover:bg-gray-50 cursor-pointer">
+        <div className="flex items-center gap-2 px-4 py-2 text-black border-2 border-gray-300 rounded-full hover:bg-gray-50 cursor-pointer">
           <SlidersHorizontal className="w-4 h-4" />
-          <span className="font-medium">Filters</span>
+          <span className="font-medium text-black">Filters</span>
         </div>
 
         <select
-          className="px-4 py-2 border-2 border-gray-300 rounded-full hover:bg-gray-50"
+          className="px-4 py-2 border-2 text-black border-gray-300 rounded-full hover:bg-gray-50"
           value={filters.price}
           onChange={(e) => setFilters({ ...filters, price: e.target.value })}
         >
@@ -125,7 +128,7 @@ const RecentSold = () => {
         </select>
 
         <select
-          className="px-4 py-2 border-2 border-gray-300 rounded-full hover:bg-gray-50"
+          className="px-4 py-2 border-2 text-black border-gray-300 rounded-full hover:bg-gray-50"
           value={filters.rooms}
           onChange={(e) => setFilters({ ...filters, rooms: e.target.value })}
         >
@@ -135,7 +138,7 @@ const RecentSold = () => {
         </select>
 
         <select
-          className="px-4 py-2 border-2 border-gray-300 rounded-full hover:bg-gray-50"
+          className="px-4 py-2 border-2 text-black border-gray-300 rounded-full hover:bg-gray-50"
           value={filters.type}
           onChange={(e) => setFilters({ ...filters, type: e.target.value })}
         >
@@ -146,15 +149,17 @@ const RecentSold = () => {
       </div>
 
       {/* Property Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 text-black">
         {filteredProperties.map((property) => (
           <div
             key={property.id}
             className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
           >
-            <img
+            <Image
               src={property.image}
               alt={property.address}
+              width={200}
+              height={200}
               className="w-full h-64 object-cover"
             />
             <div className="p-4">
@@ -191,6 +196,8 @@ const RecentSold = () => {
         )}
       </div>
     </div>
+    </div>
+    </>
   );
 };
 

@@ -11,6 +11,7 @@ const SearchBar = () => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const formData = new FormData(e.currentTarget);
     const searchData = {
       tab: activeTab,
@@ -18,25 +19,40 @@ const SearchBar = () => {
       propertyType: formData.get("property-type"),
       priceRange: formData.get("price-range"),
     };
+
     console.log("Searching with data:", searchData);
-    alert(`Searching for: ${activeTab.toUpperCase()} in ${searchData.location}...`);
+    alert(
+      `Searching for: ${activeTab.toUpperCase()} in ${searchData.location}...`
+    );
   };
 
   return (
-    <div className="bg-gray-100 rounded-[20px]  p-5 w-full max-w-4xl shadow-lg">
-      <div className="flex gap-5 mb-2 flex-wrap">
+    <div
+      className="
+        bg-gray-100 
+        rounded-[16px] sm:rounded-[20px] 
+        p-3 sm:p-5 
+        w-full max-w-4xl 
+        shadow-lg
+      "
+    >
+      {/* Tabs */}
+      <div className="flex gap-2 sm:gap-5 mb-3 flex-wrap justify-center sm:justify-start">
         {["Buy", "Rent", "Sell", "Services"].map((tab) => {
           const tabLower = tab.toLowerCase();
           const isActive = activeTab === tabLower;
+
           return (
             <button
               key={tab}
               onClick={() => setActiveTab(tabLower)}
-              className={`px-3 py-1.5 text-sm font-medium cursor-pointer rounded-xl transition-all ${
-                isActive
-                  ? "bg-yellow-500 text-white"
-                  : "bg-white text-black hover:bg-gray-200"
-              }`}
+              className={`px-2.5 sm:px-3 py-1 sm:py-1.5 
+                          text-xs sm:text-sm 
+                          font-medium rounded-xl transition-all ${
+                            isActive
+                              ? "bg-yellow-500 text-white"
+                              : "bg-white text-black hover:bg-gray-200"
+                          }`}
             >
               {tab}
             </button>
@@ -44,72 +60,101 @@ const SearchBar = () => {
         })}
       </div>
 
-    <form
-  onSubmit={handleSearch}
-  className="flex flex-col sm:flex-row items-end gap-4 bg-white rounded-xl p-4 shadow-md"
->
-  <input type="hidden" name="transaction_type" value={activeTab} />
+      {/* Search Form */}
+      <form
+        onSubmit={handleSearch}
+        className="
+          flex flex-col sm:flex-row 
+          items-stretch sm:items-end 
+          gap-3 sm:gap-4 
+          bg-white rounded-xl 
+          p-3 sm:p-4 
+          shadow-md
+        "
+      >
+        <input type="hidden" name="transaction_type" value={activeTab} />
 
-  {/* Location */}
-  <div className="flex flex-col flex-1">
-    <label className="text-sm font-semibold text-gray-800 mb-1">
-      Location
-    </label>
-    <input
-      type="text"
-      name="location"
-      placeholder="Baghdad, Erbil, Basra..."
-className="w-full h-8.5 rounded-md border border-gray-300 px-3 text-black text-sm bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
+        {/* Location */}
+        <div className="flex flex-col flex-1">
+          <label className="text-xs sm:text-sm font-semibold text-black mb-1">
+            Location
+          </label>
+          <input
+            type="text"
+            name="location"
+            placeholder="Baghdad, Erbil, Basra..."
+            className="
+              w-full h-9 sm:h-10 
+              rounded-md border border-gray-300 px-3 
+              text-black text-xs sm:text-sm 
+              bg-white 
+              focus:outline-none focus:ring-1 focus:ring-yellow-500
+            "
+            required
+          />
+        </div>
 
-      required
-    />
-  </div>
+        {/* Property Type */}
+        <div className="flex flex-col flex-1">
+          <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+            Property Type
+          </label>
+          <select
+            name="property-type"
+            className="
+              w-full rounded-md border border-gray-300 px-3 py-2 
+              text-xs sm:text-sm  text-black
+              bg-white 
+              focus:outline-none focus:ring-1 focus:ring-yellow-500
+            "
+          >
+            {propertyTypes.map((type) => (
+              <option key={type} value={type}>
+                {type}
+              </option>
+            ))}
+          </select>
+        </div>
 
-  {/* Property Type */}
-  <div className="flex flex-col flex-1">
-    <label className="text-sm font-semibold text-gray-800 mb-1">
-      Property Type
-    </label>
-    <select
-      name="property-type"
-      className="w-full rounded-md border border-gray-300 px-3 text-black py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
-    >
-      {propertyTypes.map((type) => (
-        <option key={type} value={type}>
-          {type}
-        </option>
-      ))}
-    </select>
-  </div>
+        {/* Price Range */}
+        <div className="flex flex-col flex-1">
+          <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+            Price Range
+          </label>
+          <select
+            name="price-range"
+            className="
+              w-full rounded-md border border-gray-300 px-3 py-2 
+              text-xs sm:text-sm 
+              bg-white text-black
+              focus:outline-none focus:ring-1 focus:ring-yellow-500
+            "
+          >
+            {priceRanges.map((range) => (
+              <option key={range} value={range}>
+                {range}
+              </option>
+            ))}
+          </select>
+        </div>
 
-  {/* Price Range */}
-  <div className="flex flex-col flex-1">
-    <label className="text-sm font-semibold text-gray-800 mb-1">
-      Price Range
-    </label>
-    <select
-      name="price-range"
-      className="w-full rounded-md border border-gray-300 px-3 text-black py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
-    >
-      {priceRanges.map((range) => (
-        <option key={range} value={range}>
-          {range}
-        </option>
-      ))}
-    </select>
-  </div>
-
-  {/* Search Button */}
-  <button
-    type="submit"
-    className="flex items-center gap-1 bg-yellow-500 text-black font-semibold text-sm px-4 py-2 rounded-md hover:bg-yellow-600 transition shadow-sm"
-  >
-    <Search className="w-4 h-4" />
-    Search
-  </button>
-</form>
-
-
+        {/* Search Button */}
+        <button
+          type="submit"
+          className="
+            w-full sm:w-auto
+            flex items-center justify-center gap-1 
+            bg-yellow-500 text-black font-semibold 
+            text-xs sm:text-sm 
+            px-4 py-2 
+            rounded-md 
+            hover:bg-yellow-600 transition shadow-sm
+          "
+        >
+          <Search className="w-4 h-4" />
+          Search
+        </button>
+      </form>
     </div>
   );
 };

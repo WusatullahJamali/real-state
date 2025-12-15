@@ -37,7 +37,7 @@ const homesData: HomeCardProps[] = [
     details: { beds: 4, baths: 3, sqft: 3268 },
     address1: "927 Walters Pt",
     address2: "Monument, CO 80132",
-    imageUrl: "home1.jpeg",
+    imageUrl: "/home1.jpeg",
   },
   {
     id: crypto.randomUUID(),
@@ -46,7 +46,7 @@ const homesData: HomeCardProps[] = [
     details: { beds: 2, baths: 2, sqft: 1432 },
     address1: "2717 S Troy Way",
     address2: "Aurora, CO 80014",
-    imageUrl: "home2.jpeg",
+    imageUrl: "/home2.jpeg",
   },
   {
     id: crypto.randomUUID(),
@@ -55,7 +55,7 @@ const homesData: HomeCardProps[] = [
     details: { beds: 4, baths: 2, sqft: 2500 },
     address1: "1007 N Weber St",
     address2: "Colorado Springs, CO 80903",
-    imageUrl: "home3.jpg",
+    imageUrl: "/home3.jpg",
   },
   {
     id: crypto.randomUUID(),
@@ -64,7 +64,7 @@ const homesData: HomeCardProps[] = [
     details: { beds: 4, baths: 3, sqft: 3174 },
     address1: "6330 Wind River Pt",
     address2: "Colorado Springs, CO 80923",
-    imageUrl: "home4.jpg",
+    imageUrl: "/home4.jpg",
   },
   {
     id: crypto.randomUUID(),
@@ -73,7 +73,7 @@ const homesData: HomeCardProps[] = [
     details: { beds: 3, baths: 2.5, sqft: 1850 },
     address1: "7246 Clove Hill Ct",
     address2: "Colorado Springs, CO 80922",
-    imageUrl: "home5.jpg",
+    imageUrl: "/home5.jpg",
   },
 ];
 
