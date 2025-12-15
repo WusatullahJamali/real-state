@@ -1,16 +1,19 @@
 import React from 'react'
+import Image from 'next/image'
 
 const ManageCard3 = () => {
   return (
-    <div className="py-16 px-6 bg-gray-50 text-black">
+    <div className="py-16 px-6 bg-white text-black">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center bg-white rounded-3xl shadow-xl overflow-hidden">
 
         {/* Image Section */}
         <div className="md:w-1/2 w-full flex items-center justify-center p-8 bg-white">
           <div className="w-full max-w-md h-full flex items-center justify-center bg-white rounded-2xl p-4">
-            <img
+            <Image
               src="/m3.png" 
               alt="Rental Management Illustration"
+              height={200}
+              width={200}
               className="w-full h-auto object-contain"
             />
           </div>

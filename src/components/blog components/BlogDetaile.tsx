@@ -10,88 +10,103 @@ export default function BlogDetails() {
     <div className="min-h-screen bg-white text-black">
 
       {/* HERO BANNER */}
-      <section className="relative bg-white shadow-lg rounded-xl overflow-hidden max-w-[1200px] mx-auto pt-2 ">
-        <div className="flex flex-col md:flex-row items-center">
-          
-          {/* Left Image */}
-          <div className="relative w-full md:w-1/3 h-64 md:h-80">
-            <Image
-              src="/b1.jpg"
-              alt="Blog Image"
-              fill
-              className="object-cover rounded-xl"
-            />
-          </div>
+     {/* HERO IMAGE */}
+<section className="relative w-full h-[60vh]">
+  <Image
+    src="/blog[1].jpg"
+    alt="Blog Image"
+    fill
+    className="object-cover"
+    priority
+  />
+  <div className="absolute inset-0 bg-black/40" />
 
-          {/* Right Content */}
-          <div className="w-full md:w-2/3 p-6 md:p-10 flex flex-col justify-center">
-            <span className="bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-semibold inline-block shadow-sm">
-              Market News
-            </span>
+  <div className="absolute bottom-10 left-1/2 -translate-x-1/2 text-center px-4 max-w-4xl">
+    <span className="inline-block bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-semibold mb-4">
+      Market News
+    </span>
 
-            <h1 className="mt-4 text-3xl sm:text-4xl md:text-5xl font-extrabold text-gray-900 leading-snug">
-              Real Estate Market Trends in Karachi 2025
-            </h1>
+  <h1 className="text-white text-3xl sm:text-4xl md:text-5xl font-bold leading-tight">
+  Real Estate Market Trends in Iraq – 2025 Outlook
+</h1>
 
-            <p className="mt-3 text-gray-600 text-sm sm:text-base">
-             10 December, 2024
-            </p>
-          </div>
-        </div>
-      </section>
+<p className="mt-3 text-white/80 text-sm">
+  15 December, 2024
+</p>
+
+
+
+  </div>
+</section>
+
 
       {/* BODY CONTENT */}
-      <div className="max-w-[850px] mx-auto px-4 sm:px-6 lg:px-8 py-16 space-y-12">
+     <div className="max-w-6xl mx-auto px-4 sm:px-6 py-16 space-y-10">
+  {/* Intro */}
+ <p className="text-lg leading-8 text-gray-700">
+  Iraq’s real estate market has shown strong recovery and growth in recent years,
+  driven by economic stabilization, infrastructure development, and increasing
+  domestic and overseas investment. Major cities such as Baghdad, Erbil, Basra,
+  Najaf, and Karbala continue to attract residential, commercial, and rental
+  demand. In 2025, analysts expect steady price appreciation, particularly in
+  well-planned urban zones and mixed-use developments.
+</p>
 
-        {/* Intro Paragraph */}
-        <div className="bg-white shadow-lg rounded-xl border-l-4 border-yellow-400 p-6 transition-transform hover:scale-[1.01]">
-          <p className="leading-8 text-gray-700 text-lg">
-            Karachi has consistently remained the strongest real estate market in Pakistan due to its port, corporate sector,
-            foreign investment and strong rental demand. In 2025, majority of analysts expect apartment prices to continue rising
-            especially in waterfront areas including DHA, Clifton and Emaar Crescent Bay…
-          </p>
-        </div>
+  {/* Sections */}
+ {[
+  {
+    title: "Baghdad Investment Hotspots",
+    content:
+      "Baghdad remains the center of commercial and residential activity in Iraq. Areas such as Al-Mansour, Al-Yarmouk, and Al-Karrada continue to see high demand due to proximity to business districts, government institutions, and improved infrastructure.",
+  },
+  {
+    title: "Erbil’s Growing Residential Demand",
+    content:
+      "Erbil has emerged as one of Iraq’s most stable real estate markets. Modern housing societies, gated communities, and high-rise apartments are attracting both local residents and foreign investors seeking long-term rental income.",
+  },
+  {
+    title: "Basra’s Commercial & Oil-Driven Growth",
+    content:
+      "Basra’s oil-driven economy fuels strong demand for commercial offices, worker housing, and logistics-related properties. Residential developments near industrial zones continue to gain value.",
+  },
+  {
+    title: "Najaf & Karbala: Tourism-Based Rental ROI",
+    content:
+      "Religious tourism plays a major role in the real estate markets of Najaf and Karbala. Short-term rentals, hotel apartments, and mixed-use developments offer attractive rental returns throughout the year.",
+  },
+].map((section, idx) => (
+  <div key={idx} className="space-y-3">
+    <h2 className="text-2xl font-bold text-gray-900">
+      {section.title}
+    </h2>
+    <p className="text-gray-700 leading-8">
+      {section.content}
+    </p>
+  </div>
+))}
 
-        {/* Sections */}
-        {[
-          { title: "Karachi Investment Hotspots", content: "Current most active investor areas include DHA Phase 8, Scheme 33 and Bahria Town Karachi. These zones are benefiting from expanding road networks, commercial zones and improved security situation…" },
-          { title: "Apartment Demand Is Rising", content: "Unlike previous years, vertical construction is now being supported at government level. Families prefer high-rise communities due to gated access, facilities, foreign buyers and rental income potential…" },
-          { title: "Overseas Pakistanis Are Driving Prices", content: "The rise of overseas buying through online Zoom bookings and digital agreements continues to boost luxury projects in Clifton and Emaar. Developers increasingly target UAE and UK Pakistanis…" },
-          { title: "Construction Material Price Trends", content: "Steel and cement price fluctuations slowed down in mid 2024, however long term inflation pressure remains and this may keep pushing construction costs upwards by 6% to 9% in 2025…" },
-          { title: "Residential vs Commercial Investment", content: "Commercial units remain profitable but require higher capital. Meanwhile small apartments in Bahria Town Karachi are becoming a strong long-term rental asset due to lifestyle demand…" },
-          { title: "Rental ROI Expectations", content: "Rental returns for apartments currently range between 6% to 12% depending on amenities and location. DHA apartments offer strongest corporate rent due to international companies presence…" },
-          { title: "What Will Happen By 2030?", content: "Karachi is projected to become the largest real estate market in South Asia due to population growth, port economy, Gwadar link and continuous international investment especially from Gulf countries…" }
-        ].map((section, idx) => (
-          <div key={idx} className="bg-white shadow-md rounded-xl border-l-4 border-yellow-500 p-6 transition-all hover:shadow-xl">
-            <h2 className="text-2xl sm:text-3xl font-bold mb-4">{section.title}</h2>
-            <p className="text-gray-700 text-lg leading-8">{section.content}</p>
-          </div>
-        ))}
 
-        {/* Share Section */}
-        <div className="flex items-center gap-3">
-          <span className="font-semibold text-gray-900">Share:</span>
-          <div className="flex gap-3">
-            {[FaFacebookF, FaTwitter, FaLinkedinIn].map((Icon, i) => (
-              <button
-                key={i}
-                className="p-3 bg-yellow-400 rounded-full hover:bg-yellow-500 cursor-pointer text-white transition-transform hover:scale-110 shadow-md"
-              >
-                <Icon size={18} />
-              </button>
-            ))}
-          </div>
-        </div>
+  {/* Share */}
+  <div className="flex items-center gap-4 pt-10">
+    <span className="font-semibold text-gray-800">Share:</span>
+    {[Facebook, Twitter, Linkedin].map((Icon, i) => (
+      <button
+        key={i}
+        className="p-2 rounded-full bg-gray-100 hover:bg-yellow-400 hover:text-white transition"
+      >
+        <Icon size={18} />
+      </button>
+    ))}
+  </div>
 
-        {/* Back Button */}
-        <Link
-          href="/blog"
-          className="inline-flex gap-2 items-center bg-yellow-500 text-white px-6 py-3 rounded-xl font-medium shadow-lg hover:bg-yellow-600 transition-all"
-        >
-          <FiArrowLeft /> Back to Blog
-        </Link>
-
-      </div>
-    </div>
+  {/* Back */}
+  <Link
+    href="/blog"
+    className="inline-flex items-center gap-2 text-yellow-600 font-medium hover:underline pt-6"
+  >
+    <ArrowLeft size={18} /> Back to Blog
+  </Link>
+</div>
+</div>
   );
 }

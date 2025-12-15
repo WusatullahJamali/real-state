@@ -1,19 +1,22 @@
 "use client";
 import React from "react";
+import Image from "next/image";
 
 const ManageCard1 = () => {
   return (
-    <div className="py-16 px-6 bg-gray-50 text-black">
+    <div className="py-16 px-6 bg-white text-black">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center bg-white rounded-3xl shadow-xl overflow-hidden">
 
         {/* Image Section */}
         <div className="md:w-1/2 w-full flex items-center justify-center p-8 bg-white">
           <div className="w-full max-w-md h-full flex items-center justify-center bg-white rounded-2xl p-4">
-            <img
-              src="/manage1.jpg" 
-              alt="Rental Management Illustration"
-              className="w-full h-auto object-contain"
-            />
+           <Image
+  src="/manage1.jpg"
+  alt="Rental Management Illustration"
+  width={100}       // or set your preferred width
+  height={150}      // or set your preferred height
+  className="w-full h-auto object-contain"
+/>
           </div>
         </div>
 
