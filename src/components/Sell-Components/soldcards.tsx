@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useCallback } from "react";
+import Image from "next/image";
 import {
   Bed,
   Bath,
@@ -93,9 +94,11 @@ const HomeCard: React.FC<HomeCardProps> = ({
     <div className="min-w-[80%] sm:min-w-[45%] md:min-w-[32%] lg:w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
       {/* Image */}
       <div className="relative h-40 overflow-hidden rounded-t-xl">
-        <img
+        <Image
           src={imageUrl}
           alt={address1}
+          width={200}
+          height={200}
           className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
           onError={(e) => {
             e.currentTarget.src =

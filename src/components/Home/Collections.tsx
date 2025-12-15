@@ -56,7 +56,7 @@ export default function CollectionsSection() {
                   className="relative w-full group cursor-pointer rounded-xl overflow-hidden transition-transform duration-500 hover:scale-105"
                 >
                   {/* Image container to maintain rounded corners */}
-                  <div className="w-full h-72 md:h-80 relative rounded-2xl overflow-hidden shadow-lg group">
+                  <div className="w-full h-72 md:h-80 relative rounded-lg overflow-hidden shadow-lg group">
 
                     <Image
                       src={item.img}

@@ -2,185 +2,148 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Search } from "lucide-react"; // Lucide icon
-import { useState } from "react";
 
-const categories = ["All", "Market", "Investment", "Mortgage"];
-
+// Blog Data — 4 Cards With Authors + Read Time
 const blogs = [
   {
     id: 1,
-    title: "Real Estate Market Trends in Karachi 2025",
+    title: "Real Estate Market Trends in Baghdad 2025",
     snippet:
-      "Pakistan’s real estate market is expected to grow steadily in 2025 due to increasing overseas investment and major projects...",
-    image: "/b1.jpg",
-    category: "Market",
-    date: "Dec 2024",
+      "Baghdad’s real estate market continues to grow due to infrastructure development, commercial expansion, and rising residential demand in prime districts...",
+    image: "/blog2.jpg",
+    tag: "Baghdad",
+    author: "Wusat",
+    readTime: "4 min read",
   },
   {
     id: 2,
-    title: "How to Buy Your First Investment Property in Pakistan",
+    title: "Top Investment Opportunities in Erbil Real Estate",
     snippet:
-      "Learn step by step how to invest in your first property in Pakistan, including legal, financial, and location tips...",
-    image: "/b2.avif",
-    category: "Investment",
-    date: "Nov 2024",
+      "Erbil has become one of Iraq’s strongest property markets, attracting investors due to stability, modern housing projects, and high rental demand...",
+    image: "/blog3.jpg",
+    tag: "Erbil",
+    author: "Sahil",
+    readTime: "5 min read",
   },
   {
     id: 3,
-    title: "Mortgage & Loan Rules Updated for 2025 (Pakistan)",
+    title: "Basra Property Market: Residential & Commercial Growth",
     snippet:
-      "Important updates on mortgage policies and home loans in Pakistan for 2025 you need to know before investing...",
-    image: "/b3.avif",
-    category: "Mortgage",
-    date: "Oct 2024",
+      "Basra’s oil economy is driving demand for apartments, offices, and commercial properties, making it a key investment hub in southern Iraq...",
+    image: "/blog4.jpg",
+    tag: "Basra",
+    author: "Shahzaib",
+    readTime: "3 min read",
   },
   {
     id: 4,
-    title: "Top Property Locations for Overseas Pakistanis in 2025",
+    title: "Najaf & Karbala: High-Demand Cities for Property Investment",
     snippet:
-      "From Islamabad to Bahria Town, overseas buying trends are shaping how investment performs in 2025...",
-    image: "/b4.avif",
-    category: "Investment",
-    date: "Sep 2024",
-  },
-  {
-    id: 5,
-    title: "Apartment vs House – Which Gives Better ROI?",
-    snippet:
-      "With vertical construction rising, apartments are becoming a stronger investment in Pakistan’s major cities...",
-    image: "/b5.avif",
-    category: "Market",
-    date: "Aug 2024",
-  },
-  {
-    id: 6,
-    title: "Construction Material Prices Expected to Rise",
-    snippet:
-      "Cement, steel and labour cost are set to increase in 2025 leading to higher construction cost across Pakistan...",
-    image: "/b8.png",
-    category: "Market",
-    date: "Jul 2024",
-  },
-  {
-    id: 7,
-    title: "Best Rental Return Areas in Karachi",
-    snippet:
-      "Looking for passive rental income? These top neighborhoods in Karachi are delivering strong cash flow...",
-    image: "/b7.avif",
-    category: "Investment",
-    date: "Jun 2024",
-  },
-  {
-    id: 8,
-    title: "Pakistan Real Estate Forecast 2025–2030",
-    snippet:
-      "Long-term projections suggest major price appreciation due to population growth and infrastructure progress...",
-    image: "/bl6.png",
-    category: "Market",
-    date: "May 2024",
+      "Religious tourism continues to fuel strong rental and hotel apartment demand in Najaf and Karbala, offering consistent long-term returns...",
+    image: "/blog5.jpg",
+    tag: "Najaf & Karbala",
+    author: "Shoaib (Senior Developer)",
+    readTime: "6 min read",
   },
 ];
 
-export default function BlogPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
-  const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter blogs based on category and search
-  const filteredBlogs = blogs.filter((blog) => {
-    const matchesCategory =
-      selectedCategory === "All" || blog.category === selectedCategory;
-    const matchesSearch =
-      blog.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      blog.snippet.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
-  });
+// BLOG CARD
+const BlogCard = ({ post }) => {
+  return (
+    <Link
+      href={`/blog/${post.id}`}
+      className="group rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition duration-300 border border-gray-200"
+    >
+      {/* Image */}
+      <div className="relative h-40 overflow-hidden">
+        <Image
+          src={post.image}
+          alt={post.title}
+          width={500}
+          height={300}
+          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+        />
+        <span className="absolute top-3 left-3 bg-yellow-500 text-white px-3 py-1 text-xs rounded-full">
+          {post.tag}
+        </span>
+      </div>
+
+      {/* Content */}
+      <div className="p-4">
+        <h3 className="text-base font-bold text-gray-900 group-hover:text-yellow-600 transition line-clamp-2">
+          {post.title}
+        </h3>
+        <p className="mt-2 text-gray-700 text-sm leading-tight line-clamp-3">
+          {post.snippet}
+        </p>
+      </div>
+
+      {/* Updated Footer */}
+      <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
+        <div className="w-full flex justify-between items-center text-xs text-gray-600 font-medium 
+                        border-l-4 border-yellow-400 pl-3 pr-1 py-1 rounded-sm">
+          <span className="font-semibold text-gray-900">{post.author}</span>
+          <span className="text-gray-700">{post.readTime}</span>
+        </div>
+      </div>
+    </Link>
+  );
+};
+
+
+// HERO BANNER
+const FeaturedArticleBanner = () => {
+  const BANNER_IMAGE = "/b2.avif";
 
   return (
-    <div className="min-h-screen bg-white text-black">
-      {/* HERO */}
-      <section className="relative py-32 text-center overflow-hidden bg-yellow-500">
-        <div className="absolute inset-0 backdrop-blur-sm" />
+    <section className="relative w-full h-[45vh] md:h-[70vh] overflow-hidden bg-gray-900">
+      <Image
+        src={BANNER_IMAGE}
+        alt="Featured Article"
+        fill
+        className="object-cover brightness-75 hover:scale-105 transition duration-700"
+        priority
+      />
 
-        <h1 className="relative text-6xl text-white font-extrabold tracking-tight">
-          Real Estate Blog
-        </h1>
+      <div className="absolute inset-0 bg-black/30"></div>
 
-        <p className="relative text-black mt-4 text-lg max-w-xl mx-auto">
-          News, market insights & property investment research across Pakistan.
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        <p className="text-sm text-yellow-300 font-semibold tracking-widest uppercase">
+          Featured Story
         </p>
-      </section>
 
-      {/* SEARCH + FILTER */}
-      {/* <div className="max-w-6xl mx-auto px-6 mt-10 flex flex-wrap gap-4 justify-between items-center">
-        <div className="flex gap-3 flex-wrap">
-          {categories.map((c) => (
-            <button
-              key={c}
-              onClick={() => setSelectedCategory(c)}
-              className={`px-4 py-2 rounded-xl ${
-                selectedCategory === c
-                  ? "bg-yellow-400 text-black shadow"
-                  : "bg-white text-gray-700 shadow hover:bg-yellow-400 hover:text-black transition"
-              } font-medium`}
-            >
-              {c}
-            </button>
-          ))}
-        </div>
+        <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white max-w-3xl leading-tight mt-3">
+  Inside Iraq’s Fastest Growing Real Estate Cities
+</h1>
 
-        <div className="flex items-center bg-white shadow px-4 py-2 rounded-xl gap-2">
-          <Search className="text-gray-600 w-5 h-5" />
-          <input
-            placeholder="Search…"
-            className="outline-none text-gray-700"
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
-      </div> */}
+
+        <Link href="/article/featured">
+          <button className="mt-6 px-8 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-md hover:bg-yellow-600 shadow-lg transition">
+            Read Article
+          </button>
+        </Link>
+      </div>
+    </section>
+  );
+};
+
+export default function BlogPage() {
+  return (
+    <div className="min-h-screen bg-gray-50 text-black">
+      {/* HERO SECTION */}
+      <FeaturedArticleBanner />
 
       {/* BLOG CARDS */}
-      <div className="max-w-6xl mx-auto px-6 py-20 grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-        {filteredBlogs.length > 0 ? (
-          filteredBlogs.map((post) => (
-            <Link
-              key={post.id}
-              href={`/blog/${post.id}`}
-              className="group rounded-2xl overflow-hidden bg-white hover:shadow-3xl transition duration-500"
-            >
-              <div className="relative overflow-hidden">
-                <Image
-                  src={post.image}
-                  alt=""
-                  width={500}
-                  height={300}
-                  className="h-56 w-full object-cover group-hover:scale-110 transition duration-700"
-                />
-                <span className="absolute top-4 left-4 bg-black/60 px-3 py-1 rounded-full text-xs text-yellow-400">
-                  {post.category}
-                </span>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 group-hover:text-yellow-600 transition">
-                  {post.title}
-                </h3>
-                <p className="mt-2 text-gray-600 text-sm">{post.date}</p>
-                <p className="mt-3 text-gray-700 leading-6">{post.snippet}</p>
-
-                <span className="mt-4 block text-yellow-600 font-semibold group-hover:underline">
-                  Read More →
-                </span>
-              </div>
-            </Link>
-          ))
-        ) : (
-          <p className="text-center col-span-full text-gray-600 text-lg">
-            No blogs found.
-          </p>
-        )}
-      </div>
+      <section className="py-14">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {blogs.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))}
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
