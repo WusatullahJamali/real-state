@@ -41,7 +41,7 @@ const megaMenuContent: MegaMenuContent = {
         items: [
           {
             text: "Homes for Sale",
-            href: "/sell/home-for-sale",
+            href: "/home-for-sale",
             icon: null,
             description: "Find your dream house or apartment.",
           },
@@ -64,7 +64,7 @@ const megaMenuContent: MegaMenuContent = {
         items: [
           {
             text: "Explore Neighborhoods",
-            href: "/sell/neighbourhood",
+            href: "/neighbourhood",
             icon: null,
             description: "Detailed area guides and statistics.",
           },
@@ -166,6 +166,7 @@ const menuItems = [
   { name: "PROPERTY", href: "/mortgege", hasDropdown: true },
   { name: "PAGES", href: "/pages", hasDropdown: true },
   { name: "CONTACT US", href: "/contact", hasDropdown: false },
+   
 ];
 
 // Mega Item Component
