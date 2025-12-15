@@ -17,7 +17,7 @@ const Hero2 = () => {
         <h1 className="text-3xl md:text-5xl font-bold mb-6">
           What To Ask Before Renting a Home To Avoid Hidden Expenses
         </h1>
-        <button className="bg-black hover:bg-yellow-700 transition-colors px-6 py-3 rounded font-semibold shadow-lg">
+        <button className="bg-yellow-600 hover:bg-yellow-500 transition-colors px-6 py-3 rounded-full font-semibold shadow-lg">
           Read Article
         </button>
       </div>

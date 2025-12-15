@@ -12,12 +12,11 @@ import {
   DollarSign,
 } from "lucide-react";
 
-// --- Interfaces ---
+// Interfaces
 interface HomeDetail {
   beds: number;
   baths: number;
   sqft: number;
-  lotSize?: string;
 }
 
 interface HomeCardProps {
@@ -30,7 +29,7 @@ interface HomeCardProps {
   imageUrl: string;
 }
 
-// --- Mock Data ---
+// Mock Data
 const homesData: HomeCardProps[] = [
   {
     id: crypto.randomUUID(),
@@ -54,7 +53,7 @@ const homesData: HomeCardProps[] = [
     id: crypto.randomUUID(),
     status: "Sold - Aug 15, 2025",
     price: "$545,000",
-    details: { beds: 4, baths: 2, sqft: 2500, lotSize: "4,094 sqft lot" },
+    details: { beds: 4, baths: 2, sqft: 2500 },
     address1: "1007 N Weber St",
     address2: "Colorado Springs, CO 80903",
     imageUrl: "home3.jpg",
@@ -79,7 +78,7 @@ const homesData: HomeCardProps[] = [
   },
 ];
 
-// --- Home Card Component ---
+// CARD COMPONENT
 const HomeCard: React.FC<HomeCardProps> = ({
   status,
   price,
@@ -91,7 +90,11 @@ const HomeCard: React.FC<HomeCardProps> = ({
   const isContact = price.toLowerCase().includes("contact");
 
   return (
-    <div className="min-w-[80%] sm:min-w-[45%] md:min-w-[32%] lg:w-64 shrink-0 mx-2 bg-white rounded-xl shadow-md transition-transform duration-500 hover:-translate-y-1 hover:scale-[1.03] border border-gray-100">
+    <div
+      className="flex-shrink-0 w-[80%] sm:w-[45%] md:w-[32%] lg:w-[27%] mx-3 
+      rounded-2xl bg-white shadow-md overflow-hidden transition-transform 
+      duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]"
+    >
       {/* Image */}
       <div className="relative h-40 overflow-hidden rounded-t-xl">
         <Image
@@ -106,18 +109,17 @@ const HomeCard: React.FC<HomeCardProps> = ({
             e.currentTarget.onerror = null;
           }}
         />
-        <span className="absolute top-2 left-2 bg-[#301366] text-white text-xs font-bold px-2 py-1 rounded-full">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <span className="absolute top-3 left-3 bg-[#301366] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
           SOLD
         </span>
+        <div className="absolute bottom-0 w-full h-[3px] bg-yellow-400"></div>
       </div>
 
       {/* Content */}
-      <div className="p-3">
-        <p className="text-xs font-semibold text-gray-500 mb-1 tracking-wide uppercase">
-          {status}
-        </p>
-
-        <h3 className="text-lg font-bold mb-2 flex items-center text-gray-900">
+      <div className="p-5">
+        <p className="text-xs text-gray-500 font-bold mb-1">{status}</p>
+        <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
           {isContact ? (
             <>
               <DollarSign className="w-4 h-4 mr-1 text-yellow-500" />
@@ -128,27 +130,24 @@ const HomeCard: React.FC<HomeCardProps> = ({
           )}
         </h3>
 
-        <div className="flex justify-between text-xs font-medium text-gray-700 mb-1.5 -mt-3 pt-1 border-t border-gray-100">
-          <div className="flex items-center space-x-1">
-            <Bed className="w-3 h-3 text-yellow-500" />
-            <span className="font-bold">{details.beds}</span>
-            <span className="text-gray-500">bed</span>
+        {/* Details */}
+        <div className="flex justify-between text-sm font-medium border-t pt-3 mb-2">
+          <div className="flex items-center gap-1">
+            <Bed className="w-4 h-4 text-yellow-500" />
+            {details.beds} Bed
           </div>
-
-          <div className="flex items-center space-x-1">
-            <Bath className="w-3 h-3 text-yellow-500" />
-            <span className="font-bold">{details.baths}</span>
-            <span className="text-gray-500">bath</span>
+          <div className="flex items-center gap-1">
+            <Bath className="w-4 h-4 text-yellow-500" />
+            {details.baths} Bath
           </div>
-
-          <div className="flex items-center space-x-1">
-            <LayoutGrid className="w-3 h-3 text-yellow-500" />
-            <span className="font-bold">{details.sqft.toLocaleString()}</span>
-            <span className="text-gray-500">sqft</span>
+          <div className="flex items-center gap-1">
+            <LayoutGrid className="w-4 h-4 text-yellow-500" />
+            {details.sqft.toLocaleString()} sqft
           </div>
         </div>
 
-        <div className="mt-2 text-xs text-gray-600">
+        {/* Address */}
+        <div className="text-sm text-gray-600 leading-tight">
           <p>{address1}</p>
           <p>{address2}</p>
         </div>
@@ -157,84 +156,89 @@ const HomeCard: React.FC<HomeCardProps> = ({
   );
 };
 
-// --- Main Component ---
+// MAIN COMPONENT
 export default function RecentlySoldHomes() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
+  const [cards] = useState([...homesData, ...homesData, ...homesData]);
 
-  const scroll = useCallback((direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const cardWidthWithGap = scrollContainerRef.current.firstChild
-        ? (scrollContainerRef.current.firstChild as HTMLDivElement)
-            .clientWidth + 16
-        : 264; // fallback
-      scrollContainerRef.current.scrollBy({
-        left: direction === "right" ? cardWidthWithGap : -cardWidthWithGap,
-        behavior: "smooth",
-      });
-    }
+  // Infinite auto-scroll
+  useEffect(() => {
+    const container = scrollRef.current;
+    if (!container) return;
+    const speed = 1;
+    let animation: number;
+
+    const step = () => {
+      container.scrollLeft += speed;
+      if (container.scrollLeft >= container.scrollWidth / 3) {
+        container.scrollLeft = 0;
+      }
+      animation = requestAnimationFrame(step);
+    };
+
+    animation = requestAnimationFrame(step);
+    return () => cancelAnimationFrame(animation);
   }, []);
 
+  // Manual scroll
+  const scroll = (dir: "left" | "right") => {
+    if (!scrollRef.current) return;
+    scrollRef.current.scrollBy({
+      left: dir === "right" ? 300 : -300,
+      behavior: "smooth",
+    });
+  };
+
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-white p-4">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-8 rounded-3xl relative">
+    <div className="min-h-[70vh] flex items-center justify-center p-6 bg-white">
+      <div className="w-full max-w-7xl relative p-6 md:p-8 rounded-3xl bg-white">
         {/* Header */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b pb-4 mb-6">
+        <div className="flex items-start md:items-end justify-between border-b pb-4 mb-6">
           <div>
-            <h1 className="text-2xl md:text-3xl font-semibold text-gray-900 mb-1">
-              Recently Sold Homes in Colorado Springs, CO
+            <h1 className="text-3xl font-bold text-gray-900">
+              Recently Sold Homes
             </h1>
-            <p className="text-sm md:text-base text-gray-500">
-              Homes that have sold in the last 6 months in our top housing
-              market for 2025
+            <p className="text-gray-500">
+              Colorado's top-performing homes for 2025
             </p>
           </div>
           <a
             href="#"
-            className="flex items-center text-yellow-500 hover:text-yellow-400 font-bold mt-3 md:mt-0 transition text-sm md:text-base"
+            className="font-semibold flex items-center text-yellow-600 hover:text-yellow-500"
           >
-            Homes similar to yours
-            <MoveRight className="w-4 h-4 ml-1.5" />
+            Homes like yours
+            <MoveRight className="w-4 h-4 ml-1" />
           </a>
         </div>
 
-        {/* Carousel */}
-        <div className="relative">
-          {/* Left Button */}
-          <button
-            onClick={() => scroll("left")}
-            className="absolute left-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg"
-          >
-            <ArrowLeft className="w-5 h-5 text-gray-700" />
-          </button>
+        {/* Arrows */}
+        <button
+          onClick={() => scroll("left")}
+          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-20 hover:scale-110 transition"
+        >
+          <ArrowLeft className="w-5 h-5" />
+        </button>
+        <button
+          onClick={() => scroll("right")}
+          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-20 hover:scale-110 transition"
+        >
+          <ArrowRight className="w-5 h-5" />
+        </button>
 
-          {/* Scrollable Cards */}
-          <div
-            ref={scrollContainerRef}
-            className="flex overflow-x-auto space-x-4 py-3 scrollbar-hide snap-x snap-mandatory"
-          >
-            {homesData.map((home) => (
-              <div key={home.id} className="snap-start">
-                <HomeCard {...home} />
-              </div>
-            ))}
-          </div>
-
-          {/* Right Button */}
-          <button
-            onClick={() => scroll("right")}
-            className="absolute right-0 top-1/2 -translate-y-1/2 z-10 p-2 bg-white rounded-full shadow-md hover:shadow-lg"
-          >
-            <ArrowRight className="w-5 h-5 text-gray-700" />
-          </button>
+        {/* Scroll Container */}
+        <div
+          ref={scrollRef}
+          className="flex gap-4 py-4 overflow-x-auto no-scrollbar"
+          style={{
+            scrollbarWidth: "none", // Firefox
+            msOverflowStyle: "none", // IE 10+
+          }}
+        >
+          {cards.map((home, i) => (
+            <HomeCard key={home.id + i} {...home} />
+          ))}
         </div>
       </div>
-
-      {/* Hide scrollbars */}
-      <style jsx global>{`
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }
