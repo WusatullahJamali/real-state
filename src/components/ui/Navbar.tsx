@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+
 import { motion, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
@@ -170,7 +170,7 @@ const megaMenuContent: MegaMenuContent = {
 };
 
 export default function Navbar() {
-  const pathname = usePathname();
+
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
@@ -178,22 +178,21 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false); // dummy login
   const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
 
-  const isActive = (path: string) =>
-    pathname === path || (path !== "/" && pathname?.startsWith(path));
+
 
   // MODIFIED navClass function to set text to white and hover to primary blue (assuming 'yellow-500' is primary blue in this context)
-  const navClass = (path: string, mobile = false) =>
-    mobile
-      ? `block p-3 rounded-lg ${
-          isActive(path)
-            ? "bg-yellow-50 text-yellow-600 font-bold"
-            : "text-gray-700 hover:bg-gray-50 hover:text-yellow-500"
-        }`
-      : `px-3 py-2 text-sm xl:text-base font-medium ${
-          isActive(path)
-            ? "text-yellow-500 font-bold" // Active link color remains yellow-500
-            : "text-white hover:text-yellow-500" // Text is white, hover is yellow-500
-        }`;
+  // const navClass = (path: string, mobile = false) =>
+  //   mobile
+  //     ? `block p-3 rounded-lg ${
+  //         isActive(path)
+  //           ? "bg-yellow-50 text-yellow-600 font-bold"
+  //           : "text-gray-700 hover:bg-gray-50 hover:text-yellow-500"
+  //       }`
+  //     : `px-3 py-2 text-sm xl:text-base font-medium ${
+  //         isActive(path)
+  //           ? "text-yellow-500 font-bold" // Active link color remains yellow-500
+  //           : "text-white hover:text-yellow-500" // Text is white, hover is yellow-500
+  //       }`;
 
   return (
     <>
@@ -220,7 +219,7 @@ export default function Navbar() {
                 }
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <Link href={item.href} className={navClass(item.href)}>
+                <Link href={item.href} >
                   {item.name}
                 </Link>
                 <AnimatePresence>
@@ -397,10 +396,7 @@ export default function Navbar() {
                             onClick={() =>
                               setMobileExpanded(isOpen ? null : item.name)
                             }
-                            className={`flex justify-between w-full text-left ${navClass(
-                              item.href,
-                              true
-                            )}`}
+                            className={`flex justify-between w-full text-left`}
                           >
                             {item.name}
                             <ChevronDown
@@ -453,7 +449,6 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           onClick={() => setMobileOpen(false)}
-                          className={navClass(item.href, true)}
                         >
                           {item.name}
                         </Link>
