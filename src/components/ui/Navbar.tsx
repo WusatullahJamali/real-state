@@ -19,6 +19,8 @@ import {
 
 import LoginModal from "@/components/Auth/loginModal";
 import SignupModal from "@/components/Auth/SignupModal";
+import { usePathname } from "next/navigation";
+
 
 // --- TYPES ---
 type MenuItem = { name: string; href: string; hasDropdown: boolean };
