@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
 
 // Counter that animates when visible
 const useCounter = (end: number, duration = 1200) => {
@@ -96,12 +97,14 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
   const { count: exp, ref: expRef } = useCounter(agent.yearsExperience);
 
   return (
-    <div className="flex flex-col items-center p-4  transition-all hover:-translate-y-1 duration-300">
+    <div className="flex flex-col items-center p-4  text-black bg-white transition-all hover:-translate-y-1 duration-300">
       {/* Image */}
       <div className="mb-4">
-        <img
+        <Image
           src={agent.image}
           alt={agent.name}
+          width={200}
+          height={200}
           className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover transform hover:scale-110 transition duration-300"
         />
       </div>
@@ -138,7 +141,7 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
 
 const AgentsGrid: React.FC = () => {
   return (
-    <section className=" py-12 sm:py-16">
+    <section className=" py-12 sm:py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}

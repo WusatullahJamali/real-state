@@ -39,9 +39,14 @@ const RECOMMENDED_LOCATIONS = [
     medianPrice: "$595,000",
   },
 ];
+interface LocationMapProps {
+  name: string;
+  mapColor: string;
+  img?: string;
+}
 
-// --- Map/Image Component ---
-const LocationMap = ({ name, mapColor, img }) => (
+const LocationMap = ({ name, mapColor, img }: LocationMapProps) => (
+
   <div className={`h-48 w-full relative overflow-hidden border-b border-gray-200`}>
     {img ? (
       <Image
