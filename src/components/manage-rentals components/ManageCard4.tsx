@@ -1,15 +1,18 @@
 import React from 'react'
+import Image from 'next/image'
 
 const ManageCard4 = () => {
   return (
-   <div className="w-full mt-20 text-black">
+   <div className="w-full bg-white text-black">
       <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-3 items-center">
 
         {/* IMAGE LEFT */}
         <div className="order-1 flex justify-center">
-          <img
-            src="m4.png"
+          <Image
+            src="/m4.png"
             alt="rent"
+            width={200}
+            height={200}
             className="w-full h-[350px] object-cover rounded-xl"
           />
         </div>

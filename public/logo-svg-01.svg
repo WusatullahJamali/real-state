@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1080 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient);
+      }
+
+      .cls-1, .cls-2, .cls-3, .cls-4 {
+        stroke-width: 0px;
+      }
+
+      .cls-2 {
+        fill: #2c5f2d;
+      }
+
+      .cls-5 {
+        fill: #1b3a57;
+        font-family: Inter-Black, Inter;
+        font-size: 164.04px;
+        font-weight: 800;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        fill: #4a90e2;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="349.38" y1="736.87" x2="22.95" y2="386.38" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1b3a57"/>
+      <stop offset=".12" stop-color="#254d76"/>
+      <stop offset=".36" stop-color="#3971b0"/>
+      <stop offset=".54" stop-color="#4587d4"/>
+      <stop offset=".63" stop-color="#4a90e2"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <path class="cls-1" d="m243.29,581.57l-94.33,122.35c-4.48,5.81-13.23,5.81-17.71,0l-94.33-122.35c-39.99-51.87-35.26-125.37,11.06-171.69,25.44-25.44,58.78-38.16,92.13-38.16s66.69,12.72,92.13,38.16h0c46.31,46.32,51.05,119.82,11.05,171.69Z"/>
+    <path class="cls-3" d="m200.81,553.77h-120.13c-2.67-4.61-5.75-11.01-7.93-19.02-1.93-7.1-2.59-13.41-2.75-18.35,0-4.68.47-29.6,20.6-49.73,12.73-12.73,30.31-20.6,49.73-20.6h0c15.1,0,29.1,4.76,40.56,12.87,23.33,16.5,33.86,45.72,27.49,73.57-.38,1.65-.81,3.34-1.31,5.08-1.82,6.35-4.08,11.77-6.26,16.18Z"/>
+    <polygon class="cls-4" points="190.39 513.16 190.39 521.06 139.95 486.48 89.83 520.85 89.83 512.95 139.95 478.58 190.39 513.16"/>
+    <g>
+      <path class="cls-2" d="m177.74,485.89c.01,4.93.04,9.87.06,14.8-3.84-2.5-7.68-5.01-11.51-7.52l-.06-7.28"/>
+      <rect class="cls-2" x="162.56" y="479.98" width="18.36" height="5.91" rx="2.04" ry="2.04"/>
+    </g>
+    <path class="cls-4" d="m174.11,515.24l-.34,38.53h-24.26v-16.74c0-1.67-1.36-3.03-3.03-3.03h-11.91c-1.68,0-3.03,1.36-3.03,3.03v16.74h-25.36l-.34-38.53,34.14-24.21,34.14,24.21Z"/>
+    <path class="cls-3" d="m136.16,509.07v4.66c0,1-.8,1.8-1.8,1.8h-5.66c-1,0-1.8-.8-1.8-1.8v-4.66c0-.99.81-1.8,1.8-1.8h5.66c1,0,1.8.81,1.8,1.8Z"/>
+    <rect class="cls-3" x="143.84" y="507.27" width="9.26" height="8.26" rx="1.8" ry="1.8"/>
+    <path class="cls-3" d="m136.16,519.41v4.66c0,.99-.8,1.8-1.8,1.8h-5.66c-1,0-1.8-.81-1.8-1.8v-4.66c0-1,.81-1.8,1.8-1.8h5.66c1,0,1.8.8,1.8,1.8Z"/>
+    <rect class="cls-3" x="143.84" y="517.61" width="9.26" height="8.26" rx="1.8" ry="1.8"/>
+  </g>
+  <text class="cls-5" transform="translate(287.26 604.51)"><tspan x="0" y="0">Albasync</tspan></text>
+</svg>
