@@ -30,7 +30,163 @@ type MegaMenuColumn = {
 
 type MegaMenuContent = Record<string, { columns: MegaMenuColumn[] }>;
 
-// --- NAVBAR COMPONENT ---
+// --- Mega Menu Data ---
+const megaMenuContent: MegaMenuContent = {
+  "FOR SALE": {
+    columns: [
+      {
+        title: "Buying Essentials",
+        items: [
+          {
+            text: "Homes for Sale",
+            href: "/home-for-sale",
+            icon: null,
+            description: "Find your dream house or apartment.",
+          },
+          {
+            text: "New Construction",
+            href: "/new-construction",
+            icon: null,
+            description: "Discover the latest properties.",
+          },
+          {
+            text: "Recently Sold",
+            href: "/recently-sold-homes",
+            icon: null,
+            description: "View current market values.",
+          },
+        ],
+      },
+      {
+        title: "Market Insight",
+        items: [
+          {
+            text: "Explore Neighborhoods",
+            href: "/neighbourhood",
+            icon: null,
+            description: "Detailed area guides and statistics.",
+          },
+          {
+            text: "Housing Market Trends",
+            href: "/housing-market-trends",
+            icon: null,
+            description: "Analysis and forecasts.",
+          },
+        ],
+      },
+      {
+        title: "Featured Service",
+        isFeatured: true,
+        image: "/images/featured-sale.jpg",
+        cta: {
+          text: "Get a Free Home Valuation",
+          href: "/free-valuation",
+        },
+      },
+    ],
+  },
+
+  "FOR RENT": {
+    columns: [
+      {
+        title: "Rental Types",
+        items: [
+          { text: "Apartments for Rent", href: "/apartments-for-rent", icon: null },
+          { text: "Houses for Rent", href: "/houses-for-rent", icon: null },
+        ],
+      },
+      {
+        title: "Landlord Resources",
+        items: [
+          { text: "Manage Rentals", href: "/manage-rentals", icon: null },
+          { text: "List Your Rentals", href: "/list-your-rentals", icon: null },
+          { text: "Contact Landlord", href: "/contact-rent-landlord", icon: null },
+        ],
+      },
+    ],
+  },
+
+  PROPERTY: {
+    columns: [
+      {
+        title: "Search & Valuation",
+        items: [
+          { text: "Property Search", href: "/property-search", icon: null },
+          { text: "Property Listings", href: "/property-listings", icon: null },
+          { text: "Property Valuation", href: "/property-valuation", icon: null },
+        ],
+      },
+      {
+        title: "Investment & Types",
+        items: [
+          { text: "Property Investment", href: "/property-investment", icon: null },
+          { text: "Commercial Property", href: "/commercial-property", icon: null },
+          { text: "Residential Property", href: "/residential-property", icon: null },
+          { text: "Property Types", href: "/property-types", icon: null },
+        ],
+      },
+    ],
+  },
+
+  PAGES: {
+    columns: [
+      {
+        title: "Company",
+        items: [
+          { text: "About Us", href: "/about", icon: null },
+          { text: "Contact Us", href: "/contact", icon: null },
+          { text: "Careers", href: "/careers", icon: null },
+        ],
+      },
+      {
+        title: "Resources",
+        items: [
+          { text: "Blog", href: "/blog", icon: null },
+          { text: "FAQ", href: "/faq", icon: null },
+        ],
+      },
+      {
+        title: "Legal",
+        items: [
+          { text: "Terms of Service", href: "/terms-of-service", icon: null },
+          { text: "Privacy Policy", href: "/privacy-policy", icon: null },
+        ],
+      },
+    ],
+  },
+};
+
+// Menu Items
+const menuItems = [
+  { name: "HOME", href: "/", hasDropdown: false },
+  { name: "FOR SALE", href: "/sell", hasDropdown: true },
+  { name: "FOR RENT", href: "/rent", hasDropdown: true },
+  { name: "PROPERTY", href: "/mortgege", hasDropdown: true },
+  { name: "PAGES", href: "/pages", hasDropdown: true },
+  { name: "CONTACT US", href: "/contact", hasDropdown: false },
+   
+];
+
+// Mega Item Component
+const MegaMenuItem = ({ item }: { item: MenuItemType }) => {
+  return (
+    <Link
+      href={item.href}
+      className="group flex gap-3 p-2 rounded-lg hover:bg-yellow-50 transition"
+    >
+      <div>
+        <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-sm">
+          {item.text}
+        </div>
+        {item.description && (
+          <p className="text-xs text-gray-500">{item.description}</p>
+        )}
+      </div>
+    </Link>
+  );
+};
+
+// MAIN NAVBAR
 export default function Navbar() {
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
