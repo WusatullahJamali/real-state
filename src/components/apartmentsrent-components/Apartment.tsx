@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaHeart } from "react-icons/fa";
+import { Heart } from "lucide-react";
 
 
 // apartmentData.ts (Mock Data)
@@ -81,128 +81,128 @@ const Apartment = () => {
   };
 
   const apartments = [
-    {
-      id: 1,
-      title: "Luxury Apartment",
-      price: 1200,
-      bedrooms: 3,
-      location: "Downtown, Karachi",
-      image: "/a1.jpg",
-    },
-    {
-      id: 2,
-      title: "Modern Studio",
-      price: 800,
-      bedrooms: 1,
-      location: "Bahria Town, Lahore",
-      image: "a2.jpg",
-    },
-    {
-      id: 3,
-      title: "Family Apartment",
-      price: 1000,
-      bedrooms: 2,
-      location: "Clifton, Karachi",
-      image: "/a3.jpg",
-    },
-    {
-      id: 4,
-      title: "Penthouse View",
-      price: 1500,
-      bedrooms: 4,
-      location: "DHA Phase 6, Karachi",
-      image: "/a4.jpg",
-    },
-    {
-      id: 5,
-      title: "Executive Residence",
-      price: 1100,
-      bedrooms: 3,
-      location: "Gulberg, Lahore",
-      image: "/a5.jpg",
-    },
-    {
-      id: 6,
-      title: "Stylish Loft",
-      price: 950,
-      bedrooms: 2,
-      location: "Islamabad",
-      image: "/a6.avif",
-    },
-    {
-      id: 7,
-      title: "Budget Studio",
-      price: 650,
-      bedrooms: 1,
-      location: "Johar Town, Lahore",
-      image: "a7.jpg",
-    },
-    {
-      id: 8,
-      title: "Corner Apartment",
-      price: 1050,
-      bedrooms: 3,
-      location: "F-11 Islamabad",
-      image: "/a8.jpg",
-    },
-    {
-      id: 9,
-      title: "Luxury High Rise",
-      price: 1300,
-      bedrooms: 3,
-      location: "Emaar, Karachi",
-      image: "/a9.jpg",
-    },
-    {
-      id: 10,
-      title: "Student Apartment",
-      price: 550,
-      bedrooms: 1,
-      location: "Rawalpindi",
-      image: "/a10.webp",
-    },
-    {
-      id: 11,
-      title: "Serviced Apartment",
-      price: 1600,
-      bedrooms: 4,
-      location: "Blue Area, Islamabad",
-      image: "/a11.jpg",
-    },
-    {
-      id: 12,
-      title: "Cozy Family Home",
-      price: 850,
-      bedrooms: 2,
-      location: "Peshawar",
-      image: "/a12.jpg",
-    },
-    {
-      id: 13,
-      title: "Cozy Family Home",
-      price: 850,
-      bedrooms: 2,
-      location: "Hyderabad",
-      image: "/ap14.jpg",
-    },
-    {
-      id: 14,
-      title: "Cozy Family Home",
-      price: 850,
-      bedrooms: 2,
-      location: "Lahore",
-      image: "/ap15.jpg",
-    },
-    {
-      id: 15,
-      title: "Cozy Family Home",
-      price: 850,
-      bedrooms: 2,
-      location: "Karachi",
-      image: "/a16.webp",
-    },
-    
-  ];
+  {
+    id: 1,
+    title: "Luxury Apartment",
+    price: 1200,
+    bedrooms: 3,
+    location: "Green Zone, Baghdad",
+    image: "/a1.jpg",
+  },
+  {
+    id: 2,
+    title: "Modern Studio",
+    price: 800,
+    bedrooms: 1,
+    location: "Ankawa, Erbil",
+    image: "/a2.jpg",
+  },
+  {
+    id: 3,
+    title: "Family Apartment",
+    price: 1000,
+    bedrooms: 2,
+    location: "Al-Fao Street, Basra",
+    image: "/a3.jpg",
+  },
+  {
+    id: 4,
+    title: "Penthouse View",
+    price: 1500,
+    bedrooms: 4,
+    location: "Karrada, Baghdad",
+    image: "/a4.jpg",
+  },
+  {
+    id: 5,
+    title: "Executive Residence",
+    price: 1100,
+    bedrooms: 3,
+    location: "Center District, Erbil",
+    image: "/a5.jpg",
+  },
+  {
+    id: 6,
+    title: "Stylish Loft",
+    price: 950,
+    bedrooms: 2,
+    location: "Al-Maqal, Basra",
+    image: "/a6.avif",
+  },
+  {
+    id: 7,
+    title: "Budget Studio",
+    price: 650,
+    bedrooms: 1,
+    location: "Al-Rashid Street, Kirkuk",
+    image: "/a7.jpg",
+  },
+  {
+    id: 8,
+    title: "Corner Apartment",
+    price: 1050,
+    bedrooms: 3,
+    location: "Old City, Mosul",
+    image: "/a8.jpg",
+  },
+  {
+    id: 9,
+    title: "Luxury High Rise",
+    price: 1300,
+    bedrooms: 3,
+    location: "Baghdad Tower Area, Baghdad",
+    image: "/a9.jpg",
+  },
+  {
+    id: 10,
+    title: "Student Apartment",
+    price: 550,
+    bedrooms: 1,
+    location: "University District, Erbil",
+    image: "/a10.webp",
+  },
+  {
+    id: 11,
+    title: "Serviced Apartment",
+    price: 1600,
+    bedrooms: 4,
+    location: "Green Zone, Baghdad",
+    image: "/a11.jpg",
+  },
+  {
+    id: 12,
+    title: "Cozy Family Home",
+    price: 850,
+    bedrooms: 2,
+    location: "Al-Mutanabbi Street, Baghdad",
+    image: "/a12.jpg",
+  },
+  {
+    id: 13,
+    title: "Cozy Family Home",
+    price: 850,
+    bedrooms: 2,
+    location: "Center District, Basra",
+    image: "/ap14.jpg",
+  },
+  {
+    id: 14,
+    title: "Cozy Family Home",
+    price: 850,
+    bedrooms: 2,
+    location: "Faihaa District, Mosul",
+    image: "/ap15.jpg",
+  },
+  {
+    id: 15,
+    title: "Cozy Family Home",
+    price: 850,
+    bedrooms: 2,
+    location: "Al-Sa’a District, Erbil",
+    image: "/a16.webp",
+  },
+];
+
 
   // FILTER + SORT
   const filtered = apartments
@@ -236,14 +236,15 @@ const Apartment = () => {
           <option value="4">4 Bed</option>
         </select>
 
-        <select onChange={(e) => setCity(e.target.value)} className="border p-3 rounded">
-          <option value="">All Cities</option>
-          <option value="Karachi">Karachi</option>
-          <option value="Lahore">Lahore</option>
-          <option value="Islamabad">Islamabad</option>
-          <option value="Peshawar">Peshawar</option>
-          <option value="Hyderabad">Hyderabad</option>
-        </select>
+       <select onChange={(e) => setCity(e.target.value)} className="border p-3 rounded"> 
+  <option value="">All Cities</option>
+  <option value="Baghdad">Baghdad</option>
+  <option value="Erbil">Erbil</option>
+  <option value="Basra">Basra</option>
+  <option value="Mosul">Mosul</option>
+  <option value="Kirkuk">Kirkuk</option>
+</select>
+
 
         <select onChange={(e) => setSort(e.target.value)} className="border p-3 rounded">
           <option value="">Sort Price</option>
@@ -262,7 +263,7 @@ const Apartment = () => {
                 onClick={() => toggleFav(apt.id)}
                 className="absolute top-3 right-3 bg-white rounded-full p-2 shadow hover:scale-110 transition"
               >
-                <FaHeart
+                <Heart
                   className={`text-xl ${favorites.includes(apt.id) ? "text-red-500" : "text-gray-400"}`}
                 />
               </button>

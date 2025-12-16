@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { FiMail, FiPhone, FiShield } from "react-icons/fi";
+import { Mail, Phone, Shield } from "lucide-react";
 
 const PrivacyFooter = () => {
   const rights = [
@@ -22,7 +22,7 @@ const PrivacyFooter = () => {
           {/* Rights */}
           <div className="bg-white rounded-3xl p-10 shadow-[0_6px_32px_rgba(0,0,0,0.05)] border border-yellow-200/60">
             <h2 className="text-4xl font-black text-black mb-10 flex items-center gap-3">
-              <FiShield className="text-yellow-600 text-5xl" />
+              <Shield className="text-yellow-600 text-5xl" />
               Your Privacy Rights
             </h2>
 
@@ -59,10 +59,10 @@ const PrivacyFooter = () => {
 
               <div className="flex flex-col sm:flex-row gap-5 justify-center">
                 <a className="bg-black text-white hover:bg-gray-800 px-8 py-5 rounded-2xl text-lg font-bold flex gap-3 items-center shadow-lg hover:shadow-xl">
-                  <FiMail className="text-2xl" /> privacy@realchoice.com
+                  <Mail className="text-2xl" /> privacy@realchoice.com
                 </a>
                 <a className="bg-white text-black border border-gray-200 px-8 py-5 rounded-2xl text-lg font-bold flex gap-3 items-center shadow-lg hover:shadow-xl">
-                  <FiPhone className="text-2xl" /> +1 (234) 567-890
+                  <Phone className="text-2xl" /> +1 (234) 567-890
                 </a>
               </div>
             </div>

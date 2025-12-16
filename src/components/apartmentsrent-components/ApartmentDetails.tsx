@@ -3,8 +3,17 @@
 import Link from "next/link";
 import React from "react";
 import { useParams } from "next/navigation";
-import { FaBed, FaRulerCombined, FaEnvelope, FaCalendarAlt, FaUserCircle, FaMapMarkedAlt } from "react-icons/fa";
-import { FiArrowLeft } from "react-icons/fi";
+import {
+  BedDouble,
+  Ruler,
+  Mail,
+  Calendar,
+  UserCircle,
+  MapPin,
+  ArrowLeft,
+  Check
+} from "lucide-react";
+
 import { apartmentList } from "@/components/apartmentsrent-components/ApartmentData";
 
 
@@ -23,7 +32,7 @@ const ApartmentDetail = () => {
             The listing ID ({id}) does not match any current apartments.
           </p>
           <Link href="/apartments-for-rent" className="mt-5 inline-flex items-center gap-2 text-blue-600 hover:underline">
-            <FiArrowLeft /> Back to Listings
+            <ArrowLeft /> Back to Listings
           </Link>
         </div>
       </div>
@@ -42,7 +51,7 @@ const ApartmentDetail = () => {
           href="/"
           className="inline-flex items-center gap-2 text-gray-600 hover:text-yellow-600 transition font-semibold"
         >
-          <FiArrowLeft /> Back to Listings
+          <ArrowLeft /> Back to Listings
         </Link>
       </div>
 
@@ -65,10 +74,10 @@ const ApartmentDetail = () => {
                 </span>
                 <div className="flex items-center space-x-4 text-gray-700 font-semibold">
                   <div className="flex items-center gap-1">
-                    <FaBed className="text-xl text-yellow-500" /> <span>{bedrooms} Beds</span>
+                    <BedDouble className="text-xl text-yellow-500" /> <span>{bedrooms} Beds</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <FaRulerCombined className="text-lg text-yellow-500" /> <span>{areaSqFt} Sq Ft</span>
+                    <Ruler className="text-lg text-yellow-500" /> <span>{areaSqFt} Sq Ft</span>
                   </div>
                 </div>
               </div>
@@ -105,7 +114,7 @@ const ApartmentDetail = () => {
             <div className="p-6 bg-gray-50 rounded-2xl shadow">
               <h2 className="text-2xl font-bold text-gray-800 mb-4 border-b pb-2">Location</h2>
               <div className="w-full h-64 bg-gray-300 rounded-lg flex items-center justify-center">
-                <FaMapMarkedAlt className="text-5xl text-gray-500" />
+                <MapPin className="text-5xl text-gray-500" />
                 <p className="ml-4 text-gray-500">Map Placeholder for {location}</p>
               </div>
               <p className="text-sm text-gray-500 mt-2">
@@ -120,7 +129,7 @@ const ApartmentDetail = () => {
               <h3 className="text-2xl font-extrabold text-gray-900 border-b pb-3">Inquire & Tour</h3>
 
               <div className="flex items-center space-x-4 pb-4 border-b">
-                <FaUserCircle className="text-5xl text-yellow-600" />
+                <UserCircle className="text-5xl text-yellow-600" />
                 <div>
                   <p className="text-lg font-bold text-gray-900">Agent: Sarah Khan</p>
                   <p className="text-sm text-gray-600">Property Specialist</p>
@@ -131,14 +140,14 @@ const ApartmentDetail = () => {
                 onClick={() => alert(`Contacting agent for ${title}`)}
                 className="w-full flex items-center justify-center gap-2 bg-yellow-600 text-white font-bold py-4 rounded-xl shadow-lg transition hover:bg-yellow-700 text-lg"
               >
-                <FaEnvelope /> Contact Agent
+                <Mail /> Contact Agent
               </button>
 
               <button
                 onClick={() => alert(`Scheduling tour for ${title}`)}
                 className="w-full flex items-center justify-center gap-2 bg-green-600 text-white font-bold py-4 rounded-xl shadow-lg transition hover:bg-green-700 text-lg"
               >
-                <FaCalendarAlt /> Schedule Tour
+                <Calendar /> Schedule Tour
               </button>
 
               <p className="text-xs text-center text-gray-500 pt-2">

@@ -1,40 +1,41 @@
 "use client";
+
 import React from "react";
 import Image from "next/image";
 
 const ManageCard1 = () => {
   return (
-    <div className="py-16 px-6 bg-white text-black">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center bg-white rounded-3xl shadow-xl overflow-hidden">
+    <section className="bg-white py-16">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Image Section */}
-        <div className="md:w-1/2 w-full flex items-center justify-center p-8 bg-white">
-          <div className="w-full max-w-md h-full flex items-center justify-center bg-white rounded-2xl p-4">
-           <Image
-  src="/manage1.jpg"
-  alt="Rental Management Illustration"
-  width={100}       // or set your preferred width
-  height={150}      // or set your preferred height
-  className="w-full h-auto object-contain"
-/>
-          </div>
-        </div>
-
-        {/* Text Content */}
-        <div className="md:w-1/2 w-full p-8 md:p-12 flex flex-col gap-6">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
+        {/* LEFT: TEXT CONTENT */}
+        <div className="text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black leading-tight mb-6">
             Level up your rental management with Avail — supporting landlords every step of the way
           </h1>
-          <p className="text-gray-700 text-lg leading-relaxed">
+
+          <p className="text-black text-lg mb-8 max-w-xl">
             Publish rental listings, find and screen renters, sign leases, collect rent, and more with the Avail property management tools built specifically for DIY landlords.
           </p>
-          <button className="mt-4 bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-yellow-700 transition w-max shadow-lg">
+
+          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Get Started
           </button>
         </div>
 
+        {/* RIGHT: IMAGE */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
+          <Image
+            src="/manage1.jpg"
+            alt="Rental Management Illustration"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 

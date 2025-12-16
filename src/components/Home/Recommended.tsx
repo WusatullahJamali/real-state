@@ -5,6 +5,16 @@ import Image from 'next/image';
 import { MapPin } from 'lucide-react';
 
 // --- Mock Data ---
+
+interface Location {
+  id: number;
+  name: string;
+  mapColor: string;
+  img: string;
+  listings: number;
+  medianPrice: string;
+}
+
 const RECOMMENDED_LOCATIONS = [
   {
     id: 1,
@@ -41,7 +51,14 @@ const RECOMMENDED_LOCATIONS = [
 ];
 
 // --- Map/Image Component ---
-const LocationMap = ({ name, mapColor, img }) => (
+
+interface LocationMapProps {
+  name: string;
+  mapColor: string;
+  img: string;
+}
+
+const LocationMap = ({ name, mapColor, img }: LocationMapProps) => (
   <div className={`h-48 w-full relative overflow-hidden border-b border-gray-200`}>
     {img ? (
       <Image

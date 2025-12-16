@@ -3,16 +3,16 @@
 "use client"
 import React, { useState } from 'react';
 import {
-  FiShield,
-  FiUsers,
-  FiActivity,
-  FiShare2,
-  FiLock,
-  FiRefreshCw,
-  FiChevronDown,
-  FiChevronUp,
-  FiArrowUp
-} from 'react-icons/fi';
+  Shield,
+  Users,
+  Activity,
+  Share2,
+  Lock,
+  RefreshCw,
+  ChevronDown,
+  ChevronUp,
+  ArrowUp,
+} from 'lucide-react';
 
 export default function PrivacyPolicy() {
   const [expandedSection, setExpandedSection] = useState<number | null>(null);
@@ -28,7 +28,7 @@ export default function PrivacyPolicy() {
 
   const policies = [
     {
-      icon: <FiShield />,
+      icon: <Shield />,
       title: "Information Collection",
       shortDesc: "We collect information you provide when contacting us or submitting property forms.",
       fullDesc: "This includes your name, email address, phone number, property details, and any other information you voluntarily provide. We collect this data through forms, account registration, property listings, consultation requests, and direct communication. We may also collect technical information such as IP addresses, browser type, and device information to improve our services.",
@@ -36,7 +36,7 @@ export default function PrivacyPolicy() {
       bgColor: "bg-white"
     },
     {
-      icon: <FiActivity />,
+      icon: <Activity />,
       title: "Use of Information",
       shortDesc: "Your information helps improve services, communication, and support.",
       fullDesc: "We use your data to provide real estate services, match you with suitable properties, send alerts, improve platform functionality, respond to inquiries, conduct analytics, personalize your experience, and comply with legal obligations. We never use your information beyond your consent.",
@@ -44,7 +44,7 @@ export default function PrivacyPolicy() {
       bgColor: "bg-white"
     },
     {
-      icon: <FiUsers />,
+      icon: <Users />,
       title: "Cookies & Tracking",
       shortDesc: "Cookies personalize browsing and enhance user experience.",
       fullDesc: "We use cookies and similar technologies to remember preferences, analyze traffic, provide personalized content, enable social media features, and deliver targeted advertising. You can control cookie settings, but disabling may limit features.",
@@ -52,7 +52,7 @@ export default function PrivacyPolicy() {
       bgColor: "bg-white"
     },
     {
-      icon: <FiShare2 />,
+      icon: <Share2 />,
       title: "Information Sharing",
       shortDesc: "We only share data with trusted partners under strict conditions.",
       fullDesc: "We may share information with real estate agents (with consent), service providers, legal authorities, business partners for transactions, and potential buyers/sellers with authorization. All third parties are bound by confidentiality agreements and data protection standards.",
@@ -60,7 +60,7 @@ export default function PrivacyPolicy() {
       bgColor: "bg-white"
     },
     {
-      icon: <FiLock />,
+      icon: <Lock />,
       title: "Security Measures",
       shortDesc: "Industry-standard security protects your information.",
       fullDesc: "Our security includes SSL encryption, secure servers, regular audits, access control, employee training, and incident response procedures. While we strive for maximum security, no method over the internet is 100% secure.",
@@ -68,7 +68,7 @@ export default function PrivacyPolicy() {
       bgColor: "bg-white"
     },
     {
-      icon: <FiRefreshCw />,
+      icon: <RefreshCw />,
       title: "Changes to this Policy",
       shortDesc: "We update this policy periodically. Latest version appears here.",
       fullDesc: "We reserve the right to modify this policy at any time. Changes will be posted here with revision date. Significant changes may be emailed or prominently displayed. Continued use constitutes acceptance of updates. Review regularly.",
@@ -97,7 +97,7 @@ export default function PrivacyPolicy() {
           
           <div className="relative z-10 text-center">
             <div className="inline-flex items-center gap-3 text-black text-sm font-bold px-8 py-3 rounded-full mb-8 animate-pulse">
-              <FiShield className="text-xl" /> 
+              <Shield className="text-xl" /> 
               YOUR PRIVACY MATTERS
             </div>
 
@@ -168,7 +168,7 @@ export default function PrivacyPolicy() {
                       {i + 1}. {item.title}
                     </h2>
                     <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 group-hover:bg-yellow-100 flex items-center justify-center text-gray-600 group-hover:text-yellow-600 transition-all">
-                      {expandedSection === i ? <FiChevronUp className="text-xl" /> : <FiChevronDown className="text-xl" />}
+                      {expandedSection === i ? <ChevronUp className="text-xl" /> : <ChevronDown className="text-xl" />}
                     </div>
                   </div>
                   <p className="text-gray-700 text-lg leading-relaxed font-medium">
@@ -201,7 +201,7 @@ export default function PrivacyPolicy() {
           className="fixed bottom-8 right-8 bg-white text-black font-bold p-5 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-110 transition-all z-50 group"
           aria-label="Back to top"
         >
-          <FiArrowUp className="text-2xl group-hover:-translate-y-1 transition-transform" />
+          <ArrowUp className="text-2xl group-hover:-translate-y-1 transition-transform" />
         </button>
       )}
 

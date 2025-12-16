@@ -1,42 +1,42 @@
-import React from 'react'
-import Image from 'next/image'
+"use client";
+
+import React from "react";
+import Image from "next/image";
 
 const ManageCard4 = () => {
   return (
-   <div className="w-full bg-white text-black">
-      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-10 px-3 items-center">
+    <section className="bg-white py-16">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* IMAGE LEFT */}
-        <div className="order-1 flex justify-center">
+        {/* LEFT: IMAGE */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
           <Image
             src="/m4.png"
-            alt="rent"
-            width={200}
-            height={200}
-            className="w-full h-[350px] object-cover rounded-xl"
+            alt="Lawyer-Reviewed Leases Illustration"
+            fill
+            className="object-contain"
+            priority
           />
         </div>
 
-        {/* TEXT RIGHT */}
-        <div className="order-2 space-y-4">
-          
-
-          <h1 className="text-4xl font-bold text-gray-900 leading-snug">
-           Lawyer-Reviewed Leases
+        {/* RIGHT: TEXT */}
+        <div className="text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight mb-6">
+            Lawyer-Reviewed Leases
           </h1>
 
-          <p className="text-gray-600 text-lg">
-           Customize the state-specific, lawyer-reviewed lease templates on Avail and seamlessly collect signatures from renters using built-in eSign options.
+          <p className="text-black text-lg max-w-xl">
+            Customize the state-specific, lawyer-reviewed lease templates on Avail and seamlessly collect signatures from renters using built-in eSign options.
           </p>
 
-          <button className="border bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-lg w-fit mt-5">
-            Learn more
+          <button className="mt-6 inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
+            Learn More
           </button>
         </div>
 
       </div>
-    </div>
-  )
-}
+    </section>
+  );
+};
 
-export default ManageCard4
+export default ManageCard4;

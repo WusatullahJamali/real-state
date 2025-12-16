@@ -20,8 +20,8 @@ export default function CategoriesListingPage() {
              href={`/CategoriesDATA/list/${property.id}`}
               className="block border rounded-xl overflow-hidden shadow hover:shadow-lg transition"
             >
-              <Image
-                src={property.image}
+               <Image
+                src={property.images[0]}
                 alt={property.title}
                 width={500}
                 height={300}

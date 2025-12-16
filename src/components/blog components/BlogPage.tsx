@@ -3,7 +3,16 @@
 import Image from "next/image";
 import Link from "next/link";
 
-// Blog Data — 4 Cards With Authors + Read Time
+interface BlogPost {
+  id: number;
+  title: string;
+  snippet: string;
+  image: string;
+  tag: string;
+  author: string;
+  readTime: string;
+}
+
 const blogs = [
   {
     id: 1,
@@ -49,7 +58,7 @@ const blogs = [
 
 
 // BLOG CARD
-const BlogCard = ({ post }) => {
+const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
     <Link
       href={`/blog/${post.id}`}
