@@ -30,7 +30,7 @@ const SearchBar = () => {
     <div
       className="
         bg-gray-100 
-        rounded-[16px] sm:rounded-[20px] 
+        rounded-2xl sm:rounded-[20px] 
         p-3 sm:p-5 
         w-full max-w-4xl 
         shadow-lg
@@ -74,69 +74,71 @@ const SearchBar = () => {
       >
         <input type="hidden" name="transaction_type" value={activeTab} />
 
-        {/* Location */}
-        <div className="flex flex-col flex-1">
-          <label className="text-xs sm:text-sm font-semibold text-black mb-1">
-            Location
-          </label>
-          <input
-            type="text"
-            name="location"
-            placeholder="Baghdad, Erbil, Basra..."
-            className="
-              w-full h-9 sm:h-10 
-              rounded-md border border-gray-300 px-3 
-              text-black text-xs sm:text-sm 
-              bg-white 
-              focus:outline-none focus:ring-1 focus:ring-yellow-500
-            "
-            required
-          />
-        </div>
+       {/* Location */}
+<div className="flex flex-col flex-1">
+  <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+    Location
+  </label>
+  <input
+    type="text"
+    name="location"
+    placeholder="Baghdad, Erbil, Basra..."
+    className="
+      w-full rounded-md border border-gray-300
+      px-3 py-1.75
+      text-xs sm:text-sm text-black
+      bg-white
+      focus:outline-none focus:ring-1 focus:ring-yellow-500
+    "
+    required
+  />
+</div>
 
-        {/* Property Type */}
-        <div className="flex flex-col flex-1">
-          <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
-            Property Type
-          </label>
-          <select
-            name="property-type"
-            className="
-              w-full rounded-md border border-gray-300 px-3 py-2 
-              text-xs sm:text-sm  text-black
-              bg-white 
-              focus:outline-none focus:ring-1 focus:ring-yellow-500
-            "
-          >
-            {propertyTypes.map((type) => (
-              <option key={type} value={type}>
-                {type}
-              </option>
-            ))}
-          </select>
-        </div>
+{/* Property Type */}
+<div className="flex flex-col flex-1">
+  <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+    Property Type
+  </label>
+  <select
+    name="property-type"
+    className="
+      w-full rounded-md border border-gray-300
+      px-3 py-2
+      text-xs sm:text-sm text-black
+      bg-white
+      focus:outline-none focus:ring-1 focus:ring-yellow-500
+    "
+  >
+    {propertyTypes.map((type) => (
+      <option key={type} value={type}>
+        {type}
+      </option>
+    ))}
+  </select>
+</div>
 
-        {/* Price Range */}
-        <div className="flex flex-col flex-1">
-          <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
-            Price Range
-          </label>
-          <select
-            name="price-range"
-            className="
-              w-full rounded-md border border-gray-300 px-3 py-2 
-              text-xs sm:text-sm 
-              bg-white text-black
-              focus:outline-none focus:ring-1 focus:ring-yellow-500
-            "
-          >
-            {priceRanges.map((range) => (
-              <option key={range} value={range}>
-                {range}
-              </option>
-            ))}
-          </select>
-        </div>
+{/* Price Range */}
+<div className="flex flex-col flex-1">
+  <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+    Price Range
+  </label>
+  <select
+    name="price-range"
+    className="
+      w-full rounded-md border border-gray-300
+      px-3 py-2
+      text-xs sm:text-sm text-black
+      bg-white
+      focus:outline-none focus:ring-1 focus:ring-yellow-500
+    "
+  >
+    {priceRanges.map((range) => (
+      <option key={range} value={range}>
+        {range}
+      </option>
+    ))}
+  </select>
+</div>
 
         {/* Search Button */}
         <button
