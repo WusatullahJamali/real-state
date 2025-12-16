@@ -3,6 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 
+/* ---------------- TYPES ---------------- */
+
 interface BlogPost {
   id: number;
   title: string;
@@ -13,7 +15,9 @@ interface BlogPost {
   readTime: string;
 }
 
-const blogs = [
+/* ---------------- BLOG DATA ---------------- */
+
+const blogs: BlogPost[] = [
   {
     id: 1,
     title: "Real Estate Market Trends in Baghdad 2025",
@@ -56,9 +60,13 @@ const blogs = [
   },
 ];
 
+/* ---------------- BLOG CARD ---------------- */
 
-// BLOG CARD
-const BlogCard = ({ post }: { post: BlogPost }) => {
+interface BlogCardProps {
+  post: BlogPost;
+}
+
+const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
     <Link
       href={`/blog/${post.id}`}
@@ -88,10 +96,9 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
         </p>
       </div>
 
-      {/* Updated Footer */}
+      {/* Footer */}
       <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
-        <div className="w-full flex justify-between items-center text-xs text-gray-600 font-medium 
-                        border-l-4 border-yellow-400 pl-3 pr-1 py-1 rounded-sm">
+        <div className="flex justify-between items-center text-xs text-gray-600 font-medium border-l-4 border-yellow-400 pl-3 pr-1 py-1 rounded-sm">
           <span className="font-semibold text-gray-900">{post.author}</span>
           <span className="text-gray-700">{post.readTime}</span>
         </div>
@@ -100,22 +107,20 @@ const BlogCard = ({ post }: { post: BlogPost }) => {
   );
 };
 
+/* ---------------- HERO BANNER ---------------- */
 
-// HERO BANNER
-const FeaturedArticleBanner = () => {
-  const BANNER_IMAGE = "/b2.avif";
-
+const FeaturedArticleBanner: React.FC = () => {
   return (
     <section className="relative w-full h-[45vh] md:h-[70vh] overflow-hidden bg-gray-900">
       <Image
-        src={BANNER_IMAGE}
+        src="/b2.avif"
         alt="Featured Article"
         fill
         className="object-cover brightness-75 hover:scale-105 transition duration-700"
         priority
       />
 
-      <div className="absolute inset-0 bg-black/30"></div>
+      <div className="absolute inset-0 bg-black/30" />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <p className="text-sm text-yellow-300 font-semibold tracking-widest uppercase">
@@ -123,9 +128,8 @@ const FeaturedArticleBanner = () => {
         </p>
 
         <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white max-w-3xl leading-tight mt-3">
-  Inside Iraq’s Fastest Growing Real Estate Cities
-</h1>
-
+          Inside Iraq’s Fastest Growing Real Estate Cities
+        </h1>
 
         <Link href="/article/featured">
           <button className="mt-6 px-8 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-md hover:bg-yellow-600 shadow-lg transition">
@@ -137,13 +141,13 @@ const FeaturedArticleBanner = () => {
   );
 };
 
+/* ---------------- PAGE ---------------- */
+
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gray-50 text-black">
-      {/* HERO SECTION */}
       <FeaturedArticleBanner />
 
-      {/* BLOG CARDS */}
       <section className="py-14">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">

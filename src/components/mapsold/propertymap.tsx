@@ -1,4 +1,3 @@
-// components/PropertyMap.tsx
 "use client";
 
 import React from "react";
@@ -6,9 +5,8 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Property } from "@/data/iraqproperties";
-import PropertyCard from "./propertycards";
 
-// Fix for default Leaflet icons not showing up in Next.js (Must be in a public folder in real app)
+// Fix for default Leaflet icons not showing
 const defaultIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   iconRetinaUrl:
@@ -21,6 +19,17 @@ const defaultIcon = L.icon({
 });
 
 L.Marker.prototype.options.icon = defaultIcon;
+
+// Extra 7 locations
+const EXTRA_LOCATIONS = [
+  { id: "e1", name: "Najaf", lat: 32.0, lng: 44.3333 },
+  { id: "e2", name: "Karbala", lat: 32.616, lng: 44.024 },
+  { id: "e3", name: "Samarra", lat: 34.1959, lng: 43.875 },
+  { id: "e4", name: "Duhok", lat: 36.8663, lng: 42.9885 },
+  { id: "e5", name: "Kirkuk", lat: 35.4681, lng: 44.3922 },
+  { id: "e6", name: "Hillah", lat: 32.482, lng: 44.432 },
+  { id: "e7", name: "Nasiriyah", lat: 31.0464, lng: 46.2573 },
+];
 
 interface PropertyMapProps {
   properties: Property[];
@@ -36,29 +45,38 @@ const PropertyMap: React.FC<PropertyMapProps> = ({
   zoom,
 }) => {
   return (
-    // Map container must have an explicit height
     <div className="h-full w-full sticky top-0">
       <MapContainer
         center={[centerLat, centerLng]}
         zoom={zoom}
-        scrollWheelZoom={true}
+        scrollWheelZoom
         className="h-full w-full z-0"
       >
         <TileLayer
-          // Using OpenStreetMap for free, global map tiles
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+        {/* Property Markers */}
         {properties.map((property) => (
           <Marker
             key={property.id}
             position={[property.geo.lat, property.geo.lng]}
           >
-            {/* Popup displays the property card for context */}
-            <Popup minWidth={350}>
-              <div className="w-80">
-                <PropertyCard property={property} />
+            <Popup>
+              <div className="text-sm font-semibold text-gray-800">
+                📍 {property.city}
+              </div>
+            </Popup>
+          </Marker>
+        ))}
+
+        {/* Extra Locations */}
+        {EXTRA_LOCATIONS.map((place) => (
+          <Marker key={place.id} position={[place.lat, place.lng]}>
+            <Popup>
+              <div className="text-sm font-semibold text-gray-800">
+                📍 {place.name}
               </div>
             </Popup>
           </Marker>
