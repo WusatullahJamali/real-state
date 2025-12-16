@@ -452,7 +452,7 @@ export default function Navbar() {
                           {/* DROPDOWN */}
                           <AnimatePresence>
                             {isOpen && (
-                              <motion.div
+                              <motion.div    
                                 initial={{ height: 0 }}
                                 animate={{ height: "auto" }}
                                 exit={{ height: 0 }}
