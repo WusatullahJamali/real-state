@@ -15,9 +15,7 @@ interface BlogPost {
   readTime: string;
 }
 
-/* ---------------- BLOG DATA ---------------- */
-
-const blogs: BlogPost[] = [
+const blogs = [
   {
     id: 1,
     title: "Real Estate Market Trends in Baghdad 2025",
@@ -62,11 +60,8 @@ const blogs: BlogPost[] = [
 
 /* ---------------- BLOG CARD ---------------- */
 
-interface BlogCardProps {
-  post: BlogPost;
-}
-
-const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
+// BLOG CARD
+const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
     <Link
       href={`/blog/${post.id}`}

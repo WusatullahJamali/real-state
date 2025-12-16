@@ -29,14 +29,14 @@ const PrivacyFooter = () => {
   return (
     <section className="bg-white relative mt-32 py-20 md:py-28 overflow-hidden">
       {/* Soft background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-yellow-50/25 to-white pointer-events-none"></div>
+      <div className="absolute inset-0 bg-linear-to-b from-white via-yellow-50/25 to-white pointer-events-none"></div>
 
       <div className="relative z-10 container mx-auto px-4 space-y-20">
         <div className="grid lg:grid-cols-2 gap-12">
           {/* Rights */}
           <div className="bg-white rounded-3xl p-10 shadow-[0_6px_32px_rgba(0,0,0,0.05)] border border-yellow-200/60">
             <h2 className="text-4xl font-black text-black mb-10 flex items-center gap-3">
-              <Shield className="text-yellow-600 w-12 h-12" />
+              <Shield className="text-yellow-600 text-5xl" />
               Your Privacy Rights
             </h2>
 
@@ -91,7 +91,7 @@ const PrivacyFooter = () => {
 
         {/* Footer text */}
         <footer className="text-center">
-          <div className="h-[2px] w-40 mx-auto bg-gradient-to-r from-transparent via-yellow-400 to-transparent mb-6"></div>
+          <div className="h-0.5 w-40 mx-auto bg-linear-to-r from-transparent via-yellow-400 to-transparent mb-6"></div>
 
           <p className="text-gray-600 text-lg mb-2">
             Effective as of{" "}

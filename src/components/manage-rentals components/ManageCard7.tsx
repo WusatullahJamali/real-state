@@ -1,37 +1,42 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import Image from "next/image";
 
 const ManageCard7 = () => {
   return (
-   <div className="py-16 px-6 bg-gray-50 text-black">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center bg-white rounded-3xl shadow-xl overflow-hidden">
+    <section className="bg-gray-50 py-16">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Image Section */}
-        <div className="md:w-1/2 w-full flex items-center justify-center p-8 bg-white">
-          <div className="w-full max-w-md h-full flex items-center justify-center bg-white rounded-2xl p-4">
-            <img
-              src="/m7.png" 
-              alt="Rental Management Illustration"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Text Content */}
-        <div className="md:w-1/2 w-full p-8 md:p-12 flex flex-col gap-6">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
-          Are you a renter? Avail is here for you, too!
+        {/* LEFT: TEXT CONTENT */}
+        <div className="text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black leading-tight mb-6">
+            Are you a renter? Avail is here for you, too!
           </h1>
-          <p className="text-gray-700 text-lg leading-relaxed">
-           Feel secure communicating to Avail verified landlords through the built-in messaging system in Avail. Simplify paying your rent by scheduling payments in advance using either a credit card or direct from your ACH. Build your credit using CreditBoost, enabling you to report on-time rent payments to TransUnion®.
+
+          <p className="text-black text-lg max-w-xl mb-6">
+            Feel secure communicating with Avail-verified landlords through the built-in messaging system. Schedule rent payments in advance via credit card or ACH, and build your credit using CreditBoost, reporting on-time rent payments to TransUnion®.
           </p>
-          <button className="mt-4 bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-yellow-700 transition w-max shadow-lg">
+
+          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>
 
-      </div>
-    </div>
-  )
-}
+        {/* RIGHT: IMAGE */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
+          <Image
+            src="/m7.png"
+            alt="Renter Features Illustration"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
 
-export default ManageCard7
+      </div>
+    </section>
+  );
+};
+
+export default ManageCard7;

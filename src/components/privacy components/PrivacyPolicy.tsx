@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useState } from "react";
 import {
   Shield,
@@ -88,11 +87,40 @@ export default function PrivacyPolicy() {
   return (
     <div className="min-h-screen bg-white py-16 px-4 relative overflow-hidden">
       <div className="relative max-w-6xl mx-auto">
-        {/* HEADER */}
-        <header className="text-center mb-16">
-          <div className="inline-flex items-center gap-3 font-bold px-8 py-3 rounded-full mb-8">
-            <Shield className="w-6 h-6" />
-            YOUR PRIVACY MATTERS
+        {/* Header */}
+        <header className="relative rounded-3xl p-12 md:p-20 mb-16 overflow-hidden">
+          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-40"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-20"></div>
+
+          <div className="relative z-10 text-center">
+            <div className="inline-flex items-center gap-3 text-black text-sm font-bold px-8 py-3 rounded-full mb-8 animate-pulse">
+              <Shield className="text-xl" />
+              YOUR PRIVACY MATTERS
+            </div>
+
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-black mb-8 leading-tight tracking-tight">
+              Privacy <span className="text-black bg-clip-text">Policy</span>
+            </h1>
+
+            <p className="text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto font-light">
+              At{" "}
+              <span className="font-semibold text-yellow-400">RealChoice</span>,
+              your privacy is our top priority. We are committed to protecting
+              your personal information and being transparent about how we
+              collect, use, and safeguard your data.
+            </p>
+
+            <div className="mt-10 flex flex-wrap justify-center gap-6 text-base text-black">
+              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
+                📅 Last Updated: December 2025
+              </span>
+              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
+                ⏱️ 5 min read
+              </span>
+              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
+                🔒 GDPR Compliant
+              </span>
+            </div>
           </div>
 
           <h1 className="text-5xl md:text-6xl font-black mb-6">
@@ -146,7 +174,13 @@ export default function PrivacyPolicy() {
                     <h2 className="text-2xl font-black">
                       {i + 1}. {item.title}
                     </h2>
-                    {expandedSection === i ? <ChevronUp /> : <ChevronDown />}
+                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 group-hover:bg-yellow-100 flex items-center justify-center text-gray-600 group-hover:text-yellow-600 transition-all">
+                      {expandedSection === i ? (
+                        <ChevronUp className="text-xl" />
+                      ) : (
+                        <ChevronDown className="text-xl" />
+                      )}
+                    </div>
                   </div>
                   <p className="text-gray-700">{item.shortDesc}</p>
                 </div>
@@ -171,9 +205,10 @@ export default function PrivacyPolicy() {
             window.scrollTo({ top: 0, behavior: "smooth" });
             setExpandedSection(null);
           }}
-          className="fixed bottom-8 right-8 bg-white p-5 rounded-xl shadow-lg"
+          className="fixed bottom-8 right-8 bg-white text-black font-bold p-5 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-110 transition-all z-50 group"
+          aria-label="Back to top"
         >
-          <ArrowUp className="w-6 h-6" />
+          <ArrowUp className="text-2xl group-hover:-translate-y-1 transition-transform" />
         </button>
       )}
     </div>

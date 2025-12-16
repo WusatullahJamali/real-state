@@ -1,40 +1,42 @@
-import React from 'react'
-import Image from 'next/image'
+"use client";
+
+import React from "react";
+import Image from "next/image";
 
 const ManageCard3 = () => {
   return (
-    <div className="py-16 px-6 bg-white text-black">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center bg-white rounded-3xl shadow-xl overflow-hidden">
+    <section className="bg-white py-16">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Image Section */}
-        <div className="md:w-1/2 w-full flex items-center justify-center p-8 bg-white">
-          <div className="w-full max-w-md h-full flex items-center justify-center bg-white rounded-2xl p-4">
-            <Image
-              src="/m3.png" 
-              alt="Rental Management Illustration"
-              height={200}
-              width={200}
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Text Content */}
-        <div className="md:w-1/2 w-full p-8 md:p-12 flex flex-col gap-6">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
-           Applications and Screening
+        {/* LEFT: TEXT CONTENT */}
+        <div className="text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black leading-tight mb-6">
+            Applications and Screening
           </h1>
-          <p className="text-gray-700 text-lg leading-relaxed">
-           Avail features customizable applications and robust TransUnion® screening options to help you find and choose the right renter for your property with confidence.
+
+          <p className="text-black text-lg max-w-xl mb-6">
+            Avail features customizable applications and robust TransUnion® screening options to help you find and choose the right renter for your property with confidence.
           </p>
-          <button className="mt-4 bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-yellow-700 transition w-max shadow-lg">
+
+          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>
 
-      </div>
-    </div>
-  )
-}
+        {/* RIGHT: IMAGE */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
+          <Image
+            src="/m3.png"
+            alt="Applications and Screening Illustration"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
 
-export default ManageCard3
+      </div>
+    </section>
+  );
+};
+
+export default ManageCard3;

@@ -58,9 +58,7 @@ type LocationMapProps = {
 };
 
 const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img }) => (
-  <div
-    className={`h-48 w-full relative overflow-hidden border-b border-gray-200`}
-  >
+  <div className="h-48 w-full relative overflow-hidden border-b border-gray-200">
     {img ? (
       <Image src={img} alt={`${name} map`} fill className="object-cover" />
     ) : (
@@ -92,7 +90,7 @@ export default function RecommendedLocations() {
 
         {/* Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {RECOMMENDED_LOCATIONS.map((location: LocationType) => (
+          {RECOMMENDED_LOCATIONS.map((location) => (
             <div
               key={location.id}
               className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden cursor-pointer border border-gray-100"
