@@ -13,7 +13,6 @@ interface BlogPost {
   readTime: string;
 }
 
-// Blog Data — 4 Cards With Authors + Read Time
 const blogs = [
   {
     id: 1,
@@ -59,12 +58,7 @@ const blogs = [
 
 
 // BLOG CARD
-type BlogCardProps = {
-  post: BlogPost;
-};
-
-const BlogCard = ({ post }: BlogCardProps) => {
-
+const BlogCard = ({ post }: { post: BlogPost }) => {
   return (
     <Link
       href={`/blog/${post.id}`}

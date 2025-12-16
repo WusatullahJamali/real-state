@@ -4,60 +4,61 @@ import Link from "next/link";
 import { Heart } from "lucide-react";
 
 const ExploreAlaska = () => {
-  const listings = [
-    {
-      id: 1,
-      image: "/alaska1.webp",
-      badge: "New units",
-      special: "Rent Special",
-      type: "Apartment",
-      price: "$1,215 - $1,225",
-      beds: "1",
-      baths: 1,
-      sqft: "550",
-      address: "601 W 32nd Ave",
-      city: "Anchorage, AK 99503",
-    },
-    {
-      id: 2,
-      image: "/alaska3.webp",
-      badge: "New units",
-      special: "Rent Special",
-      type: "Apartment",
-      price: "$1,346 - $1,685",
-      beds: "1 - 3",
-      baths: 1,
-      sqft: "630 - 865",
-      address: "218 McCarrey St",
-      city: "Anchorage, AK 99508",
-    },
-    {
-      id: 3,
-      image: "/alaska4.webp",
-      badge: "New units",
-      special: "Rent Special",
-      type: "Apartment",
-      price: "$1,899 - $2,445",
-      beds: "2 - 3",
-      baths: 2,
-      sqft: "1,025 - 1,065",
-      address: "5901 E 6th Ave",
-      city: "Anchorage, AK 99504",
-    },
-    {
-      id: 4,
-      image: "/alaska5.webp",
-      badge: "New units",
-      special: "Rent Special",
-      type: "Apartment",
-      price: "$1,299 - $2,149",
-      beds: "1 - 2",
-      baths: 1,
-      sqft: "445 - 1,008",
-      address: "5340 E 26th Ave",
-      city: "Anchorage, AK 99508",
-    },
-  ];
+ const listings = [
+  {
+    id: 1,
+    image: "/alaska1.webp",
+    badge: "New units",
+    special: "Rent Special",
+    type: "Apartment",
+    price: "$550 - $580",
+    beds: "1",
+    baths: 1,
+    sqft: "550",
+    address: "Al-Zahraa",
+    city: "Najaf, Iraq",
+  },
+  {
+    id: 2,
+    image: "/alaska3.webp",
+    badge: "New units",
+    special: "Rent Special",
+    type: "Apartment",
+    price: "$600 - $950",
+    beds: "1 - 3",
+    baths: 1,
+    sqft: "630 - 865",
+    address: "Italian Village",
+    city: "Erbil, Kurdistan Region",
+  },
+  {
+    id: 3,
+    image: "/alaska4.webp",
+    badge: "New units",
+    special: "Rent Special",
+    type: "Apartment",
+    price: "$1,200 - $1,600",
+    beds: "2 - 3",
+    baths: 2,
+    sqft: "1,025 - 1,065",
+    address: "Royal City",
+    city: "Erbil, Kurdistan Region",
+  },
+  {
+    id: 4,
+    image: "/alaska5.webp",
+    badge: "New units",
+    special: "Rent Special",
+    type: "Apartment",
+    price: "$700 - $1,100",
+    beds: "1 - 2",
+    baths: 1,
+    sqft: "445 - 1,008",
+    address: "Al-Karada",
+    city: "Baghdad, Iraq",
+  },
+];
+
 
   const [saved, setSaved] = useState<number[]>([]);
 
@@ -70,7 +71,7 @@ const ExploreAlaska = () => {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-1">Explore Alaska</h1>
+        <h1 className="text-3xl font-bold mb-1">Explore Home</h1>
         <a href="#" className="text-yellow-600 hover:underline text-sm">
           View all rentals with rent specials
         </a>

@@ -1,6 +1,6 @@
 "use client"
 import React from "react";
-import { Shield, Mail, Phone } from "lucide-react";
+import { Mail, Phone, Shield } from "lucide-react";
 
 const PrivacyFooter = () => {
   const rights = [
@@ -22,7 +22,7 @@ const PrivacyFooter = () => {
           {/* Rights */}
           <div className="bg-white rounded-3xl p-10 shadow-[0_6px_32px_rgba(0,0,0,0.05)] border border-yellow-200/60">
             <h2 className="text-4xl font-black text-black mb-10 flex items-center gap-3">
-              <Shield className="text-yellow-600" size={40} />
+              <Shield className="text-yellow-600 text-5xl" />
               Your Privacy Rights
             </h2>
 

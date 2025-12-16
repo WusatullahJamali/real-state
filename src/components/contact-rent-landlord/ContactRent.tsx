@@ -1,207 +1,217 @@
 "use client";
 import React, { useState } from "react";
 
-// Assuming you have a placeholder image or component for the property image
+// Property Image
 const PropertyImagePlaceholder = () => (
-  <div className="w-full aspect-square bg-gray-200 rounded-lg overflow-hidden">
-    {/* Replace with your actual Image component/source */}
+  <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
     <img
-      src="l1.jpg" // Placeholder image
+      src="/l1.jpg"
       alt="Property"
       className="w-full h-full object-cover"
     />
+    <span className="absolute top-3 left-3 bg-yellow-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
+      For Rent
+    </span>
   </div>
 );
 
 const ContactRent = () => {
   const [formData, setFormData] = useState({
     fullName: "",
-    email: "", // Used email instead of a separate viewing field
+    email: "",
     phone: "",
-    inquiryType: "scheduleViewing", // Default value
+    inquiryType: "scheduleViewing",
     message: "",
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  // Inquiry options for the dropdown
   const inquiryOptions = [
     { value: "scheduleViewing", label: "Schedule a Viewing" },
     { value: "askQuestion", label: "Ask a Question" },
     { value: "requestApplication", label: "Request Application Form" },
   ];
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+  ) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
-    // Simulate API call success
     setIsSubmitted(true);
-    // You might want to reset the form data after a few seconds or when the user navigates away
-    // setFormData({ name: "", email: "", phone: "", inquiryType: "scheduleViewing", message: "" });
   };
 
-  // --- Property Details (Static for this example) ---
   const propertyDetails = {
     address: "123 Main St, Anytown, USA",
-    price: "$1,500/mo",
-    details: "2 Bed / 1 Bath",
+    price: "$1,500 / month",
+    details: "2 Beds • 1 Bath • 1,050 sqft",
   };
-  // ----------------------------------------------------
 
   return (
-    <section className="min-h-screen bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto bg-white p-6 sm:p-10 rounded-xl shadow-2xl border border-gray-100">
-        
-        {/* --- Header & Instructions --- */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-800">
+    <section className="bg-white py-20 px-4">
+      <div className="max-w-5xl mx-auto bg-white p-8 lg:p-12">
+
+        {/* HEADER */}
+        <div className="mb-10">
+          <h1 className="text-3xl lg:text-4xl font-bold text-black">
             Contact the Landlord
           </h1>
-          <p className="text-lg text-yellow-600 mt-1 mb-4">
-            Inquire about {propertyDetails.address}
+          <p className="text-yellow-600 font-medium mt-1">
+            Inquire about this property
           </p>
-          <p className="text-sm text-gray-500 max-w-lg">
-            Please use the form below for serious inquiries only. Your message will be sent directly to the property manager.
+          <p className="text-black mt-3 max-w-xl">
+            Fill out the form below to reach the landlord directly. Serious
+            inquiries only — responses are typically quick.
           </p>
         </div>
 
-        {/* --- Main Content Area: Two Columns --- */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
 
-          {/* LEFT COLUMN: The Contact Form (2/3 width) */}
+          {/* FORM */}
           <div className="lg:col-span-2">
             {isSubmitted ? (
-              <div className="py-12 text-center bg-green-50 rounded-lg border border-green-200">
-                <p className="text-2xl font-semibold text-green-700 mb-2">
-                  🎉 Message Sent Successfully!
-                </p>
-                <p className="text-gray-600">
-                  The landlord has received your inquiry and will respond soon.
+              <div className="flex flex-col items-center justify-center text-center bg-green-50 border border-green-200 rounded-xl p-10">
+                <h2 className="text-2xl font-bold text-green-700 mb-2">
+                  🎉 Message Sent!
+                </h2>
+                <p className="text-gray-600 mb-6">
+                  The landlord will get back to you shortly.
                 </p>
                 <button
                   onClick={() => setIsSubmitted(false)}
-                  className="mt-4 text-yellow-600 hover:text-yellow-800 text-sm"
+                  className="text-yellow-600 font-medium hover:underline"
                 >
                   Send another message
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-                {/* Full Name */}
-                <div className="grid grid-cols-3 items-center">
-                  <label htmlFor="fullName" className="text-gray-600 text-sm">Full Name</label>
+              <form onSubmit={handleSubmit} className="space-y-6">
+
+                {/* NAME */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-1">
+                    Full Name
+                  </label>
                   <input
                     type="text"
-                    id="fullName"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
                     placeholder="John Smith"
-                    className="col-span-2 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                     required
                   />
                 </div>
 
-                {/* Email Address */}
-                <div className="grid grid-cols-3 items-center">
-                  <label htmlFor="email" className="text-gray-600 text-sm">Email Address</label>
+                {/* EMAIL */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-1">
+                    Email Address
+                  </label>
                   <input
                     type="email"
-                    id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="email@example.com"
-                    className="col-span-2 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                     required
                   />
                 </div>
 
-                {/* Phone Number */}
-                <div className="grid grid-cols-3 items-center">
-                  <label htmlFor="phone" className="text-gray-600 text-sm">Phone Number</label>
+                {/* PHONE */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-1">
+                    Phone Number
+                  </label>
                   <input
                     type="tel"
-                    id="phone"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="(555) 123-4567"
-                    className="col-span-2 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="+1 555 123 4567"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                   />
                 </div>
 
-                {/* Inquiry Type (Dropdown) */}
-                <div className="grid grid-cols-3 items-center">
-                  <label htmlFor="inquiryType" className="text-gray-600 text-sm">Inquiry Type</label>
+                {/* INQUIRY TYPE */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-1">
+                    Inquiry Type
+                  </label>
                   <select
-                    id="inquiryType"
                     name="inquiryType"
                     value={formData.inquiryType}
                     onChange={handleChange}
-                    className="col-span-2 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500 bg-white"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 bg-white focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                   >
-                    {inquiryOptions.map((option) => (
-                      <option key={option.value} value={option.value}>
-                        {option.label}
+                    {inquiryOptions.map((opt) => (
+                      <option key={opt.value} value={opt.value}>
+                        {opt.label}
                       </option>
                     ))}
                   </select>
                 </div>
 
-                {/* Message */}
-                <div className="grid grid-cols-3 gap-y-2">
-                  <label htmlFor="message" className="col-span-3 text-gray-600 text-sm lg:col-span-1">Your Message</label>
+                {/* MESSAGE */}
+                <div>
+                  <label className="block text-sm font-medium text-black mb-1">
+                    Message
+                  </label>
                   <textarea
-                    id="message"
                     name="message"
+                    rows={4}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell the landlord a little about yourself or your specific questions..."
-                    rows={4}
-                    className="col-span-3 border border-gray-300 rounded-md p-2 focus:ring-blue-500 focus:border-blue-500"
+                    placeholder="Tell the landlord about yourself or your questions..."
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                     required
                   />
                 </div>
 
-                {/* Submit Button */}
+                {/* SUBMIT */}
                 <button
                   type="submit"
-                  className="bg-yellow-600 text-white font-semibold py-3 rounded-md hover:bg-yellow-700 transition"
+                  className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-4 rounded-xl transition shadow-md"
                 >
                   Send Message
                 </button>
 
-                {/* Privacy Policy Link */}
-                <p className="text-xs text-gray-500 text-center mt-1">
-                  By clicking "Send Message", you agree to our <a href="#" className="text-yellow-600 hover:underline">Privacy Policy</a>.
+                <p className="text-xs text-gray-500 text-center">
+                  By submitting, you agree to our{" "}
+                  <a href="#" className="text-yellow-600 hover:underline">
+                    Privacy Policy
+                  </a>
                 </p>
               </form>
             )}
           </div>
 
-          {/* RIGHT COLUMN: Property Card (1/3 width) */}
-          <div className="lg:col-span-1 border-l lg:pl-10 space-y-4">
+          {/* PROPERTY CARD */}
+          <div className="lg:col-span-1 space-y-5">
             <PropertyImagePlaceholder />
-            
-            <p className="text-sm text-gray-500">{propertyDetails.address}</p>
-            
-            <h2 className="text-2xl font-bold text-gray-800">
-              {propertyDetails.price}
-            </h2>
-            
-            <p className="text-gray-600">{propertyDetails.details}</p>
 
-            <a
-              href="#"
-              className="block text-yellow-600 hover:text-yellow-800 text-sm font-medium pt-2"
-            >
-              View Full Listing Details
-            </a>
+            <div className="bg-gray-50 border border-gray-200 rounded-xl p-5 space-y-2">
+              <p className="text-sm text-gray-500">{propertyDetails.address}</p>
+
+              <h3 className="text-2xl font-bold text-gray-900">
+                {propertyDetails.price}
+              </h3>
+
+              <p className="text-gray-600 text-sm">
+                {propertyDetails.details}
+              </p>
+
+              <a
+                href="#"
+                className="inline-block text-yellow-600 font-medium text-sm hover:underline pt-2"
+              >
+                View full listing →
+              </a>
+            </div>
           </div>
 
         </div>
