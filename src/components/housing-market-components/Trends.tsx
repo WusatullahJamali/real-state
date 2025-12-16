@@ -60,9 +60,9 @@ const ChartGrowth = () => (
     transition={{ delay: 0.3, duration: 1, ease: "easeOut" }}
     className="relative h-24 w-full origin-left overflow-hidden rounded-xl bg-amber-50"
   >
-    <div className="absolute inset-0 bg-gradient-to-tr from-amber-400/50 to-amber-200/50"></div>
+    <div className="absolute inset-0 bg-linear-to-tr from-amber-400/50 to-amber-200/50"></div>
     <TrendingUp
-      className="absolute right-[-10px] top-[-10px] h-36 w-36 text-amber-500/80"
+      className="absolute -right-2.5 -top-2.5 h-36 w-36 text-amber-500/80"
       strokeWidth={0.5}
     />
     <svg className="absolute inset-0 h-full w-full" viewBox="0 0 100 100">

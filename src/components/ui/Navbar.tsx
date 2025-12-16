@@ -10,7 +10,8 @@ import { ChevronDown, User, Plus, Menu, X } from "lucide-react";
 type MenuItemType = {
   text: string;
   href: string;
-  icon: any;
+  // Corrected icon type: it should be optional and allow null based on data
+  icon: any | null;
   description?: string;
 };
 type MegaMenuColumn = {
@@ -208,6 +209,10 @@ const MegaMenuItem = ({ item }: { item: MenuItemType }) => {
 export default function Navbar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
+  // ERROR FIX: Added missing state declarations
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
+  const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
   const getMegaMenu = (name: string) =>
     megaMenuContent[name as keyof typeof megaMenuContent];
@@ -219,13 +224,12 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-4">
           <Link href="/" className="shrink-0">
             <Image
-  src="/logo-svg-01.svg"
-  width={90}
-  height={60}
-  alt="logo"
-  className="h-14 w-aut md:invert scale-250"
-/>
-
+              src="/logo-svg-01.svg"
+              width={90}
+              height={60}
+              alt="logo"
+              className="h-14 w-aut md:invert scale-250"
+            />
           </Link>
 
           {/* DESKTOP MENU */}
@@ -233,19 +237,20 @@ export default function Navbar() {
             {menuItems.map((item) => (
               <li
                 key={item.name}
+                // ERROR FIX: Removed duplicate `className="relative"`
                 className="relative px-6 "
                 onMouseEnter={() =>
                   item.hasDropdown && setActiveMenu(item.name)
                 }
                 onMouseLeave={() => setActiveMenu(null)}
-                className="relative"
               >
                 <Link
                   href={item.href}
-                  className={`px-3 py-2 transition ${
+                  className={`px-3 py-2 transition text-white ${
+                    // Changed text-gray-700 to text-white for visibility on the dark navbar background
                     activeMenu === item.name
                       ? "text-yellow-500"
-                      : "text-gray-700 hover:text-yellow-500"
+                      : "hover:text-yellow-500"
                   }`}
                 >
                   {item.name}
@@ -260,10 +265,10 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
+                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
                       >
                         <div
-                          className="grid gap-6"
+                          className="p-6 grid gap-6" // Added p-6 here for padding
                           style={{
                             gridTemplateColumns: `repeat(${
                               getMegaMenu(item.name).columns.length
@@ -278,10 +283,21 @@ export default function Navbar() {
 
                               {col.isFeatured && col.cta ? (
                                 <div className="bg-yellow-50 p-4 rounded-lg">
-                                  <div className="h-24 bg-gray-200 rounded mb-3"></div>
+                                  {/* Featured Image Placeholder */}
+                                  <div className="relative h-24 bg-gray-200 rounded mb-3 overflow-hidden">
+                                    {col.image && (
+                                      <Image
+                                        src={col.image}
+                                        alt={col.title}
+                                        fill
+                                        style={{ objectFit: "cover" }}
+                                        className="rounded"
+                                      />
+                                    )}
+                                  </div>
                                   <Link
                                     href={col.cta.href}
-                                    className="block bg-yellow-600 text-white text-center py-2 rounded-lg"
+                                    className="block bg-yellow-600 text-white text-center py-2 rounded-lg hover:bg-yellow-700 transition"
                                   >
                                     {col.cta.text}
                                   </Link>
@@ -306,33 +322,31 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
-           {!isLoggedIn ? (
-  <div className="hidden xl:flex items-center gap-3">
-    {/* LOGIN */}
-    <button
-      onClick={() => setAuthModal("login")}
-      className="flex items-center text-sm font-medium text-white hover:text-yellow-500"
-    >
-      <User className="w-4 h-4 mr-1 cursor-pointer" />
-      LOGIN
-    </button>
-
-    {/* REGISTER */}
-<button
-  onClick={() => setAuthModal("signup")}
-  className="flex items-center cursor-pointer text-sm font-medium px-4  py-2 rounded-lg
-             bg-yellow-500 text-black hover:bg-yellow-400 transition"
->
-  REGISTER
-</button>
-
-  </div>
-) : (
-  <div className="hidden xl:flex items-center gap-2 relative">
-    {/* your profile code stays EXACTLY the same */}
-
+            {!isLoggedIn ? (
+              <div className="hidden xl:flex items-center gap-3">
+                {/* LOGIN */}
                 <button
-                  className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200"
+                  onClick={() => setAuthModal("login")}
+                  className="flex items-center text-sm font-medium text-white hover:text-yellow-500"
+                >
+                  <User className="w-4 h-4 mr-1 cursor-pointer" />
+                  LOGIN
+                </button>
+
+                {/* REGISTER */}
+                <button
+                  onClick={() => setAuthModal("signup")}
+                  className="flex items-center cursor-pointer text-sm font-medium px-4  py-2 rounded-lg
+             bg-yellow-500 text-black hover:bg-yellow-400 transition"
+                >
+                  REGISTER
+                </button>
+              </div>
+            ) : (
+              <div className="hidden xl:flex items-center gap-2 relative">
+                {/* PROFILE BUTTON */}
+                <button
+                  className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200 text-black"
                   onClick={() =>
                     setMobileExpanded(
                       mobileExpanded === "profile" ? null : "profile"
@@ -357,7 +371,10 @@ export default function Navbar() {
                       <ul className="py-2">
                         <li>
                           <button
-                            onClick={() => alert("Change Password")}
+                            onClick={() => {
+                              alert("Change Password");
+                              setMobileExpanded(null); // Close after action
+                            }}
                             className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
                           >
                             Change Password
@@ -365,7 +382,10 @@ export default function Navbar() {
                         </li>
                         <li>
                           <button
-                            onClick={() => setIsLoggedIn(false)}
+                            onClick={() => {
+                              setIsLoggedIn(false);
+                              setMobileExpanded(null); // Close after action
+                            }}
                             className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
                           >
                             Logout
@@ -389,10 +409,11 @@ export default function Navbar() {
 
           {/* MOBILE BUTTON */}
           <button onClick={() => setMobileOpen(true)} className="lg:hidden p-2">
-            <Menu className="w-6 h-6 text-gray-700" />
+            {/* Changed text-gray-700 to text-white for visibility on the dark navbar background */}
+            <Menu className="w-6 h-6 text-white" />
           </button>
         </div>
-      </nav>
+      </motion.nav>
 
       {/* MOBILE MENU */}
       <AnimatePresence>
@@ -416,7 +437,12 @@ export default function Navbar() {
             >
               <div className="flex justify-between items-center mb-6 border-b pb-4">
                 {/* Note: changed to /logo-svg-01.svg for consistency with desktop logo path in this example */}
-                <Image src="/logo-svg-01.svg" width={90} height={60} alt="logo"  />
+                <Image
+                  src="/logo-svg-01.svg"
+                  width={90}
+                  height={60}
+                  alt="logo"
+                />
                 <button
                   className="text-black"
                   onClick={() => setMobileOpen(false)}
@@ -452,7 +478,7 @@ export default function Navbar() {
                           {/* DROPDOWN */}
                           <AnimatePresence>
                             {isOpen && (
-                              <motion.div    
+                              <motion.div
                                 initial={{ height: 0 }}
                                 animate={{ height: "auto" }}
                                 exit={{ height: 0 }}
@@ -473,9 +499,8 @@ export default function Navbar() {
                                                 onClick={() =>
                                                   setMobileOpen(false)
                                                 }
-                                                // Mobile Sub-link: set text to gray-700 and hover to yellow-600
-                                                // Note: The previous code had "text-white" here, which seems incorrect for a mobile menu on a white background. I'm defaulting to a readable color (gray-700) with the requested hover color (yellow-600)
-                                                className="block py-1.5 text-sm text-yellow-500 hover:text-yellow-600 hover:pl-1 transition-all"
+                                                // Corrected mobile sub-link styling:
+                                                className="block py-1.5 text-sm text-gray-700 hover:text-yellow-600 hover:pl-1 transition-all"
                                               >
                                                 {sub.text}
                                               </Link>
@@ -504,48 +529,51 @@ export default function Navbar() {
                 })}
               </ul>
 
-           {!isLoggedIn ? (
-  <div className="mt-6 space-y-3">
-    {/* LOGIN */}
-    <button
-      onClick={() => {
-        setAuthModal("login");
-        setMobileOpen(false);
-      }}
-      className="w-full border text-black py-2 rounded-lg font-medium"
-    >
-      LOGIN
-    </button>
+              {!isLoggedIn ? (
+                <div className="mt-6 space-y-3">
+                  {/* LOGIN */}
+                  <button
+                    onClick={() => {
+                      setAuthModal("login");
+                      setMobileOpen(false);
+                    }}
+                    className="w-full border text-black py-2 rounded-lg font-medium hover:bg-gray-100 transition"
+                  >
+                    LOGIN
+                  </button>
 
-    {/* REGISTER */}
-    <button
-      onClick={() => {
-        setAuthModal("signup");
-        setMobileOpen(false);
-      }}
-      className="w-full bg-yellow-500 text-black py-2 rounded-lg font-medium hover:bg-yellow-400 transition"
-    >
-      REGISTER
-    </button>
-  </div>
-) : (
-  <>
-    <Link
-      href="/add-property"
-      className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold"
-    >
-      ADD PROPERTY
-    </Link>
+                  {/* REGISTER */}
+                  <button
+                    onClick={() => {
+                      setAuthModal("signup");
+                      setMobileOpen(false);
+                    }}
+                    className="w-full bg-yellow-500 text-black py-2 rounded-lg font-medium hover:bg-yellow-400 transition"
+                  >
+                    REGISTER
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <Link
+                    href="/add-property"
+                    onClick={() => setMobileOpen(false)} // Added to close menu on navigation
+                    className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold hover:bg-yellow-600 transition"
+                  >
+                    ADD PROPERTY
+                  </Link>
 
-    <button
-      onClick={() => setIsLoggedIn(false)}
-      className="mt-2 w-full border py-2 rounded-lg font-medium"
-    >
-      Logout
-    </button>
-  </>
-)}
-
+                  <button
+                    onClick={() => {
+                      setIsLoggedIn(false);
+                      setMobileOpen(false); // Close menu on logout
+                    }}
+                    className="mt-2 w-full border py-2 rounded-lg font-medium hover:bg-gray-100 transition"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
             </motion.div>
           </>
         )}
