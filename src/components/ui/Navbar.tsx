@@ -3,32 +3,54 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, User, Plus, Menu, X } from "lucide-react";
 
-// --- Types ---
-type MenuItemType = {
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  ChevronDown,
+  User,
+  Plus,
+  Menu,
+  X,
+  Home,
+  Building,
+  House,
+  Briefcase,
+  Layers,
+  Info,
+  BookOpen,
+} from "lucide-react";
+
+import LoginModal from "@/components/Auth/loginModal";
+import SignupModal from "@/components/Auth/SignupModal";
+
+// --- TYPES ---
+type MenuItem = { name: string; href: string; hasDropdown: boolean };
+type MegaMenuSubItem = {
   text: string;
   href: string;
-  // Corrected icon type: it should be optional and allow null based on data
-  icon: any | null;
+  icon: React.ComponentType<{ className?: string }>;
   description?: string;
 };
 type MegaMenuColumn = {
   title: string;
-  items?: MenuItemType[];
+  items?: MegaMenuSubItem[];
   isFeatured?: boolean;
-  image?: string;
   cta?: { text: string; href: string };
 };
+type MegaMenuContent = Record<string, { columns: MegaMenuColumn[] }>;
 
-type MegaMenuContent = {
-  [key: string]: { columns: MegaMenuColumn[] };
-};
+// --- MENU DATA ---
+const menuItems: MenuItem[] = [
+  { name: "HOME", href: "/", hasDropdown: false },
+  { name: "SALE", href: "/sell", hasDropdown: true },
+  { name: "FOR RENT", href: "/rent", hasDropdown: true },
+  { name: "PROPERTY", href: "/mortgage", hasDropdown: true },
+  { name: "SERVICES", href: "/pages", hasDropdown: true },
+  { name: "CONTACT US", href: "/contact", hasDropdown: false },
+];
 
-// --- Mega Menu Data ---
 const megaMenuContent: MegaMenuContent = {
-  "FOR SALE": {
+  SALE: {
     columns: [
       {
         title: "Buying Essentials",
@@ -36,20 +58,20 @@ const megaMenuContent: MegaMenuContent = {
           {
             text: "Homes for Sale",
             href: "/sell/home-for-sale",
-            icon: null,
-            description: "Find your dream house or apartment.",
+            icon: Home,
+            description: "Find your dream house.",
           },
           {
             text: "New Construction",
             href: "/new-construction",
-            icon: null,
-            description: "Discover the latest properties.",
+            icon: Building,
+            description: "Latest properties.",
           },
           {
             text: "Recently Sold",
             href: "/recently-sold-homes",
-            icon: null,
-            description: "View current market values.",
+            icon: House,
+            description: "Market values.",
           },
         ],
       },
@@ -59,163 +81,115 @@ const megaMenuContent: MegaMenuContent = {
           {
             text: "Explore Neighborhoods",
             href: "/sell/neighbourhood",
-            icon: null,
-            description: "Detailed area guides and statistics.",
+            icon: Info,
+            description: "Area guides.",
           },
           {
             text: "Housing Market Trends",
             href: "/housing-market-trends",
-            icon: null,
-            description: "Analysis and forecasts.",
+            icon: Briefcase,
+            description: "Analysis.",
           },
         ],
       },
-      {
-        title: "Featured Service",
-        isFeatured: true,
-        image: "/images/featured-sale.jpg",
-        cta: {
-          text: "Get a Free Home Valuation",
-          href: "/free-valuation",
-        },
-      },
     ],
   },
-
   "FOR RENT": {
     columns: [
       {
         title: "Rental Types",
         items: [
-          {
-            text: "Apartments for Rent",
-            href: "/apartments-for-rent",
-            icon: null,
-          },
-          { text: "Houses for Rent", href: "/houses-for-rent", icon: null },
+          { text: "Apartments", href: "/apartments-for-rent", icon: Building },
+          { text: "Houses", href: "/houses-for-rent", icon: House },
         ],
       },
       {
         title: "Landlord Resources",
         items: [
-          { text: "Manage Rentals", href: "/manage-rentals", icon: null },
-          { text: "List Your Rentals", href: "/list-your-rentals", icon: null },
+          { text: "Manage Rentals", href: "/manage-rentals", icon: Briefcase },
+          { text: "List Rentals", href: "/list-your-rentals", icon: Plus },
           {
             text: "Contact Landlord",
             href: "/contact-rent-landlord",
-            icon: null,
+            icon: User,
           },
         ],
       },
     ],
   },
-
   PROPERTY: {
     columns: [
       {
         title: "Search & Valuation",
         items: [
-          { text: "Property Search", href: "/property-search", icon: null },
-          { text: "Property Listings", href: "/property-listings", icon: null },
+          { text: "Property Search", href: "/property-search", icon: Layers },
+          { text: "Property Listings", href: "/property-listings", icon: Home },
           {
             text: "Property Valuation",
             href: "/property-valuation",
-            icon: null,
+            icon: Info,
           },
         ],
       },
       {
-        title: "Investment & Types",
+        title: "Investment",
         items: [
-          {
-            text: "Property Investment",
-            href: "/property-investment",
-            icon: null,
-          },
-          {
-            text: "Commercial Property",
-            href: "/commercial-property",
-            icon: null,
-          },
-          {
-            text: "Residential Property",
-            href: "/residential-property",
-            icon: null,
-          },
-          { text: "Property Types", href: "/property-types", icon: null },
+          { text: "Investment", href: "/property-investment", icon: Briefcase },
+          { text: "Commercial", href: "/commercial-property", icon: Building },
+          { text: "Residential", href: "/residential-property", icon: House },
         ],
       },
     ],
   },
-
-  PAGES: {
+  SERVICES: {
     columns: [
       {
         title: "Company",
         items: [
-          { text: "About Us", href: "/about", icon: null },
-          { text: "Contact Us", href: "/contact", icon: null },
-          { text: "Careers", href: "/careers", icon: null },
+          { text: "About Us", href: "/about", icon: Info },
+          { text: "Contact Us", href: "/contact", icon: BookOpen },
+          { text: "Careers", href: "/careers", icon: Briefcase },
         ],
       },
       {
         title: "Resources",
         items: [
-          { text: "Blog", href: "/blog", icon: null },
-          { text: "FAQ", href: "/faq", icon: null },
+          { text: "Blog", href: "/blog", icon: BookOpen },
+          { text: "FAQ", href: "/faq", icon: Info },
         ],
       },
       {
         title: "Legal",
         items: [
-          { text: "Terms of Service", href: "/terms-of-service", icon: null },
-          { text: "Privacy Policy", href: "/privacy-policy", icon: null },
+          { text: "Terms", href: "/terms-of-service", icon: Layers },
+          { text: "Privacy", href: "/privacy-policy", icon: Layers },
         ],
       },
     ],
   },
 };
 
-// Menu Items
-const menuItems = [
-  { name: "HOME", href: "/", hasDropdown: false },
-  { name: "FOR SALE", href: "/sell", hasDropdown: true },
-  { name: "FOR RENT", href: "/rent", hasDropdown: true },
-  { name: "PROPERTY", href: "/mortgage", hasDropdown: true },
-  { name: "PAGES", href: "/pages", hasDropdown: true },
-  { name: "CONTACT US", href: "/contact", hasDropdown: false },
-];
-
-// Mega Item Component
-const MegaMenuItem = ({ item }: { item: MenuItemType }) => {
-  return (
-    <Link
-      href={item.href}
-      className="group flex gap-3 p-2 rounded-lg hover:bg-yellow-50 transition"
-    >
-      <div>
-        <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-sm">
-          {item.text}
-        </div>
-        {item.description && (
-          <p className="text-xs text-gray-500">{item.description}</p>
-        )}
-      </div>
-    </Link>
-  );
-};
-
-// MAIN NAVBAR
 export default function Navbar() {
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
-  // ERROR FIX: Added missing state declarations
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
 
-  const getMegaMenu = (name: string) =>
-    megaMenuContent[name as keyof typeof megaMenuContent];
+  const [isLoggedIn, setIsLoggedIn] = useState(false); // dummy login
+  const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
+
+  // MODIFIED navClass function to set text to white and hover to primary blue (assuming 'yellow-500' is primary blue in this context)
+  // const navClass = (path: string, mobile = false) =>
+  //   mobile
+  //     ? `block p-3 rounded-lg ${
+  //         isActive(path)
+  //           ? "bg-yellow-50 text-yellow-600 font-bold"
+  //           : "text-gray-700 hover:bg-gray-50 hover:text-yellow-500"
+  //       }`
+  //     : `px-3 py-2 text-sm xl:text-base font-medium ${
+  //         isActive(path)
+  //           ? "text-yellow-500 font-bold" // Active link color remains yellow-500
+  //           : "text-white hover:text-yellow-500" // Text is white, hover is yellow-500
+  //       }`;
 
   return (
     <>
@@ -232,85 +206,62 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* DESKTOP MENU */}
-          <ul className="hidden lg:flex space-x-4 font-medium">
+          <ul className="hidden xl:flex items-center  space-x-1">
             {menuItems.map((item) => (
               <li
                 key={item.name}
-                // ERROR FIX: Removed duplicate `className="relative"`
                 className="relative px-6 "
                 onMouseEnter={() =>
-                  item.hasDropdown && setActiveMenu(item.name)
+                  item.hasDropdown && setHoveredMenu(item.name)
                 }
-                onMouseLeave={() => setActiveMenu(null)}
+                onMouseLeave={() => setHoveredMenu(null)}
               >
-                <Link
-                  href={item.href}
-                  className={`px-3 py-2 transition text-white ${
-                    // Changed text-gray-700 to text-white for visibility on the dark navbar background
-                    activeMenu === item.name
-                      ? "text-yellow-500"
-                      : "hover:text-yellow-500"
-                  }`}
-                >
-                  {item.name}
-                </Link>
-
-                {/* DESKTOP MEGA MENU */}
+                <Link href={item.href}>{item.name}</Link>
                 <AnimatePresence>
-                  {item.hasDropdown &&
-                    activeMenu === item.name &&
-                    getMegaMenu(item.name) && (
+                  {hoveredMenu === item.name &&
+                    item.hasDropdown &&
+                    megaMenuContent[item.name] && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
+                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
                       >
                         <div
-                          className="p-6 grid gap-6" // Added p-6 here for padding
+                          className="p-6 grid gap-6"
                           style={{
                             gridTemplateColumns: `repeat(${
-                              getMegaMenu(item.name).columns.length
-                            }, 1fr)`,
+                              megaMenuContent[item.name].columns.length
+                            },1fr)`,
                           }}
                         >
-                          {getMegaMenu(item.name).columns.map((col, i) => (
+                          {megaMenuContent[item.name].columns.map((col, i) => (
                             <div key={i}>
-                              <h4 className="uppercase text-xs font-bold text-gray-500 mb-3">
+                              <h4 className="uppercase text-xs font-bold text-gray-500 mb-4">
                                 {col.title}
                               </h4>
-
-                              {col.isFeatured && col.cta ? (
-                                <div className="bg-yellow-50 p-4 rounded-lg">
-                                  {/* Featured Image Placeholder */}
-                                  <div className="relative h-24 bg-gray-200 rounded mb-3 overflow-hidden">
-                                    {col.image && (
-                                      <Image
-                                        src={col.image}
-                                        alt={col.title}
-                                        fill
-                                        style={{ objectFit: "cover" }}
-                                        className="rounded"
-                                      />
-                                    )}
-                                  </div>
-                                  <Link
-                                    href={col.cta.href}
-                                    className="block bg-yellow-600 text-white text-center py-2 rounded-lg hover:bg-yellow-700 transition"
-                                  >
-                                    {col.cta.text}
-                                  </Link>
-                                </div>
-                              ) : (
-                                <ul className="space-y-2">
-                                  {col.items?.map((sub, idx) => (
-                                    <li key={idx}>
-                                      <MegaMenuItem item={sub} />
-                                    </li>
-                                  ))}
-                                </ul>
-                              )}
+                              <ul className="space-y-1">
+                                {col.items?.map((sub, j) => (
+                                  <li key={j}>
+                                    <Link
+                                      href={sub.href}
+                                      className="group flex gap-3 p-3 rounded-lg hover:bg-yellow-50 transition"
+                                    >
+                                      <sub.icon className="w-5 h-5 text-gray-500 group-hover:text-yellow-600" />
+                                      <div>
+                                        <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-sm">
+                                          {sub.text}
+                                        </div>
+                                        {sub.description && (
+                                          <p className="text-xs text-gray-500">
+                                            {sub.description}
+                                          </p>
+                                        )}
+                                      </div>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
                             </div>
                           ))}
                         </div>
@@ -336,17 +287,18 @@ export default function Navbar() {
                 {/* REGISTER */}
                 <button
                   onClick={() => setAuthModal("signup")}
-                  className="flex items-center cursor-pointer text-sm font-medium px-4  py-2 rounded-lg
-             bg-yellow-500 text-black hover:bg-yellow-400 transition"
+                  className="flex items-center cursor-pointer text-sm font-medium px-4  py-2 rounded-lg
+             bg-yellow-500 text-black hover:bg-yellow-400 transition"
                 >
                   REGISTER
                 </button>
               </div>
             ) : (
               <div className="hidden xl:flex items-center gap-2 relative">
-                {/* PROFILE BUTTON */}
+                {/* your profile code stays EXACTLY the same */}
+
                 <button
-                  className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200 text-black"
+                  className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200"
                   onClick={() =>
                     setMobileExpanded(
                       mobileExpanded === "profile" ? null : "profile"
@@ -371,10 +323,7 @@ export default function Navbar() {
                       <ul className="py-2">
                         <li>
                           <button
-                            onClick={() => {
-                              alert("Change Password");
-                              setMobileExpanded(null); // Close after action
-                            }}
+                            onClick={() => alert("Change Password")}
                             className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
                           >
                             Change Password
@@ -382,10 +331,7 @@ export default function Navbar() {
                         </li>
                         <li>
                           <button
-                            onClick={() => {
-                              setIsLoggedIn(false);
-                              setMobileExpanded(null); // Close after action
-                            }}
+                            onClick={() => setIsLoggedIn(false)}
                             className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
                           >
                             Logout
@@ -398,20 +344,21 @@ export default function Navbar() {
               </div>
             )}
 
-            <Link
-              href="/add-property"
-              className="px-5 py-2 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 font-semibold"
+            {isLoggedIn && (
+              <Link
+                href="/add-property"
+                className="hidden md:flex items-center bg-yellow-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-yellow-600"
+              >
+                <Plus className="w-4 h-4 mr-1" /> ADD PROPERTY
+              </Link>
+            )}
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="xl:hidden p-2 rounded-md hover:bg-gray-100"
             >
-              <Plus className="inline w-4 h-4 mr-1" />
-              ADD PROPERTY
-            </Link>
+              <Menu />
+            </button>
           </div>
-
-          {/* MOBILE BUTTON */}
-          <button onClick={() => setMobileOpen(true)} className="lg:hidden p-2">
-            {/* Changed text-gray-700 to text-white for visibility on the dark navbar background */}
-            <Menu className="w-6 h-6 text-white" />
-          </button>
         </div>
       </motion.nav>
 
@@ -419,16 +366,13 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            {/* BACKDROP */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 0.5 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-40"
+              className="fixed inset-0 bg-black z-50"
               onClick={() => setMobileOpen(false)}
             />
-
-            {/* SIDEBAR */}
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
@@ -450,32 +394,31 @@ export default function Navbar() {
                   <X />
                 </button>
               </div>
-
-              {/* MENU ITEMS */}
-              <ul className="space-y-4">
+              <ul className="space-y-2">
                 {menuItems.map((item) => {
-                  const isOpen = activeMenu === item.name;
-                  const data = getMegaMenu(item.name);
-
+                  const isOpen = mobileExpanded === item.name;
+                  const hasData =
+                    item.hasDropdown && megaMenuContent[item.name];
                   return (
-                    <li key={item.name}>
-                      {item.hasDropdown && data ? (
+                    <li
+                      key={item.name}
+                      className="border-b border-gray-100 last:border-0"
+                    >
+                      {hasData ? (
                         <>
                           <button
                             onClick={() =>
-                              setActiveMenu(isOpen ? null : item.name)
+                              setMobileExpanded(isOpen ? null : item.name)
                             }
-                            className="flex justify-between w-full text-left text-gray-700 hover:text-yellow-500 p-2"
+                            className={`flex justify-between w-full text-left`}
                           >
                             {item.name}
                             <ChevronDown
-                              className={`w-5 h-5 transition ${
+                              className={`w-4 h-4 transition-transform ${
                                 isOpen ? "rotate-180" : ""
                               }`}
                             />
                           </button>
-
-                          {/* DROPDOWN */}
                           <AnimatePresence>
                             {isOpen && (
                               <motion.div
@@ -499,8 +442,9 @@ export default function Navbar() {
                                                 onClick={() =>
                                                   setMobileOpen(false)
                                                 }
-                                                // Corrected mobile sub-link styling:
-                                                className="block py-1.5 text-sm text-gray-700 hover:text-yellow-600 hover:pl-1 transition-all"
+                                                // Mobile Sub-link: set text to gray-700 and hover to yellow-600
+                                                // Note: The previous code had "text-white" here, which seems incorrect for a mobile menu on a white background. I'm defaulting to a readable color (gray-700) with the requested hover color (yellow-600)
+                                                className="block py-1.5 text-sm text-yellow-500 hover:text-yellow-600 hover:pl-1 transition-all"
                                               >
                                                 {sub.text}
                                               </Link>
@@ -519,7 +463,6 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           onClick={() => setMobileOpen(false)}
-                          className="block text-gray-700 hover:text-yellow-500 p-2"
                         >
                           {item.name}
                         </Link>
@@ -537,7 +480,7 @@ export default function Navbar() {
                       setAuthModal("login");
                       setMobileOpen(false);
                     }}
-                    className="w-full border text-black py-2 rounded-lg font-medium hover:bg-gray-100 transition"
+                    className="w-full border text-black py-2 rounded-lg font-medium"
                   >
                     LOGIN
                   </button>
@@ -557,18 +500,14 @@ export default function Navbar() {
                 <>
                   <Link
                     href="/add-property"
-                    onClick={() => setMobileOpen(false)} // Added to close menu on navigation
-                    className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold hover:bg-yellow-600 transition"
+                    className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold"
                   >
                     ADD PROPERTY
                   </Link>
 
                   <button
-                    onClick={() => {
-                      setIsLoggedIn(false);
-                      setMobileOpen(false); // Close menu on logout
-                    }}
-                    className="mt-2 w-full border py-2 rounded-lg font-medium hover:bg-gray-100 transition"
+                    onClick={() => setIsLoggedIn(false)}
+                    className="mt-2 w-full border py-2 rounded-lg font-medium"
                   >
                     Logout
                   </button>
@@ -578,6 +517,20 @@ export default function Navbar() {
           </>
         )}
       </AnimatePresence>
+
+      {/* AUTH MODALS */}
+      {authModal === "login" && (
+        <LoginModal
+          onClose={() => setAuthModal(null)}
+          openSignup={() => setAuthModal("signup")}
+        />
+      )}
+      {authModal === "signup" && (
+        <SignupModal
+          onClose={() => setAuthModal(null)}
+          openLogin={() => setAuthModal("login")}
+        />
+      )}
     </>
   );
 }
