@@ -5,7 +5,10 @@ import BuyCards from "../../components/buy-components/BuyCards";
 import CombinedAd from "@/components/buy-components/LocalInfo";
 import PropertyCards from "@/components/buy-components/PropertyCards";
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 import Hero from "@/components/Home/Hero";
+=======
+>>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
 
@@ -140,6 +143,7 @@ const Page: React.FC = () => {
 
   return (
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     <>
       <Hero />
       <div className="pb-20">
@@ -183,6 +187,8 @@ const Page: React.FC = () => {
       </div>
     </>
 =======
+=======
+>>>>>>> Stashed changes
     <div className="pb-20">
       <BuyCards
         title="Homes around 400M IQD"
@@ -222,6 +228,9 @@ const Page: React.FC = () => {
       <PropertyCards />
       <CombinedAd />
     </div>
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   );
 };

@@ -1,3 +1,7 @@
+<<<<<<< Updated upstream
+=======
+// components/PropertyMap.tsx
+>>>>>>> Stashed changes
 "use client";
 
 import React from "react";
@@ -5,8 +9,14 @@ import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Property } from "@/data/iraqproperties";
+<<<<<<< Updated upstream
 
 // Fix for default Leaflet icons not showing
+=======
+import PropertyCard from "./propertycards";
+
+// Fix for default Leaflet icons not showing up in Next.js (Must be in a public folder in real app)
+>>>>>>> Stashed changes
 const defaultIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   iconRetinaUrl:
@@ -20,6 +30,7 @@ const defaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = defaultIcon;
 
+<<<<<<< Updated upstream
 // Extra 7 locations
 const EXTRA_LOCATIONS = [
   { id: "e1", name: "Najaf", lat: 32.0, lng: 44.3333 },
@@ -31,6 +42,8 @@ const EXTRA_LOCATIONS = [
   { id: "e7", name: "Nasiriyah", lat: 31.0464, lng: 46.2573 },
 ];
 
+=======
+>>>>>>> Stashed changes
 interface PropertyMapProps {
   properties: Property[];
   centerLat: number;
@@ -45,24 +58,40 @@ const PropertyMap: React.FC<PropertyMapProps> = ({
   zoom,
 }) => {
   return (
+<<<<<<< Updated upstream
+=======
+    // Map container must have an explicit height
+>>>>>>> Stashed changes
     <div className="h-full w-full sticky top-0">
       <MapContainer
         center={[centerLat, centerLng]}
         zoom={zoom}
+<<<<<<< Updated upstream
         scrollWheelZoom
         className="h-full w-full z-0"
       >
         <TileLayer
+=======
+        scrollWheelZoom={true}
+        className="h-full w-full z-0"
+      >
+        <TileLayer
+          // Using OpenStreetMap for free, global map tiles
+>>>>>>> Stashed changes
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
+<<<<<<< Updated upstream
         {/* Property Markers */}
+=======
+>>>>>>> Stashed changes
         {properties.map((property) => (
           <Marker
             key={property.id}
             position={[property.geo.lat, property.geo.lng]}
           >
+<<<<<<< Updated upstream
             <Popup>
               <div className="text-sm font-semibold text-gray-800">
                 📍 {property.city}
@@ -77,6 +106,12 @@ const PropertyMap: React.FC<PropertyMapProps> = ({
             <Popup>
               <div className="text-sm font-semibold text-gray-800">
                 📍 {place.name}
+=======
+            {/* Popup displays the property card for context */}
+            <Popup minWidth={350}>
+              <div className="w-80">
+                <PropertyCard property={property} />
+>>>>>>> Stashed changes
               </div>
             </Popup>
           </Marker>
