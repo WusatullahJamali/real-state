@@ -214,12 +214,18 @@ export default function Navbar() {
 
   return (
     <>
-      {/* NAVBAR */}
-      <nav className="bg-white border-b shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-          {/* LOGO */}
-          <Link href="/">
-            <Image src="/logo.svg" width={140} height={45} alt="logo" />
+      {/* DESKTOP NAV */}
+      <motion.nav className="bg-[#1B3A57]  border-b shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-4">
+          <Link href="/" className="shrink-0">
+            <Image
+  src="/logo-svg-01.svg"
+  width={90}
+  height={60}
+  alt="logo"
+  className="h-14 w-aut md:invert scale-250"
+/>
+
           </Link>
 
           {/* DESKTOP MENU */}
@@ -227,6 +233,7 @@ export default function Navbar() {
             {menuItems.map((item) => (
               <li
                 key={item.name}
+                className="relative px-6 "
                 onMouseEnter={() =>
                   item.hasDropdown && setActiveMenu(item.name)
                 }
@@ -253,8 +260,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white shadow-xl border-t-2 border-yellow-500 rounded-xl p-6 z-50"
-                        style={{ minWidth: "650px" }}
+                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
                       >
                         <div
                           className="grid gap-6"
@@ -299,12 +305,78 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* DESKTOP BUTTONS */}
-          <div className="hidden lg:flex items-center space-x-4">
-            <Link href="/login" className="text-gray-700 hover:text-yellow-500">
-              <User className="inline w-4 h-4 mr-1" />
-              REGISTER/LOGIN
-            </Link>
+          <div className="flex items-center gap-3">
+           {!isLoggedIn ? (
+  <div className="hidden xl:flex items-center gap-3">
+    {/* LOGIN */}
+    <button
+      onClick={() => setAuthModal("login")}
+      className="flex items-center text-sm font-medium text-white hover:text-yellow-500"
+    >
+      <User className="w-4 h-4 mr-1 cursor-pointer" />
+      LOGIN
+    </button>
+
+    {/* REGISTER */}
+<button
+  onClick={() => setAuthModal("signup")}
+  className="flex items-center cursor-pointer text-sm font-medium px-4  py-2 rounded-lg
+             bg-yellow-500 text-black hover:bg-yellow-400 transition"
+>
+  REGISTER
+</button>
+
+  </div>
+) : (
+  <div className="hidden xl:flex items-center gap-2 relative">
+    {/* your profile code stays EXACTLY the same */}
+
+                <button
+                  className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200"
+                  onClick={() =>
+                    setMobileExpanded(
+                      mobileExpanded === "profile" ? null : "profile"
+                    )
+                  }
+                >
+                  <User className="w-4 h-4" /> Profile
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      mobileExpanded === "profile" ? "rotate-180" : ""
+                    }`}
+                  />
+                </button>
+                <AnimatePresence>
+                  {mobileExpanded === "profile" && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      className="absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg overflow-hidden z-50"
+                    >
+                      <ul className="py-2">
+                        <li>
+                          <button
+                            onClick={() => alert("Change Password")}
+                            className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
+                          >
+                            Change Password
+                          </button>
+                        </li>
+                        <li>
+                          <button
+                            onClick={() => setIsLoggedIn(false)}
+                            className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
+                          >
+                            Logout
+                          </button>
+                        </li>
+                      </ul>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+            )}
 
             <Link
               href="/add-property"
@@ -340,13 +412,16 @@ export default function Navbar() {
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              className="fixed top-0 left-0 w-72 h-full bg-white shadow-xl z-50 p-5 overflow-y-auto"
+              className="fixed left-0 top-0 h-full w-72 bg-white text-black z-50 p-5 overflow-y-auto"
             >
-              {/* Close */}
-              <div className="flex justify-between items-center mb-5">
-                <Image src="/logo.svg" width={120} height={40} alt="logo" />
-                <button onClick={() => setMobileOpen(false)}>
-                  <X className="w-6 h-6 text-gray-700" />
+              <div className="flex justify-between items-center mb-6 border-b pb-4">
+                {/* Note: changed to /logo-svg-01.svg for consistency with desktop logo path in this example */}
+                <Image src="/logo-svg-01.svg" width={90} height={60} alt="logo"  />
+                <button
+                  className="text-black"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <X />
                 </button>
               </div>
 
@@ -381,29 +456,36 @@ export default function Navbar() {
                                 initial={{ height: 0 }}
                                 animate={{ height: "auto" }}
                                 exit={{ height: 0 }}
-                                className="pl-4 overflow-hidden"
+                                className="overflow-hidden bg-white rounded-b-lg"
                               >
-                                {data.columns.map((col, idx) => (
-                                  <div key={idx} className="mb-3">
-                                    <h4 className="text-xs font-bold text-yellow-600">
-                                      {col.title}
-                                    </h4>
-
-                                    <ul className="mt-1">
-                                      {col.items?.map((sub, idx2) => (
-                                        <li key={idx2}>
-                                          <Link
-                                            href={sub.href}
-                                            onClick={() => setMobileOpen(false)}
-                                            className="block py-1 text-gray-600 hover:text-yellow-500"
-                                          >
-                                            {sub.text}
-                                          </Link>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  </div>
-                                ))}
+                                <div className="p-4 space-y-4">
+                                  {megaMenuContent[item.name].columns.map(
+                                    (col, i) => (
+                                      <div key={i}>
+                                        <h4 className="uppercase text-[10px] font-bold text-black mb-2">
+                                          {col.title}
+                                        </h4>
+                                        <ul className="space-y-1 text-gray-500">
+                                          {col.items?.map((sub, j) => (
+                                            <li key={j}>
+                                              <Link
+                                                href={sub.href}
+                                                onClick={() =>
+                                                  setMobileOpen(false)
+                                                }
+                                                // Mobile Sub-link: set text to gray-700 and hover to yellow-600
+                                                // Note: The previous code had "text-white" here, which seems incorrect for a mobile menu on a white background. I'm defaulting to a readable color (gray-700) with the requested hover color (yellow-600)
+                                                className="block py-1.5 text-sm text-yellow-500 hover:text-yellow-600 hover:pl-1 transition-all"
+                                              >
+                                                {sub.text}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )
+                                  )}
+                                </div>
                               </motion.div>
                             )}
                           </AnimatePresence>
@@ -422,25 +504,48 @@ export default function Navbar() {
                 })}
               </ul>
 
-              {/* MOBILE BUTTONS */}
-              <div className="mt-6 border-t pt-4 space-y-3">
-                <Link
-                  href="/login"
-                  className="flex items-center gap-2 text-gray-700 hover:text-yellow-500"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <User className="w-5 h-5" /> REGISTER/LOGIN
-                </Link>
+           {!isLoggedIn ? (
+  <div className="mt-6 space-y-3">
+    {/* LOGIN */}
+    <button
+      onClick={() => {
+        setAuthModal("login");
+        setMobileOpen(false);
+      }}
+      className="w-full border text-black py-2 rounded-lg font-medium"
+    >
+      LOGIN
+    </button>
 
-                <Link
-                  href="/add-property"
-                  className="flex items-center justify-center gap-2 px-4 py-2 bg-yellow-500 text-white rounded-md font-semibold"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <Plus className="w-4 h-4" />
-                  ADD PROPERTY
-                </Link>
-              </div>
+    {/* REGISTER */}
+    <button
+      onClick={() => {
+        setAuthModal("signup");
+        setMobileOpen(false);
+      }}
+      className="w-full bg-yellow-500 text-black py-2 rounded-lg font-medium hover:bg-yellow-400 transition"
+    >
+      REGISTER
+    </button>
+  </div>
+) : (
+  <>
+    <Link
+      href="/add-property"
+      className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold"
+    >
+      ADD PROPERTY
+    </Link>
+
+    <button
+      onClick={() => setIsLoggedIn(false)}
+      className="mt-2 w-full border py-2 rounded-lg font-medium"
+    >
+      Logout
+    </button>
+  </>
+)}
+
             </motion.div>
           </>
         )}
