@@ -201,19 +201,20 @@ export default function Navbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-4">
           <Link href="/" className="shrink-0">
             <Image
-              src="/logo-svg-01.svg"
-              width={90}
-              height={60}
-              alt="logo"
-              className="h-12 w-auto"
-            />
+  src="/logo-svg-01.svg"
+  width={90}
+  height={60}
+  alt="logo"
+  className="h-14 w-aut md:invert scale-250"
+/>
+
           </Link>
 
           <ul className="hidden xl:flex items-center  space-x-1">
             {menuItems.map((item) => (
               <li
                 key={item.name}
-                className="relative"
+                className="relative px-6 "
                 onMouseEnter={() =>
                   item.hasDropdown && setHoveredMenu(item.name)
                 }
@@ -230,7 +231,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
+                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
                       >
                         <div
                           className="p-6 grid gap-6"
@@ -278,16 +279,31 @@ export default function Navbar() {
           </ul>
 
           <div className="flex items-center gap-3">
-            {!isLoggedIn ? (
-              <button
-                onClick={() => setAuthModal("login")}
-                // Changed text color to white and hover to yellow-500 (primary blue)
-                className="hidden xl:flex items-center text-sm font-medium text-white hover:text-yellow-500"
-              >
-                <User className="w-4 h-4 mr-1" /> LOGIN / REGISTER
-              </button>
-            ) : (
-              <div className="hidden xl:flex items-center gap-2 relative">
+           {!isLoggedIn ? (
+  <div className="hidden xl:flex items-center gap-3">
+    {/* LOGIN */}
+    <button
+      onClick={() => setAuthModal("login")}
+      className="flex items-center text-sm font-medium text-white hover:text-yellow-500"
+    >
+      <User className="w-4 h-4 mr-1 cursor-pointer" />
+      LOGIN
+    </button>
+
+    {/* REGISTER */}
+<button
+  onClick={() => setAuthModal("signup")}
+  className="flex items-center cursor-pointer text-sm font-medium px-4  py-2 rounded-lg
+             bg-yellow-500 text-black hover:bg-yellow-400 transition"
+>
+  REGISTER
+</button>
+
+  </div>
+) : (
+  <div className="hidden xl:flex items-center gap-2 relative">
+    {/* your profile code stays EXACTLY the same */}
+
                 <button
                   className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200"
                   onClick={() =>
@@ -368,11 +384,11 @@ export default function Navbar() {
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              className="fixed left-0 top-0 h-full w-72 bg-white z-50 p-5 overflow-y-auto"
+              className="fixed left-0 top-0 h-full w-72 bg-white text-black z-50 p-5 overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-6 border-b pb-4">
                 {/* Note: changed to /logo-svg-01.svg for consistency with desktop logo path in this example */}
-                <Image src="/logo-svg-01.svg" width={90} height={60} alt="logo" />
+                <Image src="/logo-svg-01.svg" width={90} height={60} alt="logo"  />
                 <button
                   className="text-black"
                   onClick={() => setMobileOpen(false)}
@@ -411,7 +427,7 @@ export default function Navbar() {
                                 initial={{ height: 0 }}
                                 animate={{ height: "auto" }}
                                 exit={{ height: 0 }}
-                                className="overflow-hidden bg-gray-50 rounded-b-lg"
+                                className="overflow-hidden bg-white rounded-b-lg"
                               >
                                 <div className="p-4 space-y-4">
                                   {megaMenuContent[item.name].columns.map(
@@ -420,7 +436,7 @@ export default function Navbar() {
                                         <h4 className="uppercase text-[10px] font-bold text-black mb-2">
                                           {col.title}
                                         </h4>
-                                        <ul className="space-y-1">
+                                        <ul className="space-y-1 text-gray-500">
                                           {col.items?.map((sub, j) => (
                                             <li key={j}>
                                               <Link
@@ -430,7 +446,7 @@ export default function Navbar() {
                                                 }
                                                 // Mobile Sub-link: set text to gray-700 and hover to yellow-600
                                                 // Note: The previous code had "text-white" here, which seems incorrect for a mobile menu on a white background. I'm defaulting to a readable color (gray-700) with the requested hover color (yellow-600)
-                                                className="block py-1.5 text-sm text-gray-700 hover:text-yellow-600 hover:pl-1 transition-all"
+                                                className="block py-1.5 text-sm text-yellow-500 hover:text-yellow-600 hover:pl-1 transition-all"
                                               >
                                                 {sub.text}
                                               </Link>
@@ -458,32 +474,48 @@ export default function Navbar() {
                 })}
               </ul>
 
-              {!isLoggedIn ? (
-                <button
-                  onClick={() => {
-                    setAuthModal("login");
-                    setMobileOpen(false);
-                  }}
-                  className="mt-6 w-full border text-black py-2 rounded-lg font-medium"
-                >
-                  LOGIN / REGISTER
-                </button>
-              ) : (
-                <>
-                  <Link
-                    href="/add-property"
-                    className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold"
-                  >
-                    ADD PROPERTY
-                  </Link>
-                  <button
-                    onClick={() => setIsLoggedIn(false)}
-                    className="mt-2 w-full border py-2 rounded-lg font-medium"
-                  >
-                    Logout
-                  </button>
-                </>
-              )}
+           {!isLoggedIn ? (
+  <div className="mt-6 space-y-3">
+    {/* LOGIN */}
+    <button
+      onClick={() => {
+        setAuthModal("login");
+        setMobileOpen(false);
+      }}
+      className="w-full border text-black py-2 rounded-lg font-medium"
+    >
+      LOGIN
+    </button>
+
+    {/* REGISTER */}
+    <button
+      onClick={() => {
+        setAuthModal("signup");
+        setMobileOpen(false);
+      }}
+      className="w-full bg-yellow-500 text-black py-2 rounded-lg font-medium hover:bg-yellow-400 transition"
+    >
+      REGISTER
+    </button>
+  </div>
+) : (
+  <>
+    <Link
+      href="/add-property"
+      className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold"
+    >
+      ADD PROPERTY
+    </Link>
+
+    <button
+      onClick={() => setIsLoggedIn(false)}
+      className="mt-2 w-full border py-2 rounded-lg font-medium"
+    >
+      Logout
+    </button>
+  </>
+)}
+
             </motion.div>
           </>
         )}
