@@ -1,6 +1,6 @@
 // components/PropertyCard.tsx
-
 "use client";
+
 import React from "react";
 import { Property } from "@/data/iraqproperties";
 
@@ -8,16 +8,25 @@ interface PropertyCardProps {
   property: Property;
 }
 
-const formatIQD = (price: number) => {
-  // Format to show large numbers (in millions) with proper currency symbol
-  return `IQD ${price.toLocaleString("ar-IQ", { useGrouping: true })}`;
+// ------------------ CURRENCY HELPERS ------------------
+const IQD_PER_USD = 1300;
+
+const formatIQD = (price: number) => `IQD ${price.toLocaleString("en-US")}`;
+
+const formatUSD = (priceIQD: number) => {
+  const usd = priceIQD / IQD_PER_USD;
+  return `$${usd.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  })}`;
 };
 
+// ------------------ COMPONENT ------------------
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer w-full">
-      {/* Placeholder Image (replace with Next.js <Image> in production) */}
-      <div className="h-48 bg-gray-300 rounded-t-lg flex items-center justify-center overflow-hidden">
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden w-full cursor-pointer">
+      {/* IMAGE */}
+      <div className="h-48 bg-gray-200 overflow-hidden">
         <img
           src={property.image}
           alt={property.address}
@@ -29,37 +38,37 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         />
       </div>
 
-      <div className="p-4">
-        <p className="text-sm font-semibold text-gray-500 mb-1">
-          {property.city} - {property.type}
+      {/* CONTENT */}
+      <div className="p-5 space-y-3">
+        {/* CITY + TYPE */}
+        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          {property.city} · {property.type}
         </p>
-        <h3 className="text-xl font-extrabold text-blue-700 mb-2">
-          {formatIQD(property.priceIQD)}
-        </h3>
-        <p className="text-md text-gray-800 font-medium truncate">
+
+        {/* PRICES */}
+        <div>
+          <h3 className="text-2xl font-extrabold text-blue-700 leading-tight">
+            {formatUSD(property.priceIQD)}
+          </h3>
+          <p className="text-sm text-gray-500">
+            {formatIQD(property.priceIQD)}
+          </p>
+        </div>
+
+        {/* ADDRESS */}
+        <p className="text-sm text-gray-800 font-medium truncate">
           {property.address}
         </p>
 
-        {/* Specs - Discriminated Union Logic */}
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 mt-2 pt-2 border-t border-gray-100">
+        {/* SPECS */}
+        <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600 pt-3 border-t border-gray-100">
           {property.type === "Land" ? (
-            <span className="flex items-center">
-              <i className="fas fa-ruler-combined mr-1"></i>
-              {property.specs.lotSizeSqM.toLocaleString()} M² Lot
-            </span>
+            <span>📐 {property.specs.lotSizeSqM.toLocaleString()} m² Lot</span>
           ) : (
             <>
-              <span className="flex items-center">
-                <i className="fas fa-bed mr-1"></i> {property.specs.beds} Beds
-              </span>
-              <span className="flex items-center">
-                <i className="fas fa-bath mr-1"></i> {property.specs.baths}{" "}
-                Baths
-              </span>
-              <span className="flex items-center">
-                <i className="fas fa-area-chart mr-1"></i>{" "}
-                {property.specs.areaSqM.toLocaleString()} M²
-              </span>
+              <span>🛏 {property.specs.beds} Beds</span>
+              <span>🛁 {property.specs.baths} Baths</span>
+              <span>📐 {property.specs.areaSqM.toLocaleString()} m²</span>
             </>
           )}
         </div>
