@@ -194,7 +194,8 @@ export default function Navbar() {
   return (
     <>
       {/* DESKTOP NAV */}
-      <motion.nav className="bg-[#1B3A57]  border-b shadow-lg sticky top-0 z-50">
+      {/* FIX: Removed duplicate 'className' in li element */}
+      <motion.nav className="bg-[#1B3A57] border-b shadow-lg sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-4">
           <Link href="/" className="shrink-0">
             <Image
@@ -210,7 +211,7 @@ export default function Navbar() {
             {menuItems.map((item) => (
               <li
                 key={item.name}
-                className="relative px-6 "
+                className="relative px-6" // Retained 'px-6' and 'relative' for proper dropdown positioning
                 onMouseEnter={() =>
                   item.hasDropdown && setHoveredMenu(item.name)
                 }
@@ -225,7 +226,7 @@ export default function Navbar() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
+                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw] p-6" // Added padding to mega menu content
                       >
                         <div
                           className="p-6 grid gap-6"
@@ -298,22 +299,42 @@ export default function Navbar() {
                 {/* your profile code stays EXACTLY the same */}
 
                 <button
-                  className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200"
+                  onClick={() => setAuthModal("login")}
+                  className="flex items-center text-sm font-medium text-white hover:text-yellow-500"
+                >
+                  <User className="w-4 h-4 mr-1 cursor-pointer" />
+                  LOGIN
+                </button>
+
+                {/* REGISTER */}
+                <button
+                  onClick={() => setAuthModal("signup")}
+                  className="flex items-center cursor-pointer text-sm font-medium px-4 py-2 rounded-lg bg-yellow-500 text-black hover:bg-yellow-400 transition"
+                >
+                  REGISTER
+                </button>
+              </div>
+            ) : (
+              <div className="hidden xl:flex items-center gap-2 relative">
+                <button
+                  className="flex items-center gap-2 px-3 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition" // Adjusted color for contrast
                   onClick={() =>
-                    setMobileExpanded(
-                      mobileExpanded === "profile" ? null : "profile"
-                    )
+                    setActiveMenu(activeMenu === "profile" ? null : "profile")
+                  }
+                  onBlur={() =>
+                    // Delay setting activeMenu to null to allow click events on menu items
+                    setTimeout(() => setActiveMenu(null), 100)
                   }
                 >
                   <User className="w-4 h-4" /> Profile
                   <ChevronDown
                     className={`w-4 h-4 transition-transform ${
-                      mobileExpanded === "profile" ? "rotate-180" : ""
+                      activeMenu === "profile" ? "rotate-180" : ""
                     }`}
                   />
                 </button>
                 <AnimatePresence>
-                  {mobileExpanded === "profile" && (
+                  {activeMenu === "profile" && (
                     <motion.div
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -323,7 +344,10 @@ export default function Navbar() {
                       <ul className="py-2">
                         <li>
                           <button
-                            onClick={() => alert("Change Password")}
+                            onClick={() => {
+                              alert("Change Password");
+                              setActiveMenu(null);
+                            }}
                             className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
                           >
                             Change Password
@@ -331,7 +355,10 @@ export default function Navbar() {
                         </li>
                         <li>
                           <button
-                            onClick={() => setIsLoggedIn(false)}
+                            onClick={() => {
+                              setIsLoggedIn(false);
+                              setActiveMenu(null);
+                            }}
                             className="w-full text-left px-4 py-2 hover:bg-yellow-50 text-sm"
                           >
                             Logout
@@ -377,6 +404,7 @@ export default function Navbar() {
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
+              transition={{ ease: "easeInOut", duration: 0.3 }} // Added transition for smoother slide
               className="fixed left-0 top-0 h-full w-72 bg-white text-black z-50 p-5 overflow-y-auto"
             >
               <div className="flex justify-between items-center mb-6 border-b pb-4">
@@ -422,10 +450,14 @@ export default function Navbar() {
                           <AnimatePresence>
                             {isOpen && (
                               <motion.div
-                                initial={{ height: 0 }}
-                                animate={{ height: "auto" }}
-                                exit={{ height: 0 }}
-                                className="overflow-hidden bg-white rounded-b-lg"
+                                initial={{ height: 0, opacity: 0 }} // Added opacity for smoother fade effect
+                                animate={{ height: "auto", opacity: 1 }}
+                                exit={{ height: 0, opacity: 0 }}
+                                transition={{
+                                  ease: "easeInOut",
+                                  duration: 0.3,
+                                }}
+                                className="overflow-hidden bg-gray-50 rounded-b-lg" // Changed background to gray-50 for visual separation
                               >
                                 <div className="p-4 space-y-4">
                                   {megaMenuContent[item.name].columns.map(
@@ -434,7 +466,7 @@ export default function Navbar() {
                                         <h4 className="uppercase text-[10px] font-bold text-black mb-2">
                                           {col.title}
                                         </h4>
-                                        <ul className="space-y-1 text-gray-500">
+                                        <ul className="space-y-1">
                                           {col.items?.map((sub, j) => (
                                             <li key={j}>
                                               <Link
@@ -442,14 +474,25 @@ export default function Navbar() {
                                                 onClick={() =>
                                                   setMobileOpen(false)
                                                 }
-                                                // Mobile Sub-link: set text to gray-700 and hover to yellow-600
-                                                // Note: The previous code had "text-white" here, which seems incorrect for a mobile menu on a white background. I'm defaulting to a readable color (gray-700) with the requested hover color (yellow-600)
-                                                className="block py-1.5 text-sm text-yellow-500 hover:text-yellow-600 hover:pl-1 transition-all"
+                                                // Mobile Sub-link styling adjustment
+                                                className="block py-1.5 text-sm text-gray-700 hover:text-yellow-600 hover:pl-1 transition-all"
                                               >
                                                 {sub.text}
                                               </Link>
                                             </li>
                                           ))}
+                                          {/* Render CTA for featured column if present */}
+                                          {col.isFeatured && col.cta && (
+                                            <Link
+                                              href={col.cta.href}
+                                              onClick={() =>
+                                                setMobileOpen(false)
+                                              }
+                                              className="block bg-yellow-500 text-white text-center py-2 mt-3 rounded-lg text-sm hover:bg-yellow-600 transition"
+                                            >
+                                              {col.cta.text}
+                                            </Link>
+                                          )}
                                         </ul>
                                       </div>
                                     )

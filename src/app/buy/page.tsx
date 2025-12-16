@@ -4,7 +4,10 @@ import React from "react";
 import BuyCards from "../../components/buy-components/BuyCards";
 import CombinedAd from "@/components/buy-components/LocalInfo";
 import PropertyCards from "@/components/buy-components/PropertyCards";
+<<<<<<< Updated upstream
 import Hero from "@/components/Home/Hero";
+=======
+>>>>>>> Stashed changes
 
 /* -------------------- TYPES -------------------- */
 
@@ -136,6 +139,7 @@ const Page: React.FC = () => {
   const row5: Property[] = [...row1];
 
   return (
+<<<<<<< Updated upstream
     <>
       <Hero />
       <div className="pb-20">
@@ -178,6 +182,47 @@ const Page: React.FC = () => {
         <CombinedAd />
       </div>
     </>
+=======
+    <div className="pb-20">
+      <BuyCards
+        title="Homes around 400M IQD"
+        linkText="View all in Baghdad"
+        linkHref="#"
+        properties={row1}
+      />
+
+      <BuyCards
+        title="Newest Listings in Iraq"
+        linkText="View all properties"
+        linkHref="#"
+        properties={row2}
+      />
+
+      <BuyCards
+        title="Hot Deals"
+        linkText="Special offers"
+        linkHref="#"
+        properties={row3}
+      />
+
+      <BuyCards
+        title="Upcoming Projects"
+        linkText="View developments"
+        linkHref="#"
+        properties={row4}
+      />
+
+      <BuyCards
+        title="Affordable Homes"
+        linkText="Budget-friendly homes"
+        linkHref="#"
+        properties={row5}
+      />
+
+      <PropertyCards />
+      <CombinedAd />
+    </div>
+>>>>>>> Stashed changes
   );
 };
 
