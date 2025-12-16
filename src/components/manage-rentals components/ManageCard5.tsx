@@ -1,37 +1,42 @@
-import React from 'react'
+"use client";
+
+import React from "react";
+import Image from "next/image";
 
 const ManageCard5 = () => {
   return (
-   <div className="py-16 px-6 bg-gray-50">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row-reverse items-center bg-white rounded-3xl shadow-xl overflow-hidden">
+    <section className="bg-gray-50 py-16">
+      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        {/* Image Section */}
-        <div className="md:w-1/2 w-full flex items-center justify-center p-8 bg-white">
-          <div className="w-full max-w-md h-full flex items-center justify-center bg-white rounded-2xl p-4">
-            <img
-              src="/m5.png" 
-              alt="Rental Management Illustration"
-              className="w-full h-auto object-contain"
-            />
-          </div>
-        </div>
-
-        {/* Text Content */}
-        <div className="md:w-1/2 w-full p-8 md:p-12 flex flex-col gap-6">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900 leading-snug">
-           Secure Online Rent Collection
+        {/* LEFT: TEXT CONTENT */}
+        <div className="text-left">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black leading-tight mb-6">
+            Secure Online Rent Collection
           </h1>
-          <p className="text-gray-700 text-lg leading-relaxed">
-         Simplify payment collection by managing all rental payments, deposits, and fees through a single site. Feel secure knowing your payments are secure within Avail with our Plaid and Stripe partnership, while also enabling you to stay tax compliant.
+
+          <p className="text-black text-lg max-w-xl mb-6">
+            Simplify payment collection by managing all rental payments, deposits, and fees through a single site. Feel secure knowing your payments are protected with Avail via Plaid and Stripe, while staying tax compliant.
           </p>
-          <button className="mt-4 bg-yellow-600 text-white font-bold py-3 px-8 rounded-xl hover:bg-yellow-700 transition w-max shadow-lg">
+
+          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>
 
-      </div>
-    </div>
-  )
-}
+        {/* RIGHT: IMAGE */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
+          <Image
+            src="/m5.png"
+            alt="Secure Online Rent Collection Illustration"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
 
-export default ManageCard5
+      </div>
+    </section>
+  );
+};
+
+export default ManageCard5;

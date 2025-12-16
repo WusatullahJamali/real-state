@@ -22,17 +22,17 @@ const ManageCard2 = () => {
         <div className="order-2 space-y-4">
          
 
-          <h1 className="text-4xl font-bold text-gray-900 leading-snug">
+          <h1 className="text-4xl font-bold text-black leading-snug">
             One-Click Rental Listings
           </h1>
 
-          <p className="text-gray-600 text-lg">
+          <p className="text-black text-lg">
             Effortlessly publish your rental listing to the top 20 rental sites,
             including Realtor.com, Trulia, Zumper, and Rent., to reach millions
             of renters and fill vacancies fast.
           </p>
 
-          <button className="border bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-lg w-fit mt-5">
+          <button className="border bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-full w-fit mt-5">
             Learn more
           </button>
         </div>
