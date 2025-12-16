@@ -350,7 +350,7 @@ export default function Navbar() {
                 </AnimatePresence>
               </div>
             )}
-
+ 
             {isLoggedIn && (
               <Link
                 href="/add-property"
@@ -366,7 +366,7 @@ export default function Navbar() {
               <Menu />
             </button>
           </div>
-        </div>
+         </div>
       </motion.nav>
 
       {/* MOBILE MENU */}
@@ -386,7 +386,7 @@ export default function Navbar() {
               exit={{ x: "-100%" }}
               className="fixed left-0 top-0 h-full w-72 bg-white text-black z-50 p-5 overflow-y-auto"
             >
-              <div className="flex justify-between items-center mb-6 border-b pb-4">
+                <div className="flex justify-between items-center mb-6 border-b pb-4">
                 {/* Note: changed to /logo-svg-01.svg for consistency with desktop logo path in this example */}
                 <Image src="/logo-svg-01.svg" width={90} height={60} alt="logo"  />
                 <button
@@ -397,7 +397,7 @@ export default function Navbar() {
                 </button>
               </div>
               <ul className="space-y-2">
-                {menuItems.map((item) => {
+                 {menuItems.map((item) => {
                   const isOpen = mobileExpanded === item.name;
                   const hasData =
                     item.hasDropdown && megaMenuContent[item.name];
@@ -430,7 +430,7 @@ export default function Navbar() {
                                 className="overflow-hidden bg-white rounded-b-lg"
                               >
                                 <div className="p-4 space-y-4">
-                                  {megaMenuContent[item.name].columns.map(
+                                     {megaMenuContent[item.name].columns.map(
                                     (col, i) => (
                                       <div key={i}>
                                         <h4 className="uppercase text-[10px] font-bold text-black mb-2">
@@ -439,7 +439,7 @@ export default function Navbar() {
                                         <ul className="space-y-1 text-gray-500">
                                           {col.items?.map((sub, j) => (
                                             <li key={j}>
-                                              <Link
+                                               <Link
                                                 href={sub.href}
                                                 onClick={() =>
                                                   setMobileOpen(false)
