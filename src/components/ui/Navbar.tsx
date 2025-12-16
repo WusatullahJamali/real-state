@@ -3,15 +3,36 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown, User, Plus, Menu, X, Home, Building, House, Briefcase, Layers, Info, BookOpen } from "lucide-react";
 import LoginModal from "@/components/Auth/loginModal";
 import SignupModal from "@/components/Auth/SignupModal";
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
 
 // --- TYPES & DATA ---
 type MenuItem = { name: string; href: string; hasDropdown: boolean };
+<<<<<<< Updated upstream
 type MegaMenuSubItem = { text: string; href: string; icon: React.ElementType; description?: string };
 type MegaMenuContent = Record<string, { columns: { title: string; items?: MegaMenuSubItem[] }[] }>;
+=======
+type MegaMenuSubItem = {
+  text: string;
+  href: string;
+  icon: React.ComponentType<{ className?: string }>;
+  description?: string;
+};
+type MegaMenuColumn = {
+  title: string;
+  items?: MegaMenuSubItem[];
+  isFeatured?: boolean;
+  cta?: { text: string; href: string };
+};
+type MegaMenuContent = Record<string, { columns: MegaMenuColumn[] }>;
+>>>>>>> Stashed changes
 
 const menuItems: MenuItem[] = [
   { name: "HOME", href: "/", hasDropdown: false },
@@ -57,70 +78,147 @@ export default function Navbar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
 
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth >= 768) setMobileOpen(false); // md breakpoint
-    };
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
+
+
+  // MODIFIED navClass function to set text to white and hover to primary blue (assuming 'yellow-500' is primary blue in this context)
+  // const navClass = (path: string, mobile = false) =>
+  //   mobile
+  //     ? `block p-3 rounded-lg ${
+  //         isActive(path)
+  //           ? "bg-yellow-50 text-yellow-600 font-bold"
+  //           : "text-gray-700 hover:bg-gray-50 hover:text-yellow-500"
+  //       }`
+  //     : `px-3 py-2 text-sm xl:text-base font-medium ${
+  //         isActive(path)
+  //           ? "text-yellow-500 font-bold" // Active link color remains yellow-500
+  //           : "text-white hover:text-yellow-500" // Text is white, hover is yellow-500
+  //       }`;
 
   return (
     <>
-      {/* NAVBAR */}
-      <motion.nav className="bg-[#1B3A57] border-b shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center gap-4">
-          {/* Logo */}
-          <Link href="/" className="shrink-0 flex items-center">
-            <Image src="/logo-svg-01.svg" width={180} height={80} alt="logo" className="h-10 md:h-14 lg:h-20 w-auto md:invert object-contain" priority />
+      {/* DESKTOP NAV */}
+      <motion.nav className="bg-[#1B3A57]  border-b shadow-lg sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-4">
+          <Link href="/" className="shrink-0">
+            <Image
+  src="/logo-svg-01.svg"
+  width={90}
+  height={60}
+  alt="logo"
+  className="h-14 w-aut md:invert scale-250"
+/>
+
           </Link>
 
           {/* DESKTOP / TABLET MENU */}
           <ul className="hidden md:flex items-center gap-2 lg:gap-4 h-full text-sm md:text-xs lg:text-sm">
             {menuItems.map((item) => (
-              <li key={item.name} className="relative px-2 md:px-1 lg:px-4 h-full flex items-center" onMouseEnter={() => item.hasDropdown && setHoveredMenu(item.name)} onMouseLeave={() => setHoveredMenu(null)}>
-                <Link href={item.href} className="py-2 md:py-1 lg:py-2 text-white hover:text-yellow-500 transition-colors whitespace-nowrap">{item.name}</Link>
+              <li
+                key={item.name}
+                className="relative px-6 "
+                onMouseEnter={() =>
+                  item.hasDropdown && setHoveredMenu(item.name)
+                }
+                onMouseLeave={() => setHoveredMenu(null)}
+              >
+                <Link href={item.href} >
+                  {item.name}
+                </Link>
                 <AnimatePresence>
-                  {hoveredMenu === item.name && item.hasDropdown && megaMenuContent[item.name] && (
-                    <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 10 }} className="absolute left-1/2 -translate-x-1/2 top-full bg-white border-t-2 border-yellow-500 shadow-xl rounded-b-xl overflow-hidden z-50 w-[600px] max-w-[90vw]">
-                      <div className="p-4 lg:p-6 grid gap-4 lg:gap-6" style={{ gridTemplateColumns: `repeat(${megaMenuContent[item.name].columns.length},1fr)` }}>
-                        {megaMenuContent[item.name].columns.map((col, i) => (
-                          <div key={i}>
-                            <h4 className="uppercase text-[10px] lg:text-xs font-bold text-gray-500 mb-2 lg:mb-4">{col.title}</h4>
-                            <ul className="space-y-1">
-                              {col.items?.map((sub, j) => (
-                                <li key={j}>
-                                  <Link href={sub.href} className="group flex gap-2 lg:gap-3 p-2 lg:p-3 rounded-lg hover:bg-yellow-50 transition">
-                                    <sub.icon className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500 group-hover:text-yellow-600 shrink-0" />
-                                    <div>
-                                      <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-xs lg:text-sm">{sub.text}</div>
-                                      {sub.description && <p className="text-[9px] lg:text-xs text-gray-500">{sub.description}</p>}
-                                    </div>
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
+                  {hoveredMenu === item.name &&
+                    item.hasDropdown &&
+                    megaMenuContent[item.name] && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute left-1/2 -translate-x-1/2 top-full bg-white  border-t-2 border-yellow-500 shadow-xl rounded-xl overflow-hidden z-50 w-[600px] max-w-[90vw]"
+                      >
+                        <div
+                          className="p-6 grid gap-6"
+                          style={{
+                            gridTemplateColumns: `repeat(${
+                              megaMenuContent[item.name].columns.length
+                            },1fr)`,
+                          }}
+                        >
+                          {megaMenuContent[item.name].columns.map((col, i) => (
+                            <div key={i}>
+                              <h4 className="uppercase text-xs font-bold text-gray-500 mb-4">
+                                {col.title}
+                              </h4>
+                              <ul className="space-y-1">
+                                {col.items?.map((sub, j) => (
+                                  <li key={j}>
+                                    <Link
+                                      href={sub.href}
+                                      className="group flex gap-3 p-3 rounded-lg hover:bg-yellow-50 transition"
+                                    >
+                                      <sub.icon className="w-5 h-5 text-gray-500 group-hover:text-yellow-600" />
+                                      <div>
+                                        <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-sm">
+                                          {sub.text}
+                                        </div>
+                                        {sub.description && (
+                                          <p className="text-xs text-gray-500">
+                                            {sub.description}
+                                          </p>
+                                        )}
+                                      </div>
+                                    </Link>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
                 </AnimatePresence>
               </li>
             ))}
           </ul>
 
-          {/* ACTION BUTTONS */}
-          <div className="flex items-center gap-2 md:gap-3">
-            {!isLoggedIn ? (
-              <div className="hidden md:flex items-center gap-2">
-                <button onClick={() => setAuthModal("login")} className="flex items-center text-xs md:text-sm lg:text-sm font-medium text-white hover:text-yellow-500 whitespace-nowrap"><User className="w-3 h-3 md:w-4 md:h-4 mr-1" /> LOGIN</button>
-                <button onClick={() => setAuthModal("signup")} className="flex items-center text-xs md:text-sm lg:text-sm font-medium px-3 md:px-4 py-1.5 md:py-2 rounded-lg bg-yellow-500 text-black hover:bg-yellow-400 transition whitespace-nowrap">REGISTER</button>
-              </div>
-            ) : (
-              <div className="hidden md:flex items-center gap-2 relative">
-                <button className="flex items-center gap-1 md:gap-2 px-2 md:px-3 py-1.5 md:py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200" onClick={() => setMobileExpanded(mobileExpanded === "profile" ? null : "profile")}>
-                  <User className="w-3 h-3 md:w-4 md:h-4" /> Profile <ChevronDown className={`w-3 h-3 md:w-4 md:h-4 transition-transform ${mobileExpanded === "profile" ? "rotate-180" : ""}`} />
+          <div className="flex items-center gap-3">
+           {!isLoggedIn ? (
+  <div className="hidden xl:flex items-center gap-3">
+    {/* LOGIN */}
+    <button
+      onClick={() => setAuthModal("login")}
+      className="flex items-center text-sm font-medium text-white hover:text-yellow-500"
+    >
+      <User className="w-4 h-4 mr-1 cursor-pointer" />
+      LOGIN
+    </button>
+
+    {/* REGISTER */}
+<button
+  onClick={() => setAuthModal("signup")}
+  className="flex items-center cursor-pointer text-sm font-medium px-4  py-2 rounded-lg
+             bg-yellow-500 text-black hover:bg-yellow-400 transition"
+>
+  REGISTER
+</button>
+
+  </div>
+) : (
+  <div className="hidden xl:flex items-center gap-2 relative">
+    {/* your profile code stays EXACTLY the same */}
+
+                <button
+                  className="flex items-center gap-2 px-3 py-2 bg-yellow-100 rounded-lg hover:bg-yellow-200"
+                  onClick={() =>
+                    setMobileExpanded(
+                      mobileExpanded === "profile" ? null : "profile"
+                    )
+                  }
+                >
+                  <User className="w-4 h-4" /> Profile
+                  <ChevronDown
+                    className={`w-4 h-4 transition-transform ${
+                      mobileExpanded === "profile" ? "rotate-180" : ""
+                    }`}
+                  />
                 </button>
                 <AnimatePresence>
                   {mobileExpanded === "profile" && (
@@ -146,11 +244,28 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <>
-            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 0.5 }} exit={{ opacity: 0 }} className="fixed inset-0 bg-black z-50" onClick={() => setMobileOpen(false)} />
-            <motion.div initial={{ x: "-100%" }} animate={{ x: 0 }} exit={{ x: "-100%" }} className="fixed left-0 top-0 h-full w-full max-w-xs bg-white text-black z-50 p-5 overflow-y-auto shadow-2xl">
-              <div className="flex justify-between items-center mb-6 border-b pb-4">
-                <Image src="/logo-svg-01.svg" width={120} height={60} alt="logo" className="h-10 w-auto object-contain" />
-                <button className="text-black p-2 hover:bg-gray-100 rounded-full" onClick={() => setMobileOpen(false)}><X className="w-6 h-6" /></button>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 0.5 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black z-50"
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              initial={{ x: "-100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "-100%" }}
+              className="fixed left-0 top-0 h-full w-72 bg-white text-black z-50 p-5 overflow-y-auto"
+            >
+                <div className="flex justify-between items-center mb-6 border-b pb-4">
+                {/* Note: changed to /logo-svg-01.svg for consistency with desktop logo path in this example */}
+                <Image src="/logo-svg-01.svg" width={90} height={60} alt="logo"  />
+                <button
+                  className="text-black"
+                  onClick={() => setMobileOpen(false)}
+                >
+                  <X />
+                </button>
               </div>
               <ul className="space-y-2">
                 {menuItems.map((item) => {
@@ -159,49 +274,114 @@ export default function Navbar() {
                     <li key={item.name} className="border-b border-gray-100 last:border-0">
                       {item.hasDropdown && megaMenuContent[item.name] ? (
                         <>
-                          <button onClick={() => setMobileExpanded(isOpen ? null : item.name)} className="flex justify-between items-center w-full text-left py-3 font-medium text-gray-800 hover:text-yellow-600">
-                            {item.name} <ChevronDown className={`w-4 h-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`} />
+                          <button
+                            onClick={() =>
+                              setMobileExpanded(isOpen ? null : item.name)
+                            }
+                            className={`flex justify-between w-full text-left`}
+                          >
+                            {item.name}
+                            <ChevronDown
+                              className={`w-4 h-4 transition-transform ${
+                                isOpen ? "rotate-180" : ""
+                              }`}
+                            />
                           </button>
                           <AnimatePresence>
                             {isOpen && (
-                              <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden bg-gray-50 rounded-lg">
+                              <motion.div    
+                                initial={{ height: 0 }}
+                                animate={{ height: "auto" }}
+                                exit={{ height: 0 }}
+                                className="overflow-hidden bg-white rounded-b-lg"
+                              >
                                 <div className="p-4 space-y-4">
-                                  {megaMenuContent[item.name].columns.map((col, i) => (
-                                    <div key={i}>
-                                      <h4 className="uppercase text-[10px] font-bold text-gray-500 mb-2 tracking-wider">{col.title}</h4>
-                                      <ul className="space-y-2">{col.items?.map((sub, j) => (
-                                          <li key={j}>
-                                            <Link href={sub.href} onClick={() => setMobileOpen(false)} className="flex items-center text-sm text-gray-600 hover:text-yellow-600 hover:pl-2 transition-all">
-                                              <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-2 opacity-60"></span>{sub.text}
-                                            </Link>
-                                          </li>
-                                        ))}</ul>
-                                    </div>
-                                  ))}
+                                     {megaMenuContent[item.name].columns.map(
+                                    (col, i) => (
+                                      <div key={i}>
+                                        <h4 className="uppercase text-[10px] font-bold text-black mb-2">
+                                          {col.title}
+                                        </h4>
+                                        <ul className="space-y-1 text-gray-500">
+                                          {col.items?.map((sub, j) => (
+                                            <li key={j}>
+                                               <Link
+                                                href={sub.href}
+                                                onClick={() =>
+                                                  setMobileOpen(false)
+                                                }
+                                                // Mobile Sub-link: set text to gray-700 and hover to yellow-600
+                                                // Note: The previous code had "text-white" here, which seems incorrect for a mobile menu on a white background. I'm defaulting to a readable color (gray-700) with the requested hover color (yellow-600)
+                                                className="block py-1.5 text-sm text-yellow-500 hover:text-yellow-600 hover:pl-1 transition-all"
+                                              >
+                                                {sub.text}
+                                              </Link>
+                                            </li>
+                                          ))}
+                                        </ul>
+                                      </div>
+                                    )
+                                  )}
                                 </div>
                               </motion.div>
                             )}
                           </AnimatePresence>
                         </>
                       ) : (
-                        <Link href={item.href} onClick={() => setMobileOpen(false)} className="block py-3 font-medium text-gray-800 hover:text-yellow-600">{item.name}</Link>
+                        <Link
+                          href={item.href}
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
                       )}
                     </li>
                   );
                 })}
               </ul>
 
+           {!isLoggedIn ? (
+  <div className="mt-6 space-y-3">
+    {/* LOGIN */}
+    <button
+      onClick={() => {
+        setAuthModal("login");
+        setMobileOpen(false);
+      }}
+      className="w-full border text-black py-2 rounded-lg font-medium"
+    >
+      LOGIN
+    </button>
 
-              {!isLoggedIn ? (
-                <button
-                  onClick={() => {
-                    setAuthModal("login");
-                    setMobileOpen(false);
-                  }}
-                  className="mt-6 w-full border text-black py-2 rounded-lg font-medium"
-                >
-                </>
-              )}
+    {/* REGISTER */}
+    <button
+      onClick={() => {
+        setAuthModal("signup");
+        setMobileOpen(false);
+      }}
+      className="w-full bg-yellow-500 text-black py-2 rounded-lg font-medium hover:bg-yellow-400 transition"
+    >
+      REGISTER
+    </button>
+  </div>
+) : (
+  <>
+    <Link
+      href="/add-property"
+      className="mt-6 block bg-yellow-500 text-white py-3 text-center rounded-lg font-bold"
+    >
+      ADD PROPERTY
+    </Link>
+
+    <button
+      onClick={() => setIsLoggedIn(false)}
+      className="mt-2 w-full border py-2 rounded-lg font-medium"
+    >
+      Logout
+    </button>
+  </>
+)}
+
             </motion.div>
           </>
         )}
