@@ -23,8 +23,17 @@ const SearchBar = () => {
   };
 
   return (
-    <div className="bg-gray-100 rounded-[20px]  p-5 w-full max-w-4xl shadow-lg">
-      <div className="flex gap-5 mb-2 flex-wrap">
+    <div
+      className="
+        bg-gray-100 
+        rounded-2xl sm:rounded-[20px] 
+        p-3 sm:p-5 
+        w-full max-w-4xl 
+        shadow-lg
+      "
+    >
+      {/* Tabs */}
+      <div className="flex gap-2 sm:gap-5 mb-3 flex-wrap justify-center sm:justify-start">
         {["Buy", "Rent", "Sell", "Services"].map((tab) => {
           const tabLower = tab.toLowerCase();
           const isActive = activeTab === tabLower;
@@ -50,65 +59,71 @@ const SearchBar = () => {
 >
   <input type="hidden" name="transaction_type" value={activeTab} />
 
-  {/* Location */}
-  <div className="flex flex-col flex-1">
-    <label className="text-sm font-semibold text-gray-800 mb-1">
-      Location
-    </label>
-    <input
-      type="text"
-      name="location"
-      placeholder="Baghdad, Erbil, Basra..."
-className="w-full h-8.5 rounded-md border border-gray-300 px-3 text-black text-sm bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
+       {/* Location */}
+<div className="flex flex-col flex-1">
+  <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+    Location
+  </label>
+  <input
+    type="text"
+    name="location"
+    placeholder="Baghdad, Erbil, Basra..."
+    className="
+      w-full rounded-md border border-gray-300
+      px-3 py-1.75
+      text-xs sm:text-sm text-black
+      bg-white
+      focus:outline-none focus:ring-1 focus:ring-yellow-500
+    "
+    required
+  />
+</div>
 
-      required
-    />
-  </div>
-
-  {/* Property Type */}
-  <div className="flex flex-col flex-1">
-    <label className="text-sm font-semibold text-gray-800 mb-1">
-      Property Type
-    </label>
-    <select
-      name="property-type"
-      className="w-full rounded-md border border-gray-300 px-3 text-black py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
-    >
-      {propertyTypes.map((type) => (
-        <option key={type} value={type}>
-          {type}
-        </option>
-      ))}
-    </select>
-  </div>
-
-  {/* Price Range */}
-  <div className="flex flex-col flex-1">
-    <label className="text-sm font-semibold text-gray-800 mb-1">
-      Price Range
-    </label>
-    <select
-      name="price-range"
-      className="w-full rounded-md border border-gray-300 px-3 text-black py-2 text-sm bg-white focus:outline-none focus:ring-1 focus:ring-yellow-500"
-    >
-      {priceRanges.map((range) => (
-        <option key={range} value={range}>
-          {range}
-        </option>
-      ))}
-    </select>
-  </div>
-
-  {/* Search Button */}
-  <button
-    type="submit"
-    className="flex items-center gap-1 bg-yellow-500 text-black font-semibold text-sm px-4 py-2 rounded-md hover:bg-yellow-600 transition shadow-sm"
+{/* Property Type */}
+<div className="flex flex-col flex-1">
+  <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+    Property Type
+  </label>
+  <select
+    name="property-type"
+    className="
+      w-full rounded-md border border-gray-300
+      px-3 py-2
+      text-xs sm:text-sm text-black
+      bg-white
+      focus:outline-none focus:ring-1 focus:ring-yellow-500
+    "
   >
-    <Search className="w-4 h-4" />
-    Search
-  </button>
-</form>
+    {propertyTypes.map((type) => (
+      <option key={type} value={type}>
+        {type}
+      </option>
+    ))}
+  </select>
+</div>
 
+{/* Price Range */}
+<div className="flex flex-col flex-1">
+  <label className="text-xs sm:text-sm font-semibold text-gray-800 mb-1">
+    Price Range
+  </label>
+  <select
+    name="price-range"
+    className="
+      w-full rounded-md border border-gray-300
+      px-3 py-2
+      text-xs sm:text-sm text-black
+      bg-white
+      focus:outline-none focus:ring-1 focus:ring-yellow-500
+    "
+  >
+    {priceRanges.map((range) => (
+      <option key={range} value={range}>
+        {range}
+      </option>
+    ))}
+  </select>
+</div>
 
     </div>
   );
