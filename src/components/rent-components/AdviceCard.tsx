@@ -47,7 +47,7 @@ const AdviceCardsGrid = () => {
       title: 'How HOA Leasing Requests Can Block Homeowners From Renting'
     },
   ];
-
+//Rent
   return (
     <section className="py-16 bg-white">
       <div className="max-w-8xl mx-auto px-6">

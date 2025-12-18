@@ -1,142 +1,177 @@
-// components/TermsOfServices.tsx (Headings Yellow)
-
 "use client";
 
-import { Shield, Phone, Home, MessageSquare } from "lucide-react"; 
+import { Shield, Phone, Home, MessageSquare, Info, Download, ArrowRight, Mail } from "lucide-react"; 
 import Link from "next/link"; 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const TermsOfServices = () => {
+  const [activeSection, setActiveSection] = useState<number | null>(null);
+
   const terms = [
     {
       title: "Acceptance of Terms",
       text: "By accessing and using this platform (website, app, and services), you acknowledge and agree to be legally bound by these comprehensive Terms & Conditions.",
+      icon: <Shield size={20} />
     },
     {
       title: "Use of the Service",
       text: "You agree to use the service strictly for lawful, permitted purposes, following all local, national, and international laws, rules, and policies. Misuse or disruption is prohibited.",
+      icon: <Info size={20} />
     },
     {
       title: "Mobile and Device Usage",
       text: "The service is designed for optimal access on all devices, including desktop and mobile. Data and messaging rates may apply based on your carrier agreement.",
+      icon: <Phone size={20} />
     },
     {
       title: "Intellectual Property",
-      text: "All content, including text, graphics, logos, and code, is the exclusive property of Modern Living and protected by copyright and intellectual property laws. Unauthorized reproduction or reuse is strictly prohibited.",
+      text: "All content, including text, graphics, logos, and code, is the exclusive property of Modern Living and protected by copyright laws. Unauthorized reuse is strictly prohibited.",
+      icon: <Home size={20} />
     },
     {
       title: "Changes to These Terms",
-      text: "We reserve the sole right to modify, replace, or update any part of these Terms at our discretion. We will notify users of significant changes. Continued use constitutes acceptance of the new terms.",
+      text: "We reserve the sole right to modify, replace, or update any part of these Terms. We will notify users of significant changes. Continued use constitutes acceptance.",
+      icon: <MessageSquare size={20} />
     },
     {
       title: "Governing Law",
-      text: "These Terms shall be governed by and construed in accordance with the laws of the jurisdiction where the company is headquartered, without regard to its conflict of law provisions.",
+      text: "These Terms shall be governed by and construed in accordance with the laws of the jurisdiction where the company is headquartered.",
       isSection: true,
+      icon: <Shield size={20} />
     },
   ];
 
   return (
-    // Outer section with clean white background
-    <section className="bg-white min-h-screen pt-12 pb-20 text-black mt-8">
+    <section className="bg-[#FCFCFC] min-h-screen pb-24 text-slate-900 selection:bg-yellow-100 selection:text-yellow-900">
       
-      {/* Main Content Container */}
+      {/* Decorative Top Accent */}
+      <div className="h-2 bg-gradient-to-r from-yellow-400 via-yellow-600 to-yellow-400 w-full" />
+
+      {/* --- HERO HEADER --- */}
+      <div className="bg-white border-b border-slate-100 py-16 mb-12">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-50 border border-yellow-100 text-yellow-700 text-xs font-bold tracking-[0.2em] uppercase mb-4">
+               Legal Framework
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-slate-900 tracking-tight mb-4">
+              Terms of <span className="text-yellow-500">Service</span>
+            </h1>
+            <p className="text-lg md:text-xl text-slate-500 font-medium max-w-3xl leading-relaxed">
+              Effective as of December 2025. Please read these terms carefully to understand your rights and responsibilities when using the <span className="text-slate-900 font-bold">Modern Living</span> ecosystem.
+            </p>
+        </div>
+      </div>
+
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
-        
-        {/* --- Primary Header (H1 is Yellow) --- */}
-        <h1 className="text-5xl md:text-6xl font-extrabold text-yellow-600 mb-2">
-          Terms and Conditions
-        </h1>
-        <p className="text-xl font-semibold uppercase tracking-wider text-gray-700 mb-10 border-b border-gray-200 pb-2">
-          MODERN LIVING WEBSITE AND MOBILE APPLICATION TERMS AND CONDITIONS
-        </p>
+        <div className="flex flex-col lg:flex-row gap-16">
 
-        {/* --- Two-Column Layout (Swapped Order) --- */}
-        <div className="flex flex-col lg:flex-row gap-12">
+          {/* === SIDEBAR (Stays Sticky) === */}
+          <aside className="lg:w-1/3 order-2 lg:order-1">
+            <div className="sticky top-8 space-y-6">
+              
+              {/* FAQ Glass Card */}
+              <div className="bg-white rounded p-8 shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden group">
+                <div className="relative z-10">
+                    <h3 className="text-2xl font-black text-slate-900 mb-4">Need Clarification?</h3>
+                    <p className="text-slate-500 mb-6 text-sm leading-relaxed">
+                        Our FAQ portal covers listings, commissions, and mortgage financing in simple language.
+                    </p>
+                    <Link
+                        href="/faq"
+                        className="flex items-center justify-between bg-slate-900 hover:bg-yellow-600 text-white font-bold px-6 py-4 rounded-2xl transition-all group-hover:shadow-lg group-hover:shadow-yellow-500/20"
+                    >
+                        Visit FAQ Center <ArrowRight size={20} />
+                    </Link>
+                </div>
+                {/* Decorative Pattern */}
+                <div className="absolute -right-4 -top-4 w-24 h-24 bg-yellow-50 rounded blur-2xl group-hover:bg-yellow-100 transition-colors" />
+              </div>
 
-          {/* === COLUMN 1: Sidebar (Left, 25% Width) === */}
-          <div className="lg:w-1/4 space-y-8 order-2 lg:order-1"> 
+              {/* Quick Jump Links */}
+              <div className="bg-slate-50 rounded-[2rem] p-8">
+                <h4 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-4">Quick Navigation</h4>
+                <nav className="space-y-3">
+                    {terms.map((t, i) => (
+                        <button 
+                            key={i} 
+                            className="flex items-center gap-3 text-sm font-bold text-slate-600 hover:text-yellow-600 transition-colors"
+                        >
+                            <span className="w-6 h-6 rounded-md bg-white border border-slate-200 flex items-center justify-center text-[10px] text-slate-400">{i+1}</span>
+                            {t.title}
+                        </button>
+                    ))}
+                </nav>
+              </div>
 
-            {/* Have a Question / FAQ Panel */}
-            <div className="bg-white p-6 border-l-4 border-yellow-500"> 
-              <h3 className="text-2xl font-extrabold text-gray-800 mb-4 flex items-center gap-2">
-                <MessageSquare className="text-yellow-500" size={24} /> Have a Question?
-              </h3>
-              
-              <p className="text-gray-700 mb-4">
-                Visit our dedicated **FAQ page** for information regarding:
-              </p>
-              
-              <ul className="list-disc list-inside space-y-2 text-gray-600 ml-4">
-                <li>Property Listings & Sales Process</li>
-                <li>Agent Commission & Fees</li>
-                <li>Mortgage and Financing Options</li>
-                <li>Privacy and Data Usage</li>
-                <li>Press contacts & more</li>
-              </ul>
-              
-              <Link
-                href="/faq"
-                className="inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-semibold w-full text-center px-6 py-3 mt-6 rounded-md shadow-lg transition duration-300"
-              >
-                View Our FAQs &rarr;
-              </Link>
+              {/* Utility Buttons */}
+              <button className="w-full flex items-center justify-center gap-2 py-4 rounded-2xl border-2 border-slate-200 font-bold text-slate-600 hover:bg-slate-50 transition-all">
+                <Download size={18} /> Download as PDF
+              </button>
+
+              <div className="text-center pt-4 text-slate-400 text-xs font-medium">
+                © {new Date().getFullYear()} Modern Living Global Inc. <br />
+                Crafted for transparency and security.
+              </div>
+            </div>
+          </aside>
+
+          {/* === MAIN CONTENT === */}
+          <div className="lg:w-2/3 order-1 lg:order-2">
+            
+            <div className="flex items-center gap-4 mb-8">
+                <div className="h-[1px] flex-1 bg-slate-100" />
+                <span className="text-[10px] font-black uppercase tracking-[0.3em] text-slate-400">Sectional Breakdown</span>
+                <div className="h-[1px] flex-1 bg-slate-100" />
             </div>
 
-            {/* Footer Copyright */}
-            <div className="text-center pt-4 text-gray-500 text-sm">
-                <Home size={20} className="inline mr-2 text-gray-400" />
-                © {new Date().getFullYear()} Modern Living Inc. All Rights Reserved.
-            </div>
-
-          </div> {/* End of Sidebar */}
-
-
-          {/* === COLUMN 2: Main Terms Content (Right, 75% Width) === */}
-          <div className="lg:w-3/4 order-1 lg:order-2"> 
-            
-            <p className="font-bold text-black text-sm mb-6">
-              LAST UPDATED: December 9, {new Date().getFullYear()}
-            </p>
-
-            {/* Introductory Paragraphs */}
-            <p className="text-gray-700 mb-6 leading-relaxed">
-              These terms and conditions (the **"Terms"**) govern your access to and use of the Modern Living platform ("Site"). By accessing or using the Site, you are agreeing to these Terms and entering into a legally binding contract with Modern Living Inc. ("us" or **"our"**). It is important that you read carefully and understand the Terms. Do not access or use the Site if you are unwilling or unable to be bound by the Terms.
-            </p>
-            <p className="text-gray-700 mb-10 leading-relaxed">
-              Any references to **"you"** and **"your"** refer to you, as a user of the Site. References to **"we"**, **"us"** and **"our"** refer to Modern Living Inc.
-            </p>
-            
-            {/* Terms List (Styled as Sections) */}
-            <div className="space-y-8"> 
+            <div className="space-y-12">
               {terms.map((item, i) => (
-                <div key={i} className="group">
-                  {/* H3 Heading is now text-yellow-700 */}
-                  <h3 className="text-2xl font-bold text-yellow-700 mb-1">
-                    {i + 1}. {item.title.toUpperCase()}
+                <div 
+                    key={i} 
+                    className="relative pl-8 md:pl-12 border-l-2 border-slate-100 hover:border-yellow-500 transition-colors duration-500 group"
+                    onMouseEnter={() => setActiveSection(i)}
+                >
+                  {/* Number Badge */}
+                  <div className="absolute -left-[17px] top-0 w-8 h-8 rounded-full bg-white border-2 border-slate-100 group-hover:border-yellow-500 group-hover:bg-yellow-500 flex items-center justify-center text-xs font-black transition-all group-hover:text-white">
+                    {i + 1}
+                  </div>
+
+                  <h3 className="text-2xl md:text-3xl font-black text-yellow-600 group-hover:text-yellow-700 transition-colors mb-4 uppercase tracking-tight">
+                    {item.title}
                   </h3>
-                  <p className="text-gray-700 mt-1 leading-relaxed pl-1">
-                    {item.text}
-                  </p>
+                  
+                  <div className="bg-white p-6 md:p-8 rounded-[2rem] border border-slate-50 shadow-sm group-hover:shadow-md transition-shadow">
+                    <p className="text-slate-600 text-lg leading-relaxed font-medium">
+                        {item.text}
+                    </p>
+                  </div>
                 </div>
               ))}
             </div>
-            
-            {/* Footer Contact Text */}
-            <div className="pt-8 border-t border-gray-200 mt-10">
-                <h4 className="text-xl font-bold text-gray-800 mb-2">Contact Information</h4>
-                <p className="text-gray-600">
-                  For questions regarding these Terms, please contact us:
-                  <br />
-                  <span className="font-semibold">Email:</span> 
-                  <a href="mailto:support@modernliving.com" className="text-yellow-600 hover:text-yellow-800 underline ml-1 transition">
-                    support@modernliving.com
-                  </a>
-                </p>
+
+            {/* Contact Support Section */}
+            <div className="mt-20 p-10 rounded-[3rem] bg-slate-900 relative overflow-hidden">
+                <div className="relative z-10">
+                    <div className="w-12 h-12 rounded-2xl bg-yellow-500 flex items-center justify-center mb-6">
+                        <Mail className="text-white" />
+                    </div>
+                    <h4 className="text-3xl font-black text-white mb-2">Still confused?</h4>
+                    <p className="text-slate-400 mb-8 max-w-sm">
+                        Our legal team is available for direct inquiries regarding specific clauses.
+                    </p>
+                    <a 
+                        href="mailto:support@modernliving.com" 
+                        className="inline-flex items-center gap-3 px-8 py-4 bg-white text-slate-900 rounded-2xl font-black hover:bg-yellow-500 hover:text-white transition-all"
+                    >
+                        Email Support <ArrowRight size={18} />
+                    </a>
+                </div>
+                {/* Subtle Background Glow */}
+                <div className="absolute -bottom-10 -right-10 w-64 h-64 bg-yellow-500/10 rounded-full blur-[80px]" />
             </div>
 
-          </div> {/* End of Main Terms Content */}
-        </div> {/* End of Two-Column Layout */}
-
+          </div> 
+        </div> 
       </div>
     </section>
   );

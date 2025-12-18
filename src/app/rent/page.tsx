@@ -1,4 +1,4 @@
-
+"use client"
 
 import ACards from "@/components/rent-components/ACards";
 import AdviceCardsRow from "@/components/rent-components/AdviceCard";

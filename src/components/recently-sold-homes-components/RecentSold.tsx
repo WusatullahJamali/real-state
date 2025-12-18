@@ -367,7 +367,7 @@ const properties = [
         {filteredProperties.map((property) => (
           <div
             key={property.id}
-            className="bg-white rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
+            className="bg-white border border-gray-500 rounded-lg overflow-hidden hover:shadow-lg transition-shadow cursor-pointer"
           >
             <img
               src={property.image}

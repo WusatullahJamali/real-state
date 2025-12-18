@@ -17,53 +17,7 @@ export interface ApartmentType {
   areaSqFt: number;
 }
 
-export const apartmentList: ApartmentType[] = [
-  {
-    id: 1,
-    title: "Luxury Apartment",
-    price: 1200,
-    bedrooms: 3,
-    location: "Downtown, Karachi",
-    image: "/a1.jpg",
-    description: "A spacious and modern 3-bedroom apartment located in the heart of Downtown, offering panoramic city views and premium finishes.",
-    amenities: ["24/7 Security", "Gym Access", "Pool", "Dedicated Parking"],
-    areaSqFt: 1850,
-  },
-  {
-    id: 2,
-    title: "Modern Studio",
-    price: 800,
-    bedrooms: 1,
-    location: "Bahria Town, Lahore",
-    image: "a2.jpg",
-    description: "Ideal for students or young professionals, this efficient studio offers modern living in a secured community.",
-    amenities: ["Balcony", "Gated Community", "Laundry Facilities"],
-    areaSqFt: 750,
-  },
-  {
-    id: 3,
-    title: "Family Apartment",
-    price: 1000,
-    bedrooms: 2,
-    location: "Clifton, Karachi",
-    image: "/a3.jpg",
-    description: "Comfortable and cozy 2-bedroom unit perfect for a small family, steps away from the Clifton beach.",
-    amenities: ["Kids Play Area", "Power Backup", "Nearby Park"],
-    areaSqFt: 1100,
-  },
-  {
-    id: 4,
-    title: "Penthouse View",
-    price: 1500,
-    bedrooms: 4,
-    location: "DHA Phase 6, Karachi",
-    image: "/a4.jpg",
-    description: "Exclusive penthouse with an expansive terrace, offering a luxurious lifestyle in Karachi's most sought-after defense housing authority.",
-    amenities: ["Private Terrace", "Smart Home Tech", "Servant Quarter"],
-    areaSqFt: 2800,
-  },
-  // ... (Add details for all other apartments)
-];
+
 
 const Apartment = () => {
   const [search, setSearch] = useState("");
@@ -220,43 +174,77 @@ const Apartment = () => {
       <h2 className="text-3xl font-bold text-center mb-10">Apartments for Rent</h2>
 
       {/* FILTERS */}
-      <div className="grid md:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
-        <input
-          placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="border p-3 rounded"
-        />
+     {/* FILTERS */}
+<div className="max-w-6xl mx-auto mb-12">
+  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
 
-        <select onChange={(e) => setBedrooms(e.target.value)} className="border p-3 rounded">
-          <option value="">Bedrooms</option>
-          <option value="1">1 Bed</option>
-          <option value="2">2 Bed</option>
-          <option value="3">3 Bed</option>
-          <option value="4">4 Bed</option>
-        </select>
+    {/* Search */}
+    <input
+      placeholder="Search apartments..."
+      value={search}
+      onChange={(e) => setSearch(e.target.value)}
+      className="
+        h-12 px-4 rounded-xl border border-gray-200
+        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
+        text-sm text-gray-700 placeholder-gray-400
+      "
+    />
 
-       <select onChange={(e) => setCity(e.target.value)} className="border p-3 rounded"> 
-  <option value="">All Cities</option>
-  <option value="Baghdad">Baghdad</option>
-  <option value="Erbil">Erbil</option>
-  <option value="Basra">Basra</option>
-  <option value="Mosul">Mosul</option>
-  <option value="Kirkuk">Kirkuk</option>
-</select>
+    {/* Bedrooms */}
+    <select
+      onChange={(e) => setBedrooms(e.target.value)}
+      className="
+        h-12 px-4 rounded-xl border border-gray-200
+        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
+        text-sm text-gray-700 bg-white
+      "
+    >
+      <option value="">Bedrooms</option>
+      <option value="1">1 Bedroom</option>
+      <option value="2">2 Bedrooms</option>
+      <option value="3">3 Bedrooms</option>
+      <option value="4">4 Bedrooms</option>
+    </select>
 
+    {/* City */}
+    <select
+      onChange={(e) => setCity(e.target.value)}
+      className="
+        h-12 px-4 rounded-xl border border-gray-200
+        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
+        text-sm text-gray-700 bg-white
+      "
+    >
+      <option value="">All Cities</option>
+      <option value="Baghdad">Baghdad</option>
+      <option value="Erbil">Erbil</option>
+      <option value="Basra">Basra</option>
+      <option value="Mosul">Mosul</option>
+      <option value="Kirkuk">Kirkuk</option>
+    </select>
 
-        <select onChange={(e) => setSort(e.target.value)} className="border p-3 rounded">
-          <option value="">Sort Price</option>
-          <option value="low">Low to High</option>
-          <option value="high">High to Low</option>
-        </select>
-      </div>
+    {/* Sort */}
+    <select
+      onChange={(e) => setSort(e.target.value)}
+      className="
+        h-12 px-4 rounded-xl border border-gray-200
+        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
+        text-sm text-gray-700 bg-white
+      "
+    >
+      <option value="">Sort by Price</option>
+      <option value="low">Low → High</option>
+      <option value="high">High → Low</option>
+    </select>
+
+  </div>
+</div>
+
 
       {/* LISTINGS */}
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {filtered.map((apt) => (
-          <div key={apt.id} className="bg-white shadow rounded-xl overflow-hidden hover:shadow-xl transition cursor-pointer">
+          <div key={apt.id} className="bg-white shadow border border-gray-500 rounded-xl overflow-hidden hover:shadow-xl transition cursor-pointer">
             <div className="relative">
               <img src={apt.image} className="w-full h-56 object-cover" />
               <button
