@@ -1,10 +1,13 @@
-"use client";
-
-import { Trends } from "@/components/housing-market-components/Trends";
-import React from "react";
+"use client"
+import React from 'react'
+import  Trends  from '@/components/housing-market-components/Trends'
 
 const page = () => {
-  return <Trends />;
-};
+  return (
+    <div>
+      <Trends />
+    </div>
+  )
+}
 
-export default page;
+export default page

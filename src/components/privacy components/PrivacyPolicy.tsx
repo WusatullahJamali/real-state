@@ -1,216 +1,200 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import {
   Shield,
-  Users,
   Activity,
   Share2,
   Lock,
-  RefreshCw,
-  ChevronDown,
-  ChevronUp,
-  ArrowUp,
+  ChevronRight,
+  Mail,
+  ArrowUpRight,
+  Fingerprint,
+  EyeOff,
+  Scale,
+  Globe,
 } from "lucide-react";
 
 export default function PrivacyPolicy() {
-  const [expandedSection, setExpandedSection] = useState<number | null>(null);
+  const [expandedSection, setExpandedSection] = useState<number | null>(0);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
-  const toggleSection = (index: number) => {
-    setExpandedSection(expandedSection === index ? null : index);
-    setTimeout(() => {
-      const el = document.getElementById(`policy-section-${index}`);
-      el?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }, 100);
-  };
+  useEffect(() => {
+    const updateScroll = () => {
+      const currentScroll = window.scrollY;
+      const scrollHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
+
+      if (scrollHeight > 0) {
+        setScrollProgress((currentScroll / scrollHeight) * 100);
+      }
+    };
+
+    window.addEventListener("scroll", updateScroll);
+    return () => window.removeEventListener("scroll", updateScroll);
+  }, []);
 
   const policies = [
     {
-      icon: <Shield />,
-      title: "Information Collection",
-      shortDesc:
-        "We collect information you provide when contacting us or submitting property forms.",
+      icon: <Fingerprint />,
+      title: "Data Identity",
+      shortDesc: "What personal identifiers we collect to verify your account.",
       fullDesc:
-        "This includes your name, email address, phone number, property details, and any other information you voluntarily provide. We collect this data through forms, account registration, property listings, consultation requests, and direct communication. We may also collect technical information such as IP addresses, browser type, and device information to improve our services.",
-      color: "white",
-      bgColor: "bg-white",
+        "We collect essential identifiers including your full name, encrypted email address, and verified phone number. This data allows us to create a secure environment for property transactions and prevents unauthorized access to your sensitive real estate documents.",
+      gradient: "from-indigo-600 to-violet-600",
+      bgLight: "bg-indigo-50/50",
     },
     {
       icon: <Activity />,
-      title: "Use of Information",
-      shortDesc:
-        "Your information helps improve services, communication, and support.",
+      title: "Usage Analytics",
+      shortDesc: "How we analyze interactions to simplify your search.",
       fullDesc:
-        "We use your data to provide real estate services, match you with suitable properties, send alerts, improve platform functionality, respond to inquiries, conduct analytics, personalize your experience, and comply with legal obligations. We never use your information beyond your consent.",
-      color: "white",
-      bgColor: "bg-white",
+        "Our systems analyze search patterns, saved properties, and duration of sessions. We use this anonymized data to train our recommendation engine, ensuring that the properties you see first are the ones most relevant to your lifestyle needs.",
+      gradient: "from-blue-600 to-cyan-500",
+      bgLight: "bg-blue-50/50",
     },
     {
-      icon: <Users />,
-      title: "Cookies & Tracking",
-      shortDesc: "Cookies personalize browsing and enhance user experience.",
+      icon: <EyeOff />,
+      title: "Tracking & Cookies",
+      shortDesc: "Transparency regarding pixels and session storage.",
       fullDesc:
-        "We use cookies and similar technologies to remember preferences, analyze traffic, provide personalized content, enable social media features, and deliver targeted advertising. You can control cookie settings, but disabling may limit features.",
-      color: "white",
-      bgColor: "bg-white",
+        "We use 'strictly necessary' cookies for security and 'functional' cookies to remember your filters. You can opt-out of performance cookies through our preference center without losing access to core search features.",
+      gradient: "from-emerald-600 to-teal-500",
+      bgLight: "bg-emerald-50/50",
     },
     {
       icon: <Share2 />,
-      title: "Information Sharing",
-      shortDesc:
-        "We only share data with trusted partners under strict conditions.",
+      title: "Third-Party Sync",
+      shortDesc: "The strict protocols for our verified partner network.",
       fullDesc:
-        "We may share information with real estate agents (with consent), service providers, legal authorities, business partners for transactions, and potential buyers/sellers with authorization. All third parties are bound by confidentiality agreements and data protection standards.",
-      color: "white",
-      bgColor: "bg-white",
+        "Information is only shared with licensed agents and financial institutions when you explicitly request a viewing or pre-approval. We perform quarterly security audits on all third-party vendors to ensure they meet our 'Zero-Leak' standards.",
+      gradient: "from-amber-600 to-orange-500",
+      bgLight: "bg-amber-50/50",
     },
     {
       icon: <Lock />,
-      title: "Security Measures",
-      shortDesc: "Industry-standard security protects your information.",
+      title: "Encryption Layer",
+      shortDesc: "Our military-grade protection for your documents.",
       fullDesc:
-        "Our security includes SSL encryption, secure servers, regular audits, access control, employee training, and incident response procedures. While we strive for maximum security, no method over the internet is 100% secure.",
-      color: "white",
-      bgColor: "bg-white",
+        "All property documents and personal chat logs are protected by AES-256 encryption. We utilize hardware security modules (HSM) and multi-factor authentication (MFA) to ensure that only you can access your private data.",
+      gradient: "from-rose-600 to-red-500",
+      bgLight: "bg-rose-50/50",
     },
     {
-      icon: <RefreshCw />,
-      title: "Changes to this Policy",
-      shortDesc:
-        "We update this policy periodically. Latest version appears here.",
+      icon: <Scale />,
+      title: "Legal Rights",
+      shortDesc: "Your right to be forgotten and data portability.",
       fullDesc:
-        "We reserve the right to modify this policy at any time. Changes will be posted here with revision date. Significant changes may be emailed or prominently displayed. Continued use constitutes acceptance of updates. Review regularly.",
-      color: "white",
-      bgColor: "bg-white",
+        "Under global privacy laws, you have the right to request a full export of your data or its permanent deletion. We process all 'Right to be Forgotten' requests within 48 business hours via our automated dashboard.",
+      gradient: "from-slate-800 to-slate-600",
+      bgLight: "bg-slate-50/50",
     },
   ];
 
   return (
-    <div className="min-h-screen bg-white py-16 px-4 relative overflow-hidden">
-      <div className="relative max-w-6xl mx-auto">
-        {/* Header */}
-        <header className="relative rounded-3xl p-12 md:p-20 mb-16 overflow-hidden">
-          <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,...')] opacity-40"></div>
-          <div className="absolute top-0 right-0 w-96 h-96 rounded-full blur-3xl opacity-20"></div>
+    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans antialiased">
+      {/* Progress Bar */}
+      <div
+        className="fixed top-16 left-0 h-1.5 bg-gradient-to-r from-yellow-600 to-yellow-500 z-[100] transition-all duration-150"
+        style={{ width: `${scrollProgress}%` }}
+      />
 
-          <div className="relative z-10 text-center">
-            <div className="inline-flex items-center gap-3 text-black text-sm font-bold px-8 py-3 rounded-full mb-8 animate-pulse">
-              <Shield className="text-xl" />
-              YOUR PRIVACY MATTERS
+      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-32">
+        <div className="flex flex-col lg:flex-row gap-16">
+          {/* Left Navigation */}
+          <aside className="lg:w-1/3">
+            <div className="sticky top-32 space-y-8">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-yellow-700 text-xs font-bold uppercase tracking-widest mb-4">
+                  <Shield size={14} /> Global Standard
+                </div>
+
+                <h1 className="text-5xl font-black tracking-tight text-black mb-6">
+                  Privacy <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-600">
+                    Protocol
+                  </span>
+                </h1>
+
+                <p className="text-slate-500 text-lg leading-relaxed">
+                  Last revised:{" "}
+                  <span className="text-black font-semibold">Dec 2025</span>.
+                </p>
+              </div>
+
+              <nav className="hidden lg:block space-y-2">
+                {policies.map((item, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setExpandedSection(i)}
+                    className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-300 ${
+                      expandedSection === i
+                        ? "bg-white shadow-lg border-l-4 border-yellow-600"
+                        : "hover:bg-slate-100 text-slate-400"
+                    }`}
+                  >
+                    <span className="font-bold">
+                      0{i + 1}. {item.title}
+                    </span>
+                    <ChevronRight size={18} />
+                  </button>
+                ))}
+              </nav>
             </div>
+          </aside>
 
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-black mb-8 leading-tight tracking-tight">
-              Privacy <span className="text-black bg-clip-text">Policy</span>
-            </h1>
-
-            <p className="text-black text-xl md:text-2xl leading-relaxed max-w-4xl mx-auto font-light">
-              At{" "}
-              <span className="font-semibold text-yellow-400">RealChoice</span>,
-              your privacy is our top priority. We are committed to protecting
-              your personal information and being transparent about how we
-              collect, use, and safeguard your data.
-            </p>
-
-            <div className="mt-10 flex flex-wrap justify-center gap-6 text-base text-black">
-              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
-                📅 Last Updated: December 2025
-              </span>
-              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
-                ⏱️ 5 min read
-              </span>
-              <span className="flex items-center gap-2 bg-white px-4 py-2 rounded-full backdrop-blur-sm">
-                🔒 GDPR Compliant
-              </span>
-            </div>
-          </div>
-
-          <h1 className="text-5xl md:text-6xl font-black mb-6">
-            Privacy Policy
-          </h1>
-
-          <p className="text-lg max-w-3xl mx-auto">
-            At <span className="font-semibold text-yellow-500">RealChoice</span>
-            , we are committed to protecting your data and being transparent.
-          </p>
-        </header>
-
-        {/* QUICK NAV */}
-        <section className="bg-white rounded-3xl p-8 mb-12 border">
-          <h3 className="font-black text-2xl mb-6">Quick Navigation</h3>
-          <div className="grid md:grid-cols-3 gap-4">
+          {/* Content */}
+          <main className="lg:w-2/3 space-y-10">
             {policies.map((item, i) => (
-              <button
+              <section
                 key={i}
-                onClick={() => toggleSection(i)}
-                className="text-left font-semibold p-4 rounded-xl hover:bg-yellow-50"
+                className={`p-8 md:p-12 rounded-[2.5rem] transition-all border ${
+                  expandedSection === i
+                    ? "bg-white border-yellow-100"
+                    : "opacity-60 grayscale"
+                }`}
+                onMouseEnter={() => setExpandedSection(i)}
               >
-                {item.title}
-              </button>
-            ))}
-          </div>
-        </section>
-
-        {/* POLICY SECTIONS */}
-        <section className="space-y-8">
-          {policies.map((item, i) => (
-            <div
-              key={i}
-              id={`policy-section-${i}`}
-              className={`rounded-3xl border-2 transition-all ${
-                expandedSection === i
-                  ? "border-yellow-400 shadow-xl"
-                  : "border-gray-100"
-              }`}
-            >
-              <button
-                onClick={() => toggleSection(i)}
-                className="w-full p-8 flex gap-6 text-left"
-              >
-                <div className="w-16 h-16 rounded-2xl flex items-center justify-center text-yellow-500">
-                  {item.icon}
-                </div>
-
-                <div className="flex-1">
-                  <div className="flex justify-between items-center mb-3">
-                    <h2 className="text-2xl font-black">
-                      {i + 1}. {item.title}
-                    </h2>
-                    <div className="flex-shrink-0 w-10 h-10 rounded-full bg-gray-100 group-hover:bg-yellow-100 flex items-center justify-center text-gray-600 group-hover:text-yellow-600 transition-all">
-                      {expandedSection === i ? (
-                        <ChevronUp className="text-xl" />
-                      ) : (
-                        <ChevronDown className="text-xl" />
-                      )}
-                    </div>
+                <div className="flex gap-8">
+                  <div
+                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white shadow-xl`}
+                  >
+                    {React.cloneElement(item.icon, { size: 28 })}
                   </div>
-                  <p className="text-gray-700">{item.shortDesc}</p>
-                </div>
-              </button>
 
-              {expandedSection === i && (
-                <div className="px-8 pb-8">
-                  <p className="text-gray-800 leading-relaxed">
-                    {item.fullDesc}
-                  </p>
+                  <div>
+                    <h2 className="text-3xl font-extrabold mb-3">
+                      {item.title}
+                    </h2>
+                    <p className="text-xl text-slate-700 mb-4">
+                      {item.shortDesc}
+                    </p>
+                    <p className="text-slate-600">{item.fullDesc}</p>
+                  </div>
                 </div>
-              )}
+              </section>
+            ))}
+
+            {/* Support */}
+            <div className="grid md:grid-cols-2 gap-6 pt-10">
+              <div className="p-8 rounded bg-yellow-600 text-white">
+                <Globe size={32} className="mb-4 opacity-50" />
+                <h3 className="text-2xl font-bold mb-2">Regional Compliance</h3>
+              </div>
+
+              <div className="p-8 rounded bg-white border">
+                <Mail size={32} className="text-yellow-600 mb-4" />
+                <a
+                  href="mailto:privacy@realchoice.com"
+                  className="text-yellow-600 font-bold flex items-center gap-2"
+                >
+                  privacy@realchoice.com <ArrowUpRight size={18} />
+                </a>
+              </div>
             </div>
-          ))}
-        </section>
+          </main>
+        </div>
       </div>
-
-      {/* BACK TO TOP */}
-      {expandedSection !== null && (
-        <button
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-            setExpandedSection(null);
-          }}
-          className="fixed bottom-8 right-8 bg-white text-black font-bold p-5 rounded-2xl shadow-2xl hover:shadow-3xl hover:scale-110 transition-all z-50 group"
-          aria-label="Back to top"
-        >
-          <ArrowUp className="text-2xl group-hover:-translate-y-1 transition-transform" />
-        </button>
-      )}
     </div>
   );
 }

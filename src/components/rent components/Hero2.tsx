@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 
+//Hero
 const Hero2 = () => {
   return (
     <div

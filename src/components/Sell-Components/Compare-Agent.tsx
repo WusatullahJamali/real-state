@@ -25,7 +25,7 @@ const Step: React.FC<StepProps> = ({ number, text }) => (
   </div>
 );
 
-// --- Main Component ---
+// --- Main Component --- //
 export default function CompareAgents() {
   const [address, setAddress] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);

@@ -63,6 +63,7 @@ const OnlineApplications = () => {
       prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
     );
   };
+  //Online
 
   return (
     <div className="max-w-7xl mx-auto p-6">
