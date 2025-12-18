@@ -84,8 +84,8 @@ export default function RecommendedLocations() {
         <h2 className="text-3xl font-bold text-gray-900 mb-2">
           Recommended cities
         </h2>
-        <p className="text-gray-600 mb-8 md:mb-12 text-lg">
-          Based on your previous search
+        <p className="mb-8 text-lg text-gray-600 md:mb-12">
+          Based on your previous searches
         </p>
 
         {/* Grid */}

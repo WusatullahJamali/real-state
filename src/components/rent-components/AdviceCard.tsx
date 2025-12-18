@@ -2,7 +2,7 @@ import React from 'react';
 
 const AdviceCard = ({ image, title }: { image: string; title: string }) => {
   return (
-    <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group">
+    <div className="relative bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 group text-black">
       {/* Image Container */}
       <div className="relative h-64 overflow-hidden">
         <img 

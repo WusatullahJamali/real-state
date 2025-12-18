@@ -4,20 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  ChevronDown,
-  User,
-  Plus,
-  Menu,
-  X,
-  Home,
-  Building,
-  House,
-  Briefcase,
-  Layers,
-  Info,
-  BookOpen,
-} from "lucide-react";
+import { ChevronDown, User, Plus, Menu, X, Home, Building, House, Briefcase, Layers, Info} from "lucide-react";
 import LoginModal from "@/components/Auth/loginModal";
 import SignupModal from "@/components/Auth/SignupModal";
 
@@ -36,14 +23,25 @@ type MegaMenuContent = Record<
 
 const menuItems: MenuItem[] = [
   { name: "HOME", href: "/", hasDropdown: false },
+  {name: "BUY", href: "/buy", hasDropdown: true },
   { name: "SALE", href: "/sell", hasDropdown: true },
-  { name: "FOR RENT", href: "/rent", hasDropdown: true },
-  { name: "PROPERTY", href: "/mortgage", hasDropdown: true },
-  { name: "SERVICES", href: "/pages", hasDropdown: true },
+  { name: "RENT", href: "/rent", hasDropdown: true },
+  { name: "BLOG", href: "/#", hasDropdown: true }, 
   { name: "CONTACT US", href: "/contact", hasDropdown: false },
 ];
 
 const megaMenuContent: MegaMenuContent = {
+
+
+  BUY: {
+    columns: [
+      { title: "Market  Insights", items: [{ text: "Sold Homes", href: "/soldhomes", icon: Building }, ] },
+      { title: "Buying  Essentials", items: [{ text: "Property", href: "/property", icon: Briefcase }  ] },
+    ],
+  },
+
+
+
   SALE: {
     columns: [
       {
@@ -88,7 +86,11 @@ const megaMenuContent: MegaMenuContent = {
       },
     ],
   },
-  "FOR RENT": {
+
+
+
+  
+  RENT: {
     columns: [
       {
         title: "Rental Types",
@@ -111,56 +113,21 @@ const megaMenuContent: MegaMenuContent = {
       },
     ],
   },
-  PROPERTY: {
-    columns: [
-      {
-        title: "Search & Valuation",
-        items: [
-          { text: "Property Search", href: "/property-search", icon: Layers },
-          { text: "Property Listings", href: "/property-listings", icon: Home },
-          {
-            text: "Property Valuation",
-            href: "/property-valuation",
-            icon: Info,
-          },
-        ],
-      },
-      {
-        title: "Investment",
-        items: [
-          { text: "Investment", href: "/property-investment", icon: Briefcase },
-          { text: "Commercial", href: "/commercial-property", icon: Building },
-          { text: "Residential", href: "/residential-property", icon: House },
-        ],
-      },
-    ],
-  },
-  SERVICES: {
-    columns: [
-      {
-        title: "Company",
-        items: [
-          { text: "About Us", href: "/about", icon: Info },
-          { text: "Contact Us", href: "/contact", icon: BookOpen },
-          { text: "Careers", href: "/careers", icon: Briefcase },
-        ],
-      },
-      {
-        title: "Resources",
-        items: [
-          { text: "Blog", href: "/blog", icon: BookOpen },
-          { text: "FAQ", href: "/faq", icon: Info },
-        ],
-      },
-      {
-        title: "Legal",
-        items: [
-          { text: "Terms", href: "/terms-of-service", icon: Layers },
-          { text: "Privacy", href: "/privacy-policy", icon: Layers },
-        ],
-      },
-    ],
-  },
+
+
+
+
+
+
+
+
+  // SERVICES: {
+  //   columns: [
+  //     { title: "Company", items: [{ text: "About Us", href: "/about", icon: Info }, { text: "Contact Us", href: "/contact", icon: BookOpen }, { text: "Careers", href: "/careers", icon: Briefcase }] },
+  //     { title: "Resources", items: [{ text: "Blog", href: "/blog", icon: BookOpen }, { text: "FAQ", href: "/faq", icon: Info }] },
+  //     { title: "Legal", items: [{ text: "Terms", href: "/terms-of-service", icon: Layers }, { text: "Privacy", href: "/privacy-policy", icon: Layers }] },
+  //   ],
+  // },
 };
 
 export default function Navbar() {
@@ -172,31 +139,37 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) setMobileOpen(false); // md breakpoint
+      if (window.innerWidth >= 768) setMobileOpen(false); 
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+
+  
+
   return (
     <>
       {/* NAVBAR */}
-      <motion.nav className="bg-[#1B3A57] border-b shadow-lg sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex justify-between items-center gap-4">
+     <motion.nav className="bg-[#1B3A57]  shadow-sm sticky top-0 z-50 block ">
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-5">
           {/* Logo */}
           <Link href="/" className="shrink-0 flex items-center">
             <Image
-              src="/logo-svg-01.svg"
-              width={180}
-              height={80}
-              alt="logo"
-              className="h-10 md:h-14 lg:h-20 w-auto md:invert object-contain"
-              priority
-            />
+  src="/albasync-01.png"
+  width={150}
+  height={50}
+  alt="logo"
+  priority
+  className="h-8 md:h-10 lg:h-12 w-auto object-contain"
+/>
+
           </Link>
 
           {/* DESKTOP / TABLET MENU */}
-          <ul className="hidden md:flex items-center gap-2 lg:gap-4 h-full text-sm md:text-xs lg:text-sm">
+          <ul className="hidden md:flex items-center gap-2 lg:gap-4 h-full text-sm md:text-sm lg:text-base">
+
             {menuItems.map((item) => (
               <li
                 key={item.name}
@@ -370,19 +343,8 @@ export default function Navbar() {
               className="fixed left-0 top-0 h-full w-full max-w-xs bg-white text-black z-50 p-5 overflow-y-auto shadow-2xl"
             >
               <div className="flex justify-between items-center mb-6 border-b pb-4">
-                <Image
-                  src="/logo-svg-01.svg"
-                  width={120}
-                  height={60}
-                  alt="logo"
-                  className="h-10 w-auto object-contain"
-                />
-                <button
-                  className="text-black p-2 hover:bg-gray-100 rounded-full"
-                  onClick={() => setMobileOpen(false)}
-                >
-                  <X className="w-6 h-6" />
-                </button>
+                <Image src="/albasync-04.png" width={120} height={60} alt="logo" className="h-10 w-auto object-contain" />
+                <button className="text-black p-2 hover:bg-gray-100 rounded-full" onClick={() => setMobileOpen(false)}><X className="w-6 h-6" /></button>
               </div>
               <ul className="space-y-2">
                 {menuItems.map((item) => {
@@ -460,25 +422,9 @@ export default function Navbar() {
                 })}
               </ul>
               {!isLoggedIn ? (
-                <div className="mt-8 space-y-3">
-                  <button
-                    onClick={() => {
-                      setAuthModal("login");
-                      setMobileOpen(false);
-                    }}
-                    className="w-full border border-gray-300 text-gray-800 py-3 rounded-lg font-medium hover:bg-gray-50"
-                  >
-                    LOGIN
-                  </button>
-                  <button
-                    onClick={() => {
-                      setAuthModal("signup");
-                      setMobileOpen(false);
-                    }}
-                    className="w-full bg-yellow-500 text-black py-3 rounded-lg font-bold hover:bg-yellow-400 shadow-sm"
-                  >
-                    REGISTER
-                  </button>
+                <div className="mt-8 space-y-3 ">
+                  <button onClick={() => { setAuthModal("login"); setMobileOpen(false); }} className="w-full border  border-gray-300 text-gray-800 py-3 rounded-lg font-medium hover:bg-gray-50">LOGIN</button>
+                  <button onClick={() => { setAuthModal("signup"); setMobileOpen(false); }} className="w-full bg-yellow-500 text-black py-3 rounded-lg font-bold hover:bg-yellow-400 shadow-sm">REGISTER</button>
                 </div>
               ) : (
                 <>

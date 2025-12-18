@@ -16,9 +16,9 @@ const ACards = () => {
       linkText: "Learn about landlord tools by Avail",
     },
   ];
-//Rent
+  //Rent
   return (
-    <section className="bg-blue-50 py-12">
+    <section className="bg-white py-12 text-black">
       <div className="max-w-7xl mx-auto px-6 grid gap-6 md:grid-cols-2">
         {cards.map((card, i) => (
           <div

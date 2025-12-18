@@ -168,7 +168,7 @@ export default function PropertyDetailsPage() {
         </div>
 
         {/* RIGHT --- CONTACT SIDEBAR */}
-        <div className="w-full ">
+        <div className="w-full gap-1">
           <div className="p-6 rounded-xl shadow-md border bg-white sticky  top-24">
             
             <div className="text-3xl font-bold text-black">{property.price}</div>
