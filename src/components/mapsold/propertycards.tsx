@@ -8,11 +8,20 @@ interface PropertyCardProps {
   property: Property;
 }
 
-const formatIQD = (price: number) => {
-  // Format to show large numbers (in millions) with proper currency symbol
-  return `IQD ${price.toLocaleString("ar-IQ", { useGrouping: true })}`;
+/* ------------------ CURRENCY HELPERS ------------------ */
+const IQD_PER_USD = 1300;
+
+const formatIQD = (price: number) => `IQD ${price.toLocaleString("en-US")}`;
+
+const formatUSD = (priceIQD: number) => {
+  const usd = priceIQD / IQD_PER_USD;
+  return `$${usd.toLocaleString("en-US", {
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  })}`;
 };
 
+/* ------------------ COMPONENT ------------------ */
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer w-full">
@@ -36,12 +45,29 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         <h3 className="text-xl font-extrabold text-blue-700 mb-2">
           {formatIQD(property.priceIQD)}
         </h3>
-        <p className="text-md text-gray-800 font-medium truncate">
+        {/* CITY + TYPE */}
+        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+          {property.city} · {property.type}
+        </p>
+
+        {/* PRICES */}
+        <div>
+          <h3 className="text-2xl -mt-2 font-extrabold text-blue-700 leading-tight">
+            {formatUSD(property.priceIQD)}
+          </h3>
+          <p className="text-sm text-gray-500">
+            {formatIQD(property.priceIQD)}
+          </p>
+        </div>
+
+        {/* ADDRESS */}
+        <p className="text-sm text-gray-800 -mt-3 font-medium">
           {property.address}
         </p>
 
-        {/* Specs - Discriminated Union Logic */}
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm text-gray-600 mt-2 pt-2 border-t border-gray-100">
+        {/* SPECS */}
+        <div className="flex flex-wrap gap-x-2 -mt-6 gap-y-2 text-sm text-gray-600 pt-3 border-t border-gray-100">
+             (homesold changes)
           {property.type === "Land" ? (
             <span className="flex items-center">
               <i className="fas fa-ruler-combined mr-1"></i>
@@ -49,7 +75,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             </span>
           ) : (
             <>
-              <span className="flex items-center">
                 <i className="fas fa-bed mr-1"></i> {property.specs.beds} Beds
               </span>
               <span className="flex items-center">
@@ -64,6 +89,8 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           )}
         </div>
       </div>
+
+      {/* WEBKIT SCROLLBAR HIDE */}
     </div>
   );
 };
