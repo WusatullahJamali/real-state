@@ -1,6 +1,7 @@
-"use client"
-import React from 'react'
-import  Trends  from '@/components/housing-market-components/Trends'
+"use client";
+
+import  Trends  from "@/components/housing-market-components/Trends";
+import React from "react";
 
 const page = () => {
   return (

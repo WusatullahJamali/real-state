@@ -1,19 +1,22 @@
+"use client";
+
 import { motion } from "framer-motion";
 import React from "react";
+import Image from "next/image";
 
-// --- 1. TypeScript Interface (Unchanged) ---
+/* ---------------- TYPES ---------------- */
 interface CardData {
   id: number;
   category: string;
-  categoryColor: string; // Tailwind color class for the category badge
+  categoryColor: string;
   imageSrc: string;
   imageAlt: string;
   title: string;
-  badgeContent?: string; // Optional: for the "Most Popular Homes" badge
-  badgeBgColor?: string; // Optional: background color for the main content badge
+  badgeContent?: string;
+  badgeBgColor?: string;
 }
 
-// --- 2. Mock Data (Unchanged) ---
+/* ---------------- DATA ---------------- */
 const cardData: CardData[] = [
   {
     id: 1,
@@ -47,12 +50,12 @@ const cardData: CardData[] = [
     category: "Weather",
     categoryColor: "bg-red-500",
     imageSrc: "/p4.jpg",
-    imageAlt: "Map showing two tropical storm trackers (Humberto and Imelda)",
-    title: "Tropical Storms Humberto and Imelda: Trackers See Storm's Pat...",
+    imageAlt: "Storm trackers map",
+    title: "Tropical Storms Humberto and Imelda: Trackers See Storm's Path...",
   },
 ];
 
-// --- 3. InfoCard Component (Updated for Bottom-Left Badge and Framer Motion) ---
+/* ---------------- CARD ---------------- */
 const InfoCard: React.FC<{ data: CardData }> = ({ data }) => {
   const {
     category,
@@ -64,58 +67,60 @@ const InfoCard: React.FC<{ data: CardData }> = ({ data }) => {
     badgeBgColor,
   } = data;
 
-  // Framer Motion variants for the hover animation (Scale and Shadow)
   const cardVariants = {
     initial: {
       scale: 1,
-      // Default shadow
       boxShadow:
-        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1)",
+        "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
     },
     hover: {
-      scale: 1.02, // Slightly larger on hover
-      // Deeper shadow on hover
+      scale: 1.03,
       boxShadow:
-        "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
+        "0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)",
     },
   };
 
   return (
     <motion.div
-      className="w-full max-w-xs overflow-hidden rounded-xl bg-white cursor-pointer"
       variants={cardVariants}
       initial="initial"
       whileHover="hover"
-      transition={{ type: "spring", stiffness: 300, damping: 20 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      className="
+        w-full max-w-sm
+        overflow-hidden rounded-xl bg-white
+        cursor-pointer
+      "
     >
-      {/* Image Container */}
-      <div className="relative h-48">
-        <img
+      {/* IMAGE */}
+      <div className="relative h-48 sm:h-52">
+        <Image
           src={imageSrc}
           alt={imageAlt}
-          className="h-full w-full object-cover"
+          fill
+          className="object-cover"
+          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
         />
 
-        {/* Category Badge (Top Left) */}
+        {/* CATEGORY BADGE */}
         <span
-          className={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold text-white rounded-full shadow-md ${categoryColor}`}
+          className={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold text-white rounded-full ${categoryColor}`}
         >
           {category}
         </span>
 
-        {/* Optional Main Content Badge (Bottom Left) */}
+        {/* OPTIONAL BADGE */}
         {badgeContent && (
           <span
-            // Positioned at bottom-3 and left-3
-            className={`absolute bottom-3 left-3 px-3 py-1 text-sm font-bold text-white rounded-full shadow-md ${badgeBgColor}`}
+            className={`absolute bottom-3 left-3 px-3 py-1 text-xs sm:text-sm font-bold text-white rounded-full ${badgeBgColor}`}
           >
             {badgeContent}
           </span>
         )}
       </div>
 
-      {/* Content Area */}
-      <div className="p-4 pt-3">
+      {/* CONTENT */}
+      <div className="p-4">
         <p className="text-sm font-medium text-gray-800 line-clamp-2">
           {title}
         </p>
@@ -124,20 +129,27 @@ const InfoCard: React.FC<{ data: CardData }> = ({ data }) => {
   );
 };
 
-// --- 4. CardGrid Component (Default Export - Unchanged) ---
+/* ---------------- GRID ---------------- */
 const PropertyCards: React.FC = () => {
   return (
-    <div className="bg-gray-100 py-16">
-      <div className="container mx-auto px-4">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <section className="bg-white py-14">
+      <div className="max-w-7xl mx-auto px-4">
+        <div
+          className="
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            lg:grid-cols-4
+            gap-6 sm:gap-8
+            place-items-center
+          "
+        >
           {cardData.map((card) => (
-            <div key={card.id} className="flex justify-center">
-              <InfoCard data={card} />
-            </div>
+            <InfoCard key={card.id} data={card} />
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

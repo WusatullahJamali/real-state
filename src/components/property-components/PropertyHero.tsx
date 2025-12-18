@@ -63,7 +63,7 @@ const PropertyHero: React.FC = () => {
 
             <button
               onClick={handleSearch}
-              className="absolute right-1.5 h-12 w-12 rounded-full bg-gradient-to-r from-[#2AF598] to-[#009EFD] flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0"
+              className="absolute right-1.5 h-12 w-12 rounded-full bg-[#1B3A57] cursor-pointer flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

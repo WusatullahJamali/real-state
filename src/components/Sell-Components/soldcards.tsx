@@ -182,7 +182,7 @@ export default function RecentlySoldHomes() {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center p-6 bg-white">
+    <div className="min-h-[70vh] flex items-center justify-center p-6 bg-white text-black">
       <div className="w-full max-w-7xl relative p-6 md:p-8 rounded-3xl bg-white">
         {/* Header */}
         <div className="flex items-start md:items-end justify-between border-b pb-4 mb-6">
