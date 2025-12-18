@@ -8,7 +8,7 @@ interface PropertyCardProps {
   property: Property;
 }
 
-// ------------------ CURRENCY HELPERS ------------------
+/* ------------------ CURRENCY HELPERS ------------------ */
 const IQD_PER_USD = 1300;
 
 const formatIQD = (price: number) => `IQD ${price.toLocaleString("en-US")}`;
@@ -21,7 +21,7 @@ const formatUSD = (priceIQD: number) => {
   })}`;
 };
 
-// ------------------ COMPONENT ------------------
+/* ------------------ COMPONENT ------------------ */
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden w-full cursor-pointer">
@@ -38,8 +38,14 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         />
       </div>
 
-      {/* CONTENT */}
-      <div className="p-5 space-y-3">
+      {/* SCROLLABLE CONTENT (SCROLLBAR FULLY HIDDEN) */}
+      <div
+        className="p-5 space-y-3 max-h-[260px] overflow-y-scroll"
+        style={{
+          scrollbarWidth: "none", // Firefox
+          msOverflowStyle: "none", // IE & Edge
+        }}
+      >
         {/* CITY + TYPE */}
         <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
           {property.city} · {property.type}
@@ -47,7 +53,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
 
         {/* PRICES */}
         <div>
-          <h3 className="text-2xl font-extrabold text-blue-700 leading-tight">
+          <h3 className="text-2xl -mt-2 font-extrabold text-blue-700 leading-tight">
             {formatUSD(property.priceIQD)}
           </h3>
           <p className="text-sm text-gray-500">
@@ -56,12 +62,12 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         </div>
 
         {/* ADDRESS */}
-        <p className="text-sm text-gray-800 font-medium truncate">
+        <p className="text-sm text-gray-800 -mt-3 font-medium">
           {property.address}
         </p>
 
         {/* SPECS */}
-        <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm text-gray-600 pt-3 border-t border-gray-100">
+        <div className="flex flex-wrap gap-x-2 -mt-6 gap-y-2 text-sm text-gray-600 pt-3 border-t border-gray-100">
           {property.type === "Land" ? (
             <span>📐 {property.specs.lotSizeSqM.toLocaleString()} m² Lot</span>
           ) : (
@@ -73,6 +79,8 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           )}
         </div>
       </div>
+
+      {/* WEBKIT SCROLLBAR HIDE */}
     </div>
   );
 };
