@@ -57,7 +57,11 @@ const RECOMMENDED_LOCATIONS: Location[] = [
 ];
 
 // --- Map / Image Component ---
-const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img }) => (
+const LocationMap: React.FC<LocationMapProps> = ({
+  name,
+  mapColor,
+  img,
+}) => (
   <div className="relative h-48 w-full overflow-hidden border-b border-gray-200">
     {img ? (
       <Image src={img} alt={`${name} map`} fill className="object-cover" />
