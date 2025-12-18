@@ -1,186 +1,164 @@
 "use client";
 
-import React from "react";
 import { useParams } from "next/navigation";
-import Link from "next/link";
 import Image from "next/image";
-
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { MapPin, Bed, Ruler } from "lucide-react";
 import { apartmentList } from "@/components/apartmentsrent-components/ApartmentData";
 
-// ⭐ Lucide Icons
-import {
-  BedDouble,
-  Ruler,
-  Mail,
-  CalendarDays,
-  UserRound,
-  MapPin,
-  ArrowLeft,
-  Check,
-} from "lucide-react";
+export default function ApartmentDetailPage() {
+  const { id } = useParams();
+  const apartment = apartmentList.find((apt) => apt.id === Number(id));
 
-const ApartmentDetail = () => {
-  const params = useParams();
-  const id = Number(params?.id);
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = apartment ? [apartment.image] : [];
 
-  const apartment = apartmentList.find((apt) => apt.id === id);
+  useEffect(() => {
+    if (!images.length) return;
+    const interval = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 4000);
+    return () => clearInterval(interval);
+  }, [images]);
 
   if (!apartment) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-100 p-10">
         <div className="text-center bg-white p-8 rounded-lg shadow-lg">
-          <h1 className="text-3xl font-bold text-red-600">
-            Apartment Not Found 😢
-          </h1>
-          <p className="text-gray-600 mt-2">
-            The listing ID ({id}) does not match any current apartments.
-          </p>
-          <Link
-            href="/apartments-for-rent"
-            className="mt-5 inline-flex items-center gap-2 text-blue-600 hover:underline"
-          >
-            <ArrowLeft /> Back to Listings
+          <h1 className="text-3xl font-bold text-red-600">Apartment Not Found</h1>
+          <p className="text-gray-600 mt-2">The listing ID ({id}) does not match any current apartments.</p>
+          <Link href="/apartments-for-rent" className="mt-5 inline-block text-blue-600 hover:underline font-semibold">
+            ← Back to Listings
           </Link>
         </div>
       </div>
     );
   }
 
-  const {
-    title,
-    price,
-    bedrooms,
-    location,
-    image,
-    description,
-    amenities,
-    areaSqFt,
-  } = apartment;
-
-  const commonAmenities = ["Elevator", "Parking", "Water Supply"];
+  const { title, price, bedrooms, location, description, amenities, areaSqFt } = apartment;
 
   return (
-    <div className="bg-white min-h-screen">
-      {/* Header */}
-      <div className="bg-gray-50 py-4 px-6 border-b border-gray-200">
-        <Link
-          href="/apartments-for-rent"
-          className="inline-flex items-center gap-2 text-gray-600 hover:text-yellow-600 font-semibold"
-        >
-          <ArrowLeft /> Back to Listings
-        </Link>
-      </div>
+    <div className="bg-white min-h-screen py-10">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* LEFT CONTENT */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Image */}
-            <div className="relative h-96 w-full rounded-2xl overflow-hidden shadow-xl">
+        {/* LEFT --- MAIN CONTENT */}
+        <div className="lg:col-span-2 space-y-6">
+
+          {/* IMAGE GALLERY */}
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="col-span-3">
               <Image
-                src={image}
+                src={images[currentImage]}
                 alt={title}
-                fill
-                className="object-cover"
-                priority
+                width={1200}
+                height={500}
+                className="rounded-xl shadow-md w-full h-[400px] object-cover"
               />
             </div>
-
-            {/* Title */}
-            <div className="p-6 bg-white shadow-xl rounded-2xl border-t-4 border-yellow-500">
-              <h1 className="text-4xl font-extrabold text-gray-900">{title}</h1>
-              <p className="text-xl text-gray-600 mt-1">{location}</p>
-
-              <div className="mt-4 border-t pt-4 flex justify-between items-center">
-                <span className="text-3xl font-black text-yellow-600">
-                  ${price}
-                  <span className="text-xl text-gray-600 font-normal">
-                    /month
-                  </span>
-                </span>
-
-                <div className="flex gap-4 text-gray-700 font-semibold">
-                  <div className="flex items-center gap-1">
-                    <BedDouble className="text-yellow-500" />
-                    {bedrooms} Beds
-                  </div>
-                  <div className="flex items-center gap-1">
-                    <Ruler className="text-yellow-500" />
-                    {areaSqFt} Sq Ft
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Description */}
-            <div className="p-6 bg-gray-50 rounded-2xl shadow">
-              <h2 className="text-2xl font-bold mb-3 border-b pb-2">
-                Description
-              </h2>
-              <p className="text-lg text-gray-700">{description}</p>
-            </div>
-
-            {/* Amenities */}
-            <div className="p-6 bg-gray-50 rounded-2xl shadow">
-              <h2 className="text-2xl font-bold mb-4 border-b pb-2">
-                Amenities
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {[...commonAmenities, ...amenities].map((amenity, i) => (
-                  <div key={i} className="flex items-center gap-2 text-gray-700">
-                    <Check className="text-green-600" />
-                    {amenity}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Location */}
-            <div className="p-6 bg-gray-50 rounded-2xl shadow">
-              <h2 className="text-2xl font-bold mb-4 border-b pb-2">
-                Location
-              </h2>
-              <div className="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
-                <MapPin className="text-5xl text-gray-500" />
-                <span className="ml-3 text-gray-500">
-                  Map Placeholder for {location}
-                </span>
-              </div>
+            <div className="hidden md:flex flex-col gap-3">
+              {images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrentImage(i)}
+                  className={`rounded-lg overflow-hidden border transition ${
+                    currentImage === i ? "border-yellow-500" : "border-gray-300 hover:border-yellow-400"
+                  }`}
+                >
+                  <Image src={img} alt={`thumb-${i}`} width={200} height={100} className="w-full h-[100px] object-cover" />
+                </button>
+              ))}
             </div>
           </div>
 
-          {/* RIGHT SIDEBAR */}
-          <div className="lg:col-span-1">
-            <div className="sticky top-20 p-6 bg-yellow-50 border-2 border-yellow-300 rounded-2xl shadow-2xl space-y-6">
-              <h3 className="text-2xl font-extrabold border-b pb-3">
-                Inquire & Tour
-              </h3>
+          {/* BADGES */}
+          <div className="flex items-center gap-2 mt-4">
+            <span className="bg-yellow-500 text-black px-3 py-1 rounded-md text-sm font-medium">Featured</span>
+            <span className="bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium">Verified</span>
+          </div>
 
-              <div className="flex items-center gap-4 border-b pb-4">
-                <UserRound className="text-5xl text-yellow-600" />
-                <div>
-                  <p className="font-bold text-lg">Agent: Sarah Khan</p>
-                  <p className="text-sm text-gray-600">Property Specialist</p>
+          {/* TITLE */}
+          <h1 className="mt-4 text-3xl font-bold text-black">{title}</h1>
+
+          {/* LOCATION */}
+          <div className="flex items-center text-gray-600 mt-1">
+            <MapPin className="w-5 h-5 mr-1" /> {location}
+          </div>
+
+          {/* FEATURES */}
+          <div className="flex flex-wrap gap-4 mt-4 text-black font-medium">
+            <span className="flex items-center gap-1"><Bed className="w-5 h-5 text-yellow-500" /> {bedrooms} Bedrooms</span>
+            <span className="flex items-center gap-1"><Ruler className="w-5 h-5 text-yellow-500" /> {areaSqFt} Sq Ft</span>
+          </div>
+
+          {/* DESCRIPTION */}
+          <div className="mt-6 p-6 bg-gray-50 rounded-2xl shadow">
+            <h2 className="text-2xl font-bold mb-3 border-b pb-2">Description</h2>
+            <p className="text-gray-700 leading-relaxed">{description}</p>
+          </div>
+
+          {/* AMENITIES */}
+          <div className="mt-6 p-6 bg-gray-50 rounded-2xl shadow">
+            <h2 className="text-2xl font-bold mb-4 border-b pb-2">Amenities</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+              {amenities.map((am, i) => (
+                <div key={i} className="flex items-center gap-2 p-3 border rounded-lg text-black">
+                  ✓ {am}
                 </div>
-              </div>
+              ))}
+            </div>
+          </div>
 
-              <button className="w-full flex items-center justify-center gap-2 bg-yellow-600 text-white py-4 rounded-xl font-bold hover:bg-yellow-700">
-                <Mail /> Contact Agent
-              </button>
-
-              <button className="w-full flex items-center justify-center gap-2 bg-green-600 text-white py-4 rounded-xl font-bold hover:bg-green-700">
-                <CalendarDays /> Schedule Tour
-              </button>
-
-              <p className="text-xs text-center text-gray-500">
-                Reference ID: <strong>APT-{id}</strong>
-              </p>
+          {/* LOCATION MAP */}
+          <div className="mt-6 p-6 bg-gray-50 rounded-2xl shadow">
+            <h2 className="text-2xl font-bold mb-4 border-b pb-2">Location</h2>
+            <div className="h-64 bg-gray-200 rounded-lg flex items-center justify-center text-gray-500 font-semibold">
+              Map Placeholder for {location}
             </div>
           </div>
         </div>
+
+        {/* RIGHT --- CONTACT SIDEBAR */}
+        <div className="w-full">
+          <div className="p-6 rounded-xl shadow-md border bg-white sticky top-24 space-y-6">
+            <div className="text-3xl font-bold text-black">${price}</div>
+            <div className="text-gray-600 text-sm mt-1">Negotiable • Financing Available</div>
+
+            {/* Agent */}
+            <div className="flex items-center gap-3 mt-5">
+              <div className="w-12 h-12 rounded-full bg-gray-300" />
+              <div>
+                <div className="font-semibold text-black">Sarah Khan</div>
+                <div className="text-gray-600 text-sm">Property Specialist</div>
+                <div className="text-yellow-500 text-sm">★★★★★ 4.9 (127 reviews)</div>
+              </div>
+            </div>
+
+            {/* FORM */}
+            <form className="mt-6 space-y-3 text-black">
+              <input className="w-full p-3 border rounded-lg" type="text" placeholder="Your Name" />
+              <input className="w-full p-3 border rounded-lg" type="email" placeholder="Your Email" />
+              <input className="w-full p-3 border rounded-lg" type="tel" placeholder="Your Phone" />
+              <textarea className="w-full p-3 border rounded-lg h-28" placeholder="I'm interested in this property..." />
+
+              <button className="w-full bg-yellow-500 text-black py-3 rounded-lg font-semibold hover:bg-yellow-600">
+                Request Tour
+              </button>
+
+              <button type="button" className="w-full border border-black text-black py-3 rounded-lg font-semibold hover:bg-gray-100">
+                Call Agent
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      {/* BACK BUTTON */}
+      <div className="max-w-6xl mx-auto px-6 mt-12">
+        <Link href="/apartments-for-rent" className="px-6 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600">
+          ← Back to Listings
+        </Link>
       </div>
     </div>
   );
-};
-
-export default ApartmentDetail;
+}

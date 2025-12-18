@@ -67,7 +67,7 @@ const NewListings = () => {
   return (
     <div className="max-w-7xl mx-auto p-6">
       <div className="mb-6">
-        <h1 className="text-3xl font-bold mb-1">Newest listings</h1>
+        <h1 className="text-3xl font-bold mb-1">Newest listings Iraq</h1>
         <a href="#" className="text-yellow-600 hover:underline text-sm">
           View all
         </a>

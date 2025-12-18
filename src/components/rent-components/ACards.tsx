@@ -16,7 +16,7 @@ const ACards = () => {
       linkText: "Learn about landlord tools by Avail",
     },
   ];
-
+//Rent
   return (
     <section className="bg-white py-12">
       <div className="max-w-7xl mx-auto px-6 grid gap-6 md:grid-cols-2">
