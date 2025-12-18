@@ -43,7 +43,7 @@ export default function GeoFooter() {
   const overview = states.map(state => `${state} real estate overview`);
 
   return (
-    <footer className="bg-white border-t py-16 px-6 text-sm">
+    <footer className="bg-white border-t py-16 px-6 text-sm text-black">
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
         {/* Column 1 */}

@@ -287,7 +287,7 @@ const properties = [
 
   return (
     <>
-    <div className="w-full bg-white">
+    <div className="w-full bg-white text-black">
     <div className="max-w-7xl mx-auto p-6 bg-white">
       {/* Search Bar */}
       <div className="mb-6 flex flex-wrap gap-3 text-black">

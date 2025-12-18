@@ -69,7 +69,7 @@ const ExploreAlaska = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto p-6">
+    <div className="max-w-7xl mx-auto p-6 text-black">
       <div className="mb-6">
         <h1 className="text-3xl font-bold mb-1">Explore Home</h1>
         <a href="#" className="text-yellow-600 hover:underline text-sm">

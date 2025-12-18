@@ -1,12 +1,15 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 
 // Property Image
 const PropertyImagePlaceholder = () => (
   <div className="relative w-full aspect-[4/3] rounded-xl overflow-hidden shadow-sm">
-    <img
+    <Image
       src="/l1.jpg"
       alt="Property"
+      width={150}
+      height={150}
       className="w-full h-full object-cover"
     />
     <span className="absolute top-3 left-3 bg-yellow-600 text-white text-xs font-semibold px-3 py-1 rounded-full shadow">
@@ -51,15 +54,15 @@ const ContactRent = () => {
   };
 
   return (
-    <section className="bg-white py-20 px-4">
+    <section className="bg-white py-20 px-4 text-black">
       <div className="max-w-5xl mx-auto bg-white p-8 lg:p-12">
 
         {/* HEADER */}
         <div className="mb-10">
-          <h1 className="text-3xl lg:text-4xl font-bold text-black">
+          <h1 className="text-3xl lg:text-4xl font-extrabold text-[#1a2940]">
             Contact the Landlord
           </h1>
-          <p className="text-yellow-600 font-medium mt-1">
+          <p className="text-[#d4a853] font-medium mt-1">
             Inquire about this property
           </p>
           <p className="text-black mt-3 max-w-xl">
@@ -101,7 +104,7 @@ const ContactRent = () => {
                     value={formData.fullName}
                     onChange={handleChange}
                     placeholder="John Smith"
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                     required
                   />
                 </div>
@@ -117,7 +120,7 @@ const ContactRent = () => {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="email@example.com"
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                     required
                   />
                 </div>
@@ -133,7 +136,7 @@ const ContactRent = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+1 555 123 4567"
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                   />
                 </div>
 
@@ -146,7 +149,7 @@ const ContactRent = () => {
                     name="inquiryType"
                     value={formData.inquiryType}
                     onChange={handleChange}
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 bg-white focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 bg-white focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                   >
                     {inquiryOptions.map((opt) => (
                       <option key={opt.value} value={opt.value}>
@@ -167,7 +170,7 @@ const ContactRent = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Tell the landlord about yourself or your questions..."
-                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-2 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
+                    className="w-full rounded-lg border border-gray-300 px-4 py-3 focus:ring-1 focus:ring-yellow-500 focus:border-yellow-500 outline-none"
                     required
                   />
                 </div>
