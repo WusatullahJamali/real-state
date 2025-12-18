@@ -1,22 +1,12 @@
-<<<<<<< Updated upstream
-=======
-// components/PropertyMap.tsx
->>>>>>> Stashed changes
 "use client";
 
-import React from "react";
-import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
+import React, { useEffect, useState } from "react";
+import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
 import { Property } from "@/data/iraqproperties";
-<<<<<<< Updated upstream
 
-// Fix for default Leaflet icons not showing
-=======
-import PropertyCard from "./propertycards";
-
-// Fix for default Leaflet icons not showing up in Next.js (Must be in a public folder in real app)
->>>>>>> Stashed changes
+// Fix default Leaflet icons
 const defaultIcon = L.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
   iconRetinaUrl:
@@ -30,20 +20,20 @@ const defaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = defaultIcon;
 
-<<<<<<< Updated upstream
-// Extra 7 locations
-const EXTRA_LOCATIONS = [
-  { id: "e1", name: "Najaf", lat: 32.0, lng: 44.3333 },
-  { id: "e2", name: "Karbala", lat: 32.616, lng: 44.024 },
-  { id: "e3", name: "Samarra", lat: 34.1959, lng: 43.875 },
-  { id: "e4", name: "Duhok", lat: 36.8663, lng: 42.9885 },
-  { id: "e5", name: "Kirkuk", lat: 35.4681, lng: 44.3922 },
-  { id: "e6", name: "Hillah", lat: 32.482, lng: 44.432 },
-  { id: "e7", name: "Nasiriyah", lat: 31.0464, lng: 46.2573 },
+// 10 Iraqi cities with coordinates
+const IRAQ_CITIES = [
+  { id: "c1", name: "Baghdad", lat: 33.3128, lng: 44.3615 },
+  { id: "c2", name: "Basra", lat: 30.5085, lng: 47.7835 },
+  { id: "c3", name: "Mosul", lat: 36.335, lng: 43.118 },
+  { id: "c4", name: "Erbil", lat: 36.1911, lng: 44.0094 },
+  { id: "c5", name: "Kirkuk", lat: 35.4681, lng: 44.3922 },
+  { id: "c6", name: "Najaf", lat: 32.0, lng: 44.3333 },
+  { id: "c7", name: "Karbala", lat: 32.616, lng: 44.024 },
+  { id: "c8", name: "Samarra", lat: 34.1959, lng: 43.875 },
+  { id: "c9", name: "Duhok", lat: 36.8663, lng: 42.9885 },
+  { id: "c10", name: "Nasiriyah", lat: 31.0464, lng: 46.2573 },
 ];
 
-=======
->>>>>>> Stashed changes
 interface PropertyMapProps {
   properties: Property[];
   centerLat: number;
@@ -51,68 +41,61 @@ interface PropertyMapProps {
   zoom: number;
 }
 
+// Fix map resize issues (strict mode safe)
+const ResizeFix = () => {
+  const map = useMap();
+  useEffect(() => {
+    setTimeout(() => map.invalidateSize(), 200);
+  }, [map]);
+  return null;
+};
+
 const PropertyMap: React.FC<PropertyMapProps> = ({
   properties,
   centerLat,
   centerLng,
   zoom,
 }) => {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
-<<<<<<< Updated upstream
-=======
-    // Map container must have an explicit height
->>>>>>> Stashed changes
-    <div className="h-full w-full sticky top-0">
+    <div className="h-full w-full rounded-2xl overflow-hidden shadow-xl">
       <MapContainer
         center={[centerLat, centerLng]}
         zoom={zoom}
-<<<<<<< Updated upstream
         scrollWheelZoom
-        className="h-full w-full z-0"
+        className="h-full w-full"
       >
+        <ResizeFix />
+
         <TileLayer
-=======
-        scrollWheelZoom={true}
-        className="h-full w-full z-0"
-      >
-        <TileLayer
-          // Using OpenStreetMap for free, global map tiles
->>>>>>> Stashed changes
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-<<<<<<< Updated upstream
         {/* Property Markers */}
-=======
->>>>>>> Stashed changes
         {properties.map((property) => (
           <Marker
             key={property.id}
             position={[property.geo.lat, property.geo.lng]}
           >
-<<<<<<< Updated upstream
             <Popup>
-              <div className="text-sm font-semibold text-gray-800">
-                📍 {property.city}
-              </div>
+              <div className="text-sm font-semibold">📍 {property.city}</div>
             </Popup>
           </Marker>
         ))}
 
-        {/* Extra Locations */}
-        {EXTRA_LOCATIONS.map((place) => (
-          <Marker key={place.id} position={[place.lat, place.lng]}>
+        {/* 10 Cities Markers */}
+        {IRAQ_CITIES.map((city) => (
+          <Marker key={city.id} position={[city.lat, city.lng]}>
             <Popup>
-              <div className="text-sm font-semibold text-gray-800">
-                📍 {place.name}
-=======
-            {/* Popup displays the property card for context */}
-            <Popup minWidth={350}>
-              <div className="w-80">
-                <PropertyCard property={property} />
->>>>>>> Stashed changes
-              </div>
+              <div className="text-sm font-semibold">📍 {city.name}</div>
             </Popup>
           </Marker>
         ))}

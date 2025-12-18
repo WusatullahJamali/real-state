@@ -1,248 +1,87 @@
 "use client";
 
-import React, { useState, useMemo, useRef } from "react";
-import { Search, MapPin, DollarSign, X, ChevronDown } from "lucide-react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 
-// --- Updated Static Data (Including Provinces and more cities) ---
-const IRAQ_LOCATIONS = [
-  "Baghdad Governorate",
-  "Basra Governorate",
-  "Mosul Governorate",
-  "Erbil Governorate",
-  "Suleimaniya Governorate",
-  "Kirkuk Governorate",
-  "Najaf Governorate",
-  "Karbala Governorate",
-  "Diyala Governorate",
-  "Amara City",
-  "Duhok City",
-  "Ramadi City",
-];
-
-// --- Static Data for Aesthetic Price Options ---
-const PRICE_OPTIONS = [
-  { label: "Any Price", value: "" },
-  { label: "Up to $100,000", value: "100000" },
-  { label: "Up to $250,000", value: "250000" },
-  { label: "Up to $500,000", value: "500000" },
-  { label: "Up to $1,000,000", value: "1000000" },
-  { label: "Over $1,000,000", value: "99999999" },
-];
-
-// --- Helper function for formatting price display ---
-const formatPriceLabel = (value: string | undefined): string => {
-  if (!value || value === "") return "Price Range";
-  const option = PRICE_OPTIONS.find((opt) => opt.value === value);
-  return option ? option.label : "Custom Price";
-};
-
 const PropertyHero: React.FC = () => {
-  const [locationInput, setLocationInput] = useState("");
-  const [selectedPriceValue, setSelectedPriceValue] = useState(
-    PRICE_OPTIONS[0].value
-  );
-  const [isLocationFocused, setIsLocationFocused] = useState(false);
-  const [isPriceDropdownOpen, setIsPriceDropdownOpen] = useState(false);
-
-  // Reference to the price input wrapper to handle clicks outside the dropdown
-  const priceRef = useRef<HTMLDivElement>(null);
-
-  // --- Search Logic: Static City Suggestions ---
-  const suggestedLocations = useMemo(() => {
-    if (!locationInput) {
-      // Return the top 8 locations when the input is empty
-      return IRAQ_LOCATIONS.slice(0, 8);
-    }
-    // Filter locations based on user input (case-insensitive)
-    return IRAQ_LOCATIONS.filter((loc) =>
-      loc.toLowerCase().includes(locationInput.toLowerCase())
-    ).slice(0, 8);
-  }, [locationInput]);
-
-  const handleLocationSelect = (loc: string) => {
-    setLocationInput(loc);
-    setIsLocationFocused(false);
-    handleSearch(); // Auto-search
-  };
+  const [searchValue, setSearchValue] = useState("");
 
   const handleSearch = () => {
-    setIsLocationFocused(false);
-    setIsPriceDropdownOpen(false);
-
-    // 💡 Functionality: Log search parameters (replace with your actual API call)
-    console.log("--- Search Executed! ---");
-    console.log("Location:", locationInput);
-    console.log("Max Price Value:", selectedPriceValue);
-    console.log("Max Price Label:", formatPriceLabel(selectedPriceValue));
-  };
-
-  // Toggle the price dropdown state
-  const handlePriceClick = () => {
-    setIsPriceDropdownOpen((prev) => !prev);
-  };
-
-  const handlePriceSelect = (value: string) => {
-    setSelectedPriceValue(value);
-    setIsPriceDropdownOpen(false);
-    handleSearch(); // Auto-search
-  };
-
-  // --- Aesthetics ---
-  const backgroundImageStyle = {
-    backgroundImage: "url('/property.webp')",
-  };
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
+    console.log("Search:", searchValue);
   };
 
   return (
     <div
       className="relative h-[65vh] min-h-[550px] bg-cover bg-center"
-      style={backgroundImageStyle}
+      style={{ backgroundImage: "url('/property.webp')" }}
     >
-      {/* Aesthetic Overlay: Dark gradient */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/40 to-transparent" />
 
       <motion.div
-        className="relative z-10 flex h-full flex-col justify-center px-8 lg:px-20"
-        variants={containerVariants}
-        initial="hidden"
-        animate="visible"
+        className="relative z-10 flex h-full flex-col justify-center px-4 sm:px-10 lg:px-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.6 }}
       >
-        {/* Title: Bolder and more impactful */}
+        {/* Heading */}
         <motion.h1
-          className="max-w-4xl text-5xl md:text-7xl font-extrabold leading-tight text-white tracking-tighter font-sans drop-shadow-2xl"
-          variants={itemVariants}
+          className="max-w-4xl text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-tight text-white tracking-tight drop-shadow-2xl"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2 }}
         >
-          Discover Your <span className="text-[#facc15]">Dream Home</span>
+          Discover Your <span className="text-yellow-400">Dream Home</span>
         </motion.h1>
 
-        {/* Subtitle: More refined */}
+        {/* Subtitle */}
         <motion.p
-          className="mt-4 max-w-xl text-lg md:text-xl text-gray-200 font-light"
-          variants={itemVariants}
+          className="mt-4 max-w-xl text-base sm:text-lg md:text-xl text-gray-200"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.3 }}
         >
-          Browse thousands of verified luxury listings across Iraq
+          Search properties across Iraq with ease
         </motion.p>
 
-        {/* --- Search Bar Container (Premium Look) --- */}
+        {/* SEARCH BAR */}
         <motion.div
-          className="mt-10 flex w-full max-w-3xl overflow-visible rounded-2xl bg-white/95 shadow-3xl backdrop-blur-sm"
-          variants={itemVariants}
+          className="mt-8"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.4 }}
         >
-          {/* --- 1. Location Input with Dynamic Suggestions --- */}
-          <div className="relative flex flex-1 items-center rounded-l-2xl">
-            <MapPin className="ml-5 h-5 w-5 text-gray-500" />
+          <div className="relative flex items-center bg-[#2f3640] rounded-full w-[70%] max-w-3xl shadow-xl">
             <input
-              value={locationInput}
-              onChange={(e) => setLocationInput(e.target.value)}
-              onFocus={() => setIsLocationFocused(true)}
-              onBlur={() => setTimeout(() => setIsLocationFocused(false), 200)}
-              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
               type="text"
-              placeholder="Enter City or Area (e.g., Erbil)"
-              className="w-full py-5 pl-3 pr-10 text-lg font-medium text-gray-800 placeholder-gray-500 focus:outline-none bg-transparent"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && handleSearch()}
+              placeholder="Search for houses in Iraq at best prices"
+              className="w-full bg-transparent text-white placeholder-gray-300 text-sm px-6 py-4 pr-16 focus:outline-none rounded-full"
             />
 
-            {/* Clear Button */}
-            {locationInput && (
-              <button
-                onClick={() => setLocationInput("")}
-                className="absolute right-3 text-gray-400 hover:text-gray-700 p-2 transition"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            )}
-
-            {/* Location Suggestions Dropdown */}
-            {isLocationFocused && suggestedLocations.length > 0 && (
-              <div className="absolute top-[105%] left-0 right-0 rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden z-20">
-                <p className="px-4 pt-3 pb-1 text-xs font-semibold uppercase text-gray-500 border-b border-gray-100">
-                  Suggested Locations
-                </p>
-                {suggestedLocations.map((loc) => (
-                  <div
-                    key={loc}
-                    onMouseDown={() => handleLocationSelect(loc)}
-                    className="flex items-center gap-2 p-3 text-gray-800 cursor-pointer hover:bg-gray-100 transition-colors"
-                  >
-                    <MapPin className="h-4 w-4 text-blue-500" />
-                    <span className="text-base">{loc}</span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* Divider */}
-          <div className="w-px bg-gray-200" />
-
-          {/* --- 2. Price Range Dropdown (Aesthetic and Functional) --- */}
-          <div
-            ref={priceRef}
-            className="relative flex items-center bg-transparent"
-          >
-            <DollarSign className="ml-4 h-5 w-5 text-gray-500" />
             <button
-              onClick={handlePriceClick}
-              className="flex items-center justify-between w-full py-5 px-3 text-lg font-medium text-gray-800 focus:outline-none"
+              onClick={handleSearch}
+              className="absolute right-1.5 h-12 w-12 rounded-full bg-gradient-to-r from-[#2AF598] to-[#009EFD] flex items-center justify-center transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl active:translate-y-0"
             >
-              <span
-                className={
-                  selectedPriceValue === "" ? "text-gray-500" : "text-gray-800"
-                }
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 29 29"
+                fill="none"
               >
-                {formatPriceLabel(selectedPriceValue)}
-              </span>
-              <ChevronDown
-                className={`h-4 w-4 ml-2 transition-transform ${
-                  isPriceDropdownOpen ? "rotate-180" : "rotate-0"
-                }`}
-              />
+                <path
+                  d="M23.7953 23.9182L19.0585 19.1814M19.0585 19.1814C19.8188 18.4211 20.4219 17.5185 20.8333 16.5251C21.2448 15.5318 21.4566 14.4671 21.4566 13.3919C21.4566 12.3167 21.2448 11.252 20.8333 10.2587C20.4219 9.2653 19.8188 8.36271 19.0585 7.60242C18.2982 6.84214 17.3956 6.23905 16.4022 5.82759C15.4089 5.41612 14.3442 5.20435 13.269 5.20435C12.1938 5.20435 11.1291 5.41612 10.1358 5.82759C9.1424 6.23905 8.23981 6.84214 7.47953 7.60242C5.94407 9.13789 5.08145 11.2204 5.08145 13.3919C5.08145 15.5634 5.94407 17.6459 7.47953 19.1814C9.01499 20.7168 11.0975 21.5794 13.269 21.5794C15.4405 21.5794 17.523 20.7168 19.0585 19.1814Z"
+                  stroke="white"
+                  strokeWidth="3"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
             </button>
-
-            {/* Price Dropdown Menu */}
-            {isPriceDropdownOpen && (
-              <div className="absolute top-[105%] right-0 mt-2 w-64 rounded-xl border border-gray-200 bg-white shadow-xl overflow-hidden z-20">
-                {PRICE_OPTIONS.map((option) => (
-                  <div
-                    key={option.value}
-                    onClick={() => handlePriceSelect(option.value)}
-                    className={`flex justify-between items-center p-3 text-gray-800 cursor-pointer hover:bg-gray-100 transition-colors ${
-                      selectedPriceValue === option.value
-                        ? "bg-gray-100 font-semibold"
-                        : "font-normal"
-                    }`}
-                  >
-                    <span className="text-base">{option.label}</span>
-                    {selectedPriceValue === option.value && (
-                      <X className="h-4 w-4 text-green-500" /> // Using X as a checkmark icon for simplicity
-                    )}
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
-
-          {/* --- 3. Search Button --- */}
-          <button
-            onClick={handleSearch}
-            className="flex items-center gap-2 rounded-r-2xl bg-[#1B3A57] px-8 text-white font-semibold text-lg transition hover:bg-[#1e40af] focus:outline-none"
-          >
-            <Search className="h-5 w-5" />
-            Search
-          </button>
         </motion.div>
       </motion.div>
     </div>
