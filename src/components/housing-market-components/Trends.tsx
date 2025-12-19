@@ -241,7 +241,7 @@ export default function MarketTrendsPage() {
             Ready to Invest in Iraq?
           </h2>
           <p className="text-black text-lg italic font-light">
-            "We provide the localized data and legal expertise you need to navigate the Iraqi market safely."
+            We provide the localized data and legal expertise you need to navigate the Iraqi market safely.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button className="px-10 py-4 bg-yellow-600 text-white font-bold rounded-2xl hover:bg-gray-900 transition-all">
