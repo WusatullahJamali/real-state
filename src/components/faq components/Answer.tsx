@@ -1,3 +1,5 @@
+// components/FAQ.tsx (Shadows Removed)
+
 "use client";
 
 import React, { useState } from "react";
