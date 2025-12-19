@@ -1,6 +1,6 @@
 import React from "react";
-import ContactForm2 from "@/components/contact components/ContactForm2";
-import ContactMap from "@/components/contact components/ContactMap";
+import ContactForm2 from "@/components/contactcomponents/ContactForm2";
+import ContactMap from "@/components/contactcomponents/ContactMap";
 
 const page = () => {
   return (
