@@ -57,7 +57,11 @@ const RECOMMENDED_LOCATIONS: Location[] = [
 ];
 
 // --- Map / Image Component ---
-const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img }) => (
+const LocationMap: React.FC<LocationMapProps> = ({
+  name,
+  mapColor,
+  img,
+}) => (
   <div className="relative h-48 w-full overflow-hidden border-b border-gray-200">
     {img ? (
       <Image src={img} alt={`${name} map`} fill className="object-cover" />
@@ -85,7 +89,7 @@ export default function RecommendedLocations() {
           Recommended cities
         </h2>
         <p className="mb-8 text-lg text-gray-600 md:mb-12">
-          Based on your previous searches
+          Based on your previous search
         </p>
 
         {/* Grid */}

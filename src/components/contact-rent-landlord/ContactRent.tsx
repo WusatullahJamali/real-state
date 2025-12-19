@@ -53,7 +53,7 @@ const ContactRent = () => {
   };
 
   return (
-    <section className="bg-gray-50/50 py-16 lg:py-24 px-4 min-h-screen">
+    <section className="bg-gray-50/50 py-16 lg:py-24 px-4 min-h-screen text-black">
       <div className="max-w-6xl mx-auto">
         
         {/* HEADER SECTION */}
