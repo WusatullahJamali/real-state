@@ -1,6 +1,6 @@
-import Answer from '@/components/faq components/Answer'
-import FContact from '@/components/faq components/FContact'
-import FHero from '@/components/faq components/FHero'
+import Answer from '@/components/faqComponents/Answer'
+import FContact from '@/components/faqComponents/FContact'
+import FHero from '@/components/faqComponents/FHero'
 
 const page = () => {
   return (

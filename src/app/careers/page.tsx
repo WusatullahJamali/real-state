@@ -1,7 +1,7 @@
 
 import React from 'react'
-import CareerSection from '@/components/careers components/CareerSection'
-import CareerFooter from '@/components/careers components/CareerFooter'
+import CareerSection from '@/components/careerscomponents/CareerSection'
+import CareerFooter from '@/components/careerscomponents/CareerFooter'
 
 
 const page = () => {
