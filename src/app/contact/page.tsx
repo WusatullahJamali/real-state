@@ -1,11 +1,11 @@
 import React from "react";
-import ContactForm from "@/components/ContactForm";
-import ContactMap from "@/components/ContactMap";
+import ContactForm2 from "@/components/contact components/ContactForm2";
+import ContactMap from "@/components/contact components/ContactMap";
 
 const page = () => {
   return (
     <div>
-      <ContactForm />
+      <ContactForm2/>
       <ContactMap />
     </div>
   );
