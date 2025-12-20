@@ -17,7 +17,7 @@ const ListingHeaderIraq: React.FC<ListingHeaderProps> = ({
     <div className="relative w-full h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] flex items-center justify-center overflow-hidden l">
       {/* Background Image with Overlay */}
       <div
-        className="absolute inset-0 bg-cover bg-center z-0 transform transition-transform duration-1000 hover:scale-105"
+        className="absolute inset-0 bg-cover bg-center z-0  "
         style={{ backgroundImage: "url('hero5.jpg')" }}
       >
         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/30"></div>
@@ -45,7 +45,7 @@ const ListingHeaderIraq: React.FC<ListingHeaderProps> = ({
 
         {/* Hero Title */}
         <motion.h1
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 drop-shadow-lg"
+          className="text-5xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 drop-shadow-lg"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.8 }}
@@ -95,7 +95,7 @@ const ListingHeaderIraq: React.FC<ListingHeaderProps> = ({
           </div>
 
           {/* Search Button */}
-          <button className="shrink-0 w-auto bg-gray-900 hover:bg-black text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base">
+          <button className="shrink-0 w-auto bg-gray-900 cursor-pointer hover:bg-black text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base">
             <Search className="w-4 h-4 sm:w-5 sm:h-5" />
             <span>Search</span>
           </button>
@@ -160,16 +160,16 @@ const ListingHeaderIraq: React.FC<ListingHeaderProps> = ({
           transition={{ delay: 1.1, duration: 0.8 }}
         >
           <span className="font-medium">Popular:</span>
-          <span className="hover:text-white cursor-pointer underline decoration-dotted">
+          <span className="hover:text-white cursor-pointer underline ">
             Baghdad
           </span>
-          <span className="hover:text-white cursor-pointer underline decoration-dotted">
+          <span className="hover:text-white cursor-pointer underline ">
             Erbil
           </span>
-          <span className="hover:text-white cursor-pointer underline decoration-dotted">
+          <span className="hover:text-white cursor-pointer underline ">
             Basra
           </span>
-          <span className="hover:text-white cursor-pointer underline decoration-dotted">
+          <span className="hover:text-white cursor-pointer underline ">
             Mosul
           </span>
         </motion.div>
