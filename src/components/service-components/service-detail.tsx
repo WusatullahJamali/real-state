@@ -75,7 +75,48 @@ const providers: Provider[] = [
     description:
       "Full-service HVAC maintenance, installation, and rapid cooling system diagnostics. In the intense summer heat, our rapid-response team ensures your cooling system operates at peak efficiency. We specialize in chemical coil cleaning and refrigerant pressure balancing to reduce your energy consumption.",
   },
-  // ... (Other providers would be here)
+  {
+    id: 4,
+    name: "Perfect Plumbing",
+    category: "Plumbing",
+    location: "Basra",
+    rating: 4.7,
+    reviews: 156,
+    price: "$30",
+    unit: "hour",
+    badges: ["Verified", "Emergency"],
+    image: "/pl.jpg",
+    description:
+      "Solving complex leakages, pipe bursts, and bathroom fixture installations since 2015. Our master plumbers handle everything from minor drips to major sewer line replacements. We use advanced leak detection technology including thermal imaging and acoustic sensors to locate hidden water damage. Specializing in modern fixture installations such as rainfall showerheads, tankless water heaters, and smart faucets. Our drain cleaning services utilize hydro-jetting equipment that clears even the toughest blockages without damaging pipes. We provide detailed estimates before starting any work and guarantee all repairs for 12 months. Emergency callouts include rapid response for burst pipes and water heater failures.",
+  },
+  {
+    id: 5,
+    name: "Home Renovators",
+    category: "Renovation",
+    location: "Baghdad",
+    rating: 4.9,
+    reviews: 278,
+    price: "$100",
+    unit: "project",
+    badges: ["Verified", "Licensed"],
+    image: "/hr.jpg",
+    description:
+      "Transforming kitchens and living rooms with high-quality craftsmanship and modern designs. Our renovation team consists of skilled carpenters, designers, and project managers who bring your vision to life. We handle complete home makeovers including flooring replacement, custom cabinetry, and architectural modifications. Each project begins with 3D design visualization to ensure you're satisfied before construction begins. We source premium materials from trusted suppliers and maintain strict quality control at every stage. Our commitment to staying on schedule and within budget has earned us a reputation for reliability. Post-completion walkthroughs ensure every detail meets your expectations.",
+  },
+  {
+    id: 6,
+    name: "Garden Masters",
+    category: "Landscaping",
+    location: "Erbil",
+    rating: 4.6,
+    reviews: 142,
+    price: "$40",
+    unit: "visit",
+    badges: ["Verified"],
+    image: "/gm.jpg",
+    description:
+      "Professional lawn care, irrigation setup, and ornamental garden design. Our horticulture experts create stunning outdoor spaces tailored to your climate and soil conditions. Services include automated sprinkler system installation, seasonal planting, and pest control management. We design drought-resistant landscapes that minimize water usage while maximizing visual appeal. Regular maintenance packages keep your lawn lush and your flower beds vibrant year-round. Stone pathway construction, outdoor lighting installation, and decorative water features are also part of our specialty services. Let us transform your backyard into a tranquil oasis.",
+  },
   {
     id: 7,
     name: "Tech Repair Hub",
@@ -88,7 +129,35 @@ const providers: Provider[] = [
     badges: ["Verified", "Fast Service"],
     image: "/rh.png",
     description:
-      "High-precision micro-soldering and motherboard-level repairs for all modern consumer electronics. We provide dedicated diagnostic services for high-end gaming consoles, professional laptops, and mobile devices.",
+      "Our facility specializes in high-precision micro-soldering and motherboard-level repairs for all consumer electronics. We provide dedicated diagnostic services for gaming consoles, professional-grade laptops, and advanced mobile hardware. Using industry-standard ESD-safe environments, our technicians ensure that every internal component is handled with extreme care, restoring your critical devices to their peak performance levels within a guaranteed 48-hour window. We stock genuine replacement parts for all major brands and offer data recovery services for damaged devices. Screen replacements, battery upgrades, and software troubleshooting are completed while you wait. Our warranty covers all repairs for 90 days, giving you confidence in our workmanship.",
+  },
+  {
+    id: 8,
+    name: "Paint Pro",
+    category: "Painting",
+    location: "Mosul",
+    rating: 4.7,
+    reviews: 167,
+    price: "$45",
+    unit: "room",
+    badges: ["Verified", "Licensed"],
+    image: "/ppp.jpg",
+    description:
+      "We provide a bespoke interior and exterior finishing service tailored to modern architectural aesthetics. Our process includes comprehensive surface preparation, moisture barrier application, and the use of premium-grade, low-VOC paints for a healthy indoor environment. Whether it is a luxury villa or a commercial office space, our painters focus on sharp edges, uniform texture, and a high-durability finish that maintains its vibrant color against UV exposure and humidity for years to come. Color consultation services help you choose the perfect palette to match your décor. We also offer decorative techniques like faux finishes, textured walls, and accent murals. All furniture is carefully protected, and job sites are left spotless upon completion.",
+  },
+  {
+    id: 9,
+    name: "Secure Locks",
+    category: "Locksmith",
+    location: "Baghdad",
+    rating: 4.9,
+    reviews: 289,
+    price: "$35",
+    unit: "service",
+    badges: ["Verified", "24/7"],
+    image: "/locks.jpg",
+    description:
+      "Specializing in advanced physical security solutions, we offer everything from biometric lock integration to high-security deadbolt installations. Our mobile rapid-response units are equipped with state-of-the-art key-cutting technology and non-destructive entry tools for emergency situations. We don't just fix locks; we provide comprehensive security consulting to ensure your home or business is fortified against unauthorized access using the latest global standards in locksmithing technology. Services include master key system setup, safe installation and repair, and access control systems for commercial properties. Lock rekeying after property purchases ensures previous key holders can't gain entry. Our 24/7 emergency service means you're never locked out for long, with average response times under 30 minutes citywide.",
   },
 ];
 
