@@ -174,72 +174,106 @@ const Apartment = () => {
       <h2 className="text-3xl font-bold text-center mb-10">Apartments for Rent</h2>
 
       {/* FILTERS */}
-     {/* FILTERS */}
-<div className="max-w-6xl mx-auto mb-12">
-  <div className="grid grid-cols-1 md:grid-cols-4 gap-4 bg-white border border-gray-200 rounded-2xl p-4 shadow-sm">
+      <div className="grid md:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
+  {/* Search */}
+  <input
+    placeholder="Search apartments, locations..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      placeholder-gray-400
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+    "
+  />
 
-    {/* Search */}
-    <input
-      placeholder="Search apartments..."
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-      className="
-        h-12 px-4 rounded-xl border border-gray-200
-        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
-        text-sm text-gray-700 placeholder-gray-400
-      "
-    />
+  {/* Bedrooms */}
+  <select
+    onChange={(e) => setBedrooms(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+      bg-white
+    "
+  >
+    <option value="">Bedrooms</option>
+    <option value="1">1 Bed</option>
+    <option value="2">2 Bed</option>
+    <option value="3">3 Bed</option>
+    <option value="4">4 Bed</option>
+  </select>
 
-    {/* Bedrooms */}
-    <select
-      onChange={(e) => setBedrooms(e.target.value)}
-      className="
-        h-12 px-4 rounded-xl border border-gray-200
-        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
-        text-sm text-gray-700 bg-white
-      "
-    >
-      <option value="">Bedrooms</option>
-      <option value="1">1 Bedroom</option>
-      <option value="2">2 Bedrooms</option>
-      <option value="3">3 Bedrooms</option>
-      <option value="4">4 Bedrooms</option>
-    </select>
+  {/* City */}
+  <select
+    onChange={(e) => setCity(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+      bg-white
+    "
+  >
+    <option value="">All Cities</option>
+    <option value="Baghdad">Baghdad</option>
+    <option value="Erbil">Erbil</option>
+    <option value="Basra">Basra</option>
+    <option value="Mosul">Mosul</option>
+    <option value="Kirkuk">Kirkuk</option>
+  </select>
 
-    {/* City */}
-    <select
-      onChange={(e) => setCity(e.target.value)}
-      className="
-        h-12 px-4 rounded-xl border border-gray-200
-        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
-        text-sm text-gray-700 bg-white
-      "
-    >
-      <option value="">All Cities</option>
-      <option value="Baghdad">Baghdad</option>
-      <option value="Erbil">Erbil</option>
-      <option value="Basra">Basra</option>
-      <option value="Mosul">Mosul</option>
-      <option value="Kirkuk">Kirkuk</option>
-    </select>
-
-    {/* Sort */}
-    <select
-      onChange={(e) => setSort(e.target.value)}
-      className="
-        h-12 px-4 rounded-xl border border-gray-200
-        focus:outline-none focus:ring-2 focus:ring-yellow-500/40
-        text-sm text-gray-700 bg-white
-      "
-    >
-      <option value="">Sort by Price</option>
-      <option value="low">Low → High</option>
-      <option value="high">High → Low</option>
-    </select>
-
-  </div>
+  {/* Sort */}
+  <select
+    onChange={(e) => setSort(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+      bg-white
+    "
+  >
+    <option value="">Sort Price</option>
+    <option value="low">Low to High</option>
+    <option value="high">High to Low</option>
+  </select>
 </div>
-
 
       {/* LISTINGS */}
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

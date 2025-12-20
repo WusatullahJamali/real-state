@@ -180,7 +180,7 @@ const HomeDiscovery = () => {
           <button
             key={tabKey}
             onClick={() => handleTabClick(tabKey as TabKey)}
-            className={`px-5 py-2 text-base font-medium rounded-full transition-all duration-300 ${
+            className={`px-5 py-2 text-base font-medium rounded-full cursor-pointer transition-all duration-300 ${
               activeTab === tabKey
                 ? "bg-yellow-500 text-white shadow-md"
                 : "text-[#2f363b] hover:bg-gray-100"
@@ -199,7 +199,7 @@ const HomeDiscovery = () => {
         dangerouslySetInnerHTML={{ __html: activeContent.heading }}
       />
       <div
-        className={`grid grid-cols-1 md:grid-cols-3 gap-6 transition-opacity duration-150 ease-in-out ${
+        className={`grid grid-cols-1 md:grid-cols-3 cursor-pointer gap-6 transition-opacity duration-150 ease-in-out ${
           showCards ? "opacity-100" : "opacity-0"
         }`}
       >

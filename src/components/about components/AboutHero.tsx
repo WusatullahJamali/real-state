@@ -15,8 +15,8 @@ const AboutHero = () => {
 
       {/* Content */}
       <div className="relative z-10 text-center px-4">
-        <h1 className="text-3xl md:text-5xl font-bold tracking-wide">
-          Our Brief History
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-wide">
+          About Us
         </h1>
       </div>
 

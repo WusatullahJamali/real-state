@@ -43,10 +43,10 @@ const ManageCard1 = () => {
           className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]"
         >
           <Image
-            src="/manage1.jpg"
+            src="/rent.avif"
             alt="Rental Management Illustration"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </motion.div>

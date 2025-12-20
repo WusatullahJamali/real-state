@@ -9,15 +9,16 @@ const List3 = () => {
     <section className="bg-white py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-        <motion.div
-          initial={{ opacity: 0, x: -40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
-          className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]"
-        >
-          <Image src="/list3.png" alt="Automate tour scheduling" fill className="object-contain" />
-        </motion.div>
+        {/* LEFT: IMAGE */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
+          <Image
+            src="/list3.png"
+            alt="Automate tour scheduling"
+            fill
+            className="object-cover rounded-xl"
+            priority
+          />
+        </div>
 
         <motion.div
           initial={{ opacity: 0, x: 40 }}

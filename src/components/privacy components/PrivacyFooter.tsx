@@ -11,7 +11,7 @@ const PrivacyFooter = () => {
   ];
 
   return (
-    <section className="bg-white relative mt-32 py-20 md:py-28 overflow-hidden">
+    <section className="bg-white relative mt-32 py-20 md:py-28 overflow-hidden text-black">
 
       {/* Soft background */}
       <div className="absolute inset-0 bg-gradient-to-b from-white via-yellow-50/25 to-white pointer-events-none"></div>
