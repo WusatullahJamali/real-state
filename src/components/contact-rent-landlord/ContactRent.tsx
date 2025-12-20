@@ -30,9 +30,9 @@ const ContactRent = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const inquiryOptions = [
-    { value: "scheduleViewing", label: "Schedule a Viewing" },
-    { value: "askQuestion", label: "Ask a Question" },
-    { value: "requestApplication", label: "Request Application Form" },
+    { value: "scheduleVisit", label: "Schedule a Visit" },
+    { value: "askQuestion", label: "Ask Questions" },
+    // { value: "requestApplication", label: "Request Application Form" },
   ];
 
   const handleChange = (
@@ -62,7 +62,7 @@ const ContactRent = () => {
           <h1 className="text-3xl lg:text-4xl font-extrabold text-[#1a2940]">
             Contact the Landlord
           </h1>
-          <p className="text-[#d4a853] font-medium mt-1">
+          <p className="text-yellow-600 font-medium mt-1">
             Inquire about this property
           </p>
           <p className="text-black mt-3 max-w-xl">
@@ -178,7 +178,7 @@ const ContactRent = () => {
                 {/* SUBMIT */}
                 <button
                   type="submit"
-                  className="w-full bg-yellow-600 hover:bg-yellow-700 text-white font-semibold py-4 rounded-xl transition shadow-md"
+                  className="w-full bg-yellow-600 hover:bg-yellow-700 cursor-pointer text-white font-semibold py-4 rounded-xl transition shadow-md"
                 >
                   Send Message
                 </button>

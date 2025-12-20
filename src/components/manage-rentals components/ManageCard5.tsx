@@ -18,7 +18,7 @@ const ManageCard5 = () => {
             Simplify payment collection by managing all rental payments, deposits, and fees through a single site. Feel secure knowing your payments are protected with Avail via Plaid and Stripe, while staying tax compliant.
           </p>
 
-          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
+          <button className="inline-flex cursor-pointer items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>
@@ -29,7 +29,7 @@ const ManageCard5 = () => {
             src="/m5.png"
             alt="Secure Online Rent Collection Illustration"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>

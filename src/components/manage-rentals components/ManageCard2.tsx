@@ -22,7 +22,7 @@ const ManageCard2 = () => {
         <div className="order-2 space-y-4">
          
 
-          <h1 className="text-4xl font-bold text-black leading-snug">
+          <h1 className="text-4xl font-extrabold text-black leading-snug">
             One-Click Rental Listings
           </h1>
 
@@ -32,7 +32,7 @@ const ManageCard2 = () => {
             of renters and fill vacancies fast.
           </p>
 
-          <button className="border bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-full w-fit mt-5">
+          <button className="border bg-yellow-600 cursor-pointer text-white hover:bg-yellow-700 px-6 py-3 rounded-full w-fit mt-5">
             Learn more
           </button>
         </div>

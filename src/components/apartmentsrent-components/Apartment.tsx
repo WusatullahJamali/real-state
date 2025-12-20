@@ -228,43 +228,105 @@ const Apartment = () => {
 
       {/* FILTERS */}
       <div className="grid md:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
-        <input
-          placeholder="Search..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="border p-3 rounded"
-        />
+  {/* Search */}
+  <input
+    placeholder="Search apartments, locations..."
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      placeholder-gray-400
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+    "
+  />
 
-        <select
-          onChange={(e) => setBedrooms(e.target.value)}
-          className="border p-3 rounded"
-        >
-          <option value="">Bedrooms</option>
-          <option value="1">1 Bed</option>
-          <option value="2">2 Bed</option>
-          <option value="3">3 Bed</option>
-          <option value="4">4 Bed</option>
-        </select>
+  {/* Bedrooms */}
+  <select
+    onChange={(e) => setBedrooms(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+      bg-white
+    "
+  >
+    <option value="">Bedrooms</option>
+    <option value="1">1 Bed</option>
+    <option value="2">2 Bed</option>
+    <option value="3">3 Bed</option>
+    <option value="4">4 Bed</option>
+  </select>
 
-       <select onChange={(e) => setCity(e.target.value)} className="border p-3 rounded"> 
-  <option value="">All Cities</option>
-  <option value="Baghdad">Baghdad</option>
-  <option value="Erbil">Erbil</option>
-  <option value="Basra">Basra</option>
-  <option value="Mosul">Mosul</option>
-  <option value="Kirkuk">Kirkuk</option>
-</select>
+  {/* City */}
+  <select
+    onChange={(e) => setCity(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+      bg-white
+    "
+  >
+    <option value="">All Cities</option>
+    <option value="Baghdad">Baghdad</option>
+    <option value="Erbil">Erbil</option>
+    <option value="Basra">Basra</option>
+    <option value="Mosul">Mosul</option>
+    <option value="Kirkuk">Kirkuk</option>
+  </select>
 
-
-        <select
-          onChange={(e) => setSort(e.target.value)}
-          className="border p-3 rounded"
-        >
-          <option value="">Sort Price</option>
-          <option value="low">Low to High</option>
-          <option value="high">High to Low</option>
-        </select>
-      </div>
+  {/* Sort */}
+  <select
+    onChange={(e) => setSort(e.target.value)}
+    className="
+      w-full
+      rounded-lg
+      border border-gray-300
+      px-4 py-3
+      text-sm
+      text-gray-700
+      shadow-sm
+      transition
+      focus:outline-none
+      focus:ring-2
+      focus:ring-yellow-400
+      focus:border-yellow-400
+      bg-white
+    "
+  >
+    <option value="">Sort Price</option>
+    <option value="low">Low to High</option>
+    <option value="high">High to Low</option>
+  </select>
+</div>
 
       {/* LISTINGS */}
       <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">

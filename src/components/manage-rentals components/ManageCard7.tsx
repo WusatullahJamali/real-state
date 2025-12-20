@@ -18,18 +18,18 @@ const ManageCard7 = () => {
             Feel secure communicating with Avail-verified landlords through the built-in messaging system. Schedule rent payments in advance via credit card or ACH, and build your credit using CreditBoost, reporting on-time rent payments to TransUnion®.
           </p>
 
-          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
+          <button className="inline-flex cursor-pointer items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>
 
         {/* RIGHT: IMAGE */}
-        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]"> 
           <Image
             src="/m7.png"
             alt="Renter Features Illustration"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>

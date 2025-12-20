@@ -27,7 +27,7 @@ const List2 = () => {
             src="/list2.png"
             alt="Promote your rental listing"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>

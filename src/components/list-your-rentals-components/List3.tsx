@@ -14,7 +14,7 @@ const List3 = () => {
             src="/list3.png"
             alt="Automate tour scheduling"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>

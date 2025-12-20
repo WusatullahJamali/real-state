@@ -2,31 +2,31 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Play, MapPin, Phone, Home, CheckCircle } from "lucide-react";
+import { MapPin, Phone, Home, CheckCircle } from "lucide-react";
 
 const steps = [
   {
     number: "01",
-    title: "Choose Any where",
-    text: "The real estate industry It plays a significant role in the as it contributes.",
+    title: "Find Your Location",
+    text: "Browse verified properties across different cities and neighborhoods that fit your needs.",
     icon: MapPin,
   },
   {
     number: "02",
-    title: "Contact With Us",
-    text: "The real estate industry It plays a significant role in the as it contributes.",
+    title: "Contact Albasync",
+    text: "Get in touch directly with property owners or agents through our secure platform.",
     icon: Phone,
   },
   {
     number: "03",
-    title: "Pay For The Home",
-    text: "The real estate industry It plays a significant role in the as it contributes.",
+    title: "Confirm & Pay",
+    text: "Finalize your agreement with transparent pricing and clear payment options.",
     icon: Home,
   },
   {
     number: "04",
-    title: "Recieve The Home",
-    text: "The real estate industry It plays a significant role in the as it contributes.",
+    title: "Move In",
+    text: "Receive your keys and enjoy your new home with complete peace of mind.",
     icon: CheckCircle,
   },
 ];
@@ -37,46 +37,45 @@ export default function Work() {
       <div className="max-w-7xl mx-auto px-6">
 
         {/* HEADING */}
-        <div className="text-center max-w-2xl mx-auto mb-12">
+        <div className="text-center max-w-2xl mx-auto mb-14">
           <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            How Does It Work
+            How Albasync Works
           </h1>
           <p className="text-gray-600 text-lg">
-            Here are some of the featured Apartment in different categories
+            A simple and transparent process to help you find your perfect home.
           </p>
         </div>
 
-        {/* VIDEO BUTTON */}
-        <div className="flex justify-center mb-16">
-          <button className="flex items-center gap-3 text-white bg-yellow-500 px-6 py-3 rounded-full hover:bg-yellow-600 transition-all shadow">
-            <Play size={20} />
-            Watch Video
-          </button>
-        </div>
-
         {/* STEPS */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((item, index) => {
             const Icon = item.icon;
             return (
               <motion.div
-                whileHover={{ y: -6 }}
+                whileHover={{ y: -8 }}
                 key={index}
-                className="bg-white border rounded-xl shadow-sm p-8 hover:shadow-lg transition-all"
+                className="group bg-white border border-gray-200 rounded-2xl p-8
+                           shadow-sm hover:shadow-xl transition-all duration-300"
               >
+                {/* Top */}
                 <div className="flex items-center justify-between mb-6">
-                  <div className="w-14 h-14 rounded-full bg-yellow-500 text-white flex items-center justify-center text-xl font-bold">
+                  <div className="w-12 h-12 rounded-full bg-yellow-100 text-yellow-600
+                                  flex items-center justify-center text-sm font-bold">
                     {item.number}
                   </div>
 
-                  <Icon className="text-yellow-600" size={30} />
+                  <Icon
+                    className="text-yellow-500 group-hover:scale-110 transition"
+                    size={28}
+                  />
                 </div>
 
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                {/* Content */}
+                <h3 className="text-lg font-semibold text-gray-900 mb-3">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-600 leading-relaxed text-sm">
+                <p className="text-gray-600 text-sm leading-relaxed">
                   {item.text}
                 </p>
               </motion.div>

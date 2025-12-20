@@ -19,7 +19,7 @@ const ListHero = () => {
             Avail unlocks the full potential of your rental listing.
           </p>
 
-          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-800 transition-colors">
+          <button className="inline-flex cursor-pointer items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-800 transition-colors">
             List your rentals
           </button>
         </div>
@@ -30,7 +30,7 @@ const ListHero = () => {
             src="/list1.png"
             alt="List your rental property"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>

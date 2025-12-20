@@ -14,7 +14,7 @@ const ManageCard4 = () => {
             src="/m4.png"
             alt="Lawyer-Reviewed Leases Illustration"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>
@@ -29,7 +29,7 @@ const ManageCard4 = () => {
             Customize the state-specific, lawyer-reviewed lease templates on Avail and seamlessly collect signatures from renters using built-in eSign options.
           </p>
 
-          <button className="mt-6 inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
+          <button className="mt-6 cursor-pointer inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>

@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const CareerFooter = () => {
   return (
-    <div className="bg-[#fffdf5] text-center py-20 px-6">
+    <div className="bg-white text-center py-20 px-6">
       <h3 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
         Can't Find a Role That Fits?
       </h3>

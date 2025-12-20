@@ -14,7 +14,7 @@ const ManageCard6 = () => {
             src="/m6.png"
             alt="Avail Tools Illustration"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>
@@ -29,7 +29,7 @@ const ManageCard6 = () => {
             Avail includes everything you need to manage your rentals effortlessly and professionally. Uncover the full suite of Avail features to simplify your day-to-day operations while maximizing your profit.
           </p>
 
-          <button className="mt-6 inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
+          <button className="mt-6 cursor-pointer inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>

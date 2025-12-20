@@ -18,7 +18,7 @@ const ManageCard3 = () => {
             Avail features customizable applications and robust TransUnion® screening options to help you find and choose the right renter for your property with confidence.
           </p>
 
-          <button className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
+          <button className="inline-flex cursor-pointer items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg">
             Learn More
           </button>
         </div>
@@ -29,7 +29,7 @@ const ManageCard3 = () => {
             src="/m3.png"
             alt="Applications and Screening Illustration"
             fill
-            className="object-contain"
+            className="object-cover rounded-xl"
             priority
           />
         </div>
