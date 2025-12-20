@@ -3,6 +3,7 @@
 "use client";
 import React from "react";
 import { Property } from "@/data/iraqproperties";
+import { Bed, Bath, Ruler } from "lucide-react";
 
 interface PropertyCardProps {
   property: Property;
@@ -46,22 +47,22 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
           {formatIQD(property.priceIQD)}
         </h3>
         {/* CITY + TYPE */}
-        <p className="text-xs font-semibold uppercase tracking-wide text-gray-500">
+        <p className="text-sm font-extrabold uppercase tracking-wide text-gray-500">
           {property.city} · {property.type}
         </p>
 
         {/* PRICES */}
         <div>
-          <h3 className="text-2xl -mt-2 font-extrabold text-blue-700 leading-tight">
+          <h3 className="text-xl -mt-1.5  font-extrabold text-blue-700 leading-tight">
             {formatUSD(property.priceIQD)}
           </h3>
-          <p className="text-sm text-gray-500">
+          <p className="text-sm mt-0.5 text-gray-500">
             {formatIQD(property.priceIQD)}
           </p>
         </div>
 
         {/* ADDRESS */}
-        <p className="text-sm text-gray-800 -mt-3 font-medium">
+        <p className="text-sm text-gray-800 -mt-2 font-medium">
           {property.address}
         </p>
 
@@ -69,21 +70,25 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         <div className="flex flex-wrap gap-x-2 -mt-6 gap-y-2 text-sm text-gray-600 pt-3 border-t border-gray-100">
              (homesold changes)
           {property.type === "Land" ? (
-            <span className="flex items-center">
-              <i className="fas fa-ruler-combined mr-1"></i>
-              {property.specs.lotSizeSqM.toLocaleString()} M² Lot
+            <span className="flex items-center gap-1">
+              <Ruler size={16} />
+              {property.specs.lotSizeSqM.toLocaleString()} m² Lot
             </span>
           ) : (
             <>
-                <i className="fas fa-bed mr-1"></i> {property.specs.beds} Beds
+              <span className="flex items-center gap-1">
+                <Bed size={16} />
+                {property.specs.beds} Beds
               </span>
-              <span className="flex items-center">
-                <i className="fas fa-bath mr-1"></i> {property.specs.baths}{" "}
-                Baths
+
+              <span className="flex items-center gap-1">
+                <Bath size={16} />
+                {property.specs.baths} Baths
               </span>
-              <span className="flex items-center">
-                <i className="fas fa-area-chart mr-1"></i>{" "}
-                {property.specs.areaSqM.toLocaleString()} M²
+
+              <span className="flex items-center gap-1">
+                <Ruler size={16} />
+                {property.specs.areaSqM.toLocaleString()} m²
               </span>
             </>
           )}
