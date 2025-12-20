@@ -27,15 +27,16 @@ const List4 = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, x: 40 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]"
-        >
-          <Image src="/list4.png" alt="Get direct rental applications" fill className="object-contain" />
-        </motion.div>
+        {/* RIGHT: IMAGE */}
+        <div className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]">
+          <Image
+            src="/list4.png"
+            alt="Get direct rental applications"
+            fill
+            className="object-cover rounded-xl"
+            priority
+          />
+        </div>
 
       </div>
     </section>

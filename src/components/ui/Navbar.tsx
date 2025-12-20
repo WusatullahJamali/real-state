@@ -16,6 +16,7 @@ import {
   Briefcase,
   Layers,
   Info,
+  BookOpen,
 } from "lucide-react";
 import LoginModal from "@/components/Auth/loginModal";
 import SignupModal from "@/components/Auth/SignupModal";
@@ -38,7 +39,8 @@ const menuItems: MenuItem[] = [
   { name: "BUY", href: "/buy", hasDropdown: true },
   { name: "SALE", href: "/sell", hasDropdown: true },
   { name: "RENT", href: "/rent", hasDropdown: true },
-  { name: "BLOG", href: "/#", hasDropdown: true },
+  { name: "SERVICES", href: "/service", hasDropdown: false },
+  { name: "BLOGS", href: "/blog", hasDropdown: true },
   { name: "CONTACT US", href: "/contact", hasDropdown: false },
 ];
 
@@ -125,13 +127,32 @@ const megaMenuContent: MegaMenuContent = {
     ],
   },
 
-  // SERVICES: {
-  //   columns: [
-  //     { title: "Company", items: [{ text: "About Us", href: "/about", icon: Info }, { text: "Contact Us", href: "/contact", icon: BookOpen }, { text: "Careers", href: "/careers", icon: Briefcase }] },
-  //     { title: "Resources", items: [{ text: "Blog", href: "/blog", icon: BookOpen }, { text: "FAQ", href: "/faq", icon: Info }] },
-  //     { title: "Legal", items: [{ text: "Terms", href: "/terms-of-service", icon: Layers }, { text: "Privacy", href: "/privacy-policy", icon: Layers }] },
-  //   ],
-  // },
+  SERVICES: {
+    columns: [
+      {
+        title: "Company",
+        items: [
+          { text: "About Us", href: "/about", icon: Info },
+          { text: "Contact Us", href: "/contact", icon: BookOpen },
+          { text: "Careers", href: "/careers", icon: Briefcase },
+        ],
+      },
+      {
+        title: "Resources",
+        items: [
+          { text: "Blog", href: "/blog", icon: BookOpen },
+          { text: "FAQ", href: "/faq", icon: Info },
+        ],
+      },
+      {
+        title: "Legal",
+        items: [
+          { text: "Terms", href: "/terms-of-service", icon: Layers },
+          { text: "Privacy", href: "/privacy-policy", icon: Layers },
+        ],
+      },
+    ],
+  },
 };
 
 export default function Navbar() {

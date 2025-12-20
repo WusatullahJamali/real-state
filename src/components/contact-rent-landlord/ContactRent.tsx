@@ -29,9 +29,9 @@ const ContactRent = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const inquiryOptions = [
-    { value: "scheduleViewing", label: "Schedule a Viewing" },
-    { value: "askQuestion", label: "Ask a Question" },
-    { value: "requestApplication", label: "Request Application Form" },
+    { value: "scheduleVisit", label: "Schedule a Visit" },
+    { value: "askQuestion", label: "Ask Questions" },
+    // { value: "requestApplication", label: "Request Application Form" },
   ];
 
   const handleChange = (
@@ -61,10 +61,12 @@ const ContactRent = () => {
           <h1 className="text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">
             Contact the Landlord
           </h1>
-          <div className="h-1.5 w-20 bg-yellow-500 mt-4 mb-6 mx-auto lg:mx-0 rounded-full" />
-          <p className="text-lg text-slate-600 max-w-2xl leading-relaxed">
-            Ready to make a move? Fill out the form below and the landlord will 
-            get back to you, usually within 24 hours.
+          <p className="text-yellow-600 font-medium mt-1">
+            Inquire about this property
+          </p>
+          <p className="text-black mt-3 max-w-xl">
+            Fill out the form below to reach the landlord directly. Serious
+            inquiries only — responses are typically quick.
           </p>
         </div>
 
@@ -169,7 +171,7 @@ const ContactRent = () => {
 
                 <button
                   type="submit"
-                  className="w-full bg-yellow-600 hover:bg-yellow-400 text-white font-bold py-4 rounded-xl transition-all shadow-lg hover:shadow-xl active:scale-[0.98]"
+                  className="w-full bg-yellow-600 hover:bg-yellow-700 cursor-pointer text-white font-semibold py-4 rounded-xl transition shadow-md"
                 >
                   Send Inquiry Now
                 </button>

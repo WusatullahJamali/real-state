@@ -20,29 +20,29 @@ export default function Know() {
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <span className="inline-block text-yellow-600 font-semibold tracking-wide mb-3">
-            (Since 1994)
-          </span>
-
-          <h1 className="text-4xl md:text-5xl font-extrabold text-black leading-tight mb-6">
-            Get to Know Our <br />
-            <span className="text-yellow-600">Real Estate Agency</span>
-          </h1>
-
-          <h2 className="text-xl md:text-2xl font-semibold text-black mb-5">
-            Iraq’s Trusted Property Platform
-          </h2>
-
-          <p className="text-black leading-relaxed mb-6">
-            We proudly serve families, businesses, and investors looking to buy,
-            sell, or invest in real estate across Iraq. From modern apartments to
-            premium commercial properties, we help you make confident decisions.
+          <p className="text-yellow-600 font-semibold mb-2">
+            (Since 2018)
           </p>
 
-          <p className="text-black leading-relaxed">
-            Our portfolio includes residential homes, commercial developments,
-            and land opportunities — all backed by professional guidance and
-            transparent processes.
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
+            Get to Know Albasync
+          </h1>
+
+          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
+            Welcome to Albasync Real Estate
+          </h2>
+
+          <p className="text-gray-600 leading-relaxed mb-8">
+            Albasync is a modern real estate platform dedicated to helping
+            individuals and families find the right property with confidence.
+            From apartments and houses to commercial spaces, we make property
+            search simple, secure, and transparent.
+          </p>
+
+          <p className="text-gray-600 leading-relaxed">
+            Our mission is to connect people with trusted property listings,
+            verified sellers, and valuable local insights — all in one reliable
+            platform.
           </p>
         </motion.div>
 
@@ -54,56 +54,55 @@ export default function Know() {
           viewport={{ once: true }}
           className="grid gap-8"
         >
-          {/* Feature Card 1 */}
-          <div className="group flex gap-5 items-start p-6 bg-white transition-all">
-            <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center">
-              <Home size={26} className="text-yellow-600" />
+          {/* Card 1 */}
+          <div className="flex gap-5 items-start">
+            <div className="bg-yellow-500 w-12 h-12 rounded-full flex items-center justify-center text-white shadow-sm">
+              <Home size={24} />
             </div>
             <div>
-              <h3 className="font-bold text-black text-lg mb-2">
-                Homes for Sale Across Iraq
+              <h3 className="font-semibold text-gray-900 text-lg mb-2">
+                Homes for Sale & Rent
               </h3>
-              <p className="text-black text-sm leading-relaxed">
-                Explore a wide range of residential properties in key Iraqi cities,
-                designed for comfort, security, and long-term value.
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Discover a wide range of verified residential properties across
+                prime locations.
               </p>
             </div>
           </div>
 
-          {/* Feature Card 2 */}
-          <div className="group flex gap-5 items-start p-6 bg-white transition-all">
-            <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center">
-              <Star size={26} className="text-yellow-600" />
+          {/* Card 2 */}
+          <div className="flex gap-5 items-start">
+            <div className="bg-yellow-500 w-12 h-12 rounded-full flex items-center justify-center text-white shadow-sm">
+              <Star size={24} />
             </div>
             <div>
-              <h3 className="font-bold text-black text-lg mb-2">
-                High-Quality & Verified Properties
+              <h3 className="font-semibold text-gray-900 text-lg mb-2">
+                High-Quality & Trusted Listings
               </h3>
-              <p className="text-black text-sm leading-relaxed">
-                Every property is carefully reviewed to ensure quality construction,
-                legal clarity, and reliable investment potential.
+              <p className="text-gray-600 text-sm leading-relaxed">
+                Every property is carefully reviewed to ensure quality,
+                transparency, and reliability.
               </p>
             </div>
           </div>
 
-          {/* CEO Card */}
-          <div className="mt-2 bg-white rounded-2xl p-7 border border-yellow-300">
-            <p className="text-black font-extrabold text-xl">
-              Shahzaib Ahmed
-            </p>
-            <p className="text-black font-medium mb-4">
-              CEO & Founder
-            </p>
+          {/* EXPERIENCE */}
+         <div className="mt-6 bg-yellow-50 rounded-xl p-6 border border-yellow-200 
+                max-w-sm text-center">
+  <p className="text-gray-900 font-bold text-lg">
+    Albasync Real Estate Team
+  </p>
 
-            <div className="flex items-end gap-3">
-              <h1 className="text-5xl font-extrabold text-yellow-600">30+</h1>
-              <p className="text-black font-semibold text-lg">Years</p>
-            </div>
+  <div className="flex justify-center items-end gap-2 mt-4">
+    <h1 className="text-5xl font-bold text-yellow-600">05</h1>
+    <p className="text-gray-600 font-semibold text-lg">Years</p>
+  </div>
 
-            <p className="text-black mt-2 text-sm font-medium">
-              Of Real Estate Experience in Iraq
-            </p>
-          </div>
+  <p className="text-gray-700 mt-2 text-sm font-medium">
+    of Industry Experience
+  </p>
+</div>
+
         </motion.div>
       </div>
     </section>
