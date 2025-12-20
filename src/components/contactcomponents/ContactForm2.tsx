@@ -1,212 +1,193 @@
 "use client";
 
-import React from "react";
-import { motion, Variants } from "framer-motion";
-import {
-  Phone,
-  Mail,
-  MapPin,
-  Instagram,
-  Twitter,
-  Linkedin,
-  Globe,
-  ArrowRight,
-} from "lucide-react";
+import React, { useState } from "react";
+import { motion } from "framer-motion";
+import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 
-/* ------------------ ANIMATIONS ------------------ */
-const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
-  }),
-};
+/* ---------------- Info Card ---------------- */
+const InfoCard = ({ icon: Icon, title, value, fullWidth = false }: any) => (
+  <div
+    className={`bg-white p-5 rounded-2xl border border-gray-200 flex items-center gap-4 ${
+      fullWidth ? "sm:col-span-2 lg:col-span-1 xl:col-span-2" : ""
+    }`}
+  >
+    <div className="w-10 h-10 rounded-full bg-gray-100 text-yellow-500 flex items-center justify-center shrink-0">
+      <Icon size={18} />
+    </div>
 
-/* ------------------ COMPONENT ------------------ */
-const ContactDesign = () => {
+    <div>
+      <p className="text-[10px] uppercase tracking-widest text-gray-400 mb-1">
+        {title}
+      </p>
+      <p className="text-base text-gray-900">{value}</p>
+    </div>
+  </div>
+);
+
+/* ---------------- Input Field ---------------- */
+const InputField = ({
+  label,
+  type = "text",
+  placeholder,
+  icon: Icon,
+  isArea = false,
+  focus,
+  setFocus,
+  name,
+}: any) => (
+  <div className="space-y-1.5">
+    <label className="text-sm text-gray-800 ml-1">{label}</label>
+
+    <div
+      className={`flex items-center px-4 py-3 rounded-xl border transition ${
+        focus === name
+          ? "border-gray-400 bg-gray-100"
+          : "border-gray-200 bg-gray-100"
+      }`}
+    >
+      {isArea ? (
+        <textarea
+          rows={4}
+          onFocus={() => setFocus(name)}
+          onBlur={() => setFocus(null)}
+          placeholder={placeholder}
+          className="w-full bg-transparent outline-none text-gray-900 placeholder:text-gray-400 resize-none"
+        />
+      ) : (
+        <input
+          type={type}
+          onFocus={() => setFocus(name)}
+          onBlur={() => setFocus(null)}
+          placeholder={placeholder}
+          className="w-full bg-transparent outline-none text-gray-900 placeholder:text-gray-400"
+        />
+      )}
+
+      {Icon && <Icon size={18} className="text-gray-400" />}
+    </div>
+  </div>
+);
+
+/* ---------------- Main Component ---------------- */
+export default function ContactSection() {
+  const [focus, setFocus] = useState<string | null>(null);
+
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center p-4 md:p-10 font-sans">
+    <section className="min-h-screen bg-white flex flex-col lg:flex-row font-sans">
+      {/* LEFT */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-white w-full max-w-6xl rounded-[2.5rem] overflow-hidden relative border border-slate-100 shadow-xl"
+        initial={{ opacity: 0, x: -40 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full lg:w-5/12 bg-white flex flex-col justify-between p-8 md:p-12 lg:p-16 border-r border-gray-200"
       >
-        {/* Top Accent */}
-        <div className="h-2 bg-yellow-600 w-full" />
-
-        {/* Header */}
-        <motion.div
-          variants={fadeUp}
-          initial="hidden"
-          animate="visible"
-          className="flex justify-end p-8"
-        >
-          <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-yellow-600 flex items-center justify-center rounded">
-              <span className="text-white font-black text-xs">IQ</span>
-            </div>
-            <span className="font-bold tracking-tight text-black">
-              IRAQ REAL ESTATE
+        <div className="mb-12">
+          <div className="inline-flex items-center gap-2 mb-6 px-3 py-1 rounded-full border border-gray-200">
+            <span className="w-2 h-2 bg-yellow-500 rounded-full" />
+            <span className="text-gray-700 tracking-widest text-[10px] uppercase">
+              Iraq Real Estate
             </span>
           </div>
-        </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-12 px-8 md:px-16 pb-20">
-          {/* LEFT SIDE */}
-          <motion.div initial="hidden" animate="visible" className="space-y-10">
-            <motion.div variants={fadeUp} custom={1}>
-              <span className="inline-block px-4 py-1.5 mb-6 text-[10px] font-black tracking-widest text-[#B48A00] uppercase bg-[#FFF9E6] rounded-full">
-                Contact Our Team
-              </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl tracking-tight text-gray-900 mb-4">
+            Let's build your <br />
+            <span className="text-yellow-500">legacy.</span>
+          </h1>
 
-              <h1 className="text-5xl md:text-6xl font-black leading-[1.1] text-black mb-4">
-                Your property journey <br />
-                starts <span className="text-yellow-600">here</span>
-              </h1>
-            </motion.div>
+          <p className="text-gray-500 text-sm max-w-md">
+            Connect with Iraq's premier property consultants. From Baghdad to
+            Basra, we are here for you.
+          </p>
+        </div>
 
-            {/* Contact Info */}
-            <motion.div variants={fadeUp} custom={2} className="space-y-4">
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="bg-white p-6 rounded-[1.5rem] flex items-center gap-4 border border-slate-100 shadow-sm"
-              >
-                <Phone size={20} className="text-yellow-600" />
-                <span className="font-bold text-black">
-                  +964 770 123 4567
-                </span>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className="bg-white p-6 rounded-[1.5rem] flex flex-wrap items-center gap-8 border border-slate-100 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <Mail size={20} className="text-yellow-600" />
-                  <span className="font-bold text-black text-sm">
-                    contact@iraqhomes.iq
-                  </span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <MapPin size={20} className="text-yellow-600" />
-                  <span className="font-bold text-black text-sm">
-                    Baghdad • Erbil • Basra
-                  </span>
-                </div>
-              </motion.div>
-            </motion.div>
-
-            {/* Social */}
-            <motion.div
-              variants={fadeUp}
-              custom={3}
-              className="bg-yellow-600 p-8 rounded-[2rem] relative overflow-hidden"
-            >
-              <h3 className="text-white font-black text-xl mb-6">
-                Follow Iraq’s Property Market
-              </h3>
-
-              <div className="flex gap-3">
-                {[Instagram, Twitter, Linkedin, Globe].map((Icon, i) => (
-                  <motion.button
-                    key={i}
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="w-12 h-12 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white hover:text-yellow-600 transition-all"
-                  >
-                    <Icon size={20} />
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          </motion.div>
-
-          {/* RIGHT FORM */}
-          <motion.div
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-            className="relative"
-          >
-            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 relative z-10 shadow-lg">
-              <h2 className="text-2xl font-black text-black mb-8">
-                Request Property Details
-              </h2>
-
-              <form className="space-y-6">
-                {["Full Name", "Email Address", "Property Interest"].map(
-                  (label, i) => (
-                    <motion.div
-                      key={i}
-                      initial={{ opacity: 0, y: 20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.5 + i * 0.1 }}
-                      className="space-y-1.5"
-                    >
-                      <label className="text-xs font-bold text-black ml-1">
-                        {label}
-                      </label>
-
-                      <input
-                        className="
-                          w-full bg-white rounded-2xl py-4 px-6
-                          border border-gray-300
-                          text-black placeholder:text-gray-400
-                          shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]
-                          outline-none
-                          focus:border-transparent
-                          focus:ring-2 focus:ring-[#FFC107]
-                          focus:shadow-[0_0_0_3px_rgba(255,193,7,0.15)]
-                          transition-all duration-300
-                        "
-                      />
-                    </motion.div>
-                  )
-                )}
-
-                <motion.textarea
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 }}
-                  rows={3}
-                  placeholder="I'm interested in a property in Baghdad..."
-                  className="
-                    w-full bg-white rounded-2xl py-4 px-6
-                    border border-gray-300
-                    text-black placeholder:text-gray-400
-                    shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]
-                    outline-none
-                    focus:border-transparent
-                    focus:ring-2 focus:ring-[#FFC107]
-                    focus:shadow-[0_0_0_3px_rgba(255,193,7,0.15)]
-                    transition-all duration-300
-                  "
-                />
-
-                <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
-                  className="w-full bg-gradient-to-r from-[#1A1A1A] to-[#333333] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:from-yellow-600 hover:to-yellow-600 transition-all duration-300 shadow-xl"
-                >
-                  Contact Our Agents
-                  <ArrowRight size={18} />
-                </motion.button>
-              </form>
-            </div>
-
-            {/* Glow */}
-            <motion.div
-              animate={{ scale: [1, 1.1, 1] }}
-              transition={{ repeat: Infinity, duration: 6 }}
-              className="absolute -right-10 top-1/2 -translate-y-1/2 w-40 h-40 bg-[#FFC107] rounded-full blur-[80px] opacity-40 -z-0"
-            />
-          </motion.div>
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+          <InfoCard icon={Phone} title="Direct Line" value="+964 770 123 4567" />
+          <InfoCard icon={Mail} title="Email Us" value="info@iraqhomes.iq" />
+          <InfoCard
+            icon={MapPin}
+            title="Headquarters"
+            value="Al-Mansour, Baghdad"
+            fullWidth
+          />
         </div>
       </motion.div>
-    </div>
-  );
-};
 
-export default ContactDesign;
+      {/* RIGHT */}
+      <motion.div
+        initial={{ opacity: 0, y: 30 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="w-full lg:w-7/12 flex items-center justify-center p-6 sm:p-12 lg:p-24"
+      >
+        <div className="w-full max-w-xl space-y-8">
+          <div>
+            <h2 className="text-3xl text-gray-900">Send a Message</h2>
+            <p className="text-gray-500 text-sm">
+              We typically reply within 2 hours.
+            </p>
+          </div>
+
+          <form className="space-y-5">
+            <div className="grid md:grid-cols-2 gap-5">
+              <InputField
+                label="Full Name"
+                placeholder="Wusat"
+                focus={focus}
+                setFocus={setFocus}
+                name="name"
+              />
+              <InputField
+                label="Phone Number"
+                type="tel"
+                placeholder="+964 1234 567 89"
+                focus={focus}
+                setFocus={setFocus}
+                name="phone"
+              />
+            </div>
+
+            <InputField
+              label="Email Address"
+              type="email"
+              placeholder="albasync@example.com"
+              icon={Mail}
+              focus={focus}
+              setFocus={setFocus}
+              name="email"
+            />
+
+            {/* Radio */}
+            <div className="space-y-1.5">
+              <label className="text-sm text-gray-800 ml-1">
+                I'm interested in
+              </label>
+              <div className="grid grid-cols-3 gap-3">
+                {["Buying", "Renting", "Selling"].map((type) => (
+                  <label key={type} className="cursor-pointer">
+                    <input type="radio" name="type" className="peer sr-only" />
+                    <div className="text-center py-3 rounded-xl border border-gray-200 bg-gray-100 text-sm text-gray-600 peer-checked:bg-yellow-500 peer-checked:text-white peer-checked:border-yellow-500">
+                      {type}
+                    </div>
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            <InputField
+              label="Message"
+              isArea
+              placeholder="Tell us about the property..."
+              focus={focus}
+              setFocus={setFocus}
+              name="message"
+            />
+
+            <button className="w-full bg-gray-700 text-white hover:bg-yellow-500 cursor-pointer text-lg py-4 rounded-xl flex items-center justify-center gap-3">
+              Send Request <ArrowRight size={18} />
+            </button>
+          </form>
+        </div>
+      </motion.div>
+    </section>
+  );
+}

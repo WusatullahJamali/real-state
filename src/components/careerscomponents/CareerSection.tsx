@@ -1,170 +1,131 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Link from "next/link";
-import { MapPin, Briefcase, Search, ChevronDown, GitBranch, ArrowUpRight } from "lucide-react";
+import { MapPin, Briefcase, Clock, ArrowRight, Building2 } from "lucide-react";
 
-// Types for better clarity
 interface Job {
   id: number;
   title: string;
   department: string;
   location: string;
   type: string;
+  posted: string;
 }
 
+// Data tailored for an Iraqi Real Estate context
 const jobs: Job[] = [
-  { id: 1, title: "Real Estate Agent", department: "Sales", location: "Baghdad, Iraq", type: "Full-Time" },
-  { id: 2, title: "Property Manager", department: "Operations", location: "Erbil, Iraq", type: "Full-Time" },
-  { id: 3, title: "Real Estate Marketing Executive", department: "Marketing", location: "Basra, Iraq", type: "Part-Time" },
-  { id: 4, title: "Customer Support Specialist", department: "Customer Service", location: "Remote", type: "Full-Time" },
-  { id: 5, title: "Real Estate Analyst", department: "Research", location: "Baghdad, Iraq", type: "Full-Time" },
-  { id: 6, title: "Leasing Coordinator", department: "Operations", location: "Najaf, Iraq", type: "Full-Time" },
-  { id: 7, title: "Real Estate Photographer", department: "Marketing", location: "Erbil, Iraq", type: "Part-Time" },
-  { id: 8, title: "Client Relations Manager", department: "Sales", location: "Baghdad, Iraq", type: "Full-Time" },
-  { id: 9, title: "Investment Analyst", department: "Research", location: "Remote", type: "Full-Time" },
-  { id: 10, title: "Digital Marketing Specialist", department: "Marketing", location: "Najaf, Iraq", type: "Full-Time" },
-  { id: 11, title: "Office Administrator", department: "Operations", location: "Baghdad, Iraq", type: "Full-Time" },
-  { id: 12, title: "Customer Success Executive", department: "Customer Service", location: "Erbil, Iraq", type: "Full-Time" },
-  { id: 13, title: "Real Estate Intern", department: "Sales", location: "Baghdad, Iraq", type: "Internship" },
-  { id: 14, title: "Leasing Intern", department: "Operations", location: "Najaf, Iraq", type: "Internship" },
-  { id: 15, title: "Property Inspection Intern", department: "Operations", location: "Erbil, Iraq", type: "Internship" },
-  { id: 16, title: "Rental Operations Intern", department: "Operations", location: "Baghdad, Iraq", type: "Internship" },
-  { id: 17, title: "Property Acquisition Intern", department: "Sales", location: "Basra, Iraq", type: "Internship" },
-  { id: 18, title: "Property Research Intern", department: "Research", location: "Remote", type: "Internship" },
-  { id: 19, title: "Real Estate Documentation Intern", department: "Operations", location: "Baghdad, Iraq", type: "Internship" },
-  { id: 20, title: "Real Estate Compliance Intern", department: "Operations", location: "Erbil, Iraq", type: "Internship" },
-  { id: 21, title: "Investment Property Intern", department: "Research", location: "Najaf, Iraq", type: "Internship" },
-  { id: 22, title: "Real Estate Transactions Intern", department: "Sales", location: "Remote", type: "Internship" },
-
+  { id: 1, title: "Senior Sales Consultant (Luxury)", department: "Sales", location: "Al-Mansour, Baghdad", type: "Full-Time", posted: "2 days ago" },
+  { id: 2, title: "Commercial Property Manager", department: "Operations", location: "Basra, Iraq", type: "Full-Time", posted: "1 week ago" },
+  { id: 3, title: "Real Estate Legal Advisor", department: "Legal", location: "Baghdad HQ", type: "Part-Time", posted: "3 days ago" },
+  { id: 4, title: "Regional Area Manager", department: "Management", location: "Erbil, Kurdistan", type: "Full-Time", posted: "Just now" },
+  { id: 5, title: "Property Valuation Analyst", department: "Finance", location: "Karada, Baghdad", type: "Full-Time", posted: "5 days ago" },
+  { id: 6, title: "Bilingual Client Support (Arabic/Kurdish)", department: "Customer Service", location: "Remote / Erbil", type: "Full-Time", posted: "1 week ago" },
+  { id: 7, title: "Frontend Engineer (PropTech)", department: "Technology", location: "Remote", type: "Contract", posted: "2 weeks ago" },
+  { id: 8, title: "Leasing Broker (Residential)", department: "Sales", location: "Najaf, Iraq", type: "Commission", posted: "3 days ago" },
+  { id: 9, title: "Site Inspection Coordinator", department: "Operations", location: "Mosul, Iraq", type: "Internship", posted: "4 days ago" },
 ];
 
-const departments = Array.from(new Set(jobs.map((job) => job.department)));
-const locations = Array.from(new Set(jobs.map((job) => job.location)));
-
-export default function ExpandingHoverCareersSection() {
-  const [selectedDepartment, setSelectedDepartment] = useState<string>("All");
-  const [selectedLocation, setSelectedLocation] = useState<string>("All");
-  const [searchQuery, setSearchQuery] = useState<string>("");
-
-  const filteredJobs = jobs.filter((job) => {
-    const dep = selectedDepartment === "All" || job.department === selectedDepartment;
-    const loc = selectedLocation === "All" || job.location === selectedLocation;
-    const search = job.title.toLowerCase().includes(searchQuery.toLowerCase());
-    return dep && loc && search;
-  });
-
-  const getBadgeStyles = (type: string) => {
-    switch (type) {
-      case "Full-Time": return "bg-emerald-50 text-emerald-700 border-emerald-100";
-      case "Part-Time": return "bg-amber-50 text-amber-700 border-amber-100";
-      case "Internship": return "bg-indigo-50 text-indigo-700 border-indigo-100";
-      default: return "bg-gray-50 text-gray-700 border-gray-100";
-    }
-  };
-
+export default function CareersSection() {
   return (
-    <section className="bg-white py-24 px-6">
+    <section className="bg-slate-50 py-24 px-4 sm:px-6 lg:px-8 font-sans">
       <div className="max-w-7xl mx-auto">
         
-        {/* HEADER */}
-        <div className="mb-16">
-          <span className="text-yellow-600 font-bold tracking-[0.2em] text-sm uppercase">Join Our Mission</span>
-          <h2 className="text-5xl md:text-6xl font-black text-slate-900 mt-4 mb-6 tracking-tight">
-            Build the future <br /> of Real Estate.
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-100 text-yellow-700 text-xs font-bold uppercase tracking-wider mb-6">
+            <span className="w-2 h-2 rounded-full bg-yellow-500 animate-pulse"></span>
+            We are hiring
+          </div>
+          <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-6">
+            Build the Future of <br className="hidden md:block" />
+            <span className="relative inline-block">
+              <span className="relative z-10">Iraqi Real Estate</span>
+              <span className="absolute bottom-2 left-0 w-full h-3 bg-yellow-200/60 -z-0 transform -rotate-1"></span>
+            </span>
           </h2>
-          <p className="text-yellow-600 text-lg max-w-2xl leading-relaxed">
-            We're looking for passionate individuals to join our team in Iraq and Remote.
+          <p className="text-lg text-slate-600 leading-relaxed">
+            Join the leading property marketplace in Iraq , from Baghdad to Basra, 
+            we are connecting people with their dream homes and investment opportunities.
           </p>
         </div>
 
-        {/* REFINED FILTERS */}
-        <div className="bg-white p-4 rounded-3xl shadow-sm border border-slate-200 mb-12 flex flex-col md:flex-row gap-4">
-          <div className="relative flex-grow">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
-            <input
-              type="text"
-              placeholder="Search roles..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-4 rounded-2xl bg-white border-none focus:ring-2 focus:ring-yellow-500 transition-all outline-none"
-            />
-          </div>
-          <div className="flex gap-4">
-             <select 
-                onChange={(e) => setSelectedDepartment(e.target.value)}
-                className="bg-white px-6 py-4 rounded-2xl border font-medium text-slate-700 outline-none focus:ring-2 focus:ring-yellow-500 cursor-pointer"
-             >
-                <option value="All">All Departments</option>
-                {departments.map(d => <option key={d} value={d}>{d}</option>)}
-             </select>
-             <select 
-                onChange={(e) => setSelectedLocation(e.target.value)}
-                className="bg-white px-6 py-4 rounded-2xl border font-medium text-slate-700 outline-none focus:ring-2 focus:ring-yellow-500 cursor-pointer"
-             >
-                <option value="All">All Locations</option>
-                {locations.map(l => <option key={l} value={l}>{l}</option>)}
-             </select>
-          </div>
-        </div>
-
-        {/* JOBS GRID */}
+        {/* Jobs Grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {filteredJobs.map((job) => (
+          {jobs.map((job) => (
             <Link
               key={job.id}
               href={`/careers/${job.id}`}
-              className="group relative bg-white rounded-[32px] p-8 border border-slate-200 hover:border-yellow-500 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-500/10 flex flex-col h-full"
+              className="group flex flex-col bg-white rounded-2xl p-6 border border-slate-200 hover:border-yellow-400 shadow-sm hover:shadow-xl hover:shadow-slate-200/50 transition-all duration-300 relative overflow-hidden"
             >
-              {/* Card Decoration */}
-              <div className="absolute top-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
-                <ArrowUpRight className="text-yellow-600" size={24} />
-              </div>
+              {/* Top Row: Type Badge + Department */}
+              <div className="flex justify-between items-start mb-4">
+                {/* MOBILE: bg-slate-800 text-white (High Contrast)
+                   DESKTOP: bg-slate-100 -> hover:bg-slate-800 
+                */}
+                <span className="inline-block px-3 py-1 rounded-md text-xs font-semibold uppercase tracking-wide transition-colors
+                                 bg-slate-800 text-white 
+                                 lg:bg-slate-100 lg:text-slate-600 lg:group-hover:bg-slate-800 lg:group-hover:text-white">
+                  {job.department}
+                </span>
 
-              <div className="mb-8">
-                <div className={`inline-flex items-center px-3 py-1 rounded-lg border text-[11px] font-bold uppercase tracking-wider mb-6 ${getBadgeStyles(job.type)}`}>
+                <span className={`text-xs font-medium px-2 py-1 rounded ${
+                  job.type === 'Full-Time' ? 'bg-green-50 text-green-700' : 
+                  job.type === 'Remote' ? 'bg-purple-50 text-purple-700' :
+                  'bg-blue-50 text-blue-700'
+                }`}>
                   {job.type}
-                </div>
-                <h3 className="text-2xl font-bold text-slate-900 group-hover:text-yellow-600 transition-colors leading-tight">
-                  {job.title}
-                </h3>
-              </div>
-
-              <div className="mt-auto space-y-3">
-                <div className="flex items-center gap-3 text-slate-500">
-                  <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-yellow-100 transition-colors">
-                    <GitBranch size={14} className="group-hover:text-yellow-600" />
-                  </div>
-                  <span className="text-sm font-medium">{job.department}</span>
-                </div>
-
-                <div className="flex items-center gap-3 text-slate-500">
-                  <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center group-hover:bg-yellow-100 transition-colors">
-                    <MapPin size={14} className="group-hover:text-yellow-600" />
-                  </div>
-                  <span className="text-sm font-medium">{job.location}</span>
-                </div>
-              </div>
-
-              <div className="mt-8 pt-6 border-t border-slate-100 flex items-center justify-between">
-                <span className="text-slate-400 text-sm font-medium italic">Apply before 30th Dec</span>
-                <span className="text-yellow-600 font-bold text-sm hidden group-hover:block animate-in fade-in slide-in-from-right-2">
-                  Apply Now →
                 </span>
               </div>
+
+              {/* Job Title */}
+              {/* MOBILE: text-yellow-600 (Always colored)
+                  DESKTOP: text-slate-900 -> hover:text-yellow-600 
+              */}
+              <h3 className="text-xl font-bold mb-3 transition-colors
+                             text-yellow-600 
+                             lg:text-slate-900 lg:group-hover:text-yellow-600">
+                {job.title}
+              </h3>
+
+              {/* Metadata */}
+              <div className="flex flex-col gap-2 mb-8 text-sm text-slate-500">
+                <div className="flex items-center gap-2">
+                  <MapPin className="w-4 h-4 text-slate-400" />
+                  {job.location}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Clock className="w-4 h-4 text-slate-400" />
+                  Posted {job.posted}
+                </div>
+              </div>
+
+              {/* Action Footer */}
+              <div className="mt-auto pt-6 border-t border-slate-100 flex items-center justify-between">
+                <span className="text-sm font-semibold text-slate-900">View Details</span>
+                
+                {/* MOBILE: Yellow Background + White Text
+                   DESKTOP: Gray Background + Dark Text -> Hover Yellow
+                */}
+                <div className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 transform group-hover:rotate-45
+                                bg-yellow-500 text-white
+                                lg:bg-slate-100 lg:text-slate-900 lg:group-hover:bg-yellow-500 lg:group-hover:text-white">
+                  <ArrowRight size={18} />
+                </div>
+              </div>
+              
             </Link>
           ))}
         </div>
 
-        {filteredJobs.length === 0 && (
-          <div className="text-center py-20">
-            <div className="bg-slate-100 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-4">
-              <Search className="text-slate-400" size={32} />
-            </div>
-            <h3 className="text-xl font-bold text-slate-900">No positions found</h3>
-            <p className="text-slate-500">Try adjusting your filters or search query.</p>
-          </div>
-        )}
+        {/* Bottom CTA (Uncomment if needed) */}
+        {/* <div className="mt-16 text-center">
+          <p className="text-slate-500 mb-4">Don't see a perfect fit?</p>
+          <button className="px-8 py-3 bg-slate-900 text-white font-semibold rounded-lg hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl">
+            Submit General Application
+          </button>
+        </div> */}
+
       </div>
     </section>
   );
