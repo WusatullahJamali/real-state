@@ -9,14 +9,54 @@ import Link from "next/link";
 
 export default function CollectionsSection() {
   const collections = [
-    { title: "Recommended Homes", count: 17, img: "/img1.webp", href: "/CategoriesDATA/recommend" },
-    { title: "New Listings", count: 7, img: "/img2.avif", href: "/CategoriesDATA/new-listings" },
-    { title: "Price Reduced", count: 14, img: "/img3.webp", href: "/CategoriesDATA/price-reduced" },
-    { title: "Open Houses", count: 3, img: "/img4.jpeg", href: "/CategoriesDATA/open-houses" },
-    { title: "Recently Sold", count: 168, img: "/img5.jpg", href: "/CategoriesDATA/recently-sold" },
-    { title: "New Constructions", count: 32, img: "/img6.webp", href: "/CategoriesDATA/new-constructions" },
-    { title: "New Home Communities", count: 2, img: "/img7.jpg", href: "/CategoriesDATA/communities" },
-    { title: "Land", count: 29, img: "/img8.jpg", href: "/CategoriesDATA/land" },
+    {
+      title: "Recommended Homes",
+      count: 17,
+      img: "/img1.webp",
+      href: "/CategoriesDATA/recommend",
+    },
+    {
+      title: "New Listings",
+      count: 7,
+      img: "/img2.avif",
+      href: "/CategoriesDATA/new-listings",
+    },
+    {
+      title: "Price Reduced",
+      count: 14,
+      img: "/img3.webp",
+      href: "/CategoriesDATA/price-reduced",
+    },
+    {
+      title: "Open Houses",
+      count: 3,
+      img: "/img4.jpeg",
+      href: "/CategoriesDATA/open-houses",
+    },
+    {
+      title: "Recently Sold",
+      count: 168,
+      img: "/img5.jpg",
+      href: "/CategoriesDATA/recently-sold",
+    },
+    {
+      title: "New Constructions",
+      count: 32,
+      img: "/img6.webp",
+      href: "/CategoriesDATA/new-constructions",
+    },
+    {
+      title: "New Home Communities",
+      count: 2,
+      img: "/img7.jpg",
+      href: "/CategoriesDATA/communities",
+    },
+    {
+      title: "Land",
+      count: 29,
+      img: "/img8.jpg",
+      href: "/CategoriesDATA/land",
+    },
   ];
 
   const rows = [collections.slice(0, 4), collections.slice(4)];
@@ -26,9 +66,12 @@ export default function CollectionsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-black mb-3">Property Collections</h2>
+          <h2 className="text-4xl font-bold text-black mb-3">
+            Property Collections
+          </h2>
           <p className="text-gray-700 text-lg max-w-2xl mx-auto">
-            Explore our curated property collections for every buyer and investor.
+            Explore our curated property collections for every buyer and
+            investor.
           </p>
         </div>
 
@@ -57,7 +100,6 @@ export default function CollectionsSection() {
                 >
                   {/* Image container to maintain rounded corners */}
                   <div className="w-full h-72 md:h-80 relative rounded-lg overflow-hidden shadow-lg group">
-
                     <Image
                       src={item.img}
                       alt={item.title}
@@ -67,8 +109,12 @@ export default function CollectionsSection() {
 
                     {/* Overlay */}
                     <div className="absolute inset-0 flex flex-col justify-end p-4 bg-gradient-to-t from-black/40 to-transparent rounded-xl">
-                      <h3 className="text-white font-bold text-xl">{item.title}</h3>
-                      <p className="text-white text-sm">{item.count} properties</p>
+                      <h3 className="text-white font-bold text-xl">
+                        {item.title}
+                      </h3>
+                      <p className="text-white text-sm">
+                        {item.count} properties
+                      </p>
                       <span className="mt-2 inline-block px-6 py-1 bg-yellow-500 text-black text-sm font-semibold rounded-lg transition-all group-hover:bg-yellow-400">
                         View Collection
                       </span>
