@@ -4,178 +4,168 @@ import React, { useState } from "react";
 import { Search, MapPin, Filter, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
-interface ListingHeaderProps {
-  totalListings?: number;
-}
-
-const ListingHeaderIraq: React.FC<ListingHeaderProps> = ({
-  totalListings = 10,
-}) => {
+const PropertyHero: React.FC = () => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
 
   return (
-    <div className="relative w-full h-[400px] sm:h-[500px] md:h-[550px] lg:h-[600px] flex items-center justify-center overflow-hidden l">
-      {/* Background Image with Overlay */}
+    <section className="relative w-full min-h-[480px] sm:min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden">
+      {/* Background */}
       <div
-        className="absolute inset-0 bg-cover bg-center z-0  "
-        style={{ backgroundImage: "url('hero5.jpg')" }}
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: "url('/property.webp')" }}
       >
-        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/40 to-black/30"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/85 via-black/50 to-black/30" />
       </div>
 
-      {/* Content Container */}
+      {/* Content */}
       <motion.div
-        className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-12 text-center text-white"
-        initial={{ opacity: 0, y: 40 }}
+        className="relative z-10 w-full max-w-6xl px-4 sm:px-6 lg:px-10 text-center text-white"
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
+        transition={{ duration: 0.8 }}
       >
         {/* Badge */}
         <motion.div
-          className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full mb-3 sm:mb-5"
-          initial={{ opacity: 0, y: -20 }}
+          className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 px-4 py-1.5 rounded-full mb-5"
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3, duration: 0.8 }}
+          transition={{ delay: 0.2 }}
         >
-          <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
-          <span className="text-xs sm:text-sm font-medium tracking-wide uppercase">
-            {totalListings} Premium Listings Available
+          <span className="w-2 h-2 rounded-full bg-yellow-400 animate-pulse" />
+          <span className="text-xs font-semibold tracking-wide uppercase">
+            10 Premium Listings Available
           </span>
         </motion.div>
 
-        {/* Hero Title */}
+        {/* Heading */}
         <motion.h1
-          className="text-5xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2 sm:mb-3 drop-shadow-lg"
+          className="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-tight mb-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
+          transition={{ delay: 0.35 }}
         >
-          Find Your Dream <br className="hidden sm:block" />
+          Find Your Dream
+          <br />
           <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-200 to-yellow-500">
             Home in Iraq
           </span>
         </motion.h1>
 
+        {/* Subtitle */}
         <motion.p
-          className="text-gray-200 text-sm sm:text-base md:text-lg max-w-xl mx-auto mb-4 sm:mb-6 font-light leading-relaxed"
+          className="text-gray-200 text-sm sm:text-lg max-w-xl mx-auto mb-8 leading-relaxed"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.7, duration: 0.8 }}
+          transition={{ delay: 0.5 }}
         >
           Discover luxury villas in Baghdad, modern apartments in Erbil, and
           heritage homes across the nation.
         </motion.p>
 
-        {/* Desktop / Tablet Search Bar */}
+        {/* Desktop / Tablet Search */}
         <motion.div
-          className="hidden sm:flex bg-white/95 backdrop-blur-sm p-2 sm:p-3 rounded-full shadow-2xl max-w-4xl mx-auto flex-row items-center gap-2 border border-white/20 flex-nowrap"
-          initial={{ opacity: 0, y: 20 }}
+          className="hidden sm:flex bg-white/95 backdrop-blur-sm p-2 rounded-full shadow-xl max-w-4xl mx-auto items-center border border-white/20"
+          initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.9, duration: 0.8 }}
+          transition={{ delay: 0.65 }}
         >
-          {/* Location Input */}
-          <div className="flex items-center w-full px-4 py-2 border-r border-gray-200">
-            <MapPin className="text-gray-400 w-5 h-5 mr-3" />
+          <div className="flex items-center w-full px-5 py-2 border-r border-gray-200">
+            <MapPin className="w-5 h-5 text-gray-400 mr-3" />
             <input
-              type="text"
               placeholder="City, Neighborhood..."
-              className="w-full bg-transparent outline-none text-gray-800 placeholder-gray-500 text-sm sm:text-base"
+              className="w-full bg-transparent outline-none text-gray-800 text-sm font-medium"
             />
           </div>
 
-          {/* Type Dropdown */}
-          <div className="flex items-center w-full px-4 py-2 border-r border-gray-200">
-            <Filter className="text-gray-400 w-5 h-5 mr-3" />
-            <select className="w-full bg-transparent outline-none text-gray-800 cursor-pointer appearance-none text-sm sm:text-base">
+          <div className="flex items-center w-full px-5 py-2 border-r border-gray-200">
+            <Filter className="w-5 h-5 text-gray-400 mr-3" />
+            <select className="w-full bg-transparent outline-none text-gray-800 cursor-pointer text-sm font-medium appearance-none">
               <option>All Property Types</option>
-              <option>Villa</option>
+              <option>House</option>
               <option>Apartment</option>
+              <option>Villa</option>
               <option>Commercial</option>
             </select>
           </div>
 
-          {/* Search Button */}
-          <button className="shrink-0 w-auto bg-gray-900 cursor-pointer hover:bg-black text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 text-sm sm:text-base">
-            <Search className="w-4 h-4 sm:w-5 sm:h-5" />
-            <span>Search</span>
+          <button className="bg-gray-900 hover:bg-black text-white px-8 py-4 rounded-full font-bold flex items-center gap-2 transition-all shadow-lg">
+            <Search className="w-5 h-5" />
+            Search
           </button>
         </motion.div>
 
-        {/* Mobile Search Icon */}
+        {/* Mobile Toggle */}
         <div className="sm:hidden flex justify-center mb-4">
           <button
             onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
-            className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg"
+            className="bg-white/90 backdrop-blur-md p-4 rounded-full shadow-xl border border-white/30"
           >
             {mobileSearchOpen ? (
-              <X className="w-5 h-5 text-gray-800" />
+              <X className="w-6 h-6 text-gray-900" />
             ) : (
-              <Search className="w-5 h-5 text-gray-800" />
+              <Search className="w-6 h-6 text-gray-900" />
             )}
           </button>
         </div>
 
-        {/* Mobile Collapsible Search */}
+        {/* Mobile Search Drawer */}
         <AnimatePresence>
           {mobileSearchOpen && (
             <motion.div
-              className="sm:hidden bg-white/95 backdrop-blur-sm p-3 rounded-2xl shadow-lg mx-1 mb-1 flex flex-col gap-3"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.5 }}
+              className="sm:hidden bg-white/95 backdrop-blur-md p-4 rounded-3xl shadow-xl mx-2 flex flex-col gap-4 border border-white/20"
+              initial={{ opacity: 0, scale: 0.95, height: 0 }}
+              animate={{ opacity: 1, scale: 1, height: "auto" }}
+              exit={{ opacity: 0, scale: 0.95, height: 0 }}
+              transition={{ duration: 0.35 }}
             >
-              <div className="flex items-center w-full  border border-gray-200 rounded-lg">
-                <MapPin className="text-gray-400 w-5 h-5 mr-2" />
+              <div className="flex items-center p-4 bg-gray-50 rounded-2xl border">
+                <MapPin className="w-5 h-5 text-gray-400 mr-3" />
                 <input
-                  type="text"
                   placeholder="City, Neighborhood..."
-                  className="w-full bg-transparent outline-none text-gray-800 placeholder-gray-500 text-sm"
+                  className="w-full bg-transparent outline-none text-gray-800 text-sm"
                 />
               </div>
 
-              <div className="flex items-center w-full border border-gray-200 rounded-lg">
-                <Filter className="text-gray-400 w-5 h-5 mr-2" />
-                <select className="w-full bg-transparent outline-none text-gray-800 cursor-pointer appearance-none text-sm">
+              <div className="flex items-center p-4 bg-gray-50 rounded-2xl border">
+                <Filter className="w-5 h-5 text-gray-400 mr-3" />
+                <select className="w-full bg-transparent outline-none text-gray-800 text-sm appearance-none">
                   <option>All Property Types</option>
-                  <option>Villa</option>
+                  <option>House</option>
                   <option>Apartment</option>
-                  <option>Commercial</option>
+                  <option>Villa</option>
                 </select>
               </div>
 
-              <button className="w-full bg-gray-900 hover:bg-black text-white  rounded-full font-semibold transition-all duration-300 flex items-center justify-center gap-2 text-sm">
-                <Search className="w-4 h-4" />
-                <span>Search</span>
+              <button className="bg-gray-900 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 active:scale-95 transition">
+                <Search className="w-5 h-5" />
+                Search
               </button>
             </motion.div>
           )}
         </AnimatePresence>
 
-        {/* Popular Tags */}
+        {/* Popular Cities */}
         <motion.div
-          className="mt-3 sm:mt-5 flex flex-wrap justify-center gap-2 sm:gap-3 text-xs sm:text-sm md:text-base text-gray-300"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.1, duration: 0.8 }}
+          className="mt-6 flex flex-wrap justify-center gap-3 text-xs text-gray-300"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.9 }}
         >
-          <span className="font-medium">Popular:</span>
-          <span className="hover:text-white cursor-pointer underline ">
-            Baghdad
+          <span className="uppercase tracking-widest text-white/60 font-semibold">
+            Popular:
           </span>
-          <span className="hover:text-white cursor-pointer underline ">
-            Erbil
-          </span>
-          <span className="hover:text-white cursor-pointer underline ">
-            Basra
-          </span>
-          <span className="hover:text-white cursor-pointer underline ">
-            Mosul
-          </span>
+          {["Baghdad", "Erbil", "Basra", "Mosul"].map((city) => (
+            <span
+              key={city}
+              className="border-b border-white/20 pb-0.5 text-gray-100"
+            >
+              {city}
+            </span>
+          ))}
         </motion.div>
       </motion.div>
-    </div>
+    </section>
   );
 };
 
-export default ListingHeaderIraq;
+export default PropertyHero;

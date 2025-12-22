@@ -1,8 +1,8 @@
-// components/RecentPropertiesSection.tsx
 "use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 interface Property {
   id: number;
@@ -22,7 +22,7 @@ export const FOR_SALE_PROPERTIES: Property[] = [
   {
     id: 1,
     title: "Harmony House",
-    city: "Panama City",
+    city: "Baghdad",
     beds: "03 Beds",
     baths: "03 Baths",
     size: "Sq.ft- 234,560",
@@ -34,7 +34,7 @@ export const FOR_SALE_PROPERTIES: Property[] = [
   {
     id: 2,
     title: "Mountain View Villa",
-    city: "Sydney City",
+    city: "Erbil",
     beds: "02 Beds",
     baths: "02 Baths",
     size: "Sq.ft- 345,556",
@@ -46,7 +46,7 @@ export const FOR_SALE_PROPERTIES: Property[] = [
   {
     id: 3,
     title: "Paradise Heights",
-    city: "Karachi",
+    city: "Basra",
     beds: "04 Beds",
     baths: "04 Baths",
     size: "Sq.ft- 234,560",
@@ -58,7 +58,7 @@ export const FOR_SALE_PROPERTIES: Property[] = [
   {
     id: 4,
     title: "Golden Estate House",
-    city: "Dubai",
+    city: "Najaf",
     beds: "05 Beds",
     baths: "04 Baths",
     size: "Sq.ft- 400,000",
@@ -70,7 +70,7 @@ export const FOR_SALE_PROPERTIES: Property[] = [
   {
     id: 5,
     title: "Royal Palm Residency",
-    city: "Islamabad",
+    city: "Karbala",
     beds: "06 Beds",
     baths: "05 Baths",
     size: "Sq.ft- 500,230",
@@ -82,7 +82,7 @@ export const FOR_SALE_PROPERTIES: Property[] = [
   {
     id: 6,
     title: "Elite Signature Villa",
-    city: "Doha",
+    city: "Sulaymaniyah",
     beds: "04 Beds",
     baths: "04 Baths",
     size: "Sq.ft- 350,000",
@@ -98,7 +98,7 @@ export const FOR_RENT_PROPERTIES: Property[] = [
   {
     id: 10,
     title: "Urban Comfort Apartment",
-    city: "Melbourne",
+    city: "Baghdad",
     beds: "02 Beds",
     baths: "01 Bath",
     size: "Sq.ft- 120,000",
@@ -110,7 +110,7 @@ export const FOR_RENT_PROPERTIES: Property[] = [
   {
     id: 11,
     title: "City Center Condo",
-    city: "Toronto",
+    city: "Erbil",
     beds: "03 Beds",
     baths: "02 Baths",
     size: "Sq.ft- 150,340",
@@ -122,7 +122,7 @@ export const FOR_RENT_PROPERTIES: Property[] = [
   {
     id: 12,
     title: "Budget Family Home",
-    city: "London",
+    city: "Basra",
     beds: "04 Beds",
     baths: "03 Baths",
     size: "Sq.ft- 200,000",
@@ -134,7 +134,7 @@ export const FOR_RENT_PROPERTIES: Property[] = [
   {
     id: 13,
     title: "Modern Studio Flat",
-    city: "Berlin",
+    city: "Najaf",
     beds: "01 Bed",
     baths: "01 Bath",
     size: "Sq.ft- 80,000",
@@ -146,7 +146,7 @@ export const FOR_RENT_PROPERTIES: Property[] = [
   {
     id: 14,
     title: "Luxury Penthouse",
-    city: "New York",
+    city: "Karbala",
     beds: "03 Beds",
     baths: "03 Baths",
     size: "Sq.ft- 210,000",
@@ -158,7 +158,7 @@ export const FOR_RENT_PROPERTIES: Property[] = [
   {
     id: 15,
     title: "Cozy Suburban Home",
-    city: "Manchester",
+    city: "Sulaymaniyah",
     beds: "03 Beds",
     baths: "02 Baths",
     size: "Sq.ft- 150,000",
@@ -168,29 +168,43 @@ export const FOR_RENT_PROPERTIES: Property[] = [
     batch: null,
   },
 ];
+
 interface TabButtonProps {
   id: "sale" | "rent";
   label: string;
   active?: boolean;
   onClick?: (id: "sale" | "rent") => void;
 }
-const TabButton: React.FC<TabButtonProps> = ({ id, label, active, onClick }) => (
-  <button
+
+const TabButton: React.FC<TabButtonProps> = ({
+  id,
+  label,
+  active,
+  onClick,
+}) => (
+  <motion.button
+    whileHover={{ scale: 1.05 }}
+    whileTap={{ scale: 0.95 }}
     className={`px-4 py-2 rounded-lg font-semibold transition ${
-      active ? "bg-yellow-500 text-white" : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+      active
+        ? "bg-yellow-500 text-white"
+        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
     }`}
     onClick={() => onClick && onClick(id)}
   >
     {label}
-  </button>
+  </motion.button>
 );
 
-
-
-// --- PRODUCT CARD ---
 const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
   return (
-    <div className="bg-white rounded-lg text-black shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className="bg-white rounded-lg text-black shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1"
+    >
       <div className="relative h-56 w-full">
         <div
           className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${
@@ -266,17 +280,13 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
           </button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
-// --- MAIN SECTION ---
-type Tab = "sale" | "rent";
-type FilterType = "all" | "new" | "hot";
-
 export default function RecentPropertiesSection() {
-  const [activeTab, setActiveTab] = useState<Tab>("sale");
-  const [filter, setFilter] = useState<FilterType>("all");
+  const [activeTab, setActiveTab] = useState<"sale" | "rent">("sale");
+  const [filter, setFilter] = useState<"all" | "new" | "hot">("all");
 
   const selectedList =
     activeTab === "sale" ? FOR_SALE_PROPERTIES : FOR_RENT_PROPERTIES;
@@ -301,24 +311,51 @@ export default function RecentPropertiesSection() {
             </h2>
           </div>
 
-          
-          <div className="flex flex-wrap gap-4 text-yellow-500" role="tablist">
-            <TabButton id="sale" label="For Sale" />
-            <TabButton id="rent" label="For Rent" />
+          <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex gap-4">
+              <TabButton
+                id="sale"
+                label="For Sale"
+                active={activeTab === "sale"}
+                onClick={setActiveTab}
+              />
+              <TabButton
+                id="rent"
+                label="For Rent"
+                active={activeTab === "rent"}
+                onClick={setActiveTab}
+              />
+            </div>
+
+            <motion.select
+              value={filter}
+              onChange={(e) =>
+                setFilter(e.target.value as "all" | "new" | "hot")
+              }
+              className="px-4 py-2 border rounded-lg text-sm font-medium text-gray-700"
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.97 }}
+            >
+              <option value="all">All Listings</option>
+              <option value="new">New Listing</option>
+              <option value="hot">Hot Offer</option>
+            </motion.select>
           </div>
         </div>
 
-   
-       <div className="w-full">
-  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-    {selectedList.map((property) => (
-      <ProductCard key={property.id} property={property} />
-    ))}
-  </div>
-</div>
-
-
-      
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          initial="hidden"
+          animate="visible"
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.15 } },
+          }}
+        >
+          {filteredProperties.map((property) => (
+            <ProductCard key={property.id} property={property} />
+          ))}
+        </motion.div>
       </div>
     </section>
   );
