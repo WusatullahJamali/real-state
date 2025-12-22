@@ -8,6 +8,17 @@ export default function CategoriesListingPage() {
   return (
     <div className="bg-white min-h-screen py-10">
       <div className="max-w-6xl mx-auto px-6">
+
+        {/* BACK BUTTON - MOBILE ONLY */}
+        <div className="mb-6 md:hidden">
+          <Link
+            href="/"
+            className="inline-block px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+          >
+            ← Back to Home
+          </Link>
+        </div>
+
         <h1 className="text-3xl font-bold text-black mb-8">
           All Price Reduced Properties
         </h1>

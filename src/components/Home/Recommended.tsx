@@ -3,6 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
+import Link from "next/link";
 
 // --- Types ---
 interface Location {
@@ -93,43 +94,49 @@ export default function RecommendedLocations() {
         </p>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {RECOMMENDED_LOCATIONS.map((location) => (
-            <div
-              key={location.id}
-              className="cursor-pointer overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition hover:shadow-2xl"
-            >
-              <LocationMap
-                name={location.name}
-                mapColor={location.mapColor}
-                img={location.img}
-              />
+      
 
-              {/* Content */}
-              <div className="space-y-2 p-4">
-                <h3 className="text-xl font-bold text-gray-700">
-                  {location.name}
-                </h3>
+<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  {RECOMMENDED_LOCATIONS.map((location) => (
+    <Link
+      key={location.id}
+      href={`/CategoriesDATA/${location.id}`}
+      className="block"
+    >
+      <div className="cursor-pointer overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition hover:shadow-2xl hover:scale-[1.02]">
+        <LocationMap
+          name={location.name}
+          mapColor={location.mapColor}
+          img={location.img}
+        />
 
-                <p className="text-base text-gray-600">
-                  <span className="font-semibold text-gray-800">
-                    {location.listings}
-                  </span>{" "}
-                  Listings for sale
-                </p>
+        {/* Content */}
+        <div className="space-y-2 p-4">
+          <h3 className="text-xl font-bold text-gray-700">
+            {location.name}
+          </h3>
 
-                <div>
-                  <p className="text-xl font-extrabold text-yellow-500">
-                    {location.medianPrice}
-                  </p>
-                  <p className="mt-1.5 text-sm text-gray-500">
-                    Median Listing Home Price
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
+          <p className="text-base text-gray-600">
+            <span className="font-semibold text-gray-800">
+              {location.listings}
+            </span>{" "}
+            Listings for sale
+          </p>
+
+          <div>
+            <p className="text-xl font-extrabold text-yellow-500">
+              {location.medianPrice}
+            </p>
+            <p className="mt-1.5 text-sm text-gray-500">
+              Median Listing Home Price
+            </p>
+          </div>
         </div>
+      </div>
+    </Link>
+  ))}
+</div>
+
       </div>
     </div>
   );
