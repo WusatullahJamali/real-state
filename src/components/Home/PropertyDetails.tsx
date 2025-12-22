@@ -211,7 +211,7 @@ export default function PropertyDetailsPage() {
       {/* BACK BUTTON */}
       <div className="max-w-6xl mx-auto px-6 mt-12">
         <Link
-          href="/"
+          href="/CategoriesDATA/list"
           className="px-6 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600"
         >
           ← Back to Listings
