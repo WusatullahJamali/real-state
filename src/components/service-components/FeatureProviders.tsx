@@ -43,7 +43,7 @@ const providers: Provider[] = [
     rating: 4.8,
     reviews: 189,
     price: "$50",
-    unit: "session",
+    unit: "term",
     badges: ["Verified"],
     image: "/cl.jpg",
     description:
@@ -258,8 +258,9 @@ const FeaturedProviders = () => {
               </div>
 
               {/* Footer - FIXED */}
-              <div className="px-6 py-4 bg-gray-50/50 border-t border-gray-100 mt-auto flex justify-between items-center">
-                <div>
+              <div className="px-6 py-4 bg-gray-50/50 border-t border-gray-100 mt-auto flex flex-row items-center justify-between gap-3">
+                {/* Price */}
+                <div className="whitespace-nowrap">
                   <span className="text-[12px] uppercase text-gray-400 font-bold">
                     Starting From
                   </span>
@@ -272,11 +273,11 @@ const FeaturedProviders = () => {
                   </p>
                 </div>
 
-                {/* CORRECTED LINK - No nested button inside Link */}
+                {/* Book Button */}
                 <Link href={`/service/${p.id}`}>
                   <motion.div
                     whileTap={{ scale: 0.95 }}
-                    className="bg-yellow-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-yellow-700 transition-all shadow-md cursor-pointer"
+                    className="bg-yellow-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-yellow-700 transition-all shadow-md cursor-pointer whitespace-nowrap"
                   >
                     Book Now
                   </motion.div>

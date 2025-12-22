@@ -15,6 +15,7 @@ import {
   ArrowRight,
   Info,
   Award,
+  Mail,
 } from "lucide-react";
 
 // --- Data ---
@@ -193,6 +194,7 @@ export default function ServiceDetailPage({
     phone: "",
     date: "",
     note: "",
+    email: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -308,25 +310,6 @@ export default function ServiceDetailPage({
               </div>
             </div>
 
-            {/* 2. Gallery / Visuals (Placeholder) */}
-            <div className="bg-white rounded-2xl p-6 md:p-10 shadow-sm border border-slate-100">
-              <SectionHeader title="Recent Work" />
-              <div className="grid grid-cols-3 gap-3 h-48">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="relative w-full h-full bg-slate-100 rounded-lg overflow-hidden group cursor-pointer"
-                  >
-                    <div className="absolute inset-0 bg-slate-200 animate-pulse group-hover:bg-slate-300 transition-colors" />
-                    {/* Placeholder for images */}
-                    <div className="absolute inset-0 flex items-center justify-center text-slate-400 text-xs font-bold uppercase tracking-widest opacity-50">
-                      Project {i}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
             {/* 3. Safety Notice */}
             <div className="bg-blue-50/50 rounded-2xl p-6 border border-blue-100 flex gap-4 items-start">
               <Info className="text-blue-600 shrink-0 mt-1" size={20} />
@@ -376,6 +359,7 @@ export default function ServiceDetailPage({
                   </div>
 
                   {/* Form */}
+                  {/* Form */}
                   <form onSubmit={handleSubmit} className="space-y-5">
                     {/* Name */}
                     <div className="space-y-1.5">
@@ -400,51 +384,74 @@ export default function ServiceDetailPage({
                       </div>
                     </div>
 
-                    {/* Phone & Date */}
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 uppercase ml-1">
-                          Phone
-                        </label>
-                        <div className="relative group">
-                          <Phone
-                            size={16}
-                            className="absolute left-3 top-3.5 text-slate-400 group-focus-within:text-yellow-500 transition-colors"
-                          />
-                          <input
-                            type="tel"
-                            required
-                            className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-xl py-3 pl-10 pr-2 outline-none focus:border-yellow-500 focus:bg-white focus:ring-4 focus:ring-yellow-500/10 transition-all"
-                            placeholder="0770..."
-                            value={formData.phone}
-                            onChange={(e) =>
-                              setFormData({
-                                ...formData,
-                                phone: e.target.value,
-                              })
-                            }
-                          />
-                        </div>
+                    {/* Email (New Block) */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-700 uppercase ml-1">
+                        Email Address
+                      </label>
+                      <div className="relative group">
+                        <Mail
+                          size={16}
+                          className="absolute left-3 top-3.5 text-slate-400 group-focus-within:text-yellow-500 transition-colors"
+                        />
+                        <input
+                          type="email"
+                          required
+                          className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-xl py-3 pl-10 pr-4 outline-none focus:border-yellow-500 focus:bg-white focus:ring-4 focus:ring-yellow-500/10 transition-all"
+                          placeholder="example@mail.com"
+                          value={formData.email}
+                          onChange={(e) =>
+                            setFormData({ ...formData, email: e.target.value })
+                          }
+                        />
                       </div>
-                      <div className="space-y-1.5">
-                        <label className="text-xs font-bold text-slate-700 uppercase ml-1">
-                          Date
-                        </label>
-                        <div className="relative group">
-                          <Calendar
-                            size={16}
-                            className="absolute left-3 top-3.5 text-slate-400 group-focus-within:text-yellow-500 transition-colors"
-                          />
-                          <input
-                            type="date"
-                            required
-                            className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-xl py-3 pl-10 pr-2 outline-none focus:border-yellow-500 focus:bg-white focus:ring-4 focus:ring-yellow-500/10 transition-all"
-                            value={formData.date}
-                            onChange={(e) =>
-                              setFormData({ ...formData, date: e.target.value })
-                            }
-                          />
-                        </div>
+                    </div>
+
+                    {/* Phone Block (Previously in a grid) */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-700 uppercase ml-1">
+                        Phone
+                      </label>
+                      <div className="relative group">
+                        <Phone
+                          size={16}
+                          className="absolute left-3 top-3.5 text-slate-400 group-focus-within:text-yellow-500 transition-colors"
+                        />
+                        <input
+                          type="tel"
+                          required
+                          className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-xl py-3 pl-10 pr-2 outline-none focus:border-yellow-500 focus:bg-white focus:ring-4 focus:ring-yellow-500/10 transition-all"
+                          placeholder="0770xxxxxxxx"
+                          value={formData.phone}
+                          onChange={(e) =>
+                            setFormData({
+                              ...formData,
+                              phone: e.target.value,
+                            })
+                          }
+                        />
+                      </div>
+                    </div>
+
+                    {/* Date Block (Previously in a grid) */}
+                    <div className="space-y-1.5">
+                      <label className="text-xs font-bold text-slate-700 uppercase ml-1">
+                        Date
+                      </label>
+                      <div className="relative group">
+                        <Calendar
+                          size={16}
+                          className="absolute left-3 top-3.5 text-slate-400 group-focus-within:text-yellow-500 transition-colors"
+                        />
+                        <input
+                          type="date"
+                          required
+                          className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-xl py-3 pl-10 pr-2 outline-none focus:border-yellow-500 focus:bg-white focus:ring-4 focus:ring-yellow-500/10 transition-all"
+                          value={formData.date}
+                          onChange={(e) =>
+                            setFormData({ ...formData, date: e.target.value })
+                          }
+                        />
                       </div>
                     </div>
 
@@ -456,7 +463,7 @@ export default function ServiceDetailPage({
                       <textarea
                         rows={3}
                         className="w-full bg-slate-50 border border-slate-200 text-slate-900 text-sm font-medium rounded-xl py-3 px-4 outline-none focus:border-yellow-500 focus:bg-white focus:ring-4 focus:ring-yellow-500/10 transition-all resize-none"
-                        placeholder="Describe your issue..."
+                        placeholder="Describe your Requirements"
                         value={formData.note}
                         onChange={(e) =>
                           setFormData({ ...formData, note: e.target.value })
@@ -478,7 +485,7 @@ export default function ServiceDetailPage({
                       )}
                     </button>
 
-                    <p className="text-[10px] text-center text-slate-400 font-medium">
+                    <p className="text-[15px] text-center text-slate-400 font-medium">
                       No payment required until service completion.
                     </p>
                   </form>
