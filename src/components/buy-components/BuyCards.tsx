@@ -38,19 +38,14 @@ export default function BuyCards({
 }) {
   return (
     <div className="w-full bg-white">
-      <section className="max-w-7xl mx-auto px-15 py-6 ">
-        {/*
-          ✅ UPDATED: Row Header
-          - Removed 'flex items-center justify-between' and replaced with 'flex flex-col' 
-          - Added a small gap-1 for spacing between title and link
-        */}
-        <div className="mb-2 flex flex-col ">
+      {/* ✅ UPDATED: Full width on mobile, constrained on larger screens */}
+      <section className="w-full sm:max-w-7xl mx-auto px-4 sm:px-15 py-6">
+        {/* Header */}
+        <div className="mb-2 flex flex-col">
           <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
 
-          {/* Link Text beneath heading */}
           <Link
             href={linkHref}
-            // Tailwand classes adjusted for subtle link appearance matching the screenshot
             className="text-sm text-gray-700 hover:text-gray-900 hover:underline w-fit"
           >
             {linkText}
@@ -71,7 +66,6 @@ export default function BuyCards({
             },
           }}
         >
-          {/* 🔥 Show ONLY 4 CARDS */}
           {properties.slice(0, 4).map((property) => (
             <motion.div
               key={property.id}
@@ -89,7 +83,7 @@ export default function BuyCards({
   );
 }
 
-// ------------------- CARD COMPONENT (No changes needed here) ----------------------
+// ------------------- CARD COMPONENT (UNCHANGED) ----------------------
 const PropertyCard = ({ property }: { property: Property }) => {
   const [isFavorited, setIsFavorited] = useState(false);
 
@@ -146,7 +140,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
 
       {/* Content */}
       <div className="p-4 flex flex-col gap-1">
-        <div className="flex items-center gap-2 ">
+        <div className="flex items-center gap-2">
           <span className="w-2.5 h-2.5 rounded-full bg-yellow-600" />
           <span className="text-sm text-gray-700">{property.type}</span>
         </div>
@@ -155,7 +149,7 @@ const PropertyCard = ({ property }: { property: Property }) => {
           {formatPrice(property.price)}
         </h3>
 
-        <div className="text-gray-700 text-sm font-medium ">
+        <div className="text-gray-700 text-sm font-medium">
           {property.specs.lotSize ? (
             <span>{property.specs.lotSize}</span>
           ) : (

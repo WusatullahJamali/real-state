@@ -1,7 +1,9 @@
-// components/FeaturedCommunitySection.tsx
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import { MapPin, Utensils, PawPrint } from "lucide-react";
+import { motion } from "framer-motion";
 
 // --- 1. TYPESCRIPT INTERFACE ---
 interface CommunityCardData {
@@ -54,8 +56,12 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ card }) => {
     "hover:ring-4 hover:ring-amber-500/50 hover:shadow-xl transition-all duration-300";
 
   return (
-    <div
+    <motion.div
       className={`relative w-full overflow-hidden shadow-lg ${hoverClasses} bg-white border border-gray-100 group`}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.3 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       {/* Card Image Wrapper */}
       <div className="relative w-full aspect-square bg-gray-200 overflow-hidden">
@@ -90,7 +96,7 @@ const CommunityCard: React.FC<CommunityCardProps> = ({ card }) => {
         {/* Optional subtle hover overlay */}
         <div className="absolute inset-0 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
@@ -99,9 +105,15 @@ const FeaturedCommunitySection: React.FC = () => {
   return (
     <section className="py-12 bg-gray-50 sm:py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-extrabold text-gray-900 text-left mb-8 sm:text-4xl">
+        <motion.h2
+          className="text-3xl font-extrabold text-gray-900 text-left mb-8 sm:text-4xl"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.8 }}
+        >
           Featured Communities
-        </h2>
+        </motion.h2>
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {communityData.map((card) => (
