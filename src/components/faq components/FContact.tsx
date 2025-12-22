@@ -1,5 +1,6 @@
 "use client";
 import React from "react";
+import Link from "next/link";
 
 const FContact = () => {
   return (
@@ -20,43 +21,54 @@ const FContact = () => {
         </div>
 
         {/* RIGHT */}
-        <form className="bg-white p-8 rounded-xl shadow-lg space-y-6">
+        <div>
+          <form className="bg-white p-8 rounded-xl shadow-lg space-y-6">
 
-          <div>
-            <label className="block mb-1 font-medium">Your Name*</label>
-            <input
-              type="text"
-              placeholder="Jackson Mile"
-              className="w-full border px-4 py-3 rounded focus:outline-none focus:ring focus:ring-yellow-500"
-            />
+            <div>
+              <label className="block mb-1 font-medium">Your Name*</label>
+              <input
+                type="text"
+                placeholder="Jackson Mile"
+                className="w-full border px-4 py-3 rounded focus:outline-none focus:ring focus:ring-yellow-500"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-1 font-medium">Your Email*</label>
+              <input
+                type="email"
+                placeholder="example@gmail.com"
+                className="w-full border px-4 py-3 rounded focus:outline-none focus:ring focus:ring-yellow-500"
+              />
+            </div>
+
+            <div>
+              <label className="block mb-1 font-medium">Type Your Question*</label>
+              <textarea
+                placeholder="Type Your Question..."
+                rows={4}
+                className="w-full border px-4 py-3 rounded focus:outline-none focus:ring focus:ring-yellow-500"
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className="w-full py-3 bg-yellow-500 text-white rounded-lg font-semibold hover:bg-yellow-400 transition"
+            >
+              Submit Now
+            </button>
+          </form>
+
+          {/* BACK BUTTON */}
+          <div className="mt-6 text-center md:hidden">
+            <Link
+              href="/"
+              className="inline-block px-6 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+            >
+              ← Back to Home
+            </Link>
           </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Your Email*</label>
-            <input
-              type="email"
-              placeholder="example@gmail.com"
-              className="w-full border px-4 py-3 rounded focus:outline-none focus:ring focus:ring-yellow-500"
-            />
-          </div>
-
-          <div>
-            <label className="block mb-1 font-medium">Type Your Question*</label>
-            <textarea
-              placeholder="Type Your Question..."
-              rows={4}
-              className="w-full border px-4 py-3 rounded focus:outline-none focus:ring focus:ring-yellow-500"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            className="w-full py-3 bg-yellow-500 text-white rounded-lg font-semibold hover:bg-yellow-400 transition"
-          >
-            Submit Now
-          </button>
-
-        </form>
+        </div>
       </div>
     </section>
   );
