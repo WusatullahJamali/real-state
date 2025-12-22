@@ -57,45 +57,55 @@ const blogs = [
 ];
 
 
-// BLOG CARD
-const BlogCard = ({ post }: { post: BlogPost }) => {
+interface BlogCardProps {
+  post: BlogPost;
+}
+const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
     <Link
       href={`/blog/${post.id}`}
-      className="group rounded-xl overflow-hidden bg-white shadow-md hover:shadow-xl transition duration-300 border border-gray-200"
+      className="group relative flex flex-col overflow-hidden rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-shadow duration-300"
     >
-      {/* Image */}
-      <div className="relative h-40 overflow-hidden">
+      {/* IMAGE */}
+      <div className="relative h-36 md:h-40 overflow-hidden">
         <Image
           src={post.image}
           alt={post.title}
-          width={500}
-          height={300}
-          className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
+          fill
+          className="object-cover transition-transform duration-700 group-hover:scale-105"
         />
-        <span className="absolute top-3 left-3 bg-yellow-500 text-white px-3 py-1 text-xs rounded-full">
+
+        {/* Gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+
+        {/* Tag */}
+        <span className="absolute top-3 left-3 bg-yellow-500 text-gray-900 px-3 py-1 text-xs font-semibold rounded-full shadow-md">
           {post.tag}
         </span>
       </div>
 
-      {/* Content */}
-      <div className="p-4">
-        <h3 className="text-base font-bold text-gray-900 group-hover:text-yellow-600 transition line-clamp-2">
-          {post.title}
-        </h3>
-        <p className="mt-2 text-gray-700 text-sm leading-tight line-clamp-3">
-          {post.snippet}
-        </p>
-      </div>
+      {/* CONTENT */}
+      <div className="flex-1 p-4 flex flex-col justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-yellow-600 transition-colors">
+            {post.title}
+          </h3>
+          <p className="mt-2 text-sm text-gray-600 line-clamp-3">
+            {post.snippet}
+          </p>
+        </div>
 
-      {/* Updated Footer */}
-      <div className="px-4 py-3 bg-gray-50 border-t border-gray-200">
-        <div className="w-full flex justify-between items-center text-xs text-gray-600 font-medium 
-                        border-l-4 border-yellow-400 pl-3 pr-1 py-1 rounded-sm">
-          <span className="font-semibold text-gray-900">{post.author}</span>
-          <span className="text-gray-700">{post.readTime}</span>
+        {/* FOOTER */}
+        <div className="mt-4 flex justify-between items-center text-xs text-gray-500">
+          <span className="font-medium text-gray-800">{post.author}</span>
+          <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-md font-medium">
+            {post.readTime}
+          </span>
         </div>
       </div>
+
+      {/* Hover underline below the card */}
+      <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
     </Link>
   );
 };
@@ -140,7 +150,16 @@ const FeaturedArticleBanner = () => {
 export default function BlogPage() {
   return (
     <div className="min-h-screen bg-gray-50 text-black">
-      {/* HERO SECTION */}
+      {/* MOBILE BACK BUTTON */}
+      <div className="max-w-7xl mx-auto px-4 py-4 md:hidden">
+        <Link
+          href="/"
+          className="inline-block px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+        >
+          ← Back to Home
+        </Link>
+      </div>
+
       <FeaturedArticleBanner />
 
       {/* BLOG CARDS */}

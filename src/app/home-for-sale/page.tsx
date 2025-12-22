@@ -4,15 +4,15 @@
 
 import { FC } from "react";
 import Head from "next/head";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { MoveRight } from "lucide-react";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+// import Link from "next/link";
+// import { MoveRight } from "lucide-react";
 
-// WhatsApp Config
-const WHATSAPP_NUMBER = "919876543210";
-const WHATSAPP_MESSAGE = encodeURIComponent(
-  "Hello, I read your home selling guide and need more guidance from a consultant."
-);
+// // WhatsApp Config
+// const WHATSAPP_NUMBER = "919876543210";
+// const WHATSAPP_MESSAGE = encodeURIComponent(
+//   "Hello, I read your home selling guide and need more guidance from a consultant."
+// );
 
 // ---------------- TYPES ----------------
 interface GuideStepType {

@@ -1,10 +1,9 @@
 "use client";
 
-import React from 'react';
-import Image from 'next/image';
-import { MapPin } from 'lucide-react';
-
-// --- Mock Data ---
+import React from "react";
+import Image from "next/image";
+import { MapPin } from "lucide-react";
+import Link from "next/link";
 
 interface Location {
   id: number;
@@ -96,33 +95,49 @@ export default function RecommendedLocations() {
         </p>
 
         {/* Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {RECOMMENDED_LOCATIONS.map((location) => (
-            <div 
-              key={location.id} 
-              className="bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 overflow-hidden cursor-pointer border border-gray-100"
-            >
-              {/* Map or Image */}
-              <LocationMap 
-                name={location.name} 
-                mapColor={location.mapColor} 
-                img={location.img} 
-              />
+      
 
-              {/* Text Content */}
-              <div className="p-4 space-y-2">
-                <h3 className="text-xl font-bold text-gray-700">{location.name}</h3>
-                <p className="text-base text-gray-600">
-                  <span className="font-semibold text-gray-800">{location.listings}</span> Listings for sale
-                </p>
-                <div>
-                  <p className="text-xl font-extrabold text-yellow-500">{location.medianPrice}</p>
-                  <p className="text-sm mt-1.5 text-gray-500">Median Listing Home Price</p>
-                </div>
-              </div>
-            </div>
-          ))}
+<div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+  {RECOMMENDED_LOCATIONS.map((location) => (
+    <Link
+      key={location.id}
+      href={`/CategoriesDATA/${location.id}`}
+      className="block"
+    >
+      <div className="cursor-pointer overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition hover:shadow-2xl hover:scale-[1.02]">
+        <LocationMap
+          name={location.name}
+          mapColor={location.mapColor}
+          img={location.img}
+        />
+
+        {/* Content */}
+        <div className="space-y-2 p-4">
+          <h3 className="text-xl font-bold text-gray-700">
+            {location.name}
+          </h3>
+
+          <p className="text-base text-gray-600">
+            <span className="font-semibold text-gray-800">
+              {location.listings}
+            </span>{" "}
+            Listings for sale
+          </p>
+
+          <div>
+            <p className="text-xl font-extrabold text-yellow-500">
+              {location.medianPrice}
+            </p>
+            <p className="mt-1.5 text-sm text-gray-500">
+              Median Listing Home Price
+            </p>
+          </div>
         </div>
+      </div>
+    </Link>
+  ))}
+</div>
+
       </div>
     </div>
   );
