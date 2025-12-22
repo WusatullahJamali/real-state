@@ -9,54 +9,14 @@ import Link from "next/link";
 
 export default function CollectionsSection() {
   const collections = [
-    {
-      title: "Recommended Homes",
-      count: 17,
-      img: "/img1.webp",
-      href: "/CategoriesDATA/recommend",
-    },
-    {
-      title: "New Listings",
-      count: 7,
-      img: "/img2.avif",
-      href: "/CategoriesDATA/new-listings",
-    },
-    {
-      title: "Price Reduced",
-      count: 14,
-      img: "/img3.webp",
-      href: "/CategoriesDATA/price-reduced",
-    },
-    {
-      title: "Open Houses",
-      count: 3,
-      img: "/img4.jpeg",
-      href: "/CategoriesDATA/open-houses",
-    },
-    {
-      title: "Recently Sold",
-      count: 168,
-      img: "/img5.jpg",
-      href: "/CategoriesDATA/recently-sold",
-    },
-    {
-      title: "New Constructions",
-      count: 32,
-      img: "/img6.webp",
-      href: "/CategoriesDATA/new-constructions",
-    },
-    {
-      title: "New Home Communities",
-      count: 2,
-      img: "/img7.jpg",
-      href: "/CategoriesDATA/communities",
-    },
-    {
-      title: "Land",
-      count: 29,
-      img: "/img8.jpg",
-      href: "/CategoriesDATA/land",
-    },
+    { title: "Recommended Homes", count: 17, img: "/img1.webp", href: "/CategoriesDATA/recommend" },
+    { title: "New Listings", count: 7, img: "/img2.avif", href: "/CategoriesDATA/recommend" },
+    { title: "Price Reduced", count: 14, img: "/img3.webp", href: "/CategoriesDATA/recommend" },
+    { title: "Open Houses", count: 3, img: "/img4.jpeg", href: "/CategoriesDATA/recommend" },
+    { title: "Recently Sold", count: 168, img: "/img5.jpg", href: "/CategoriesDATA/recommend" },
+    { title: "New Constructions", count: 32, img: "/img6.webp", href: "/CategoriesDATA/recommend" },
+    { title: "New Home Communities", count: 2, img: "/img7.jpg", href: "/CategoriesDATA/recommend" },
+    { title: "Land", count: 29, img: "/img8.jpg", href: "/CategoriesDATA/recommend" },
   ];
 
   const rows = [collections.slice(0, 4), collections.slice(4)];

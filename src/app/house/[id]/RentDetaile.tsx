@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { useParams } from "next/navigation";
-import { HouseType, houseList } from "@/components/houses rent components/RentHouse";
+import { HouseType, houseList } from "@/components/houses-rent-components/RentHouse";
 import { Heart, Bed, Ruler, MapPin } from "lucide-react"; // fixed icon imports
 import Link from "next/link";
 

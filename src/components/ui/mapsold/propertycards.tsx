@@ -1,4 +1,4 @@
-// components/PropertyCard.tsx
+
 
 "use client";
 import React from "react";

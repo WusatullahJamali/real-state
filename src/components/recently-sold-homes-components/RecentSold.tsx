@@ -285,7 +285,7 @@ const properties = [
   });
 
   return (
-    <>
+    
     <div className="w-full bg-white text-black">
     <div className="max-w-7xl mx-auto p-6 bg-white">
       {/* Search Bar */}
@@ -409,6 +409,7 @@ const properties = [
           </div>
         )}
       </div>
+    </div>
     </div>
   );
 };

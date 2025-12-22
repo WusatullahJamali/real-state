@@ -4,9 +4,9 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const ManageCard3 = () => {
+const ManageCard7 = () => {
   return (
-    <section className="bg-white py-16 overflow-hidden">
+    <section className="bg-gray-50 py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
         <motion.div
@@ -17,17 +17,17 @@ const ManageCard3 = () => {
           className="text-left"
         >
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black leading-tight mb-6">
-            Applications and Screening
+            Are you a renter? Avail is here for you, too!
           </h1>
 
           <p className="text-black text-lg max-w-xl mb-6">
-            Avail features customizable applications and robust TransUnion® screening options to help you find and choose the right renter for your property with confidence.
+            Feel secure communicating with Avail-verified landlords through the built-in messaging system. Schedule rent payments in advance via credit card or ACH, and build your credit using CreditBoost, reporting on-time rent payments to TransUnion®.
           </p>
 
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg"
+            className="bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-full w-fit mt-5"
           >
             Learn More
           </motion.button>
@@ -40,7 +40,7 @@ const ManageCard3 = () => {
           transition={{ duration: 0.7, delay: 0.1 }}
           className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]"
         >
-          <Image src="/m3.png" alt="Applications and Screening Illustration" fill className="object-contain" />
+          <Image src="/m7.png" alt="Renter Features Illustration" fill className="object-contain" />
         </motion.div>
 
       </div>
@@ -48,4 +48,4 @@ const ManageCard3 = () => {
   );
 };
 
-export default ManageCard3;
+export default ManageCard7;

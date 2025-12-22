@@ -1,5 +1,3 @@
-// components/PropertyCard.tsx
-
 "use client";
 import React from "react";
 import { Property } from "@/data/iraqproperties";
@@ -26,8 +24,9 @@ const formatUSD = (priceIQD: number) => {
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
     <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer w-full">
-      {/* Placeholder Image (replace with Next.js <Image> in production) */}
-      <div className="h-48 bg-gray-300 rounded-t-lg flex items-center justify-center overflow-hidden">
+      
+      {/* Image */}
+      <div className="h-48 bg-gray-300 rounded-t-lg overflow-hidden">
         <img
           src={property.image}
           alt={property.address}
@@ -43,9 +42,11 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         <p className="text-sm font-semibold text-gray-500 mb-1">
           {property.city} - {property.type}
         </p>
-        <h3 className="text-xl font-extrabold text-blue-700 mb-2">
-          {formatIQD(property.priceIQD)}
+
+        <h3 className="text-xl font-extrabold text-blue-700">
+          {formatUSD(property.priceIQD)}
         </h3>
+<<<<<<< Updated upstream
         {/* CITY + TYPE */}
         <p className="text-sm font-extrabold uppercase tracking-wide text-gray-500">
           {property.city} · {property.type}
@@ -63,12 +64,19 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
 
         {/* ADDRESS */}
         <p className="text-sm text-gray-800 -mt-2 font-medium">
+=======
+
+        <p className="text-sm text-gray-500">
+          {formatIQD(property.priceIQD)}
+        </p>
+
+        <p className="text-sm text-gray-800 font-medium mt-1">
+>>>>>>> Stashed changes
           {property.address}
         </p>
 
         {/* SPECS */}
-        <div className="flex flex-wrap gap-x-2 -mt-6 gap-y-2 text-sm text-gray-600 pt-3 border-t border-gray-100">
-             (homesold changes)
+        <div className="flex flex-wrap gap-x-3 gap-y-2 text-sm text-gray-600 pt-3 border-t border-gray-100 mt-3">
           {property.type === "Land" ? (
             <span className="flex items-center gap-1">
               <Ruler size={16} />
@@ -76,6 +84,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             </span>
           ) : (
             <>
+<<<<<<< Updated upstream
               <span className="flex items-center gap-1">
                 <Bed size={16} />
                 {property.specs.beds} Beds
@@ -89,13 +98,26 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
               <span className="flex items-center gap-1">
                 <Ruler size={16} />
                 {property.specs.areaSqM.toLocaleString()} m²
+=======
+              <span className="flex items-center">
+                <i className="fas fa-bed mr-1"></i>
+                {property.specs.beds} Beds
+              </span>
+
+              <span className="flex items-center">
+                <i className="fas fa-bath mr-1"></i>
+                {property.specs.baths} Baths
+              </span>
+
+              <span className="flex items-center">
+                <i className="fas fa-area-chart mr-1"></i>
+                {property.specs.areaSqM.toLocaleString()} M²
+>>>>>>> Stashed changes
               </span>
             </>
           )}
         </div>
       </div>
-
-      {/* WEBKIT SCROLLBAR HIDE */}
     </div>
   );
 };

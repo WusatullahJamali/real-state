@@ -137,6 +137,7 @@ const Page: React.FC = () => {
   const row5: Property[] = [...row1];
 
   return (
+    <>
     <div className="pb-20">
       <BuyCards
         title="Homes around 400M IQD"

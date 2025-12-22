@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const ManageCard6 = () => {
+const ManageCard4 = () => {
   return (
     <section className="bg-white py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -16,7 +16,7 @@ const ManageCard6 = () => {
           transition={{ duration: 0.7 }}
           className="relative w-full h-[300px] md:h-[400px] lg:h-[450px]"
         >
-          <Image src="/m6.png" alt="Avail Tools Illustration" fill className="object-contain" />
+          <Image src="/m4.png" alt="Lawyer-Reviewed Leases Illustration" fill className="object-contain" />
         </motion.div>
 
         <motion.div
@@ -27,17 +27,17 @@ const ManageCard6 = () => {
           className="text-left"
         >
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-black leading-tight mb-6">
-            Discover all the tools available on Avail
+            Lawyer-Reviewed Leases
           </h1>
 
-          <p className="text-black text-lg max-w-xl mb-6">
-            Avail includes everything you need to manage your rentals effortlessly and professionally. Uncover the full suite of Avail features to simplify your day-to-day operations while maximizing your profit.
+          <p className="text-black text-lg max-w-xl">
+            Customize the state-specific, lawyer-reviewed lease templates on Avail and seamlessly collect signatures from renters using built-in eSign options.
           </p>
 
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="mt-6 inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-700 transition-colors shadow-lg"
+            className="bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-full w-fit mt-5"
           >
             Learn More
           </motion.button>
@@ -48,4 +48,4 @@ const ManageCard6 = () => {
   );
 };
 
-export default ManageCard6;
+export default ManageCard4;

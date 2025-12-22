@@ -1,7 +1,7 @@
-import AboutCard from '@/components/about components/AboutCards'
-import AboutHero from '@/components/about components/AboutHero'
-import Know from '@/components/about components/Know'
-import Work from '@/components/about components/Work'
+import AboutCard from '@/components/about-components/AboutCards'
+import AboutHero from '@/components/about-components/AboutHero'
+import Know from '@/components/about-components/Know'
+import Work from '@/components/about-components/Work'
 
 const page = () => {
   return (

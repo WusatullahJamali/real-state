@@ -9,7 +9,7 @@ import ProductSlider from "@/components/Home/PropertySlider";
 
 import CollectionsSection from "@/components/Home/Collections";
 import RecentPropertiesSection from "@/components/Home/RecentProperty";
-import BlogPage from "@/components/blog components/BlogPage";
+import BlogPage from "@/components/blog-components/BlogPage";
 import RecommendedLocations from "@/components/Home/Recommended";
 
 

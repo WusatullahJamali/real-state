@@ -15,15 +15,19 @@ const ManageCard2 = () => {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: "easeOut" }}
-          className="order-1 flex justify-center"
+          className="order-1"
         >
-          <Image
-            src="/m1.png"
-            alt="rent"
-            width={200}
-            height={200}
-            className="w-full h-[350px] object-cover rounded-xl"
-          />
+          <div
+            className="relative w-full h-[300px] md:h-[380px] lg:h-[420px] overflow-hidden">
+            <Image
+              src="/m1.png"
+              alt="rent"
+              fill
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover"
+            />
+          </div>
         </motion.div>
 
         {/* TEXT RIGHT */}
@@ -47,7 +51,7 @@ const ManageCard2 = () => {
           <motion.button
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="border bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-full w-fit mt-5"
+            className="bg-yellow-600 text-white hover:bg-yellow-700 px-6 py-3 rounded-full w-fit mt-5"
           >
             Learn more
           </motion.button>

@@ -132,7 +132,7 @@ export default function RentHouseDetailPage() {
             <button
               onClick={() => setFavorite(!favorite)}
               className={`w-full flex items-center justify-center gap-2 py-3 rounded-full font-semibold transition ${
-                favorite ? "bg-red-500 text-white hover:bg-red-600" : "bg-yellow-600 text-black hover:bg-yellow-700"
+                favorite ? "bg-yellow-500 text-yellow-500 hover:bg-yellow-600" : "bg-yellow-600 text-black hover:bg-yellow-700"
               }`}
             >
               <Heart className="w-5 h-5" /> {favorite ? "Favorited" : "Add to Favorites"}

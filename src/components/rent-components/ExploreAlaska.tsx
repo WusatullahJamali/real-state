@@ -114,8 +114,8 @@ const ExploreAlaska = () => {
                     <Heart
                       className={`w-5 h-5 transition-colors ${
                         isSaved
-                          ? "fill-red-500 text-red-500"
-                          : "text-gray-700 hover:text-red-500"
+                          ? "fill-yellow-500 text-yellow-500"
+                          : "text-gray-700 hover:text-yellow-500"
                       }`}
                     />
                   </button>

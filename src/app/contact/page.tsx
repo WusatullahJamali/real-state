@@ -2,13 +2,13 @@ import React from "react";
 
 import ContactMap from "@/components/contact components/ContactMap";
 
-import ContactDesign from "@/components/contact components/Contact Form";
+import ContactFrom from "@/components/contactcomponents/Contact-Form";
 
 const page = () => {
   return (
     <div>
      
-     <ContactDesign />
+     <ContactFrom />
       <ContactMap />
     </div>
   );

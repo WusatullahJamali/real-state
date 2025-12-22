@@ -1,26 +1,29 @@
-"use client"
-import React from 'react';
-import { motion } from "framer-motion";
-import { 
-  Phone, 
-  Mail, 
-  MapPin, 
-  Instagram, 
-  Twitter, 
-  Linkedin, 
-  Globe, 
-  ArrowRight 
-} from 'lucide-react';
+"use client";
 
+import React from "react";
+import { motion, Variants } from "framer-motion";
+import {
+  Phone,
+  Mail,
+  MapPin,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Globe,
+  ArrowRight,
+} from "lucide-react";
+
+/* ------------------ ANIMATIONS ------------------ */
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: (i = 1) => ({
     opacity: 1,
     y: 0,
-    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" }
-  })
+    transition: { delay: i * 0.1, duration: 0.6, ease: "easeOut" },
+  }),
 };
 
+/* ------------------ COMPONENT ------------------ */
 const ContactDesign = () => {
   return (
     <div className="min-h-screen bg-white flex items-center justify-center p-4 md:p-10 font-sans">
@@ -28,13 +31,13 @@ const ContactDesign = () => {
         initial={{ opacity: 0, scale: 0.95 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="bg-white w-full max-w-6xl rounded-[2.5rem] overflow-hidden relative border border-white/50"
+        className="bg-white w-full max-w-6xl rounded-[2.5rem] overflow-hidden relative border border-slate-100 shadow-xl"
       >
-        
+        {/* Top Accent */}
         <div className="h-2 bg-yellow-600 w-full" />
 
         {/* Header */}
-        <motion.div 
+        <motion.div
           variants={fadeUp}
           initial="hidden"
           animate="visible"
@@ -51,17 +54,13 @@ const ContactDesign = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 px-8 md:px-16 pb-20">
-          
-          {/* LEFT */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            className="space-y-10"
-          >
+          {/* LEFT SIDE */}
+          <motion.div initial="hidden" animate="visible" className="space-y-10">
             <motion.div variants={fadeUp} custom={1}>
               <span className="inline-block px-4 py-1.5 mb-6 text-[10px] font-black tracking-widest text-[#B48A00] uppercase bg-[#FFF9E6] rounded-full">
                 Contact Our Team
               </span>
+
               <h1 className="text-5xl md:text-6xl font-black leading-[1.1] text-black mb-4">
                 Your property journey <br />
                 starts <span className="text-yellow-600">here</span>
@@ -72,14 +71,14 @@ const ContactDesign = () => {
             <motion.div variants={fadeUp} custom={2} className="space-y-4">
               <motion.div
                 whileHover={{ scale: 1.02 }}
-                className="bg-white p-6 rounded-[1.5rem] flex items-center gap-4 border border-slate-100"
+                className="bg-white p-6 rounded-[1.5rem] flex items-center gap-4 border border-slate-100 shadow-sm"
               >
                 <Phone size={20} className="text-yellow-600" />
                 <span className="font-bold text-black">
                   +964 770 123 4567
                 </span>
               </motion.div>
-              
+
               <motion.div
                 whileHover={{ scale: 1.02 }}
                 className="bg-white p-6 rounded-[1.5rem] flex flex-wrap items-center gap-8 border border-slate-100 shadow-sm"
@@ -108,6 +107,7 @@ const ContactDesign = () => {
               <h3 className="text-white font-black text-xl mb-6">
                 Follow Iraq’s Property Market
               </h3>
+
               <div className="flex gap-3">
                 {[Instagram, Twitter, Linkedin, Globe].map((Icon, i) => (
                   <motion.button
@@ -120,7 +120,6 @@ const ContactDesign = () => {
                   </motion.button>
                 ))}
               </div>
-              <div className="absolute -right-8 -bottom-8 w-24 h-24  rounded-full" />
             </motion.div>
           </motion.div>
 
@@ -131,26 +130,41 @@ const ContactDesign = () => {
             transition={{ delay: 0.4, duration: 0.6 }}
             className="relative"
           >
-            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-50 relative z-10">
+            <div className="bg-white rounded-[2.5rem] p-8 md:p-12 border border-slate-100 relative z-10 shadow-lg">
               <h2 className="text-2xl font-black text-black mb-8">
                 Request Property Details
               </h2>
-              
-              <form className="space-y-5">
-                {["Full Name", "Email Address", "Property Interest"].map((label, i) => (
-                  <motion.div
-                    key={i}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 + i * 0.1 }}
-                    className="space-y-1.5"
-                  >
-                    <label className="text-xs font-bold text-black ml-1">
-                      {label}
-                    </label>
-                    <input className="w-full bg-white rounded-xl py-4 px-6 outline-none focus:ring-2 ring-[#FFC107]" />
-                  </motion.div>
-                ))}
+
+              <form className="space-y-6">
+                {["Full Name", "Email Address", "Property Interest"].map(
+                  (label, i) => (
+                    <motion.div
+                      key={i}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.5 + i * 0.1 }}
+                      className="space-y-1.5"
+                    >
+                      <label className="text-xs font-bold text-black ml-1">
+                        {label}
+                      </label>
+
+                      <input
+                        className="
+                          w-full bg-white rounded-2xl py-4 px-6
+                          border border-gray-300
+                          text-black placeholder:text-gray-400
+                          shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]
+                          outline-none
+                          focus:border-transparent
+                          focus:ring-2 focus:ring-[#FFC107]
+                          focus:shadow-[0_0_0_3px_rgba(255,193,7,0.15)]
+                          transition-all duration-300
+                        "
+                      />
+                    </motion.div>
+                  )
+                )}
 
                 <motion.textarea
                   initial={{ opacity: 0, y: 20 }}
@@ -158,13 +172,23 @@ const ContactDesign = () => {
                   transition={{ delay: 0.8 }}
                   rows={3}
                   placeholder="I'm interested in a property in Baghdad..."
-                  className="w-full bg-white rounded-2xl py-4 px-6 outline-none"
+                  className="
+                    w-full bg-white rounded-2xl py-4 px-6
+                    border border-gray-300
+                    text-black placeholder:text-gray-400
+                    shadow-[inset_0_1px_2px_rgba(0,0,0,0.04)]
+                    outline-none
+                    focus:border-transparent
+                    focus:ring-2 focus:ring-[#FFC107]
+                    focus:shadow-[0_0_0_3px_rgba(255,193,7,0.15)]
+                    transition-all duration-300
+                  "
                 />
 
                 <motion.button
                   whileHover={{ scale: 1.03 }}
                   whileTap={{ scale: 0.97 }}
-                  className="w-full bg-gradient-to-r from-[#1A1A1A] to-[#333333] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:from-yellow-600 hover:to-yellow-600 transition-all duration-300 shadow-lg"
+                  className="w-full bg-gradient-to-r from-[#1A1A1A] to-[#333333] text-white py-5 rounded-2xl font-bold flex items-center justify-center gap-2 hover:from-yellow-600 hover:to-yellow-600 transition-all duration-300 shadow-xl"
                 >
                   Contact Our Agents
                   <ArrowRight size={18} />
@@ -172,6 +196,7 @@ const ContactDesign = () => {
               </form>
             </div>
 
+            {/* Glow */}
             <motion.div
               animate={{ scale: [1, 1.1, 1] }}
               transition={{ repeat: Infinity, duration: 6 }}

@@ -42,7 +42,7 @@ export default function ApartmentDetailPage() {
     <div className="bg-white min-h-screen py-10">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
 
-        {/* LEFT --- MAIN CONTENT */}
+        {/* LEFT --- MAIN CONTENT  */}
         <div className="lg:col-span-2 space-y-6">
 
           {/* IMAGE GALLERY */}

@@ -187,17 +187,17 @@ const RentHouses = () => {
                 onClick={() => toggleFav(house.id)}
                 className="absolute top-3 right-3 bg-white rounded-full p-2 shadow hover:scale-110 transition"
               >
-                <Heart className={`w-6 h-6 ${favorites.includes(house.id) ? "text-red-500" : "text-gray-400"}`} />
+                <Heart className={`w-6 h-6 ${favorites.includes(house.id) ? "text-yellow-500" : "text-gray-400"}`} />
               </button>
             </div>
 
             {/* Card Content */}
             <div className="p-5 flex flex-col gap-3">
               <h3 className="text-xl font-semibold">{house.title}</h3>
-              <p className="text-blue-600 font-bold">${house.price}/month</p>
+              <p className="text-yellow-600 font-bold">${house.price}/month</p>
 
               {/* Badges */}
-              <div className="flex items-center gap-4 text-gray-700">
+              <div className="flex items-center gap-4 text-black">
                 <div className="flex items-center gap-1">
                   <Bed className="w-4 h-4" /> {house.bedrooms} Beds
                 </div>
