@@ -101,7 +101,7 @@ const SearchBar = () => {
           </select>
         </div>
 
-        {/* Submit Button */}
+        {/* Submit Button  */}
         <button
           type="submit"
           className="flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white px-5 py-2 rounded-lg font-semibold transition-all"
