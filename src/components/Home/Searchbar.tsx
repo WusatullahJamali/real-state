@@ -140,7 +140,7 @@ const SearchBar = () => {
   </select>
 </div>
 
-        {/* Search Button */}
+        {/* Submit Button  */}
         <button
           type="submit"
           className="

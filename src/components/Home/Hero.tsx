@@ -13,7 +13,7 @@ const stats = [
 
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-[94vh] flex items-center justify-center bg-cover bg-center">
+    <section className="relative w-full min-h-[85vh] sm:min-h-[90vh] lg:min-h-[94vh] flex items-center justify-center">
       
       {/* Background Image */}
       <Image
@@ -21,58 +21,44 @@ const Hero = () => {
         alt="hero image"
         fill
         priority
-        className="object-cover transition-all duration-300"
+        className="object-cover"
       />
 
       {/* Overlay */}
-      <div className="absolute inset-0 bg-black/30"></div>
+      <div className="absolute inset-0 bg-black/40" />
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6">
+      <div className="relative z-10 w-full max-w-6xl mt-2 mx-auto px-4 sm:px-6 text-center">
         
         {/* Heading */}
-        <h1 className="
-          text-gray-100 
-          text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
-          font-bold leading-tight mb-4 sm:mb-5
-        ">
+        <h1 className="text-white font-bold leading-tight mb-4
+          text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl">
           Find Your Perfect Home & Trusted Services
         </h1>
 
-        <h3 className="
-          text-white font-normal 
-          text-sm sm:text-base md:text-lg 
-          mb-8 sm:mb-10
-        ">
+        <p className="text-gray-100 max-w-3xl mx-auto mb-8
+          text-sm sm:text-base md:text-lg">
           Discover properties across IRAQ and book verified home service providers.
           Buy, sell, rent, or get expert help — all in one platform.
-        </h3>
+        </p>
 
         {/* Search */}
         <SearchBar />
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 mt-4 sm:mt-6">
-
+        <div className="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3">
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="
-                flex-1 min-w-[110px] sm:min-w-[130px]
-                px-3 py-2
-                bg-[#1B3A57]
-                rounded-2xl
-                text-center
-                shadow-[0_4px_20px_rgba(255,195,0,0.4)]
-                hover:shadow-[0_6px_30px_rgba(255,195,0,0.7)]
-                hover:scale-105
-                transition-all duration-300
-              "
+              className="bg-[#1B3A57] rounded-2xl px-3 py-3 mb-4 text-center
+              shadow-[0_4px_20px_rgba(255,195,0,0.4)]
+              hover:shadow-[0_6px_30px_rgba(255,195,0,0.7)]
+              hover:scale-105 transition-all duration-300"
             >
-              <div className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 drop-shadow-md">
+              <div className="text-yellow-400 font-bold text-base sm:text-lg md:text-xl">
                 {stat.value}
               </div>
-              <div className="mt-1 text-[10px] sm:text-xs md:text-sm text-yellow-100/90">
+              <div className="text-yellow-100/90 text-xs sm:text-sm mt-1">
                 {stat.label}
               </div>
             </div>
