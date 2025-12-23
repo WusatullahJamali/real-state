@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MapPin, Bed, Ruler, Heart } from "lucide-react";
-import { HouseType, houseList } from "./RentData"; // Adjust path
+import { HouseType, houseList } from "./RentHouse"; // Adjust path
 
 export default function RentHouseDetailPage() {
   const { id } = useParams();

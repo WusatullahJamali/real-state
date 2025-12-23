@@ -39,7 +39,7 @@ export default function Faqs() {
   };
 
   return (
-    // CHANGE 1: Use a pure white background for the entire section //
+    // CHANGE 1: Use a pure white background for the entire section
     <section className="bg-white py-16" data-testid="faq-section">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         <h2 className="text-4xl md:text-5xl font-extrabold text-gray-900 mb-12 text-center">

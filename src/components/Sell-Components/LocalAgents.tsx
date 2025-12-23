@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 
-// Counter that animates when visible //
+// Counter that animates when visible
 const useCounter = (end: number, duration = 1200) => {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLDivElement | null>(null);

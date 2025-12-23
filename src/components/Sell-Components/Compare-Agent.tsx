@@ -5,10 +5,10 @@ import Image from "next/image";
 import { Search, ArrowRight } from "lucide-react";
 import Link from "next/link";
 
-// --- Carousel Data --- //
+// --- Carousel Data ---
 const CAROUSEL_IMAGES = ["/sample-proposals.png", "/c2.png", "/c3.png"];
 
-// --- Step Component --- //
+// --- Step Component ---
 interface StepProps {
   number: number;
   text: string;
