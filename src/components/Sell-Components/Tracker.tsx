@@ -3,7 +3,7 @@ import { MoveRight } from 'lucide-react';
 
 const HomeValueTracker = () => {
   return (
-    <div className="flex items-center justify-center bg-white py-16 px-4">
+    <div className="flex items-center justify-center bg-white text-black py-16 px-4">
       <div className="w-full max-w-7xl">
         
         {/* Main Grid */}
@@ -14,7 +14,7 @@ const HomeValueTracker = () => {
             <div className="relative w-full max-w-md">
               {/* Chart overlay */}
               <div className="absolute top-6 left-6 bg-white rounded-lg shadow-xl p-6 z-10 w-64">
-                <h3 className="text-lg font-bold text-gray-800 mb-4">
+                <h3 className="text-lg font-bold text-black mb-4">
                   RealEstimate<sup className="text-xs">SM</sup>
                 </h3>
                 
@@ -66,7 +66,7 @@ const HomeValueTracker = () => {
                   </div>
                 </div>
                 
-                {/* Legend */}
+                {/* Legend  */}
                 <div className="space-y-2 text-xs">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
@@ -80,11 +80,11 @@ const HomeValueTracker = () => {
                       <div className="w-4 h-0.5 bg-teal-500"></div>
                       <span className="text-gray-600">CoreLogic<sup>™</sup></span>
                     </div>
-                    <span className="font-semibold text-gray-800">$445K</span>
+                    <span className="font-semibold text-black">$445K</span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-4 h-0.5 border-t-2 border-dashed border-blue-500"></div>
+                      <div className="w-4 h-0.5 border-t-2 border-dashed border-yellow-500"></div>
                       <span className="text-gray-600">Quantarium</span>
                     </div>
                     <span className="font-semibold text-gray-800">$438K</span>
@@ -106,11 +106,11 @@ const HomeValueTracker = () => {
           {/* RIGHT — Text and CTA */}
           <div className="flex flex-col items-start space-y-6">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
                 Track your home value
               </h1>
               
-              <p className="text-gray-600 text-lg leading-relaxed">
+              <p className="text-black text-lg leading-relaxed">
                 Our <span className="font-semibold">RealEstimate<sup className="text-xs">SM</sup></span> data is sourced from multiple valuation providers independent of Realtor.com and trusted by the lending industry.
               </p>
             </div>
