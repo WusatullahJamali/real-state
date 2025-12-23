@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Heart, Bed, Bath, Maximize, MapPin } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 type Props = {
   searchTerm: string;
@@ -11,6 +12,7 @@ type Props = {
 };
 
 const Construction = ({ searchTerm, priceRange, rooms }: Props) => {
+  const router = useRouter(); // Router for Back button
   const [favorites, setFavorites] = useState<number[]>([]);
 
   const listings = [
@@ -56,8 +58,15 @@ const Construction = ({ searchTerm, priceRange, rooms }: Props) => {
     <section className="bg-white py-16 text-black">
       <div className="max-w-7xl mx-auto px-4 space-y-10">
 
-        {/* HEADING */}
-        
+        {/* ✅ MOBILE BACK BUTTON AT TOP */}
+        <div className="lg:hidden mb-6">
+          <button
+            onClick={() => router.push("/")}
+            className="bg-yellow-500 text-white px-5 py-3 rounded-full shadow-md"
+          >
+            ← Back to Home
+          </button>
+        </div>
 
         {/* GRID */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -67,17 +76,13 @@ const Construction = ({ searchTerm, priceRange, rooms }: Props) => {
               className="bg-white rounded-xl border border-gray-500 hover:shadow-xl transition"
             >
               <div className="relative h-56">
-                <div className="relative w-full h-full">
-  <Image
-    src={l.image}
-    alt={l.address}
-    fill
-    className="object-cover"
-    sizes="(max-width: 768px) 100vw, 33vw"
-    priority={false}
-  />
-</div>
-
+                <Image
+                  src={l.image}
+                  alt={l.address}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                />
 
                 {l.status && (
                   <span className="absolute top-4 left-4 bg-yellow-600 text-white text-xs px-3 py-1 rounded-full">
