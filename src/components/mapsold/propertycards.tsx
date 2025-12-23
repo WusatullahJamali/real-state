@@ -2,6 +2,7 @@
 import React from "react";
 import { Property } from "@/data/iraqproperties";
 import { Bed, Bath, Ruler } from "lucide-react";
+import Image from "next/image";
 
 interface PropertyCardProps {
   property: Property;
@@ -23,13 +24,14 @@ const formatUSD = (priceIQD: number) => {
 /* ------------------ COMPONENT ------------------ */
 const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
   return (
-    <div className="bg-white border border-gray-200 rounded-lg shadow-sm hover:shadow-lg transition-shadow duration-300 cursor-pointer w-full">
-      
-      {/* Image */}
-      <div className="h-48 bg-gray-300 rounded-t-lg overflow-hidden">
-        <img
+    <div className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden w-full cursor-pointer">
+      {/* IMAGE */}
+      <div className="h-48 bg-gray-200 overflow-hidden">
+        <Image
           src={property.image}
           alt={property.address}
+          width={150}
+          height={150}
           className="w-full h-full object-cover"
           onError={(e) => {
             e.currentTarget.src =
@@ -46,32 +48,12 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
         <h3 className="text-xl font-extrabold text-blue-700">
           {formatUSD(property.priceIQD)}
         </h3>
-<<<<<<< Updated upstream
-        {/* CITY + TYPE */}
-        <p className="text-sm font-extrabold uppercase tracking-wide text-gray-500">
-          {property.city} · {property.type}
-        </p>
-
-        {/* PRICES */}
-        <div>
-          <h3 className="text-xl -mt-1.5  font-extrabold text-blue-700 leading-tight">
-            {formatUSD(property.priceIQD)}
-          </h3>
-          <p className="text-sm mt-0.5 text-gray-500">
-            {formatIQD(property.priceIQD)}
-          </p>
-        </div>
-
-        {/* ADDRESS */}
-        <p className="text-sm text-gray-800 -mt-2 font-medium">
-=======
 
         <p className="text-sm text-gray-500">
           {formatIQD(property.priceIQD)}
         </p>
 
         <p className="text-sm text-gray-800 font-medium mt-1">
->>>>>>> Stashed changes
           {property.address}
         </p>
 
@@ -84,21 +66,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
             </span>
           ) : (
             <>
-<<<<<<< Updated upstream
-              <span className="flex items-center gap-1">
-                <Bed size={16} />
-                {property.specs.beds} Beds
-              </span>
-
-              <span className="flex items-center gap-1">
-                <Bath size={16} />
-                {property.specs.baths} Baths
-              </span>
-
-              <span className="flex items-center gap-1">
-                <Ruler size={16} />
-                {property.specs.areaSqM.toLocaleString()} m²
-=======
               <span className="flex items-center">
                 <i className="fas fa-bed mr-1"></i>
                 {property.specs.beds} Beds
@@ -112,7 +79,6 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
               <span className="flex items-center">
                 <i className="fas fa-area-chart mr-1"></i>
                 {property.specs.areaSqM.toLocaleString()} M²
->>>>>>> Stashed changes
               </span>
             </>
           )}
