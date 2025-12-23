@@ -1,14 +1,33 @@
 "use client";
 
 import React, { useState } from "react";
-import { Search, MapPin, Filter, X } from "lucide-react";
+import { Search, MapPin, Filter, X, ArrowLeft } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const PropertyHero: React.FC = () => {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const router = useRouter();
 
   return (
     <section className="relative w-full min-h-[480px] sm:min-h-[600px] lg:min-h-[700px] flex items-center justify-center overflow-hidden">
+      
+      {/* 🔙 Mobile Back Button */}
+      <button
+        onClick={() => router.push("/")}
+        className="
+          absolute top-4 start-4 z-20
+          flex items-center gap-1
+          rounded-full bg-yellow-500 backdrop-blur-md
+          px-3 py-2 text-sm font-medium text-white
+          shadow-lg border border-white/30
+          md:hidden
+        "
+      >
+        <ArrowLeft size={16} />
+        Back
+      </button>
+
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center"
