@@ -119,7 +119,7 @@ const FeaturedArticleBanner: React.FC = () => {
   return (
     <section className="relative w-full h-[45vh] md:h-[70vh] overflow-hidden bg-gray-900">
       <Image
-        src="/b2.avif"
+        src="/blog7.avif"
         alt="Featured Article"
         fill
         className="object-cover brightness-75 hover:scale-105 transition duration-700"

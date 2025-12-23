@@ -4,6 +4,7 @@
 import React from "react";
 import { Property } from "@/data/iraqproperties";
 import { Bed, Bath, Ruler } from "lucide-react";
+import Image from "next/image";
 
 interface PropertyCardProps {
   property: Property;
@@ -28,9 +29,11 @@ const PropertyCard: React.FC<PropertyCardProps> = ({ property }) => {
     <div className="bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden w-full cursor-pointer">
       {/* IMAGE */}
       <div className="h-48 bg-gray-200 overflow-hidden">
-        <img
+        <Image
           src={property.image}
           alt={property.address}
+          width={150}
+          height={150}
           className="w-full h-full object-cover"
           onError={(e) => {
             e.currentTarget.src =
