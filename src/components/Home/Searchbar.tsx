@@ -28,9 +28,8 @@ const SearchBar = () => {
 
   return (
     <div className="bg-gray-100 rounded-2xl p-4 sm:p-6 w-full max-w-4xl mx-auto shadow-lg">
-      
       {/* Tabs */}
-      <div className="flex flex-wrap gap-2 mb-4 justify-center sm:justify-start">
+      <div className="flex flex-wrap gap-2 mb-4 justify-center sm:justify-start text-gray-600">
         {["Buy", "Rent", "Sell", "Services"].map((tab) => {
           const value = tab.toLowerCase();
           const isActive = activeTab === value;
@@ -56,7 +55,7 @@ const SearchBar = () => {
       {/* Search Form */}
       <form
         onSubmit={handleSearch}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white rounded-xl p-4 shadow-md"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white rounded-xl p-4 shadow-md text-gray-600"
       >
         <input type="hidden" name="transaction_type" value={activeTab} />
 
@@ -67,7 +66,8 @@ const SearchBar = () => {
             type="text"
             name="location"
             placeholder="Baghdad, Erbil, Basra..."
-            className="rounded-md border px-3 py-2 text-sm focus:ring-1 focus:ring-yellow-500 focus:outline-none"
+            className="rounded-md border border-gray-300 px-3 py-2 text-sm
+            focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 focus:outline-none"
             required
           />
         </div>
@@ -77,7 +77,8 @@ const SearchBar = () => {
           <label className="text-sm font-semibold mb-1">Property Type</label>
           <select
             name="property-type"
-            className="rounded-md border px-3 py-2 text-sm focus:ring-1 focus:ring-yellow-500 focus:outline-none"
+            className="rounded-md border border-gray-300 px-3 py-2 text-sm
+            focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 focus:outline-none"
           >
             {propertyTypes.map((type) => (
               <option key={type}>{type}</option>
@@ -90,7 +91,8 @@ const SearchBar = () => {
           <label className="text-sm font-semibold mb-1">Price Range</label>
           <select
             name="price-range"
-            className="rounded-md border px-3 py-2 text-sm focus:ring-1 focus:ring-yellow-500 focus:outline-none"
+            className="rounded-md border border-gray-300 px-3 py-2 text-sm
+            focus:border-yellow-500 focus:ring-1 focus:ring-yellow-500 focus:outline-none"
           >
             {priceRanges.map((range) => (
               <option key={range}>{range}</option>
@@ -103,8 +105,8 @@ const SearchBar = () => {
           <button
             type="submit"
             className="w-full flex items-center justify-center gap-2
-              bg-yellow-500 hover:bg-yellow-600 text-white
-              px-5 py-2 rounded-lg font-semibold transition-all"
+            bg-yellow-500 hover:bg-yellow-600 text-white
+            px-5 py-2 rounded-lg font-semibold transition-all"
           >
             <Search size={18} />
             Search
