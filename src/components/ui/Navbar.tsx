@@ -48,16 +48,15 @@ const megaMenuContent: MegaMenuContent = {
   BUY: {
     columns: [
       {
-        title: "Market  Insights",
+        title: "Market Insights",
         items: [{ text: "Sold Homes", href: "/soldhomes", icon: Building }],
       },
       {
-        title: "Buying  Essentials",
+        title: "Buying Essentials",
         items: [{ text: "Property", href: "/property", icon: Briefcase }],
       },
     ],
   },
-
   SALE: {
     columns: [
       {
@@ -102,7 +101,6 @@ const megaMenuContent: MegaMenuContent = {
       },
     ],
   },
-
   RENT: {
     columns: [
       {
@@ -126,7 +124,6 @@ const megaMenuContent: MegaMenuContent = {
       },
     ],
   },
-
   SERVICES: {
     columns: [
       {
@@ -173,7 +170,7 @@ export default function Navbar() {
   return (
     <>
       {/* NAVBAR */}
-      <motion.nav className="bg-[#1B3A57]  shadow-sm sticky top-0 z-50 block ">
+      <motion.nav className="bg-[#1B3A57] shadow-sm sticky  top-0 z-50 block">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-5">
           {/* Logo */}
           <Link href="/" className="shrink-0 flex items-center">
@@ -187,7 +184,7 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* DESKTOP / TABLET MENU */}
+          {/* DESKTOP MENU */}
           <ul className="hidden md:flex items-center gap-2 lg:gap-4 h-full text-sm md:text-sm lg:text-base">
             {menuItems.map((item) => (
               <li
@@ -336,7 +333,7 @@ export default function Navbar() {
             {/* MOBILE HAMBURGER */}
             <button
               onClick={() => setMobileOpen(true)}
-              className="md:hidden p-2 rounded-md text-white hover:bg-white/10"
+              className="md:hidden p-2  rounded-md text-white hover:bg-white/10 transition-colors"
             >
               <Menu className="w-7 h-7" />
             </button>
@@ -350,16 +347,17 @@ export default function Navbar() {
           <>
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 0.5 }}
+              animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black z-50"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
               initial={{ x: "-100%" }}
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
-              className="fixed left-0 top-0 h-full w-full max-w-xs bg-white text-black z-50 p-5 overflow-y-auto shadow-2xl"
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed left-0 top-0 h-full w-full max-w-xs bg-white text-black z-[70] p-5 overflow-y-auto shadow-2xl"
             >
               <div className="flex justify-between items-center mb-6 border-b pb-4">
                 <Image
@@ -370,13 +368,13 @@ export default function Navbar() {
                   className="h-10 w-auto object-contain"
                 />
                 <button
-                  className="text-black p-2 hover:bg-gray-100 rounded-full"
+                  className="text-black p-2 hover:bg-gray-100 rounded-full transition-colors"
                   onClick={() => setMobileOpen(false)}
                 >
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <ul className="space-y-2">
+              <ul className="space-y-1">
                 {menuItems.map((item) => {
                   const isOpen = mobileExpanded === item.name;
                   return (
@@ -385,20 +383,28 @@ export default function Navbar() {
                       className="border-b border-gray-100 last:border-0"
                     >
                       {item.hasDropdown && megaMenuContent[item.name] ? (
-                        <>
-                          <button
-                            onClick={() =>
-                              setMobileExpanded(isOpen ? null : item.name)
-                            }
-                            className="flex justify-between items-center w-full text-left py-3 font-medium text-gray-800 hover:text-yellow-600"
-                          >
-                            {item.name}{" "}
-                            <ChevronDown
-                              className={`w-4 h-4 transition-transform duration-200 ${
-                                isOpen ? "rotate-180" : ""
-                              }`}
-                            />
-                          </button>
+                        <div className="flex flex-col">
+                          <div className="flex items-center justify-between w-full">
+                            <Link
+                              href={item.href}
+                              onClick={() => setMobileOpen(false)}
+                              className="flex-grow py-3 font-medium text-gray-800 hover:text-yellow-600"
+                            >
+                              {item.name}
+                            </Link>
+                            <button
+                              onClick={() =>
+                                setMobileExpanded(isOpen ? null : item.name)
+                              }
+                              className="p-3 text-gray-400 hover:text-yellow-600 transition-colors"
+                            >
+                              <ChevronDown
+                                className={`w-5 h-5 transition-transform duration-300 ${
+                                  isOpen ? "rotate-180" : ""
+                                }`}
+                              />
+                            </button>
+                          </div>
                           <AnimatePresence>
                             {isOpen && (
                               <motion.div
@@ -422,7 +428,7 @@ export default function Navbar() {
                                                 onClick={() =>
                                                   setMobileOpen(false)
                                                 }
-                                                className="flex items-center text-sm text-gray-600 hover:text-yellow-600 hover:pl-2 transition-all"
+                                                className="flex items-center text-sm text-gray-600 hover:text-yellow-600 transition-all"
                                               >
                                                 <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 mr-2 opacity-60"></span>
                                                 {sub.text}
@@ -437,7 +443,7 @@ export default function Navbar() {
                               </motion.div>
                             )}
                           </AnimatePresence>
-                        </>
+                        </div>
                       ) : (
                         <Link
                           href={item.href}
@@ -452,13 +458,13 @@ export default function Navbar() {
                 })}
               </ul>
               {!isLoggedIn ? (
-                <div className="mt-8 space-y-3 ">
+                <div className="mt-8 space-y-3">
                   <button
                     onClick={() => {
                       setAuthModal("login");
                       setMobileOpen(false);
                     }}
-                    className="w-full border  border-gray-300 text-gray-800 py-3 rounded-lg font-medium hover:bg-gray-50"
+                    className="w-full border border-gray-300 text-gray-800 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
                   >
                     LOGIN
                   </button>
@@ -467,26 +473,30 @@ export default function Navbar() {
                       setAuthModal("signup");
                       setMobileOpen(false);
                     }}
-                    className="w-full bg-yellow-500 text-black py-3 rounded-lg font-bold hover:bg-yellow-400 shadow-sm"
+                    className="w-full bg-yellow-500 text-black py-3 rounded-lg font-bold hover:bg-yellow-400 shadow-sm transition-colors"
                   >
                     REGISTER
                   </button>
                 </div>
               ) : (
-                <>
+                <div className="mt-8 space-y-3">
                   <Link
                     href="/add-property"
-                    className="mt-8 flex justify-center items-center bg-yellow-500 text-white py-3 rounded-lg font-bold hover:bg-yellow-600 shadow-md"
+                    onClick={() => setMobileOpen(false)}
+                    className="flex justify-center items-center bg-yellow-500 text-white py-3 rounded-lg font-bold hover:bg-yellow-600 shadow-md transition-colors"
                   >
                     <Plus className="w-5 h-5 mr-2" /> ADD PROPERTY
                   </Link>
                   <button
-                    onClick={() => setIsLoggedIn(false)}
-                    className="mt-3 w-full border border-gray-300 text-gray-600 py-3 rounded-lg font-medium hover:bg-gray-50"
+                    onClick={() => {
+                      setIsLoggedIn(false);
+                      setMobileOpen(false);
+                    }}
+                    className="w-full border border-gray-300 text-gray-600 py-3 rounded-lg font-medium hover:bg-gray-50 transition-colors"
                   >
                     Logout
                   </button>
-                </>
+                </div>
               )}
             </motion.div>
           </>
