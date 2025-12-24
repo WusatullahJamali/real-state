@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
-import Image from "next/image";
 
 // Counter that animates when visible
 const useCounter = (end: number, duration = 1200) => {
@@ -97,14 +96,12 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
   const { count: exp, ref: expRef } = useCounter(agent.yearsExperience);
 
   return (
-    <div className="flex flex-col items-center p-4  text-black bg-white transition-all hover:-translate-y-1 duration-300">
+    <div className="flex flex-col items-center p-4  transition-all hover:-translate-y-1 duration-300">
       {/* Image */}
       <div className="mb-4">
-        <Image
+        <img
           src={agent.image}
           alt={agent.name}
-          width={200}
-          height={200}
           className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover transform hover:scale-110 transition duration-300"
         />
       </div>
@@ -141,9 +138,8 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
 
 const AgentsGrid: React.FC = () => {
   return (
-    <section className=" py-12 sm:py-16 bg-white">
+    <section className=" py-12 sm:py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
         {/* Header */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
           <div>
@@ -163,33 +159,29 @@ const AgentsGrid: React.FC = () => {
 
         {/* Responsive Grid */}
         {/* Responsive Grid + Mobile Carousel */}
-<div className="block sm:hidden">
-  {/* Mobile Carousel */}
-  <div 
-    className="
+        <div className="block sm:hidden">
+          {/* Mobile Carousel */}
+          <div
+            className="
       flex overflow-x-auto gap-6 pb-4
       snap-x snap-mandatory
       scrollbar-hide
     "
-  >
-    {agentsData.map((agent, index) => (
-      <div 
-        key={index} 
-        className="min-w-[75%] snap-center"
-      >
-        <AgentCard agent={agent} />
-      </div>
-    ))}
-  </div>
-</div>
+          >
+            {agentsData.map((agent, index) => (
+              <div key={index} className="min-w-[75%] snap-center">
+                <AgentCard agent={agent} />
+              </div>
+            ))}
+          </div>
+        </div>
 
-{/* GRID for tablet/desktop */}
-<div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
-  {agentsData.map((agent, index) => (
-    <AgentCard key={index} agent={agent} />
-  ))}
-</div>
-
+        {/* GRID for tablet/desktop */}
+        <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {agentsData.map((agent, index) => (
+            <AgentCard key={index} agent={agent} />
+          ))}
+        </div>
       </div>
     </section>
   );

@@ -52,8 +52,7 @@ export default function CompareAgents() {
           <div className="order-2 lg:order-1">
             {/* Header */}
             <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-2">
-              Compare agents with{" "}
-              <span className="text-yellow-500">Real</span>
+              Compare agents with <span className="text-yellow-500">Real</span>
               <span className="text-black">Choice™</span>
             </h1>
             <p className="text-2xl text-black mb-10">
@@ -75,7 +74,9 @@ export default function CompareAgents() {
                   placeholder="Enter home address"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className={"w-full h-16 pl-6 pr-48 rounded-full border-2 border-gray-300 placeholder-black focus:outline-none  focus:border-gray-400 transition duration-200  text-gray-900 text-lg"}
+                  className={
+                    "w-full h-16 pl-6 pr-48 rounded-full border-2 border-gray-300 placeholder-black focus:outline-none  focus:border-gray-400 transition duration-200  text-gray-900 text-lg"
+                  }
                   required
                 />
                 <button
