@@ -69,14 +69,18 @@ const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img }) => (
 
     {/* Map Pin with Pulse Animation */}
     <motion.div
-      animate={{ 
+      animate={{
         y: [0, -5, 0],
-        filter: ["drop-shadow(0px 2px 2px rgba(0,0,0,0.2))", "drop-shadow(0px 8px 4px rgba(0,0,0,0.4))", "drop-shadow(0px 2px 2px rgba(0,0,0,0.2))"]
+        filter: [
+          "drop-shadow(0px 2px 2px rgba(0,0,0,0.2))",
+          "drop-shadow(0px 8px 4px rgba(0,0,0,0.4))",
+          "drop-shadow(0px 2px 2px rgba(0,0,0,0.2))",
+        ],
       }}
-      transition={{ 
-        duration: 2, 
-        repeat: Infinity, 
-        ease: "easeInOut" 
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut",
       }}
       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
     >
@@ -111,7 +115,7 @@ export default function RecommendedLocations() {
         </motion.div>
 
         {/* Grid with Staggered Children */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           initial="hidden"
           whileInView="show"
@@ -121,9 +125,9 @@ export default function RecommendedLocations() {
             show: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.15
-              }
-            }
+                staggerChildren: 0.15,
+              },
+            },
           }}
         >
           {RECOMMENDED_LOCATIONS.map((location) => (
@@ -131,11 +135,11 @@ export default function RecommendedLocations() {
               key={location.id}
               variants={{
                 hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 }
+                show: { opacity: 1, y: 0 },
               }}
-              whileHover={{ 
+              whileHover={{
                 y: -10,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
             >
               <Link

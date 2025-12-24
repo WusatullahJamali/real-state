@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import React from "react";
 import Image from "next/image";
 
@@ -56,7 +56,10 @@ const cardData: CardData[] = [
 ];
 
 /* ---------------- CARD ---------------- */
-const InfoCard: React.FC<{ data: CardData }> = ({ data }) => {
+const InfoCard: React.FC<{ data: CardData; index: number }> = ({
+  data,
+  index,
+}) => {
   const {
     category,
     categoryColor,
@@ -67,64 +70,76 @@ const InfoCard: React.FC<{ data: CardData }> = ({ data }) => {
     badgeBgColor,
   } = data;
 
-  const cardVariants = {
-    initial: {
+  // Right-to-left pop-up animation
+  const popRightToLeft: Variants = {
+    hidden: { opacity: 0, x: 50, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      x: 0,
       scale: 1,
-      boxShadow:
-        "0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1)",
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 20,
+        delay: index * 0.15,
+      },
     },
-    hover: {
-      scale: 1.03,
-      boxShadow:
-        "0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04)",
-    },
+  };
+
+  // Hover effect
+  const hoverVariants: Variants = {
+    initial: { scale: 1 },
+    hover: { scale: 1.03 },
   };
 
   return (
     <motion.div
-      variants={cardVariants}
-      initial="initial"
-      whileHover="hover"
-      transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="
-        w-full max-w-sm
-        overflow-hidden rounded-xl bg-white
-        cursor-pointer
-      "
+      variants={popRightToLeft}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
     >
-      {/* IMAGE */}
-      <div className="relative h-48 sm:h-52">
-        <Image
-          src={imageSrc}
-          alt={imageAlt}
-          fill
-          className="object-cover"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-        />
+      <motion.div
+        variants={hoverVariants}
+        initial="initial"
+        whileHover="hover"
+        transition={{ type: "spring", stiffness: 260, damping: 20 }}
+        className="w-full max-w-sm overflow-hidden rounded-xl bg-white cursor-pointer"
+      >
+        {/* IMAGE */}
+        <div className="relative h-48 sm:h-52">
+          <Image
+            src={imageSrc}
+            alt={imageAlt}
+            fill
+            className="object-cover"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+          />
 
-        {/* CATEGORY BADGE */}
-        <span
-          className={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold text-white rounded-full ${categoryColor}`}
-        >
-          {category}
-        </span>
-
-        {/* OPTIONAL BADGE */}
-        {badgeContent && (
+          {/* CATEGORY BADGE */}
           <span
-            className={`absolute bottom-3 left-3 px-3 py-1 text-xs sm:text-sm font-bold text-white rounded-full ${badgeBgColor}`}
+            className={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold text-white rounded-full ${categoryColor}`}
           >
-            {badgeContent}
+            {category}
           </span>
-        )}
-      </div>
 
-      {/* CONTENT */}
-      <div className="p-4">
-        <p className="text-sm font-medium text-gray-800 line-clamp-2">
-          {title}
-        </p>
-      </div>
+          {/* OPTIONAL BADGE */}
+          {badgeContent && (
+            <span
+              className={`absolute bottom-3 left-3 px-3 py-1 text-xs sm:text-sm font-bold text-white rounded-full ${badgeBgColor}`}
+            >
+              {badgeContent}
+            </span>
+          )}
+        </div>
+
+        {/* CONTENT */}
+        <div className="p-4">
+          <p className="text-sm font-medium text-gray-800 line-clamp-2">
+            {title}
+          </p>
+        </div>
+      </motion.div>
     </motion.div>
   );
 };
@@ -134,18 +149,9 @@ const PropertyCards: React.FC = () => {
   return (
     <section className="bg-white py-14">
       <div className="max-w-7xl mx-auto px-4">
-        <div
-          className="
-            grid
-            grid-cols-1
-            sm:grid-cols-2
-            lg:grid-cols-4
-            gap-6 sm:gap-8
-            place-items-center
-          "
-        >
-          {cardData.map((card) => (
-            <InfoCard key={card.id} data={card} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 place-items-center">
+          {cardData.map((card, index) => (
+            <InfoCard key={card.id} data={card} index={index} />
           ))}
         </div>
       </div>
