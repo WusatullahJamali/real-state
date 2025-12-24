@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 
 // Reusable component for an FAQ item (Toggle/Accordion)
 const FAQItem = ({ question, answer }: { question: string; answer: string }) => {
@@ -19,7 +20,7 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
   );
 
   return (
-    <div className="">
+    <div>
       <button
         className="flex justify-between items-center w-full py-4 text-left focus:outline-none"
         onClick={() => setIsOpen(!isOpen)}
@@ -37,11 +38,11 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 
 const Agent2 = () => {
   const faqData = [
-    { question: "Why should I work with a real estate agent?", answer: "A real estate agent provides professional expertise, market knowledge, negotiation skills, and handles complex paperwork, saving you time and money and ensuring a smooth transaction." },
-    { question: "How do I find the right real estate agent?", answer: "Look for an agent with experience in your specific market, check client reviews, and interview several agents to find someone whose communication style and expertise match your needs." },
-    { question: "How is the real estate agent I'm connected chosen?", answer: "The matching process typically considers factors like the agent's experience level, specialization (buyer/seller), geographic area, and client feedback scores." },
-    { question: "What information is shared with my real estate agent?", answer: "Only the information you provide during the matching process, such as your contact details, home preferences, and timeline, is shared to facilitate the initial connection." },
-    { question: "I've heard about the National Association of REALTORS® Settlement. does impact my home selling process?", answer: "The settlement introduces changes to how commission is handled and disclosed, potentially leading to more transparency and negotiation on compensation. Consult with your agent for specifics." },
+    { question: "Why should I work with a real estate agent in Iraq?", answer: "A local Iraqi real estate agent has professional expertise, knowledge of neighborhoods in Baghdad, Erbil, Basra, Najaf, Karbala, and other cities, negotiation skills, and handles all paperwork to make buying or selling smooth and secure." },
+    { question: "How do I find the right agent in Iraq?", answer: "Look for agents experienced in your specific city or property type, read client reviews, and speak with multiple agents to choose one that understands your needs and communicates clearly." },
+    { question: "How is the agent I’m connected to chosen?", answer: "The matching process considers the agent's experience, specialization (buying, selling, or renting), familiarity with local markets, and client feedback scores in Iraq." },
+    { question: "What information is shared with my agent?", answer: "Only the details you provide, such as your contact info, property preferences, and timeline, are shared to help the agent connect with you efficiently." },
+    { question: "Do agents charge any hidden fees?", answer: "No. Our connected agents operate transparently, and any commission or fee is agreed upon before proceeding with transactions in Iraq." },
   ];
 
   return (
@@ -49,21 +50,22 @@ const Agent2 = () => {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row-reverse items-stretch gap-12 px-6">
 
         {/* Right: Image */}
-        <div className="lg:w-1/2 w-full overflow-hidden">
-          <img 
-            src="/findagent2.png" 
-            alt="Real estate agent shaking hands with clients" 
-            className="w-full h-full object-cover"
+        <div className="lg:w-1/2 w-full relative h-80 lg:h-auto">
+          <Image 
+            src="/shahzaib.png" 
+            alt="Iraqi real estate agent assisting clients" 
+            fill
+            className="object-cover rounded-3xl"
           />
         </div>
 
         {/* Left: FAQ */}
         <div className="lg:w-1/2 w-full bg-white p-8 md:p-12 rounded-3xl flex flex-col">
           <h2 className="text-3xl md:text-4xl font-semibold text-gray-800 mb-6">
-            Frequently asked questions
+            Frequently Asked Questions about Iraqi Real Estate Agents
           </h2>
           <p className="text-sm text-gray-600 mb-8 leading-relaxed">
-            What's the difference between a professional real estate license to help people and a REALTOR®, part of the national mandate. A REALTOR® is a member of REALTORS® and enjoys exclusive benefits, including access to NAR's data, educational offerings, and networking opportunities.
+            Learn how our certified agents in Iraq help you buy, sell, or rent properties safely and efficiently, while providing expert guidance and local insights.
           </p>
 
           <div className="space-y-0 divide-y divide-gray-200">
@@ -74,7 +76,7 @@ const Agent2 = () => {
 
           <div className="mt-8">
             <button className="flex items-center px-6 py-4 border-2 bg-white text-black hover:border-yellow-500 transition-colors rounded-full text-sm font-semibold duration-300">
-              Connect with an agent
+              Connect with an Iraqi Agent
               <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
               </svg>

@@ -18,12 +18,13 @@ const FindHero = () => {
 
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto text-center px-4">
+        
         {/* Header */}
         <h1 className="text-white text-4xl md:text-6xl font-bold leading-tight">
-          Search for agents
+          Find Trusted Real Estate Agents in Iraq
         </h1>
-        <p className="text-white/80 text-lg mt-2 mb-8">
-          Discover the right match for you.
+        <p className="text-white text-lg mt-2 mb-8">
+          Connect with professional agents across Baghdad, Erbil, Basra, and more.
         </p>
 
         {/* Tabs */}
@@ -35,7 +36,9 @@ const FindHero = () => {
               className={`cursor-pointer underline-offset-4 transition
                 ${type === item ? "underline" : "hover:underline"}`}
             >
-              {item}
+              {item === "Buy" && "Buying"}
+              {item === "Sell" && "Selling"}
+              {item === "Both" && "Buying & Selling"}
             </li>
           ))}
         </ul>
@@ -45,10 +48,10 @@ const FindHero = () => {
 
           {/* Agent */}
           <div className="flex items-center flex-1 gap-2">
-            <User className="w-5 h-5 text-gray-500" />
+            <User className="w-5 h-5 text-black" />
             <input
               type="text"
-              placeholder="Agent name"
+              placeholder="Agent name (optional)"
               value={agent}
               onChange={(e) => setAgent(e.target.value)}
               className="w-full outline-none text-black text-lg"
@@ -60,10 +63,10 @@ const FindHero = () => {
 
           {/* Location */}
           <div className="flex items-center flex-1 gap-2">
-            <MapPin className="w-5 h-5 text-gray-500" />
+            <MapPin className="w-5 h-5 text-black" />
             <input
               type="text"
-              placeholder="Location"
+              placeholder="City or area (Baghdad, Erbil, Basra...)"
               value={location}
               onChange={(e) => setLocation(e.target.value)}
               className="w-full outline-none text-black text-lg"

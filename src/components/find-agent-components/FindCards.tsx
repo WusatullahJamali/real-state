@@ -4,18 +4,18 @@ import React from "react";
 
 const cards = [
   {
-    title: "Get support from a dedicated team",
-    desc: "Tell us about your needs and a Realtor.com coordinator can help you find the right local agent for you.",
+    title: "Get support from local Iraqi agents",
+    desc: "Tell us about your property needs and a local agent from Baghdad, Erbil, Basra, or other cities will guide you.",
     img: "/find1.jpg",
   },
   {
-    title: "Get matched to a local agent",
-    desc: "Tap into the expertise of tens of thousands of agents from brokerages large and small.",
+    title: "Find the perfect agent for your property",
+    desc: "Tap into the expertise of certified real estate agents across Iraq to help you buy, sell, or rent your property.",
     img: "/find2.jpg",
   },
   {
-    title: "No commitment, no hidden fees",
-    desc: "Get connected to an agent in minutes for free. Choose the best fit agent, or change agents if it doesn't work out.",
+    title: "No fees, no obligations",
+    desc: "Connect with an agent in minutes for free. Choose the best fit for your needs, or switch agents anytime.",
     img: "/find3.png",
   },
 ];
@@ -27,10 +27,10 @@ const FindCards = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-3xl md:text-4xl font-extrabold text-gray-900">
-            Let us narrow the field for you
+            Connect with trusted agents in Iraq
           </h1>
           <p className="mt-3 text-gray-600 max-w-2xl mx-auto text-lg">
-            We have a long history of connecting tens of thousands of buyers and sellers with real estate agents.
+            We help buyers, sellers, and renters find reliable real estate agents across Baghdad, Erbil, Basra, Najaf, Karbala, and beyond.
           </p>
         </div>
 
@@ -63,7 +63,6 @@ const FindCards = () => {
           ))}
         </div>
 
-        
         <div className="text-center mt-6">
           <button className="px-8 py-4 border-2 bg-white text-black rounded-full hover:border-yellow-500 transition-colors font-semibold text-lg">
             Connect with an Agent
