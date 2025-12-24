@@ -95,7 +95,7 @@ export default function RecommendedLocations() {
   return (
     <div className="bg-white py-10 md:py-16 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Title Group Animation */}
+        {/* Title Group Animation */}     
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -116,7 +116,7 @@ export default function RecommendedLocations() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          variants={{
+          variants={{      
             hidden: { opacity: 0 },
             show: {
               opacity: 1,
@@ -137,7 +137,7 @@ export default function RecommendedLocations() {
                 y: -10,
                 transition: { duration: 0.3 }
               }}
-            >
+            >    
               <Link
                 href={`/CategoriesDATA/${location.id}`}
                 className="block group"
