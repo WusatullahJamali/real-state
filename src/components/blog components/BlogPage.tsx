@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion"; // Added for animations
 
 /* ---------------- TYPES ---------------- */
 
@@ -64,54 +65,66 @@ const blogs: BlogPost[] = [
 
 interface BlogCardProps {
   post: BlogPost;
+  index: number;
 }
-const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
+
+const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
   return (
-    <Link
-      href={`/blog/${post.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-shadow duration-300"
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 }
+      }}
+      transition={{ duration: 0.5 }}
     >
-      {/* IMAGE */}
-      <div className="relative h-36 md:h-40 overflow-hidden">
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
+      <Link
+        href={`/blog/${post.id}`}
+        className="group relative flex flex-col h-full overflow-hidden rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-300"
+      >
+        {/* IMAGE */}
+        <div className="relative h-36 md:h-40 overflow-hidden">
+          <Image
+            src={post.image}
+            alt={post.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
 
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
+          {/* Gradient overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
-        {/* Tag */}
-        <span className="absolute top-3 left-3 bg-yellow-500 text-gray-900 px-3 py-1 text-xs font-semibold rounded-full shadow-md">
-          {post.tag}
-        </span>
-      </div>
-
-      {/* CONTENT */}
-      <div className="flex-1 p-4 flex flex-col justify-between">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-yellow-600 transition-colors">
-            {post.title}
-          </h3>
-          <p className="mt-2 text-sm text-gray-600 line-clamp-3">
-            {post.snippet}
-          </p>
-        </div>
-
-        {/* FOOTER */}
-        <div className="mt-4 flex justify-between items-center text-xs text-gray-500">
-          <span className="font-medium text-gray-800">{post.author}</span>
-          <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-md font-medium">
-            {post.readTime}
+          {/* Tag */}
+          <span className="absolute top-3 left-3 bg-yellow-500 text-gray-900 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md z-10">
+            {post.tag}
           </span>
         </div>
-      </div>
 
-      {/* Hover underline below the card */}
-      <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-    </Link>
+        {/* CONTENT */}
+        <div className="flex-1 p-4 flex flex-col justify-between">
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-yellow-600 transition-colors leading-tight">
+              {post.title}
+            </h3>
+            <p className="mt-2 text-sm text-gray-600 line-clamp-3 leading-relaxed">
+              {post.snippet}
+            </p>
+          </div>
+
+          {/* FOOTER */}
+          <div className="mt-4 flex justify-between items-center text-[11px] text-gray-500">
+            <span className="font-semibold text-gray-800 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" /> {post.author}
+            </span>
+            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded font-bold">
+              {post.readTime}
+            </span>
+          </div>
+        </div>
+
+        {/* Bottom underline accent */}
+        <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+      </Link>
+    </motion.div>
   );
 };
 
@@ -119,31 +132,54 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 
 const FeaturedArticleBanner: React.FC = () => {
   return (
-    <section className="relative w-full h-[45vh] md:h-[70vh] overflow-hidden bg-gray-900">
-      <Image
-        src="/blog7.avif"
-        alt="Featured Article"
-        fill
-        className="object-cover brightness-75 hover:scale-105 transition duration-700"
-        priority
-      />
+    <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-gray-900">
+      <motion.div
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0"
+      >
+        <Image
+          src="/blog7.avif"
+          alt="Featured Article"
+          fill
+          className="object-cover brightness-50"
+          priority
+        />
+      </motion.div>
 
-      <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-        <p className="text-sm text-yellow-300 font-semibold tracking-widest uppercase">
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="text-xs md:text-sm text-yellow-400 font-bold tracking-[0.2em] uppercase"
+        >
           Featured Story
-        </p>
+        </motion.p>
 
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white max-w-3xl leading-tight mt-3">
+        <motion.h1 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-4xl leading-[1.1] mt-4"
+        >
           Inside Iraq’s Fastest Growing Real Estate Cities
-        </h1>
+        </motion.h1>
 
-        <Link href="/article/featured">
-          <button className="mt-6 px-8 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-md hover:bg-yellow-600 shadow-lg transition">
-            Read Article
-          </button>
-        </Link>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          <Link href="/article/featured">
+            <button className="mt-8 px-10 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full hover:bg-yellow-400 hover:scale-105 shadow-[0_10px_20px_rgba(234,179,8,0.3)] transition-all active:scale-95">
+              Read Article
+            </button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
@@ -153,12 +189,12 @@ const FeaturedArticleBanner: React.FC = () => {
 
 export default function BlogPage() {
   return (
-    <div className="min-h-screen bg-gray-50 text-black">
+    <div className="min-h-screen bg-white text-black">
       {/* MOBILE BACK BUTTON */}
       <div className="max-w-7xl mx-auto px-4 py-4 md:hidden">
         <Link
           href="/"
-          className="inline-block px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
         >
           ← Back to Home
         </Link>
@@ -166,13 +202,25 @@ export default function BlogPage() {
 
       <FeaturedArticleBanner />
 
-      <section className="py-14">
+      <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {blogs.map((post) => (
-              <BlogCard key={post.id} post={post} />
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1
+                }
+              }
+            }}
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {blogs.map((post, index) => (
+              <BlogCard key={post.id} post={post} index={index} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </section>
     </div>

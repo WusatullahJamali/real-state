@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
-import Image from "next/image";
+
 import { div } from "framer-motion/client";
 const RecentSold = () => {
   const router = useRouter();
