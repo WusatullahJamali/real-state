@@ -9,14 +9,10 @@ const Footer = () => {
   return (
     <footer className="bg-[#1B3A57] text-white pt-14 pb-6">
       <div className="max-w-7xl mx-auto px-4">
-
         {/* ---------- TOP FOOTER GRID ---------- */}
-        <div
-          className=" grid grid-cols-2 md:grid-cols-3   lg:grid-cols-5 gap-y-10 gap-x-8 "
-        >
+        <div className=" grid grid-cols-2 md:grid-cols-3   lg:grid-cols-5 gap-y-10 gap-x-8 ">
           {/* ---------- BRAND ---------- */}
           <div className="space-y-4 col-span-2 md:col-span-1">
-
             {/* Logo */}
             <Link href="/" className="inline-flex items-center -mt-4">
               <Image
@@ -31,9 +27,9 @@ const Footer = () => {
 
             {/* Description */}
             <p className="text-sm leading-relaxed text-gray-200 max-w-sm">
-              Iraq’s premier platform for real estate and home services.
-              Find your perfect property and book trusted service providers
-              all in one place.
+              Iraq’s premier platform for real estate and home services. Find
+              your perfect property and book trusted service providers all in
+              one place.
             </p>
 
             {/* Social Icons */}
@@ -75,11 +71,10 @@ const Footer = () => {
             <h4 className="text-lg font-semibold mb-4">Home Services</h4>
             <ul className="space-y-2 text-sm text-gray-200">
               {[
-                { text: "All Services", href: "/all-services" },
-                { text: "Plumbing", href: "/plumbing" },
-                { text: "Electrical", href: "/electrical" },
-                { text: "Cleaning", href: "/cleaning" },
-                // { text: "Join as Provider", href: "/join-as-provider" },
+                { text: "All Services", href: "/service" },
+                { text: "Plumbing", href: "/service/4" },
+                { text: "Electrical", href: "/service/1" },
+                { text: "Cleaning", href: "/service/2" },
               ].map((item) => (
                 <li key={item.text}>
                   <Link
@@ -143,9 +138,7 @@ const Footer = () => {
         <div className="border-t border-white/20 mt-12 pt-6"></div>
 
         {/* ---------- BOTTOM FOOTER ---------- */}
-        <div
-          className=" flex flex-col   sm:flex-row items-center justify-between text-sm text-gray-300 gap-4 "
-        >
+        <div className=" flex flex-col   sm:flex-row items-center justify-between text-sm text-gray-300 gap-4 ">
           <p className="text-center sm:text-left">
             © 2025 Albasync. All rights reserved.
           </p>
