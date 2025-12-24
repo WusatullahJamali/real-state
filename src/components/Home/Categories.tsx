@@ -13,10 +13,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-
 const REALTOR_BLUE = "#efb93f";
-
-
 
 type TabKey = "Buying" | "Renting" | "Selling";
 
@@ -39,27 +36,27 @@ const TAB_DATA: Record<TabKey, TabContent> = {
     heading: `Discover your path to <span style="color:${REALTOR_BLUE}">Homeownership</span>`,
     cards: [
       {
-        title: "Estimate your budget",
+        title: "Want to Buy a Home?",
         description:
-          "Find out how much you can afford and estimate your budget range before you start searching for properties.",
-        linkText: "Try our affordability calculator",
-        href: "#",
+          "Buy a home within your budget. Plan smarter with clear affordability insights.",
+        linkText: "Start exploring homes today",
+        href: "/buy",
         Icon: DollarSign,
       },
       {
-        title: "Analyze monthly costs",
+        title: "Explore recently sold homes",
         description:
-          "Get an in-depth look at what your monthly payments and closing costs will look like based on current rates.",
-        linkText: "Use the mortgage calculator",
-        href: "#",
+          "Explore recently sold homes to make smarter buying decisions. Compare prices and understand real market trends.",
+        linkText: "Start exploring homes today",
+        href: "/soldhomes",
         Icon: Calculator,
       },
       {
-        title: "Explore down payment options",
+        title: "Explore Properties",
         description:
-          "Find assistance programs and resources that can help you buy a home with less cash upfront.",
-        linkText: "Find down payment help",
-        href: "#",
+          "Browse available properties and find your perfect home that fits your needs and budget.",
+        linkText: "View Properties",
+        href: "/property",
         Icon: CreditCard,
       },
     ],
@@ -72,23 +69,23 @@ const TAB_DATA: Record<TabKey, TabContent> = {
         description:
           "Explore thousands of rental listings in your desired area. Filter by price, size, and amenities.",
         linkText: "Start your rental search now",
-        href: "#",
+        href: "/rent",
         Icon: Search,
       },
       {
         title: "Determine safe budget",
         description:
-          "Calculate the maximum rent you can comfortably afford based on your income and expenses to rent securely.",
-        linkText: "Use our rent budget tool",
-        href: "#",
+          "Find out the maximum rent you can afford comfortably based on your income and lifestyle.",
+        linkText: "Explore Apartments",
+        href: "/apartments-for-rent",
         Icon: ShieldCheck,
       },
       {
-        title: "Understand tenant rights",
+        title: "Contact a Landlord",
         description:
-          "Get informed on your local tenant rights and responsibilities before you sign a lease agreement.",
-        linkText: "Read our tenant guide",
-        href: "#",
+          "Get in touch with landlords directly to inquire about available properties and rental details.",
+        linkText: "Reach Out Now",
+        href: "/contact-rent-landlord",
         Icon: KeyRound,
       },
     ],
@@ -97,19 +94,19 @@ const TAB_DATA: Record<TabKey, TabContent> = {
     heading: `Maximize your <span style="color:${REALTOR_BLUE}">Sale</span> and value`,
     cards: [
       {
-        title: "Get instant home value",
+        title: "Live Market Intelligence",
         description:
-          "Get a free, instant estimate of your home’s current market value using recent sales data and market trends.",
-        linkText: "Get a home valuation",
-        href: "#",
+          "Get comprehensive insights into Iraq's real estate market. Stay updated on trends, prices, and investment opportunities.",
+        linkText: "see the trends",
+        href: "/housing-market-trends",
         Icon: Home,
       },
       {
-        title: "Calculate net proceeds",
+        title: "Explore Recently Sold Homes",
         description:
-          "Calculate the potential profit from your sale after deducting agent commissions and all closing costs.",
-        linkText: "Calculate net proceeds",
-        href: "#",
+          "Check out homes that were recently sold and get insights into final sale prices and market trends.",
+        linkText: "View Sold Homes",
+        href: "/recently-sold-homes",
         Icon: TrendingUp,
       },
       {
@@ -117,7 +114,7 @@ const TAB_DATA: Record<TabKey, TabContent> = {
         description:
           "Find a top local real estate agent specializing in selling homes in your neighborhood quickly and for the best price.",
         linkText: "Find a trusted agent",
-        href: "#",
+        href: "/find-agent",
         Icon: MapPin,
       },
     ],
@@ -168,49 +165,49 @@ const HomeDiscovery = () => {
 
   return (
     <section className="py-16 bg-white transition-colors duration-500">
-  <div className="max-w-[80.5rem] mx-auto px-4 sm:px-6 lg:px-8">
-    <h2 className="text-4xl font-extrabold text-[#2f363b] mb-10 text-center">
-      Discover how we can <span style={{ color: REALTOR_BLUE }}>help you</span>
-    </h2>
+      <div className="max-w-[80.5rem] mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 className="text-4xl font-extrabold text-[#2f363b] mb-10 text-center">
+          Discover how we can{" "}
+          <span style={{ color: REALTOR_BLUE }}>help you</span>
+        </h2>
 
-    {/* Tabs */}
-    <div className="flex justify-center mb-10">
-      <div className="inline-flex rounded-full bg-white p-1 shadow-lg ring-1 ring-gray-200">
-        {Object.keys(TAB_DATA).map((tabKey) => (
-          <button
-            key={tabKey}
-            onClick={() => handleTabClick(tabKey as TabKey)}
-            className={`px-5 py-2 text-base font-medium rounded-full cursor-pointer transition-all duration-300 ${
-              activeTab === tabKey
-                ? "bg-yellow-500 text-white shadow-md"
-                : "text-[#2f363b] hover:bg-gray-100"
+        {/* Tabs */}
+        <div className="flex justify-center mb-10">
+          <div className="inline-flex rounded-full bg-white p-1 shadow-lg ring-1 ring-gray-200">
+            {Object.keys(TAB_DATA).map((tabKey) => (
+              <button
+                key={tabKey}
+                onClick={() => handleTabClick(tabKey as TabKey)}
+                className={`px-5 py-2 text-base font-medium rounded-full cursor-pointer transition-all duration-300 ${
+                  activeTab === tabKey
+                    ? "bg-yellow-500 text-white shadow-md"
+                    : "text-[#2f363b] hover:bg-gray-100"
+                }`}
+              >
+                {tabKey}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Cards */}
+        <div className="overflow-hidden">
+          <h3
+            className="text-xl font-bold text-[#2f363b] mb-6 text-center transition-opacity duration-300"
+            dangerouslySetInnerHTML={{ __html: activeContent.heading }}
+          />
+          <div
+            className={`grid grid-cols-1 md:grid-cols-3 cursor-pointer gap-6 transition-opacity duration-150 ease-in-out ${
+              showCards ? "opacity-100" : "opacity-0"
             }`}
           >
-            {tabKey}
-          </button>
-        ))}
+            {activeContent.cards.map((card, index) => (
+              <CardContainer key={index} card={card} />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
-
-    {/* Cards */}
-    <div className="overflow-hidden">
-      <h3
-        className="text-xl font-bold text-[#2f363b] mb-6 text-center transition-opacity duration-300"
-        dangerouslySetInnerHTML={{ __html: activeContent.heading }}
-      />
-      <div
-        className={`grid grid-cols-1 md:grid-cols-3 cursor-pointer gap-6 transition-opacity duration-150 ease-in-out ${
-          showCards ? "opacity-100" : "opacity-0"
-        }`}
-      >
-        {activeContent.cards.map((card, index) => (
-          <CardContainer key={index} card={card} />
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
+    </section>
   );
 };
 
