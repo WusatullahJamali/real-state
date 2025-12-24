@@ -10,14 +10,12 @@ import Guide from "../../components/Sell-Components/Guide";
 const Page = () => {
   return (
     <>
-      <CompareAgents />
-     
-      <FeatureGrid />
-      <Tracker />
-      <SoldCards />
-
+      <CompareAgents  />    
+      <FeatureGrid  />
+      <Tracker  />
+      <SoldCards  />
       <Guide />
-      <FAQ />
+      <FAQ  />
     </>
   );
 };

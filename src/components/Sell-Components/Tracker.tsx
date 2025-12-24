@@ -84,10 +84,10 @@ const HomeValueTracker = () => {
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-4 h-0.5 border-t-2 border-dashed border-blue-500"></div>
-                      <span className="text-gray-600">Quantarium</span>
+                      <div className="w-4 h-0.5 border-t-2 border-dashed border-yellow-500"></div>
+                      <span className="text-black">Quantarium</span>
                     </div>
-                    <span className="font-semibold text-gray-800">$438K</span>
+                    <span className="font-semibold text-black">$438K</span>
                   </div>
                 </div>
               </div>
@@ -106,7 +106,7 @@ const HomeValueTracker = () => {
           {/* RIGHT — Text and CTA */}
           <div className="flex flex-col items-start space-y-6">
             <div>
-              <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
                 Track your home value
               </h1>
               

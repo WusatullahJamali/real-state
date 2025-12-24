@@ -43,7 +43,7 @@ const guides = [
 
 export default function SellerGuides() {
   return (
-    <section className="bg-white py-20">
+    <section className="bg-white py-20 text-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-14 gap-6">
@@ -51,7 +51,7 @@ export default function SellerGuides() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-black tracking-tight">
               Seller Guides
             </h2>
-            <p className="text-gray-500 mt-2 max-w-xl">
+            <p className="text-black mt-2 max-w-xl">
               Everything you need to know before selling your home — clear,
               simple, and trusted.
             </p>
@@ -90,17 +90,17 @@ export default function SellerGuides() {
               </div>
 
               {/* Title */}
-              <h3 className="relative z-10 text-xl font-bold text-gray-900 mb-3 group-hover:text-yellow-600 transition">
+              <h3 className="relative z-10 text-xl font-bold text-black mb-3 group-hover:text-yellow-600 transition">
                 {guide.title}
               </h3>
 
               {/* Description */}
-              <p className="relative z-10 text-gray-600 leading-relaxed max-w-md">
+              <p className="relative z-10 text-black leading-relaxed max-w-md">
                 {guide.description}
               </p>
 
               {/* Arrow */}
-              <div className="absolute right-6 bottom-6 text-gray-400 group-hover:text-yellow-600 transition-transform duration-300">
+              <div className="absolute right-6 bottom-6 text-black group-hover:text-yellow-600 transition-transform duration-300">
                 <ChevronRight className="w-6 h-6 group-hover:translate-x-1" />
               </div>
             </Link>

@@ -41,7 +41,7 @@ const FAQ = () => {
       <div className="max-w-5xl w-full">
         {/* Title */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">
+          <h2 className="text-3xl font-bold text-black">
             Frequently asked questions
           </h2>
         </div>
@@ -58,16 +58,16 @@ const FAQ = () => {
                   className="flex justify-between items-center w-full text-left focus:outline-none group"
                 >
                   {/* Question */}
-                  <h3 className="text-lg font-semibold text-gray-900 pr-8">
+                  <h3 className="text-lg font-semibold text-black pr-8">
                     {item.question}
                   </h3>
 
                   {/* Chevron Icon */}
                   <div className="flex-shrink-0">
                     {isOpen ? (
-                      <ChevronUp className="w-6 h-6 text-gray-900" />
+                      <ChevronUp className="w-6 h-6 text-black" />
                     ) : (
-                      <ChevronDown className="w-6 h-6 text-gray-900" />
+                      <ChevronDown className="w-6 h-6 text-black" />
                     )}
                   </div>
                 </button>
@@ -78,7 +78,7 @@ const FAQ = () => {
                     isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-gray-700 leading-relaxed">{item.answer}</p>
+                  <p className="text-black leading-relaxed">{item.answer}</p>
                 </div>
               </div>
             );

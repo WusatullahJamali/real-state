@@ -110,7 +110,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
 
       {/* Content */}
       <div className="p-5">
-        <p className="text-xs text-gray-500 font-bold mb-1">{status}</p>
+        <p className="text-xs text-black font-bold mb-1">{status}</p>
         <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
           {isContact ? (
             <>
@@ -139,7 +139,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
         </div>
 
         {/* Address */}
-        <div className="text-sm text-gray-600 leading-tight">
+        <div className="text-sm text-black leading-tight">
           <p>{address1}</p>
           <p>{address2}</p>
         </div>
@@ -182,15 +182,15 @@ export default function RecentlySoldHomes() {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center p-6 bg-white text-black">
+    <div className="min-h-[70vh] flex items-center justify-center p-6 bg-white">
       <div className="w-full max-w-7xl relative p-6 md:p-8 rounded-3xl bg-white">
         {/* Header */}
         <div className="flex items-start md:items-end justify-between border-b pb-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900">
+            <h1 className="text-3xl font-bold text-black">
               Recently Sold Homes
             </h1>
-            <p className="text-gray-500">
+            <p className="text-black">
               Colorado's top-performing homes for 2025
             </p>
           </div>
@@ -222,8 +222,8 @@ export default function RecentlySoldHomes() {
           ref={scrollRef}
           className="flex gap-4 py-4 overflow-x-auto no-scrollbar"
           style={{
-            scrollbarWidth: "none", // Firefox
-            msOverflowStyle: "none", // IE 10+
+            scrollbarWidth: "none", 
+            msOverflowStyle: "none", 
           }}
         >
           {cards.map((home, i) => (

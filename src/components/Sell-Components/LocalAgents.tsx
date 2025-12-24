@@ -115,24 +115,24 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
       </h3>
 
       {/* Company */}
-      <p className="text-sm text-gray-600 mb-3 text-center px-2">
+      <p className="text-sm text-black mb-3 text-center px-2">
         {agent.company} {agent.id}
       </p>
 
       {/* Counters */}
       <div className="text-center space-y-2">
         <div ref={soldRef} className="flex items-baseline justify-center gap-1">
-          <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+          <span className="text-2xl sm:text-3xl font-bold text-black">
             {sold}
           </span>
-          <span className="text-sm text-gray-600">Sold last year</span>
+          <span className="text-sm text-black">Sold last year</span>
         </div>
 
         <div ref={expRef} className="flex items-baseline justify-center gap-1">
-          <span className="text-2xl sm:text-3xl font-bold text-gray-900">
+          <span className="text-2xl sm:text-3xl font-bold text-black">
             {exp}
           </span>
-          <span className="text-sm text-gray-600">years Experience</span>
+          <span className="text-sm text-black">years Experience</span>
         </div>
       </div>
     </div>
