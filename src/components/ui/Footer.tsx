@@ -83,7 +83,7 @@ const Footer: React.FC = () => {
                 { text: "Buy Property", href: "/buy" },
                 { text: "Rent Property", href: "/rent" },
                 { text: "Sell Property", href: "/sell" },
-                { text: "For Agents", href: "/for-agents" },
+                { text: "For Agents", href: "/find-agent" },
                 { text: "For Developers", href: "/for-developers" },
               ].map((item) => (
                 <li key={item.text}>
