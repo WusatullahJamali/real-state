@@ -17,10 +17,10 @@ interface StepProps {
 const Step: React.FC<StepProps> = ({ number, text }) => (
   <div className="flex items-center gap-4">
     {/* Number circle with dark background */}
-    <div className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-gray-900 text-white font-bold text-lg">
+    <div className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-black text-white font-bold text-lg">
       {number}
     </div>
-    <p className="text-lg text-gray-900 font-normal">{text}</p>
+    <p className="text-lg text-black font-normal">{text}</p>
   </div>
 );
 
@@ -54,7 +54,7 @@ export default function CompareAgents() {
             <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-2">
               Compare agents with{" "}
               <span className="text-yellow-500">Real</span>
-              <span className="text-gray-900">Choice™</span>
+              <span className="text-black">Choice™</span>
             </h1>
             <p className="text-2xl text-black mb-10">
               Selling, find a trusted expert
@@ -75,7 +75,7 @@ export default function CompareAgents() {
                   placeholder="Enter home address"
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className={"w-full h-16 pl-6 pr-48 rounded-full border-2 border-gray-300 placeholder-gray-400 focus:outline-none  focus:border-gray-400 transition duration-200  text-gray-900 text-lg"}
+                  className={"w-full h-16 pl-6 pr-48 rounded-full border-2 border-gray-300 placeholder-black focus:outline-none  focus:border-gray-400 transition duration-200  text-gray-900 text-lg"}
                   required
                 />
                 <button
