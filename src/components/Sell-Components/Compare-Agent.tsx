@@ -1,10 +1,9 @@
 "use client";
 
 import React, { useState, FormEvent, useEffect } from "react";
-import Image from "next/image"; // Import Next.js Image component
-import { Check, Search, MoveRight } from "lucide-react";
+import Image from "next/image";
+import { Search, ArrowRight } from "lucide-react";
 import Link from "next/link";
-
 
 // --- Carousel Data ---
 const CAROUSEL_IMAGES = ["/sample-proposals.png", "/c2.png", "/c3.png"];
@@ -16,12 +15,12 @@ interface StepProps {
 }
 
 const Step: React.FC<StepProps> = ({ number, text }) => (
-  <div className="flex items-start p-3 bg-white rounded-xl shadow-sm hover:shadow-md transition duration-300">
-    {/* Number circle with yellow background and black check */}
-    <div className="shrink-0 w-8 h-8 flex items-center justify-center rounded-full bg-yellow-500 text-black font-bold text-sm">
-      <Check className="w-4 h-4" />
+  <div className="flex items-center gap-4">
+    {/* Number circle with dark background */}
+    <div className="shrink-0 w-10 h-10 flex items-center justify-center rounded-full bg-black text-white font-bold text-lg">
+      {number}
     </div>
-    <p className="ml-4 text-base font-medium text-gray-700">{text}</p>
+    <p className="text-lg text-black font-normal">{text}</p>
   </div>
 );
 
@@ -45,106 +44,61 @@ export default function CompareAgents() {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-12 rounded-3xl  ">
-        {/* Header Section */}
-        <div className="text-center pb-8 mb-8 border-b border-gray-200">
-          <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-gray-600 leading-snug">
-            Find Your Perfect Agent with{" "}
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-600 to-yellow-400">
-              RealChoice™
-            </span>
-          </h1>
-          <p className="mt-3 text-xl text-gray-500">
-            Unlock expert proposals tailored to your home—zero commitment
-            required.
-          </p>
-        </div>
-
+    <div className="min-h-screen flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
+      <div className="w-full max-w-7xl">
         {/* Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* LEFT SIDE: Steps + Search Form */}
           <div className="order-2 lg:order-1">
-            <div className="space-y-4">
-              <h2 className="text-2xl font-bold text-gray-800 mb-4">
-                Your 3-Step Path to a Confident Sale
-              </h2>
+            {/* Header */}
+            <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-2">
+              Compare agents with{" "}
+              <span className="text-yellow-500">Real</span>
+              <span className="text-black">Choice™</span>
+            </h1>
+            <p className="text-2xl text-black mb-10">
+              Selling, find a trusted expert
+            </p>
 
-              <Step
-                number={1}
-                text="Enter your address for instant agent matching"
-              />
-              <Step
-                number={2}
-                text="View detailed proposals and selling strategies"
-              />
-              <Step
-                number={3}
-                text="Interview and choose the right expert, commitment-free"
-              />
+            {/* Steps */}
+            <div className="space-y-6 mb-10">
+              <Step number={1} text="Enter your selling address" />
+              <Step number={2} text="View proposals, no commitment" />
+              <Step number={3} text="Choose the right agent, confidently" />
             </div>
 
             {/* Search Form */}
-            <form onSubmit={handleSubmit} className="mt-8">
-              <div className="flex flex-col sm:flex-row gap-3 items-center">
-                <div className="relative flex-1 w-full">
-                  <span className="absolute inset-y-0 left-4 flex items-center pointer-events-none">
-                    <Search className="w-5 h-5 text-black" />
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Enter home address"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                    className="
-                      w-full h-12 pl-12 pr-4
-                      rounded-xl
-                      border border-gray-300
-                      shadow-inner
-                      placeholder-gray-500
-                      focus:outline-none
-                      focus:ring-2 focus:ring-yellow-400
-                      
-                      transition duration-200
-                      text-gray-900
-                      text-lg
-                    "
-                    required
-                  />
-                </div>
-
-               <Link
-  href="/add-property"
-  className={`
-    relative flex items-center justify-center gap-2
-    px-6 py-3 w-[220px] md:w-[250px] h-12
-    font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300
-    active:translate-x-[5px] active:translate-y-[5px] group
-
-    bg-yellow-500 text-black        /* MOBILE BUTTON FULL YELLOW */
-    md:bg-gray-900 md:text-white    /* DESKTOP BUTTON BLACK */
-  `}
-  style={{ borderRadius: "0px" }}
->
-  {/* Yellow hover animation (only on desktop) */}
-  <span
-    className="
-      absolute w-[250px] h-[250px] bg-yellow-500 -left-full top-0
-      transition-all duration-300
-      group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none
-      hidden md:block   /* HIDE ON MOBILE */
-    "
-  ></span>
-
-  <MoveRight className="w-4 h-4 relative z-10" />
-  <span className="relative z-10">ADD PROPERTY</span>
-</Link>
+            <form onSubmit={handleSubmit} className="relative">
+              <div className="relative">
+                <input
+                  type="text"
+                  placeholder="Enter home address"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  className={"w-full h-16 pl-6 pr-48 rounded-full border-2 border-gray-300 placeholder-black focus:outline-none  focus:border-gray-400 transition duration-200  text-gray-900 text-lg"}
+                  required
+                />
+                <button
+                  type="submit"
+                  className="
+                    absolute right-2 top-1/2 -translate-y-1/2
+                    flex items-center gap-2
+                    px-8 py-3 h-12
+                    bg-yellow-600 hover:bg-yellow-500
+                    text-white font-semibold
+                    rounded-full
+                    transition-colors duration-200
+                  "
+                >
+                  Get started
+                  <ArrowRight className="w-5 h-5" />
+                </button>
               </div>
             </form>
           </div>
 
           {/* RIGHT SIDE: Carousel */}
-          <div className="order-1 lg:order-2 flex items-center justify-center relative p-6 bg-white rounded-2xl shadow-inner h-[400px]">
+          <div className="order-1 lg:order-2 flex items-center justify-center relative h-[500px]">
             {CAROUSEL_IMAGES.map((src, index) => (
               <Image
                 key={index}
@@ -152,28 +106,26 @@ export default function CompareAgents() {
                 alt={`Agent proposal mockup ${index + 1}`}
                 fill
                 style={{ objectFit: "contain" }}
-                className={`rounded-xl absolute transition-opacity duration-700 ease-in-out ${
+                className={`transition-opacity duration-700 ease-in-out ${
                   index === currentImageIndex ? "opacity-100" : "opacity-0"
                 }`}
                 priority={index === 0}
               />
             ))}
 
-            {/* <div className="absolute -bottom-2 right-4 text-xs text-gray-400">
-              Data privacy guaranteed.
-            </div> */}
-
             {/* Carousel Dots */}
             <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
               {CAROUSEL_IMAGES.map((_, index) => (
-                <div
+                <button
                   key={index}
-                  className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+                  type="button"
+                  className={`w-2.5 h-2.5 rounded-full transition-colors duration-300 ${
                     index === currentImageIndex
                       ? "bg-yellow-600"
                       : "bg-gray-300 hover:bg-gray-400"
                   }`}
                   onClick={() => setCurrentImageIndex(index)}
+                  aria-label={`Go to slide ${index + 1}`}
                 />
               ))}
             </div>

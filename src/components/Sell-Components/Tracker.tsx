@@ -1,87 +1,128 @@
-"use client";
+import React from 'react';
+import { MoveRight } from 'lucide-react';
 
-import React from "react";
-import Link from "next/link";
-import { MoveRight } from "lucide-react";
-
-const Tracker: React.FC = () => {
+const HomeValueTracker = () => {
   return (
-    <div className="flex items-center justify-center bg-white pb-10 px-4">
-      <div className="w-full max-w-7xl bg-white p-6 md:p-10 rounded-3xl">
-        {/* Header Section */}
-        <div className="text-center mb-6">
-          <p className="text-sm font-extrabold uppercase text-yellow-500 tracking-widest">
-            Data Insights
-          </p>
-
-          <h1 className="text-2xl md:text-3xl font-bold text-[#301366]">
-            Track Your Home Value
-          </h1>
-        </div>
-
+    <div className="flex items-center justify-center bg-white py-16 px-4">
+      <div className="w-full max-w-7xl">
+        
         {/* Main Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-          {/* LEFT — TEXT + BUTTON */}
-          <div className="lg:col-span-7 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
-            <p className="text-gray-700 text-sm md:text-base leading-relaxed max-w-xl">
-              Our
-              <span className="font-bold text-[#301366]">
-                {" "}RealEstimate<sup>SM</sup>
-              </span>{" "}
-              data is sourced from multiple valuation providers independent of
-              Realtor.com and trusted by the lending industry. Stay updated on
-              how your property value changes over time using our advanced
-              valuation tools integrated with leading data providers.
-            </p>
-
-           <Link
-  href="/add-property"
-  className={`
-    relative flex items-center justify-center gap-2
-    px-6 py-3 w-[220px] md:w-[250px] h-12
-    font-semibold text-sm cursor-pointer overflow-hidden shadow-md transition-all duration-300
-    active:translate-x-[5px] active:translate-y-[5px] group
-
-    bg-yellow-500 text-black        /* MOBILE BUTTON FULL YELLOW */
-    md:bg-gray-900 md:text-white    /* DESKTOP BUTTON BLACK */
-  `}
-  style={{ borderRadius: "0px" }}
->
-  {/* Yellow hover animation (only on desktop) */}
-  <span
-    className="
-      absolute w-[250px] h-[250px] bg-yellow-500 -left-full top-0
-      transition-all duration-300
-      group-hover:translate-x-full group-hover:-translate-y-1/2 group-hover:rounded-none
-      hidden md:block   /* HIDE ON MOBILE */
-    "
-  ></span>
-
-  <MoveRight className="w-4 h-4 relative z-10" />
-  <span className="relative z-10">ADD PROPERTY</span>
-</Link>
-
-          </div>
-
-          {/* RIGHT — Google Map iframe */}
-          <div className="lg:col-span-5 flex justify-center w-full">
-            <div className="w-full h-56 md:h-64 lg:h-72 rounded-2xl overflow-hidden shadow-xl border-2 border-gray-200">
-              <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.086317898177!2d-122.42324668468166!3d37.77492927975901!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8085808c3edb7f35%3A0x2a4f548c54f4b557!2sSan%20Francisco%2C%20CA!5e0!3m2!1sen!2sus!4v1701871738561!5m2!1sen!2sus"
-                width="100%"
-                height="100%"
-                style={{
-                  border: 0,
-                  filter: "hue-rotate(190deg) saturate(1.2) brightness(0.95)",
-                }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Home Value Map"
-              />
+          {/* LEFT — Image Section */}
+          <div className="flex justify-center lg:justify-start">
+            <div className="relative w-full max-w-md">
+              {/* Chart overlay */}
+              <div className="absolute top-6 left-6 bg-white rounded-lg shadow-xl p-6 z-10 w-64">
+                <h3 className="text-lg font-bold text-gray-800 mb-4">
+                  RealEstimate<sup className="text-xs">SM</sup>
+                </h3>
+                
+                {/* Simple chart representation */}
+                <div className="relative h-40 mb-4">
+                  <svg viewBox="0 0 200 100" className="w-full h-full">
+                    {/* Grid lines */}
+                    <line x1="0" y1="80" x2="200" y2="80" stroke="#e5e7eb" strokeWidth="1"/>
+                    <line x1="0" y1="60" x2="200" y2="60" stroke="#e5e7eb" strokeWidth="1"/>
+                    <line x1="0" y1="40" x2="200" y2="40" stroke="#e5e7eb" strokeWidth="1"/>
+                    <line x1="0" y1="20" x2="200" y2="20" stroke="#e5e7eb" strokeWidth="1"/>
+                    
+                    {/* Line 1 - Purple dashed */}
+                    <polyline
+                      points="0,75 50,70 100,50 150,45 200,25"
+                      fill="none"
+                      stroke="#8b5cf6"
+                      strokeWidth="2"
+                      strokeDasharray="4,4"
+                    />
+                    
+                    {/* Line 2 - Teal solid */}
+                    <polyline
+                      points="0,70 50,65 100,48 150,40 200,20"
+                      fill="none"
+                      stroke="#14b8a6"
+                      strokeWidth="2"
+                    />
+                    
+                    {/* Line 3 - Blue dashed */}
+                    <polyline
+                      points="0,80 50,75 100,60 150,55 200,40"
+                      fill="none"
+                      stroke="#3b82f6"
+                      strokeWidth="2"
+                      strokeDasharray="4,4"
+                    />
+                    
+                    {/* Indicator dot */}
+                    <circle cx="200" cy="20" r="4" fill="#14b8a6"/>
+                  </svg>
+                  
+                  {/* X-axis labels */}
+                  <div className="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>2021</span>
+                    <span>2022</span>
+                    <span>2023</span>
+                    <span>2024</span>
+                  </div>
+                </div>
+                
+                {/* Legend */}
+                <div className="space-y-2 text-xs">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-0.5 border-t-2 border-dashed border-purple-500"></div>
+                      <span className="text-gray-600">Collateral Analytics</span>
+                    </div>
+                    <span className="font-semibold text-gray-800">$446K</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-0.5 bg-teal-500"></div>
+                      <span className="text-gray-600">CoreLogic<sup>™</sup></span>
+                    </div>
+                    <span className="font-semibold text-gray-800">$445K</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <div className="w-4 h-0.5 border-t-2 border-dashed border-yellow-500"></div>
+                      <span className="text-black">Quantarium</span>
+                    </div>
+                    <span className="font-semibold text-black">$438K</span>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Building Image */}
+              <div className="rounded-2xl overflow-hidden shadow-2xl">
+                <img 
+                  src="/track.webp" 
+                  alt="Red brick building"
+                  className="w-full h-96 object-cover"
+                />
+              </div>
             </div>
           </div>
+
+          {/* RIGHT — Text and CTA */}
+          <div className="flex flex-col items-start space-y-6">
+            <div>
+              <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
+                Track your home value
+              </h1>
+              
+              <p className="text-gray-600 text-lg leading-relaxed">
+                Our <span className="font-semibold">RealEstimate<sup className="text-xs">SM</sup></span> data is sourced from multiple valuation providers independent of Realtor.com and trusted by the lending industry.
+              </p>
+            </div>
+
+            <button
+              className="group relative flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold text-lg border-2  rounded-full hover:border-yellow-500 transition-all duration-300"
+            >
+              <span>Start tracking</span>
+              <MoveRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
+          </div>
+
         </div>
 
       </div>
@@ -89,4 +130,4 @@ const Tracker: React.FC = () => {
   );
 };
 
-export default Tracker;
+export default HomeValueTracker;
