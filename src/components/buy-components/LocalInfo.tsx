@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
+import { motion, Variants } from "framer-motion";
 
 /* ---------------- BUTTON ---------------- */
 const GradientButton: React.FC = () => {
@@ -63,14 +64,45 @@ const SearchBar: React.FC = () => {
   );
 };
 
+/* ---------------- ANIMATION VARIANTS ---------------- */
+const slideLeft: Variants = {
+  hidden: { opacity: 0, x: -50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
+const slideRight: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: {
+      duration: 0.7,
+      ease: "easeOut",
+    },
+  },
+};
+
 /* ---------------- MAIN COMPONENT ---------------- */
 const CombinedAd: React.FC = () => {
   return (
-    <section className="w-full bg-white mt-16">
+    <section className="w-full bg-white mt-16 overflow-hidden">
       {/* -------- SECTION 1 -------- */}
       <div className="w-full flex flex-col lg:flex-row">
         {/* IMAGE */}
-        <div className="relative w-full lg:w-1/2 h-[260px] sm:h-[360px] lg:h-[520px]">
+        <motion.div
+          className="relative w-full lg:w-1/2 h-[260px] sm:h-[360px] lg:h-[520px]"
+          variants={slideLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <Image
             src="/boy.avif"
             alt="Home loan"
@@ -78,10 +110,16 @@ const CombinedAd: React.FC = () => {
             priority
             className="object-cover"
           />
-        </div>
+        </motion.div>
 
         {/* CONTENT */}
-        <div className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center">
+        <motion.div
+          className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center"
+          variants={slideRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1B3A57] mb-4">
             Need a home loan? Get pre-approved
           </h2>
@@ -99,27 +137,39 @@ const CombinedAd: React.FC = () => {
           >
             Advertising disclosure
           </a>
-        </div>
+        </motion.div>
       </div>
 
       {/* -------- SECTION 2 -------- */}
-      <div className="w-full flex flex-col-reverse lg:flex-row">
+      <div className="w-full flex flex-col-reverse lg:flex-row items-center">
         {/* CONTENT */}
-        <div className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center">
+        <motion.div
+          className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center"
+          variants={slideLeft}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1B3A57] mb-4">
             Get Local Info
           </h2>
 
           <p className="text-gray-600 text-sm sm:text-base mb-6 max-w-lg">
-            Does it have pet-friendly rentals? How are the schools? Get important
-            local information on the area you are most interested in.
+            Does it have pet-friendly rentals? How are the schools? Get
+            important local information on the area you are most interested in.
           </p>
 
           <SearchBar />
-        </div>
+        </motion.div>
 
         {/* IMAGE */}
-        <div className="relative w-full lg:w-1/2 h-[260px] sm:h-[360px] lg:h-[520px]">
+        <motion.div
+          className="relative w-full lg:w-1/2 h-[260px] sm:h-[360px] lg:h-[520px]"
+          variants={slideRight}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.3 }}
+        >
           <Image
             src="/boy2.avif"
             alt="Local info"
@@ -127,7 +177,7 @@ const CombinedAd: React.FC = () => {
             priority
             className="object-cover"
           />
-        </div>
+        </motion.div>
       </div>
     </section>
   );
