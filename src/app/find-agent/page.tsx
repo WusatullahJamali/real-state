@@ -8,11 +8,11 @@ import React from 'react'
 const page = () => {
   return (
     <div>
-      <FindHero />
-      <FindCards />
-      <Agent1 />
-      <Agent2 />
-      <ContactAgent />
+      <FindHero  />
+      <FindCards  />
+      <Agent1  />
+      <Agent2  />
+      <ContactAgent  />
     </div>
   )
 }
