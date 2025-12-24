@@ -2,6 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
+import { motion } from "framer-motion"; // Added for animations
 import SearchBar from "./Searchbar";
 
 const stats = [
@@ -11,9 +12,25 @@ const stats = [
   { value: "4.9★", label: "User Rating" },
 ];
 
+// Animation Variants
+const fadeInUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
+
+const staggerContainer = {
+  hidden: { opacity: 1 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2, // Delay between each item
+    },
+  },
+};
+
 const Hero = () => {
   return (
-    <section className="relative w-full min-h-[94vh] flex items-center justify-center bg-cover bg-center">
+    <section className="relative w-full min-h-[94vh] flex items-center justify-center bg-cover bg-center overflow-hidden">
       
       {/* Background Image */}
       <Image
@@ -28,35 +45,61 @@ const Hero = () => {
       <div className="absolute inset-0 bg-black/30"></div>
 
       {/* Content */}
-      <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6">
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={staggerContainer}
+        className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6"
+      >
         
         {/* Heading */}
-        <h1 className="
-          text-gray-100 
-          text-3xl sm:text-4xl md:text-5xl lg:text-6xl 
-          font-bold leading-tight mb-4 sm:mb-5
-        ">
+        <motion.h1 
+          variants={fadeInUp}
+          transition={{ duration: 0.6 }}
+          className="
+            text-gray-100 
+            text-3xl sm:text-4xl mt-4 md:text-5xl lg:text-6xl 
+            font-extrabold leading-tight mb-4 sm:mb-5
+          "
+        >
           Find Your Perfect Home & Trusted Services
-        </h1>
+        </motion.h1>
 
-        <h3 className="
-          text-white font-normal 
-          text-sm sm:text-base md:text-lg 
-          mb-8 sm:mb-10
-        ">
+        <motion.h3 
+          variants={fadeInUp}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="
+            text-white font-normal 
+            text-sm sm:text-base md:text-lg 
+            mb-8 sm:mb-10
+          "
+        >
           Discover properties across IRAQ and book verified home service providers.
           Buy, sell, rent, or get expert help — all in one platform.
-        </h3>
+        </motion.h3>
 
         {/* Search */}
-        <SearchBar />
+        <motion.div
+          variants={fadeInUp}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <SearchBar />
+        </motion.div>
 
         {/* Stats */}
-        <div className="grid grid-cols-2 sm:flex sm:flex-wrap justify-center gap-2 sm:gap-3 mt-4 sm:mt-6">
-
+        <motion.div 
+          variants={staggerContainer}
+          className="grid grid-cols-2 sm:flex sm:flex-wrap mb-3 justify-center gap-2 sm:gap-3 mt-4 sm:mt-6"
+        >
           {stats.map((stat, index) => (
-            <div
+            <motion.div
               key={index}
+              variants={fadeInUp}
+              whileHover={{ 
+                scale: 1.05,
+                transition: { duration: 0.2 } 
+              }}
               className="
                 flex-1 min-w-[110px] sm:min-w-[130px]
                 px-3 py-2
@@ -65,8 +108,7 @@ const Hero = () => {
                 text-center
                 shadow-[0_4px_20px_rgba(255,195,0,0.4)]
                 hover:shadow-[0_6px_30px_rgba(255,195,0,0.7)]
-                hover:scale-105
-                transition-all duration-300
+                transition-shadow duration-300
               "
             >
               <div className="text-base sm:text-lg md:text-xl font-bold text-yellow-400 drop-shadow-md">
@@ -75,11 +117,11 @@ const Hero = () => {
               <div className="mt-1 text-[10px] sm:text-xs md:text-sm text-yellow-100/90">
                 {stat.label}
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
-      </div>
+      </motion.div>
     </section>
   );
 };
