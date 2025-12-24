@@ -46,7 +46,7 @@ const InputField = ({
       }`}
     >
       {isArea ? (
-        <textarea
+        <textarea   
           rows={4}
           onFocus={() => setFocus(name)}
           onBlur={() => setFocus(null)}
@@ -55,7 +55,7 @@ const InputField = ({
         />
       ) : (
         <input
-          type={type}
+          type={type}   
           onFocus={() => setFocus(name)}
           onBlur={() => setFocus(null)}
           placeholder={placeholder}
