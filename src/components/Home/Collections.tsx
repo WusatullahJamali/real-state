@@ -2,9 +2,17 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { motion, Variants } from "framer-motion";
+
+interface CollectionItem {
+  title: string;
+  count: number;
+  img: string;
+  href: string;
+}
 
 export default function CollectionsSection() {
-  const collections = [
+  const collections: CollectionItem[] = [
     {
       title: "Recommended Homes",
       count: 17,
@@ -55,11 +63,37 @@ export default function CollectionsSection() {
     },
   ];
 
+  // Generate card variants dynamically based on index
+  const cardVariants = (index: number): Variants => ({
+    hidden: {
+      opacity: 0,
+      x: index < 4 ? -120 : 120, // First 4 from left, last 4 from right
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 60,
+        damping: 18,
+        duration: 0.8,
+        delay: index * 0.15, // stagger effect
+      },
+    },
+  });
+
   return (
-    <section className="bg-white py-16">
+    <section className="bg-white py-16 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-center mb-12"
+        >
           <h2 className="text-4xl font-bold text-black mb-3">
             Property Collections
           </h2>
@@ -67,61 +101,50 @@ export default function CollectionsSection() {
             Explore our curated property collections for every buyer and
             investor.
           </p>
-        </div>
+        </motion.div>
 
-        {/* MOBILE: Slider | DESKTOP: Grid */}
-        <div
-          className="
-            flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth
-            md:grid md:grid-cols-4 md:overflow-visible
-          "
-        >
+        {/* Cards Grid / Slider */}
+        <div className="flex gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth md:grid md:grid-cols-4 md:overflow-visible">
           {collections.map((item, i) => (
-            <Link
+            <motion.div
               key={i}
-              href={item.href}
-              className="
-                min-w-[85%] snap-center
-                md:min-w-0
-                group rounded-xl overflow-hidden
-                transition-transform hover:scale-105
-              "
+              variants={cardVariants(i)}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, margin: "-50px" }}
+              className="min-w-[85%] md:min-w-0"
             >
-              {/* Card */}
-              <div className="relative h-72 md:h-80 rounded-xl overflow-hidden shadow-lg">
-                <Image
-                  src={item.img}
-                  alt={item.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110"
-                />
+              <Link
+                href={item.href}
+                className="block group rounded-xl overflow-hidden transition-transform hover:scale-105"
+              >
+                <div className="relative h-72 md:h-80 rounded-xl overflow-hidden shadow-lg">
+                  <Image
+                    src={item.img}
+                    alt={item.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
 
-                {/* Overlay */}
-                <div
-                  className="
-                    absolute inset-0 flex flex-col justify-end
-                    items-center md:items-start
-                    p-4 bg-gradient-to-t from-black/50 to-transparent
-                  "
-                >
-                  <h3 className="text-white font-bold text-xl">{item.title}</h3>
-                  <p className="text-white text-sm">{item.count} properties</p>
-
-                  <span
-                    className="
-                      mt-3 px-6 py-1 bg-yellow-500 text-black
-                      text-sm font-semibold rounded-lg
-                      transition group-hover:bg-yellow-400
-                    "
-                  >
-                    View Collection
-                  </span>
+                  {/* Overlay */}
+                  <div className="absolute inset-0 flex flex-col justify-end items-center md:items-start p-4 bg-gradient-to-t from-black/60 to-transparent">
+                    <h3 className="text-white font-bold text-xl">
+                      {item.title}
+                    </h3>
+                    <p className="text-white text-sm">
+                      {item.count} properties
+                    </p>
+                    <span className="mt-3 px-6 py-1 bg-yellow-500 text-black text-sm font-semibold rounded-lg transition group-hover:bg-yellow-400">
+                      View Collection
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </Link>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </div>
+
       {/* Mobile slide indicator */}
       <div className="mt-6 flex justify-center md:hidden">
         <div className="flex items-center gap-2">
