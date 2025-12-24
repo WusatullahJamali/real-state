@@ -56,7 +56,7 @@ const SearchBar = () => {
       {/* Search Form */}
       <form
         onSubmit={handleSearch}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white rounded-xl p-4 shadow-md"
+        className="grid grid-cols- text-black sm:grid-cols-2 lg:grid-cols-4 gap-4 bg-white rounded-xl p-4 shadow-md"
       >
         <input type="hidden" name="transaction_type" value={activeTab} />
 
