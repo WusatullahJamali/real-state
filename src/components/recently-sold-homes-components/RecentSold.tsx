@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
 
 const RecentSold = () => {
