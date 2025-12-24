@@ -65,39 +65,43 @@ const SearchBar: React.FC = () => {
 };
 
 /* ---------------- ANIMATION VARIANTS ---------------- */
-const slideFromLeft: Variants = {
-  hidden: { opacity: 0, x: -80, scale: 0.9 },
+const slideLeft: Variants = {
+  hidden: { opacity: 0, x: -40 },
   visible: {
     opacity: 1,
     x: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 100, damping: 20 },
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
   },
 };
 
-const slideFromRight: Variants = {
-  hidden: { opacity: 0, x: 80, scale: 0.9 },
+const slideRight: Variants = {
+  hidden: { opacity: 0, x: 40 },
   visible: {
     opacity: 1,
     x: 0,
-    scale: 1,
-    transition: { type: "spring", stiffness: 100, damping: 20 },
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
   },
 };
 
 /* ---------------- MAIN COMPONENT ---------------- */
 const CombinedAd: React.FC = () => {
   return (
-    <section className="w-full bg-white mt-16">
+    <section className="w-full bg-white mt-16 overflow-hidden">
       {/* -------- SECTION 1 -------- */}
       <div className="w-full flex flex-col lg:flex-row items-center">
         {/* IMAGE */}
         <motion.div
           className="relative w-full lg:w-1/2 h-[260px] sm:h-[360px] lg:h-[520px]"
+          variants={slideLeft}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={slideFromLeft}
+          viewport={{ once: true, amount: 0.25 }}
         >
           <Image
             src="/boy.avif"
@@ -111,10 +115,10 @@ const CombinedAd: React.FC = () => {
         {/* CONTENT */}
         <motion.div
           className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center"
+          variants={slideRight}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={slideFromRight}
+          viewport={{ once: true, amount: 0.25 }}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1B3A57] mb-4">
             Need a home loan? Get pre-approved
@@ -137,14 +141,14 @@ const CombinedAd: React.FC = () => {
       </div>
 
       {/* -------- SECTION 2 -------- */}
-      <div className="w-full flex flex-col-reverse lg:flex-row items-center ">
+      <div className="w-full flex flex-col-reverse lg:flex-row items-center">
         {/* CONTENT */}
         <motion.div
           className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center"
+          variants={slideLeft}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={slideFromLeft}
+          viewport={{ once: true, amount: 0.25 }}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1B3A57] mb-4">
             Get Local Info
@@ -161,10 +165,10 @@ const CombinedAd: React.FC = () => {
         {/* IMAGE */}
         <motion.div
           className="relative w-full lg:w-1/2 h-[260px] sm:h-[360px] lg:h-[520px]"
+          variants={slideRight}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={slideFromRight}
+          viewport={{ once: true, amount: 0.25 }}
         >
           <Image
             src="/boy2.avif"
