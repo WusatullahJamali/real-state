@@ -100,10 +100,10 @@ const Footer: React.FC = () => {
             <h4 className="text-lg font-semibold mb-4">Home Services</h4>
             <ul className="space-y-2 text-sm text-gray-200">
               {[
-                { text: "All Services", href: "/all-services" },
-                { text: "Plumbing", href: "/plumbing" },
-                { text: "Electrical", href: "/electrical" },
-                { text: "Cleaning", href: "/cleaning" },
+                { text: "All Services", href: "/service" },
+                { text: "Plumbing", href: "/service/4" },
+                { text: "Electrical", href: "/service/1" },
+                { text: "Cleaning", href: "/service/2" },
               ].map((item) => (
                 <li key={item.text}>
                   <Link href={item.href} className="hover:text-yellow-400 transition-colors">
