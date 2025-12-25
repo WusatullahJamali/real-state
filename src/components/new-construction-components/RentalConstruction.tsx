@@ -70,7 +70,7 @@ const RentalConstruction = () => {
 
           return (
             <div key={listing.id} className="min-w-[280px] md:min-w-[320px] lg:min-w-[300px] snap-start">
-              <Link href={`/listings/${listing.id}`} className="block">
+              <Link href={``} className="block">
                 <div className="bg-white rounded-xl overflow-hidden border border-gray-200 hover:shadow-xl transition-all duration-300">
                   <div className="relative">
                     <img
