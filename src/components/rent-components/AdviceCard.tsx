@@ -25,7 +25,7 @@ const AdviceCard = ({ image, title }: { image: string; title: string }) => {
         </h3>
       </div>
     </div>
-  );
+  );   
 };
 
 const AdviceCardsGrid = () => {

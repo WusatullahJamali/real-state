@@ -42,7 +42,7 @@ const ACards = () => {
           </div>
         ))}
       </div>
-    </section>
+    </section>   
   );
 };
 

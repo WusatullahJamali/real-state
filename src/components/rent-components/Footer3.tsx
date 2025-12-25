@@ -47,13 +47,13 @@ export default function GeoFooter() {
       <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
 
         {/* Column 1 */}
-        <div>
+        <div>    
           <h3 className="font-bold text-base mb-4">Popular apartment cities</h3>
           <ul className="space-y-2">
   {(showCities ? apartmentCities : apartmentCities.slice(0, 1)).map((city) => (
     <li key={city}>
       <a className="hover:underline" href="#">
-        Apartments for rent in {city}
+        Apartments for rent in {city}    
       </a>
     </li>
   ))}

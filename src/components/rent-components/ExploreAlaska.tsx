@@ -148,7 +148,7 @@ const ExploreAlaska = () => {
             </Link>
           );
         })}
-      </div>
+      </div>   
     </div>
   );
 };
