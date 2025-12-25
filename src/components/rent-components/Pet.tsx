@@ -70,7 +70,7 @@ const Pet = () => {
         <h1 className="text-3xl font-bold mb-1">Pet-friendly rentals</h1>
         <a href="#" className="text-yellow-600 hover:underline text-sm">
           View all pet-friendly rentals
-        </a>
+        </a>   
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">

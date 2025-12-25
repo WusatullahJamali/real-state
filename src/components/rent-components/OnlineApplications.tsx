@@ -17,7 +17,7 @@ const OnlineApplications = () => {
     address: "Al-Salam District",
     city: "Najaf, Iraq",
   },
-  {
+  {   
     id: 2,
     image: "/online2.webp",
     badge: "Apply Now",

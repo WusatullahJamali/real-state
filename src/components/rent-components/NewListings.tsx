@@ -154,5 +154,5 @@ const NewListings = () => {
     </div>
   );
 };
-
+   
 export default NewListings;
