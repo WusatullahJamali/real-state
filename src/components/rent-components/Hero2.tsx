@@ -16,7 +16,7 @@ const Hero2: React.FC = () => {
         style={{
           backgroundImage: "url('/hero2.jpg')",
         }}
-      />
+      />    
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-black/50"></div>

@@ -81,7 +81,7 @@ const UnitLaundry = () => {
 
           return (
             <Link
-              key={listing.id}
+              key={listing.id}   
               href={`/listings/${listing.id}`}
               className="block"
             >
