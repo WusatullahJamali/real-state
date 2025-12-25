@@ -3,9 +3,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Search, SlidersHorizontal } from "lucide-react";
-import { properties } from "./RecentSoldData";
-
+import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
 import { div } from "framer-motion/client";
 const RecentSold = () => {
   const router = useRouter();
@@ -46,18 +44,21 @@ const RecentSold = () => {
     <div className="w-full bg-white text-black">
       <div className="max-w-7xl mx-auto p-6 bg-white">
 
-        {/* Back Button */}
-        <div className="mb-6">
-          <button
-            onClick={() => router.push("/")}
-            className="bg-yellow-500 text-white px-5 py-3 rounded-full shadow-md hover:bg-yellow-600 transition"
-          >
-            ← Home
-          </button>
-        </div>
+        {/* ✅ BACK BUTTON BELOW NAVBAR */}
+     {/* ✅ BACK BUTTON – MOBILE ONLY */}
+<div className="mb-6 block md:hidden">
+  <button
+    onClick={() => router.push("/")}
+    className="bg-yellow-500 text-white px-5 py-3 rounded-full shadow-md hover:bg-yellow-600 transition"
+  >
+    ← Back to Home
+  </button>
+</div>
 
-        {/* Search */}
-        <div className="mb-6 flex flex-wrap gap-3">
+
+
+        {/* Search Bar */}
+        <div className="mb-6 flex flex-wrap gap-3 text-black">
           <div className="flex-1 relative min-w-[250px]">
             <input
               type="text"

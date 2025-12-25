@@ -84,7 +84,7 @@ const Footer: React.FC = () => {
                 { text: "Rent Property", href: "/rent" },
                 { text: "Sell Property", href: "/sell" },
                 { text: "Find Agents", href: "/find-agent" },
-                { text: "For Developers", href: "/for-developers" },
+                // { text: "For Developers", href: "/for-developers" },
               ].map((item) => (
                 <li key={item.text}>
                   <Link href={item.href} className="hover:text-yellow-400 transition-colors">
