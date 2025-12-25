@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Search, SlidersHorizontal, ChevronDown } from "lucide-react";
-import Image from "next/image";
 import { div } from "framer-motion/client";
 const RecentSold = () => {
   const router = useRouter();
@@ -288,14 +287,16 @@ const properties = [
       <div className="max-w-7xl mx-auto p-6 bg-white">
 
         {/* ✅ BACK BUTTON BELOW NAVBAR */}
-       <div className="mb-6">
+     {/* ✅ BACK BUTTON – MOBILE ONLY */}
+<div className="mb-6 block md:hidden">
   <button
-    onClick={() => router.push("/")} // Navigate to home page
+    onClick={() => router.push("/")}
     className="bg-yellow-500 text-white px-5 py-3 rounded-full shadow-md hover:bg-yellow-600 transition"
   >
-    ← Home
+    ← Back to Home
   </button>
 </div>
+
 
 
         {/* Search Bar */}
