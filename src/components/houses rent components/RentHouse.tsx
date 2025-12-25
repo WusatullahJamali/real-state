@@ -1,230 +1,107 @@
 "use client";
+
 import Link from "next/link";
 import React, { useState } from "react";
-import { Heart, Bed, Ruler, MapPin } from "lucide-react";
-
-// House type
-export interface HouseType {
-  id: number;
-  title: string;
-  price: number;
-  bedrooms: number;
-  location: string;
-  image: string;
-  description: string;
-  amenities: string[];
-  areaSqFt: number;
-}
-
-// Expanded house list
-export const houseList: HouseType[] = [
-  {
-    id: 1,
-    title: "Luxury Villa",
-    price: 2500,
-    bedrooms: 4,
-    location: "Baghdad, Green Zone",
-    image: "/house1.png",
-    description: "A spacious and modern 4-bedroom villa with a private garden and pool, located in Baghdad's prestigious Green Zone.",
-    amenities: ["24/7 Security", "Swimming Pool", "Gym", "Garage"],
-    areaSqFt: 3500,
-  },
-  {
-    id: 2,
-    title: "Modern Apartment",
-    price: 1200,
-    bedrooms: 2,
-    location: "Erbil, Ankawa District",
-    image: "/house2.png",
-    description: "A bright 2-bedroom apartment with balcony views and modern interior, close to cafes and shopping areas.",
-    amenities: ["Elevator", "Security", "Gym Access"],
-    areaSqFt: 1100,
-  },
-  {
-    id: 3,
-    title: "Cozy Studio",
-    price: 700,
-    bedrooms: 1,
-    location: "Basra, Al-Fao Street",
-    image: "/house3.png",
-    description: "Compact studio apartment ideal for singles, with all necessary amenities and central location.",
-    amenities: ["24/7 Security", "Parking"],
-    areaSqFt: 550,
-  },
-  {
-    id: 4,
-    title: "Family Home",
-    price: 1800,
-    bedrooms: 3,
-    location: "Mosul, Old City",
-    image: "/house4.png",
-    description: "Comfortable 3-bedroom home with garden space, perfect for small families.",
-    amenities: ["Garden", "Garage", "Security Cameras"],
-    areaSqFt: 2100,
-  },
-  {
-    id: 5,
-    title: "Beachside Villa",
-    price: 3500,
-    bedrooms: 5,
-    location: "Basra, Shatt Al-Arab",
-    image: "/house5.jpg",
-    description: "Luxury 5-bedroom villa with stunning river views, private pool, and modern interiors.",
-    amenities: ["Swimming Pool", "Private Beach Access", "Gym", "Garage"],
-    areaSqFt: 4500,
-  },
-  {
-    id: 6,
-    title: "Penthouse Suite",
-    price: 4000,
-    bedrooms: 4,
-    location: "Baghdad, Karrada District",
-    image: "/house6.png",
-    description: "Elegant penthouse with panoramic city views, premium amenities, and rooftop terrace.",
-    amenities: ["Elevator", "Rooftop Terrace", "24/7 Security"],
-    areaSqFt: 3800,
-  },
-  {
-    id: 7,
-    title: "Suburban Family Home",
-    price: 1600,
-    bedrooms: 3,
-    location: "Erbil, Ainkawa Suburbs",
-    image: "/house7.jpg",
-    description: "Comfortable suburban 3-bedroom home with garden, parking, and easy access to schools.",
-    amenities: ["Garage", "Garden", "Pet-Friendly"],
-    areaSqFt: 2000,
-  },
-  {
-    id: 8,
-    title: "Studio Apartment",
-    price: 850,
-    bedrooms: 1,
-    location: "Kirkuk, Al-Rashid Street",
-    image: "/house8.avif",
-    description: "Modern 1-bedroom studio with all utilities included and secure building access.",
-    amenities: ["Security", "Elevator", "Parking"],
-    areaSqFt: 600,
-  },
-  {
-    id: 9,
-    title: "Duplex Home",
-    price: 2200,
-    bedrooms: 4,
-    location: "Baghdad, Dora District",
-    image: "/house9.jpg",
-    description: "Spacious 4-bedroom duplex with open-plan living, balcony, and modern kitchen.",
-    amenities: ["Garage", "Garden", "Security System"],
-    areaSqFt: 3200,
-  },
-  {
-    id: 10,
-    title: "Luxury Condo",
-    price: 2000,
-    bedrooms: 3,
-    location: "Erbil, Center District",
-    image: "/house10.png",
-    description: "Premium 3-bedroom condo in a gated community with gym, pool, and concierge services.",
-    amenities: ["Swimming Pool", "Gym", "Security", "Elevator"],
-    areaSqFt: 2500,
-  },
-  {
-    id: 11,
-    title: "Modern Townhouse",
-    price: 1800,
-    bedrooms: 3,
-    location: "Basra, Al-Maqal",
-    image: "/house11.jpg",
-    description: "Stylish 3-bedroom townhouse with garage, small garden, and modern interiors.",
-    amenities: ["Garage", "Garden", "24/7 Security"],
-    areaSqFt: 1900,
-  },
-  {
-    id: 12,
-    title: "Classic Bungalow",
-    price: 1400,
-    bedrooms: 3,
-    location: "Mosul, Nineveh Street",
-    image: "/house12.png",
-    description: "Traditional 3-bedroom bungalow with spacious living room, garden, and secure parking.",
-    amenities: ["Garden", "Parking", "Security Cameras"],
-    areaSqFt: 2200,
-  },
-];
-
-
+import { Heart, Bed, Ruler, MapPin, ArrowRight, Sparkles } from "lucide-react";
+import { houseList, HouseType } from "./RentData";
 
 const RentHouses = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
 
-  const toggleFav = (id: number) => {
-    if (favorites.includes(id)) {
-      setFavorites(favorites.filter((fav) => fav !== id));
-    } else {
-      setFavorites([...favorites, id]);
-    }
+  const toggleFav = (e: React.MouseEvent, id: number) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setFavorites(prev => 
+      prev.includes(id) ? prev.filter(fav => fav !== id) : [...prev, id]
+    );
   };
 
   return (
-    <section className="py-14 px-6 bg-gray-100 text-black">
-      <h2 className="text-3xl font-bold text-center mb-10">Houses for Rent</h2>
-
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {houseList.map((house) => (
-          <div
-            key={house.id}
-            className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition cursor-pointer transform hover:-translate-y-1"
-          >
-            {/* Image with overlay */}
-            <div className="relative">
-              <img src={house.image} alt={house.title} className="w-full h-56 object-cover" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent flex items-end p-4">
-                <p className="text-white font-semibold text-sm flex items-center gap-2">
-                  <MapPin className="w-4 h-4" /> {house.location}
-                </p>
-              </div>
-              <button
-                onClick={() => toggleFav(house.id)}
-                className="absolute top-3 right-3 bg-white rounded-full p-2 shadow hover:scale-110 transition"
-              >
-                <Heart className={`w-6 h-6 ${favorites.includes(house.id) ? "text-red-500" : "text-gray-400"}`} />
-              </button>
+    <section className="py-16 px-6 bg-white text-black">
+      <div className="max-w-7xl mx-auto">
+        {/* Header */}
+        <div className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6">
+          <div className="text-center md:text-left">
+            <div className="flex items-center justify-center md:justify-start gap-2 text-yellow-600 font-bold tracking-widest uppercase text-sm mb-2">
+              <Sparkles className="w-4 h-4" />
+              <span>Exclusive Rentals</span>
             </div>
-
-            {/* Card Content */}
-            <div className="p-5 flex flex-col gap-3">
-              <h3 className="text-xl font-semibold">{house.title}</h3>
-              <p className="text-blue-600 font-bold">${house.price}/month</p>
-
-              {/* Badges */}
-              <div className="flex items-center gap-4 text-gray-700">
-                <div className="flex items-center gap-1">
-                  <Bed className="w-4 h-4" /> {house.bedrooms} Beds
-                </div>
-                <div className="flex items-center gap-1">
-                  <Ruler className="w-4 h-4" /> {house.areaSqFt} sqft
-                </div>
-              </div>
-
-              {/* Amenities (first 3) */}
-              <div className="flex gap-3 mt-2 flex-wrap">
-                {house.amenities.slice(0, 3).map((am, i) => (
-                  <span key={i} className="text-xs bg-gray-200 px-2 py-1 rounded-full">
-                    {am}
-                  </span>
-                ))}
-              </div>
-
-              <Link
-                key={house.id}
-                href={`/houses-for-rent/house/${house.id}`}
-                className="mt-4 block bg-yellow-600 text-white py-2 text-center rounded hover:bg-yellow-700 transition"
-              >
-                View Details
-              </Link>
-            </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight">
+              Houses for <span className="text-yellow-500">Rent</span>
+            </h2>
           </div>
-        ))}
+          <div className="h-1 w-16 bg-yellow-500 hidden md:block"></div>
+        </div>
+
+        {/* Grid */}
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {houseList.map((house: HouseType) => (
+            <div
+              key={house.id}
+              className="group relative bg-white rounded-2xl border border-gray-100 shadow-sm hover:shadow-lg transition-all duration-500 overflow-hidden flex flex-col"
+            >
+              {/* Image */}
+              <div className="relative overflow-hidden h-48">
+                <img 
+                  src={house.image} 
+                  alt={house.title} 
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                />
+                <div className="absolute bottom-3 left-3 bg-white/80 backdrop-blur-md px-2 py-1 rounded-full flex items-center gap-1 shadow-sm text-xs">
+                  <MapPin className="w-3 h-3 text-yellow-600" />
+                  <span className="font-bold text-black">{house.location}</span>
+                </div>
+                <button
+                  onClick={(e) => toggleFav(e, house.id)}
+                  className="absolute top-3 right-3 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-md transition-colors"
+                >
+                  <Heart 
+                    className={`w-4 h-4 transition-colors duration-300 ${favorites.includes(house.id) ? "fill-yellow-600 text-yellow-600" : "text-gray-400"}`} 
+                  />
+                </button>
+              </div>
+
+              {/* Content */}
+              <div className="p-5 flex flex-col flex-grow">
+                <h3 className="text-xl font-bold group-hover:text-yellow-600 transition-colors mb-2">{house.title}</h3>
+                <p className="text-2xl font-black text-black mb-3">
+                  ${house.price.toLocaleString()}<span className="text-sm font-normal text-black">/mo</span>
+                </p>
+
+                <div className="flex items-center gap-4 mb-4 text-sm">
+                  <div className="flex items-center gap-1">
+                    <div className="p-1 bg-yellow-50 rounded">
+                      <Bed className="w-3.5 h-3.5 text-yellow-600" />
+                    </div>
+                    <span className="font-bold text-black">{house.bedrooms} Beds</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <div className="p-1 bg-yellow-50 rounded">
+                      <Ruler className="w-3.5 h-3.5 text-yellow-600" />
+                    </div>
+                    <span className="font-bold text-black">{house.areaSqFt} sqft</span>
+                  </div>
+                </div>
+
+                <div className="flex gap-2 mb-4 flex-wrap text-[9px]">
+                  {house.amenities.slice(0, 2).map((am, i) => (
+                    <span key={i} className="uppercase font-bold tracking-wider bg-gray-50 text-black px-2 py-0.5 rounded border border-gray-100">
+                      {am}
+                    </span>
+                  ))}
+                </div>
+
+                <Link
+                  href={`/houses-for-rent/house/${house.id}`}
+                  className="mt-auto flex items-center justify-center gap-2 w-full bg-black text-white font-bold py-3 rounded-xl hover:bg-yellow-500 transition-all duration-300"
+                >
+                  View Details
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );

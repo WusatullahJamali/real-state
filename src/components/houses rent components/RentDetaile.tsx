@@ -1,10 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+
 import { useParams } from "next/navigation";
-import { HouseType, houseList } from "./RentHouse"; // adjust the import path
-import { Heart, Bed, Ruler, MapPin } from "lucide-react";
+
 import Link from "next/link";
+import { useEffect, useState } from "react";
+import { MapPin, Bed, Ruler, Heart } from "lucide-react";
+import { HouseType, houseList } from "./RentData";
 
 const RentHouseDetail = () => {
   const params = useParams();
@@ -31,16 +33,8 @@ const RentHouseDetail = () => {
   const toggleFavorite = () => setFavorite(!favorite);
 
   return (
-    <section className="py-14 px-6 bg-gray-100 text-black">
-      <div className="max-w-6xl mx-auto flex flex-col md:flex-row gap-10">
-        {/* Image */}
-        <div className="md:w-2/3">
-          <img
-            src={house.image}
-            alt={house.title}
-            className="w-full h-96 object-cover rounded-xl shadow-md"
-          />
-        </div>
+    <div className="bg-gray-50 min-h-screen py-10 text-black">
+      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
 
         {/* Details */}
         <div className="md:w-1/3 flex flex-col gap-5">
@@ -51,13 +45,27 @@ const RentHouseDetail = () => {
           </p>
 
           {/* Badges */}
-          <div className="flex items-center gap-6 text-gray-700 mt-2">
-            <div className="flex items-center gap-1">
-              <Bed className="w-4 h-4" /> {house.bedrooms} Beds
-            </div>
-            <div className="flex items-center gap-1">
-              <Ruler className="w-4 h-4" /> {house.areaSqFt} sqft
-            </div>
+          <div className="flex items-center gap-2 mt-4">
+            <span className="bg-yellow-500 text-black px-3 py-1 rounded-md text-sm font-medium">Featured</span>
+            <span className="bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium">Verified</span>
+          </div>
+
+          {/* Title & Location */}
+          <h1 className="text-3xl font-bold mt-4">{house.title}</h1>
+          <div className="flex items-center text-black mt-1">
+            <MapPin className="w-5 h-5 mr-1" /> {house.location}
+          </div>
+
+          {/* Features */}
+          <div className="flex flex-wrap gap-4 mt-4 text-black font-medium">
+            <span className="flex items-center gap-1"><Bed className="w-5 h-5 text-yellow-500" /> {house.bedrooms} Beds</span>
+            <span className="flex items-center gap-1"><Ruler className="w-5 h-5 text-yellow-500" /> {house.areaSqFt} Sq Ft</span>
+          </div>
+
+          {/* Description */}
+          <div className="mt-6">
+            <h2 className="text-2xl font-bold text-black">Description</h2>
+            <p className="text-black mt-3 leading-relaxed whitespace-pre-line">{house.description}</p>
           </div>
 
           {/* Amenities */}
@@ -88,15 +96,33 @@ const RentHouseDetail = () => {
             <Heart className="w-5 h-5" /> {favorite ? "Favorited" : "Add to Favorites"}
           </button>
 
-          <Link
-            href="/houses-for-rent"
-            className="mt-4 inline-block bg-gray-300 text-black py-2 px-6 rounded hover:bg-gray-400 transition"
-          >
-            Back to Houses
-          </Link>
+            <div className="text-3xl font-bold text-black">${house.price}</div>
+            <div className="text-gray-600 text-sm">Shahzaib</div>
+
+            {/* Favorite Button */}
+            <button
+              onClick={() => setFavorite(!favorite)}
+              className={`w-full flex items-center justify-center gap-2 py-3 rounded-full font-semibold transition ${
+                favorite ? "bg-yellow-500 text-yellow-500 hover:bg-yellow-600" : "bg-yellow-600 text-white hover:bg-yellow-700"
+              }`}
+            >
+              <Heart className="w-5 h-5" /> {favorite ? "Favorited" : "Add to Favorites"}
+            </button>
+
+            {/* Contact Form */}
+            <form className="mt-6 space-y-3 text-black">
+              <input className="w-full p-3 border rounded-lg" type="text" placeholder="Your Name" />
+              <input className="w-full p-3 border rounded-lg" type="email" placeholder="Your Email" />
+              <input className="w-full p-3 border rounded-lg" type="tel" placeholder="Your Phone" />
+              <textarea className="w-full p-3 border rounded-lg h-28" placeholder="I'm interested in this property..." />
+
+              <button className="w-full bg-yellow-500 text-black py-3 rounded-lg font-semibold hover:bg-yellow-600">Request Tour</button>
+              <button type="button" className="w-full border border-black text-black py-3 rounded-lg font-semibold hover:bg-gray-100">Call Agent</button>
+            </form>
+          </div>
         </div>
       </div>
-    </section>
+ 
   );
 };
 
