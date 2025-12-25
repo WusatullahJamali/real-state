@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import ACards from "@/components/rent-components/ACards";
 import AdviceCardsRow from "@/components/rent-components/AdviceCard";
@@ -11,7 +11,6 @@ import OnlineApplications from "@/components/rent-components/OnlineApplications"
 import Pet from "@/components/rent-components/Pet";
 import UnitLaundry from "@/components/rent-components/UnitLaundry";
 
-
 export default function Page() {
   return (
     <div>
@@ -21,11 +20,11 @@ export default function Page() {
       <Pet />
       <OnlineApplications />
       <UnitLaundry />
-       <ACards />
+      <ACards />
       <Hero2 />
       <AdviceCardsRow />
-      
-       <GeoFooter />
+
+      <GeoFooter />
     </div>
   );
 }
