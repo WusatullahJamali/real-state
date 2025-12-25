@@ -52,7 +52,7 @@ const Footer = () => {
                 { text: "Rent Property", href: "/rent" },
                 { text: "Sell Property", href: "/sell" },
                 { text: "Find Agents", href: "/find-agent" },
-                { text: "For Developers", href: "/for-developers" },
+                // { text: "For Developers", href: "/for-developers" },
               ].map((item) => (
                 <li key={item.text}>
                   <Link
