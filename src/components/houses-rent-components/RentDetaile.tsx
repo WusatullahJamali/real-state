@@ -4,158 +4,187 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { MapPin, Bed, Ruler, Heart } from "lucide-react";
+import { MapPin, Bed, Ruler, Bath, Car, Star, CheckCircle2 } from "lucide-react";
 import { HouseType, houseList } from "./RentData";
 
 export default function RentHouseDetailPage() {
   const { id } = useParams();
   const house: HouseType | undefined = houseList.find((h) => h.id === Number(id));
 
-  const [favorite, setFavorite] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
-  const images = house ? [house.image] : [];
-
-  useEffect(() => {
-    if (!images.length) return;
-    const interval = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % images.length);
-    }, 4000);
-    return () => clearInterval(interval);
-  }, [images]);
+  // Using the main image for the triple-stack look as per your style guide
+  const images = house ? [house.image, house.image, house.image] : [];
 
   if (!house) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center text-center bg-white">
-        <h1 className="text-3xl font-bold text-yellow-500">Property Not Found</h1>
-        <Link href="/" className="mt-4 inline-block bg-yellow-500 text-white px-6 py-3 rounded-md hover:bg-yellow-600">
-          Go Back
-        </Link>
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 p-10">
+        <div className="text-center bg-white p-12 rounded-lg shadow-md">
+          <h1 className="text-2xl font-semibold text-red-600">Property Not Found</h1>
+          <Link href="/houses-for-rent" className="mt-6 inline-block bg-yellow-500 text-black px-6 py-2 rounded-lg font-bold">
+            ← Back to Listings
+          </Link>
+        </div>
       </div>
     );
   }
 
-  return (
-    <div className="bg-gray-50 min-h-screen py-10 text-black">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
+  const { title, price, bedrooms, location, description, amenities, areaSqFt } = house;
 
-        {/* Left/Main Content */}
+  return (
+    <div className="bg-gray-50 min-h-screen py-8 text-gray-900">
+      <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 lg:grid-cols-3 gap-8">
+
+        {/* LEFT --- MAIN CONTENT */}
         <div className="lg:col-span-2 space-y-6">
 
-          {/* Image Gallery */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="col-span-3">
+          {/* IMAGE GALLERY - Matching your exact gallery style */}
+          <div className="flex gap-3">
+            {/* Left main image */}
+            <div className="flex-1 relative h-[400px]">
               <Image
                 src={images[currentImage]}
-                alt={house.title}
-                width={1200}
-                height={500}
-                className="rounded-xl shadow-md w-full h-[400px] object-cover"
+                alt={title}
+                fill
+                className="rounded-lg object-cover shadow-sm"
               />
             </div>
-            <div className="hidden md:flex flex-col gap-3">
+            
+            {/* Right thumbnails */}
+            <div className="flex flex-col gap-3 w-28">
               {images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setCurrentImage(i)}
-                  className={`rounded-lg overflow-hidden border transition ${
-                    currentImage === i ? "border-yellow-500" : "border-gray-300 hover:border-yellow-400"
+                  className={`relative h-24 rounded-lg overflow-hidden transition-all ${
+                    currentImage === i ? "ring-2 ring-yellow-500" : "opacity-70 hover:opacity-100"
                   }`}
                 >
-                  <Image
-                    src={img}
-                    alt={`thumb-${i}`}
-                    width={200}
-                    height={100}
-                    className="w-full h-[100px] object-cover"
-                  />
+                  <Image src={img} alt={`thumb-${i}`} fill className="object-cover" />
                 </button>
               ))}
             </div>
           </div>
 
-          {/* Badges */}
-          <div className="flex items-center gap-2 mt-4">
-            <span className="bg-yellow-500 text-black px-3 py-1 rounded-md text-sm font-medium">Featured</span>
-            <span className="bg-green-600 text-white px-3 py-1 rounded-md text-sm font-medium">Verified</span>
+          {/* TITLE & BADGES */}
+          <div className="space-y-3">
+            <div className="flex items-center gap-2">
+                <span className="bg-yellow-500 text-black px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+                  Featured
+                </span>
+                <span className="bg-green-600 text-white px-3 py-1 rounded text-[10px] font-bold uppercase tracking-wider">
+                  Verified
+                </span>
+            </div>
+            <h1 className="text-3xl font-semibold text-gray-900 leading-tight uppercase tracking-tight">{title}</h1>
+            
+            <div className="flex items-center text-gray-500 text-sm">
+              <MapPin className="w-4 h-4 mr-1.5 text-yellow-600" /> {location}
+            </div>
           </div>
 
-          {/* Title & Location */}
-          <h1 className="text-3xl font-bold mt-4">{house.title}</h1>
-          <div className="flex items-center text-black mt-1">
-            <MapPin className="w-5 h-5 mr-1" /> {house.location}
+          {/* SPECS BAR */}
+          <div className="flex flex-wrap items-center gap-6 py-4 border-t border-b border-gray-100 text-sm text-gray-600">
+            <div className="flex items-center gap-2">
+                <Bed className="w-5 h-5 text-gray-400" /> {bedrooms} Bedrooms
+            </div>
+            <div className="flex items-center gap-2">
+                <Bath className="w-5 h-5 text-gray-400" /> 3 Bathrooms
+            </div>
+            <div className="flex items-center gap-2">
+                <Ruler className="w-5 h-5 text-gray-400" /> {areaSqFt} Sq Ft
+            </div>
+            <div className="flex items-center gap-2">
+                <Car className="w-5 h-5 text-gray-400" /> Parking
+            </div>
           </div>
 
-          {/* Features */}
-          <div className="flex flex-wrap gap-4 mt-4 text-black font-medium">
-            <span className="flex items-center gap-1"><Bed className="w-5 h-5 text-yellow-500" /> {house.bedrooms} Beds</span>
-            <span className="flex items-center gap-1"><Ruler className="w-5 h-5 text-yellow-500" /> {house.areaSqFt} Sq Ft</span>
+          {/* DESCRIPTION */}
+          <div className="space-y-3">
+            <h2 className="text-xl font-semibold text-gray-900">Description</h2>
+            <p className="text-gray-600 leading-relaxed text-sm">
+                {description || "A luxury rental property in a prime neighborhood. This home features high-end finishes, spacious living areas, and is move-in ready for those seeking comfort and style."}
+            </p>
           </div>
 
-          {/* Description */}
-          <div className="mt-6">
-            <h2 className="text-2xl font-bold text-black">Description</h2>
-            <p className="text-black mt-3 leading-relaxed whitespace-pre-line">{house.description}</p>
-          </div>
-
-          {/* Amenities */}
-          <div className="mt-6">
-            <h2 className="text-2xl font-bold text-black">Amenities</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-4">
-              {house.amenities.map((am, i) => (
-                <div key={i} className="flex items-center gap-2 p-3 border rounded-lg text-black">
-                  {am}
+          {/* AMENITIES */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">Amenities</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {amenities.map((am, i) => (
+                <div key={i} className="flex items-center gap-2 p-3 bg-white border border-gray-200 rounded-lg text-sm hover:shadow-sm transition-shadow">
+                  <CheckCircle2 className="w-4 h-4 text-yellow-500" />
+                  <span className="text-gray-700">{am}</span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* Location Map */}
-          <div className="mt-8">
-            <h2 className="text-2xl font-bold text-black">Location</h2>
-            <div className="mt-4 h-[300px] rounded-xl border flex items-center justify-center bg-gray-100">
-              <div className="text-center">
-                <div className="text-4xl">📍</div>
-                <p className="mt-2 text-black">{house.location}</p>
-              </div>
+          {/* LOCATION MAP */}
+          <div className="space-y-4">
+            <h2 className="text-xl font-semibold text-gray-900">Location</h2>
+            <div className="h-64 bg-white rounded-lg border border-gray-200 overflow-hidden flex flex-col items-center justify-center">
+               <div className="bg-gray-50 p-4 rounded-full mb-2">
+                 <MapPin className="w-8 h-8 text-red-500" />
+               </div>
+               <span className="font-medium text-sm text-gray-700 uppercase tracking-widest">{location}</span>
             </div>
           </div>
         </div>
 
-        {/* Right Sidebar */}
+        {/* RIGHT --- CONTACT SIDEBAR */}
         <div className="w-full">
-          <div className="p-6 rounded-xl shadow-md border bg-white sticky top-24 space-y-4">
+          <div className="p-6 rounded-lg bg-white border border-gray-200 sticky top-8 shadow-sm">
+            
+            <div className="mb-6">
+                <div className="text-3xl font-bold text-gray-900">${price.toLocaleString()}</div>
+                <p className="text-gray-400 text-xs mt-1 font-medium text-nowrap">Monthly Rent • Security Deposit Required</p>
+            </div>
 
-            <div className="text-3xl font-bold text-black">${house.price}</div>
-            <div className="text-gray-600 text-sm">Shahzaib</div>
+            {/* Agent Section */}
+            <div className="flex items-center gap-3 py-4 border-t border-b border-gray-100 mb-6">
+              <div className="w-12 h-12 rounded-full bg-black flex items-center justify-center font-semibold text-white">
+                SA
+              </div>
+              <div>
+                <p className="font-medium text-sm">Shahzaib Ahmed</p>
+                <p className="text-gray-400 text-xs">Rental Specialist</p>
+                <div className="flex gap-0.5 mt-1 text-yellow-500">
+                    <Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" /><Star className="w-3 h-3 fill-current" />
+                    <Star className="w-3 h-3 fill-current" />
+                </div>
+              </div>
+            </div>
 
-            {/* Favorite Button */}
-            <button
-              onClick={() => setFavorite(!favorite)}
-              className={`w-full flex items-center justify-center gap-2 py-3 rounded-full font-semibold transition ${
-                favorite ? "bg-yellow-500 text-yellow-500 hover:bg-yellow-600" : "bg-yellow-600 text-white hover:bg-yellow-700"
-              }`}
-            >
-              <Heart className="w-5 h-5" /> {favorite ? "Favorited" : "Add to Favorites"}
-            </button>
+            {/* FORM */}
+            <form className="space-y-3">
+              <div className="space-y-3">
+                <input className="w-full p-3 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 outline-none focus:border-yellow-500 transition-colors" type="text" placeholder="Your Name" />
+                <input className="w-full p-3 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 outline-none focus:border-yellow-500 transition-colors" type="email" placeholder="Your Email" />
+                <input className="w-full p-3 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 outline-none focus:border-yellow-500 transition-colors" type="tel" placeholder="Your Phone" />
+                <textarea className="w-full p-3 border border-gray-300 rounded-lg text-sm placeholder:text-gray-400 outline-none focus:border-yellow-500 transition-colors h-24 resize-none" placeholder="I'm interested in renting this home..." />
+              </div>
 
-            {/* Contact Form */}
-            <form className="mt-6 space-y-3 text-black">
-              <input className="w-full p-3 border rounded-lg" type="text" placeholder="Your Name" />
-              <input className="w-full p-3 border rounded-lg" type="email" placeholder="Your Email" />
-              <input className="w-full p-3 border rounded-lg" type="tel" placeholder="Your Phone" />
-              <textarea className="w-full p-3 border rounded-lg h-28" placeholder="I'm interested in this property..." />
-
-              <button className="w-full bg-yellow-500 text-black py-3 rounded-lg font-semibold hover:bg-yellow-600">Request Tour</button>
-              <button type="button" className="w-full border border-black text-black py-3 rounded-lg font-semibold hover:bg-gray-100">Call Agent</button>
+              <div className="pt-3 space-y-3">
+                <button className="w-full bg-yellow-500 text-black py-3 rounded-lg font-bold text-sm hover:bg-yellow-600 transition-colors">
+                  Check Availability
+                </button>
+                <button type="button" className="w-full border border-gray-300 text-gray-700 py-3 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors">
+                  Call Property Manager
+                </button>
+              </div>
             </form>
           </div>
         </div>
+
       </div>
 
-      {/* Back Button */}
-      <div className="max-w-6xl mx-auto px-6 mt-12">
-        <Link href="/houses-for-rent" className="px-6 py-3 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600">
-          ← Back to Listings
+      {/* FOOTER ACTION */}
+      <div className="max-w-6xl mx-auto px-4 mt-12 mb-10">
+        <Link href="/houses-for-rent">
+            <button className="flex items-center gap-2 bg-yellow-500 text-black px-6 py-3 rounded-lg font-bold text-sm hover:bg-yellow-600 transition-colors shadow-sm">
+                ← Back to House Listings
+            </button>
         </Link>
       </div>
     </div>

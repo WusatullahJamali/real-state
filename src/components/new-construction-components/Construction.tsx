@@ -44,26 +44,34 @@ export default function Construction({
 
   return (
     <section className="bg-white py-12 text-black">
-      <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-5xl mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredListings.map((l) => (
           <div
             key={l.id}
-            className="bg-white rounded-xl border border-gray-100 overflow-hidden hover:shadow-lg transition"
+            className="group bg-white rounded-2xl border border-gray-100 overflow-hidden
+                       shadow-sm hover:shadow-xl transition-all duration-300"
           >
-            <div className="relative h-44">
+            {/* IMAGE */}
+            <div className="relative h-44 overflow-hidden">
               <Image
                 src={l.image}
                 alt={l.address}
                 fill
-                className="object-cover"
+                className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
 
+              {/* GRADIENT OVERLAY */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/0 to-transparent" />
+
+              {/* FAVORITE */}
               <button
                 onClick={() => toggleFavorite(l.id)}
-                className="absolute top-3 right-3 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow"
+                className="absolute top-3 right-3 bg-white/90 backdrop-blur-md
+                           w-8 h-8 rounded-full flex items-center justify-center
+                           shadow-md hover:scale-105 transition"
               >
                 <Heart
-                  className={`w-4 h-4 ${
+                  className={`w-4 h-4 transition-colors ${
                     favorites.includes(l.id)
                       ? "fill-yellow-500 text-yellow-500"
                       : "text-gray-600"
@@ -72,30 +80,47 @@ export default function Construction({
               </button>
             </div>
 
-            <div className="p-4">
-              <h3 className="text-xl font-bold mb-1">
+            {/* CONTENT */}
+            <div className="p-3 space-y-2">
+              {/* PRICE */}
+              <h3 className="text-lg font-extrabold tracking-tight">
                 ${l.price.toLocaleString()}
               </h3>
 
-              <div className="flex items-center gap-1 text-xs mb-3">
-                <MapPin className="w-3 h-3 text-yellow-600" />
-                {l.address}, {l.city}
-              </div>
-
-              <div className="flex justify-between py-2 border-y mb-3 text-xs font-bold">
-                <span className="flex gap-1">
-                  <Bed className="w-3 h-3 text-yellow-600" /> {l.beds}
-                </span>
-                <span className="flex gap-1">
-                  <Bath className="w-3 h-3 text-yellow-600" /> {l.baths}
-                </span>
-                <span className="flex gap-1">
-                  <Maximize className="w-3 h-3 text-yellow-600" /> {l.sqft}
+              {/* LOCATION */}
+              <div className="flex items-start gap-1.5 text-xs text-gray-600 leading-snug">
+                <MapPin className="w-3.5 h-3.5 text-yellow-500 mt-0.5" />
+                <span>
+                  {l.address},{" "}
+                  <span className="font-medium text-black">{l.city}</span>
                 </span>
               </div>
 
+              {/* STATS */}
+              <div className="flex justify-between py-2 px-1 rounded-lg bg-gray-50
+                              border border-gray-100 text-[11px] font-semibold">
+                <span className="flex items-center gap-1">
+                  <Bed className="w-3.5 h-3.5 text-yellow-600" />
+                  {l.beds} Beds
+                </span>
+                <span className="flex items-center gap-1">
+                  <Bath className="w-3.5 h-3.5 text-yellow-600" />
+                  {l.baths} Baths
+                </span>
+                <span className="flex items-center gap-1">
+                  <Maximize className="w-3.5 h-3.5 text-yellow-600" />
+                  {l.sqft} sqft
+                </span>
+              </div>
+
+              {/* CTA */}
               <Link href={`/new-construction/${l.id}`}>
-                <button className="w-full bg-gray-800 text-white text-xs font-bold py-2 rounded-lg hover:bg-yellow-600 transition uppercase">
+                <button
+                  className="w-full mt-2 bg-black text-white text-[11px]
+                             font-bold py-2 rounded-lg uppercase tracking-wider
+                             hover:bg-yellow-500 hover:text-black
+                             transition-all duration-300"
+                >
                   View Details
                 </button>
               </Link>
