@@ -5,56 +5,55 @@ import { Heart } from "lucide-react";
 
 const NewListings = () => {
   const listings = [
-  {
-    id: 1,
-    image: "/new1.webp",
-    badge: "New units - 10 hours ago",
-    type: "Single-Family Home",
-    price: "$1,800",
-    beds: 4,
-    baths: 2,
-    sqft: "1,750",
-    address: "Al-Yarmouk District",
-    city: "Baghdad, Iraq",
-  },
-  {
-    id: 2,
-    image: "/new2.webp",
-    badge: "New units - 10 hours ago",
-    type: "Apartment",
-    price: "$650 - $850",
-    beds: "Studio - 2",
-    baths: 1,
-    sqft: null,
-    address: "Dream City",
-    city: "Erbil, Kurdistan Region",
-  },
-  {
-    id: 3,
-    image: "/new4.jpg",
-    badge: "New units - 10 hours ago",
-    type: "Apartment",
-    price: "$750",
-    beds: 2,
-    baths: 1,
-    sqft: null,
-    address: "Al-Ashar",
-    city: "Basra, Iraq",
-  },
-  {
-    id: 4,
-    image: "/new3.webp",
-    badge: "New units - 22 hours ago",
-    type: "Apartment",
-    price: "$700",
-    beds: 2,
-    baths: 1,
-    sqft: "1,150",
-    address: "Al-Mansour",
-    city: "Baghdad, Iraq",
-  },
-];
-
+    {
+      id: 1,
+      images: "/new1.webp",
+      badge: "New units - 10 hours ago",
+      type: "Single-Family Home",
+      price: "$1,800",
+      beds: 4,
+      baths: 2,
+      sqft: "1,750",
+      address: "Al-Yarmouk District",
+      city: "Baghdad, Iraq",
+    },
+    {
+      id: 2,
+      image: "/new2.webp",
+      badge: "New units - 10 hours ago",
+      type: "Apartment",
+      price: "$650 - $850",
+      beds: "Studio - 2",
+      baths: 1,
+      sqft: null,
+      address: "Dream City",
+      city: "Erbil, Kurdistan Region",
+    },
+    {
+      id: 3,
+      image: "/new4.jpg",
+      badge: "New units - 10 hours ago",
+      type: "Apartment",
+      price: "$750",
+      beds: 2,
+      baths: 1,
+      sqft: null,
+      address: "Al-Ashar",
+      city: "Basra, Iraq",
+    },
+    {
+      id: 4,
+      image: "/new3.webp",
+      badge: "New units - 22 hours ago",
+      type: "Apartment",
+      price: "$700",
+      beds: 2,
+      baths: 1,
+      sqft: "1,150",
+      address: "Al-Mansour",
+      city: "Baghdad, Iraq",
+    },
+  ];
 
   const [saved, setSaved] = useState<number[]>([]);
 
@@ -122,9 +121,7 @@ const NewListings = () => {
                     </span>
                   </div>
 
-                  <div className="text-2xl font-bold mb-2">
-                    {listing.price}
-                  </div>
+                  <div className="text-2xl font-bold mb-2">{listing.price}</div>
 
                   <div className="text-sm text-gray-600 mb-3">
                     <span className="font-semibold">{listing.beds}</span> bed •{" "}
@@ -132,8 +129,7 @@ const NewListings = () => {
                     {listing.sqft && (
                       <>
                         {" "}
-                        •{" "}
-                        <span className="font-semibold">
+                        • <span className="font-semibold">
                           {listing.sqft}
                         </span>{" "}
                         sqft
