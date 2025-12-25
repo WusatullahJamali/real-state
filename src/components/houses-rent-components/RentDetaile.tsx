@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { MapPin, Bed, Ruler, Heart } from "lucide-react";
-import { HouseType, houseList } from "./RentHouse"; // Adjust path
+import { HouseType, houseList } from "./RentData";
 
 export default function RentHouseDetailPage() {
   const { id } = useParams();
@@ -35,7 +35,7 @@ export default function RentHouseDetailPage() {
   }
 
   return (
-    <div className="bg-gray-50 min-h-screen py-10">
+    <div className="bg-gray-50 min-h-screen py-10 text-black">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
 
         {/* Left/Main Content */}
@@ -81,7 +81,7 @@ export default function RentHouseDetailPage() {
 
           {/* Title & Location */}
           <h1 className="text-3xl font-bold mt-4">{house.title}</h1>
-          <div className="flex items-center text-gray-600 mt-1">
+          <div className="flex items-center text-black mt-1">
             <MapPin className="w-5 h-5 mr-1" /> {house.location}
           </div>
 
@@ -94,7 +94,7 @@ export default function RentHouseDetailPage() {
           {/* Description */}
           <div className="mt-6">
             <h2 className="text-2xl font-bold text-black">Description</h2>
-            <p className="text-gray-700 mt-3 leading-relaxed whitespace-pre-line">{house.description}</p>
+            <p className="text-black mt-3 leading-relaxed whitespace-pre-line">{house.description}</p>
           </div>
 
           {/* Amenities */}
@@ -126,13 +126,13 @@ export default function RentHouseDetailPage() {
           <div className="p-6 rounded-xl shadow-md border bg-white sticky top-24 space-y-4">
 
             <div className="text-3xl font-bold text-black">${house.price}</div>
-            <div className="text-gray-600 text-sm">Negotiable • Financing Available</div>
+            <div className="text-gray-600 text-sm">Shahzaib</div>
 
             {/* Favorite Button */}
             <button
               onClick={() => setFavorite(!favorite)}
               className={`w-full flex items-center justify-center gap-2 py-3 rounded-full font-semibold transition ${
-                favorite ? "bg-yellow-500 text-yellow-500 hover:bg-yellow-600" : "bg-yellow-600 text-black hover:bg-yellow-700"
+                favorite ? "bg-yellow-500 text-yellow-500 hover:bg-yellow-600" : "bg-yellow-600 text-white hover:bg-yellow-700"
               }`}
             >
               <Heart className="w-5 h-5" /> {favorite ? "Favorited" : "Add to Favorites"}

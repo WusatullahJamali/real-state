@@ -192,3 +192,4 @@ export const apartmentList: ApartmentType[] = [
     areaSqFt: 1150,
   },
 ];
+
