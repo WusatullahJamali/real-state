@@ -86,15 +86,7 @@ const ConstructionHead = ({
           </select>          
           
           {/* CLEAR FILTERS */}
-          {hasFilters && (
-            <button
-              onClick={clearFilters}
-              className="w-full lg:w-auto flex items-center justify-center gap-2 px-5 py-3.5 rounded-full border border-gray-300 bg-white text-sm font-medium text-black hover:bg-gray-100 transition whitespace-nowrap"
-            >
-              <X size={16} />
-              Clear
-            </button>
-          )}
+          
         </div>
       </div>
     </div>
