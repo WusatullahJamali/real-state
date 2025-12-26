@@ -64,7 +64,7 @@ const HomeDiscovery = () => {
 
   return (
     <section className="py-16 bg-white overflow-hidden">
-      <div className="max-w-[80.5rem] mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-322 mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Main Heading Animation */}
         <motion.h2 
