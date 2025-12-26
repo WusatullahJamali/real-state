@@ -1,195 +1,162 @@
 "use client";
-
-import React, { useState, useEffect } from "react";
-import {
-  Shield,
-  Activity,
-  Share2,
-  Lock,
-  ChevronRight,
-  Mail,
-  ArrowUpRight,
-  Fingerprint,
-  EyeOff,
-  Scale,
-  Globe,
-} from "lucide-react";
+import React from "react";
+import { Mail, Printer, ArrowUpRight, ShieldCheck } from "lucide-react";
 
 export default function PrivacyPolicy() {
-  const [expandedSection, setExpandedSection] = useState<number | null>(0);
-  const [scrollProgress, setScrollProgress] = useState(0);
-
-  useEffect(() => {
-    const updateScroll = () => {
-      const currentScroll = window.scrollY;
-      const scrollHeight =
-        document.documentElement.scrollHeight - window.innerHeight;
-
-      if (scrollHeight > 0) {
-        setScrollProgress((currentScroll / scrollHeight) * 100);
-      }
-    };
-
-    window.addEventListener("scroll", updateScroll);
-    return () => window.removeEventListener("scroll", updateScroll);
-  }, []);
+  const lastUpdated = "December 26, 2025";
 
   const policies = [
     {
-      icon: <Fingerprint />,
-      title: "Data Identity",
-      shortDesc: "What personal identifiers we collect to verify your account.",
-      fullDesc:
-        "We collect essential identifiers including your full name, encrypted email address, and verified phone number. This data allows us to create a secure environment for property transactions and prevents unauthorized access to your sensitive real estate documents.",
-      gradient: "from-indigo-600 to-violet-600",
-      bgLight: "bg-indigo-50/50",
+      id: "identity",
+      title: "1. Data Identity & Collection",
+      content:
+        "We collect essential identifiers including your full name, encrypted email address, and verified phone number. This data allows us to create a secure environment for property transactions and prevents unauthorized access to your sensitive real estate documents. We act as the data controller for the information you provide during account registration.",
     },
     {
-      icon: <Activity />,
-      title: "Usage Analytics",
-      shortDesc: "How we analyze interactions to simplify your search.",
-      fullDesc:
-        "Our systems analyze search patterns, saved properties, and duration of sessions. We use this anonymized data to train our recommendation engine, ensuring that the properties you see first are the ones most relevant to your lifestyle needs.",
-      gradient: "from-blue-600 to-cyan-500",
-      bgLight: "bg-blue-50/50",
+      id: "analytics",
+      title: "2. Usage Analytics",
+      content:
+        "Our systems analyze search patterns, saved properties, and duration of sessions. We use this anonymized data to train our recommendation engine, ensuring that the properties you see first are the ones most relevant to your lifestyle needs. This data is aggregated and does not identify individual users outside of the platform.",
     },
     {
-      icon: <EyeOff />,
-      title: "Tracking & Cookies",
-      shortDesc: "Transparency regarding pixels and session storage.",
-      fullDesc:
-        "We use 'strictly necessary' cookies for security and 'functional' cookies to remember your filters. You can opt-out of performance cookies through our preference center without losing access to core search features.",
-      gradient: "from-emerald-600 to-teal-500",
-      bgLight: "bg-emerald-50/50",
+      id: "cookies",
+      title: "3. Tracking & Cookies",
+      content:
+        "We use 'strictly necessary' cookies for security and 'functional' cookies to remember your filters. You can opt-out of performance cookies through our preference center without losing access to core search features. We do not sell your personal browsing data to third-party ad networks.",
     },
     {
-      icon: <Share2 />,
-      title: "Third-Party Sync",
-      shortDesc: "The strict protocols for our verified partner network.",
-      fullDesc:
-        "Information is only shared with licensed agents and financial institutions when you explicitly request a viewing or pre-approval. We perform quarterly security audits on all third-party vendors to ensure they meet our 'Zero-Leak' standards.",
-      gradient: "from-amber-600 to-orange-500",
-      bgLight: "bg-amber-50/50",
+      id: "third-party",
+      title: "4. Third-Party Sharing",
+      content:
+        "Information is only shared with licensed agents and financial institutions when you explicitly request a viewing or pre-approval. We perform quarterly security audits on all third-party vendors to ensure they meet our 'Zero-Leak' standards. We do not share data with external real estate aggregators without consent.",
     },
     {
-      icon: <Lock />,
-      title: "Encryption Layer",
-      shortDesc: "Our military-grade protection for your documents.",
-      fullDesc:
-        "All property documents and personal chat logs are protected by AES-256 encryption. We utilize hardware security modules (HSM) and multi-factor authentication (MFA) to ensure that only you can access your private data.",
-      gradient: "from-rose-600 to-red-500",
-      bgLight: "bg-rose-50/50",
+      id: "encryption",
+      title: "5. Security & Encryption",
+      content:
+        "All property documents and personal chat logs are protected by AES-256 encryption. We utilize hardware security modules (HSM) and multi-factor authentication (MFA) to ensure that only you can access your private data. In the event of a breach, we are committed to notifying affected users within 72 hours.",
     },
     {
-      icon: <Scale />,
-      title: "Legal Rights",
-      shortDesc: "Your right to be forgotten and data portability.",
-      fullDesc:
-        "Under global privacy laws, you have the right to request a full export of your data or its permanent deletion. We process all 'Right to be Forgotten' requests within 48 business hours via our automated dashboard.",
-      gradient: "from-slate-800 to-slate-600",
-      bgLight: "bg-slate-50/50",
+      id: "rights",
+      title: "6. Your Legal Rights",
+      content:
+        "Under global privacy laws (including GDPR and CCPA), you have the right to request a full export of your data or its permanent deletion. We process all 'Right to be Forgotten' requests within 48 business hours via our automated dashboard or direct contact with our Privacy Officer.",
     },
   ];
 
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#F8FAFC] text-slate-900 font-sans antialiased">
-      {/* Progress Bar */}
-      <div
-        className="fixed top-16 left-0 h-1.5 bg-gradient-to-r from-yellow-600 to-yellow-500 z-[100] transition-all duration-150"
-        style={{ width: `${scrollProgress}%` }}
-      />
-
-      <div className="max-w-7xl mx-auto px-6 py-20 lg:py-32">
-        <div className="flex flex-col lg:flex-row gap-16">
-          {/* Left Navigation */}
-          <aside className="lg:w-1/3">
-            <div className="sticky top-32 space-y-8">
-              <div>
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white text-yellow-700 text-xs font-bold uppercase tracking-widest mb-4">
-                  <Shield size={14} /> Global Standard
-                </div>
-
-                <h1 className="text-5xl font-black tracking-tight text-black mb-6">
-                  Privacy <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-600 to-yellow-600">
-                    Protocol
-                  </span>
-                </h1>
-
-                <p className="text-slate-500 text-lg leading-relaxed">
-                  Last revised:{" "}
-                  <span className="text-black font-semibold">Dec 2025</span>.
-                </p>
+    <div className="min-h-screen bg-white text-slate-900 font-sans">
+      {/* Simple Header */}
+      <header className="border-b border-slate-200 bg-slate-50/50">
+        <div className="max-w-5xl mx-auto px-6 py-12">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <div className="flex items-center gap-2 text-yellow-600 font-bold uppercase tracking-wider text-xs mb-3">
+                <ShieldCheck size={16} />
+                Legal Documentation
               </div>
+              <h1 className="text-4xl font-bold tracking-tight text-slate-900 mb-2">
+                Privacy Policy
+              </h1>
+              <p className="text-slate-500">Last updated: {lastUpdated}</p>
+            </div>
 
-              <nav className="hidden lg:block space-y-2">
-                {policies.map((item, i) => (
+            <div className="flex gap-3">
+              <button
+                onClick={() => window.print()}
+                className="inline-flex items-center gap-2 px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors text-slate-700"
+              >
+                <Printer size={16} /> Print
+              </button>
+              <button className="inline-flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-lg text-sm font-medium hover:bg-slate-800 transition-colors">
+                Contact Support
+              </button>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <div className="max-w-5xl mx-auto px-6 py-12">
+        <div className="flex flex-col md:flex-row gap-12 lg:gap-20">
+          {/* Sidebar Navigation - Sticky */}
+          <aside className="md:w-64 flex-shrink-0">
+            <div className="sticky top-8">
+              <h3 className="font-bold text-slate-900 mb-4 px-3">Contents</h3>
+              <nav className="space-y-1">
+                {policies.map((item) => (
                   <button
-                    key={i}
-                    onClick={() => setExpandedSection(i)}
-                    className={`w-full flex items-center justify-between p-4 rounded-2xl transition-all duration-300 ${
-                      expandedSection === i
-                        ? "bg-white shadow-lg border-l-4 border-yellow-600"
-                        : "hover:bg-slate-100 text-slate-400"
-                    }`}
+                    key={item.id}
+                    onClick={() => scrollToSection(item.id)}
+                    className="block w-full text-left px-3 py-2 text-sm text-slate-600 hover:text-yellow-600 hover:bg-yellow-50 rounded-md transition-colors"
                   >
-                    <span className="font-bold">
-                      0{i + 1}. {item.title}
-                    </span>
-                    <ChevronRight size={18} />
+                    {item.title}
                   </button>
                 ))}
+                <div className="h-px bg-slate-200 my-4 mx-3" />
+                <a
+                  href="mailto:privacy@realchoice.com"
+                  className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-900 hover:text-yellow-600"
+                >
+                  <Mail size={14} /> privacy@realchoice.com
+                </a>
               </nav>
             </div>
           </aside>
 
-          {/* Content */}
-          <main className="lg:w-2/3 space-y-10">
-            {policies.map((item, i) => (
-              <section
-                key={i}
-                className={`p-8 md:p-12 rounded-[2.5rem] transition-all border ${
-                  expandedSection === i
-                    ? "bg-white border-yellow-100"
-                    : "opacity-60 grayscale"
-                }`}
-                onMouseEnter={() => setExpandedSection(i)}
-              >
-                <div className="flex gap-8">
-                  <div
-                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${item.gradient} flex items-center justify-center text-white shadow-xl`}
+          {/* Main Content */}
+          <main className="flex-1 max-w-2xl">
+            <div className="prose prose-slate prose-lg text-slate-600">
+              <p className="lead mb-10 text-lg">
+                At <strong>RealChoice</strong>, we value your trust. This
+                Privacy Policy outlines how we handle your personal data when
+                you use our website and services to buy, sell, or rent
+                properties. By using our platform, you agree to the collection
+                and use of information in accordance with this policy.
+              </p>
+
+              <div className="space-y-16">
+                {policies.map((section) => (
+                  <section
+                    key={section.id}
+                    id={section.id}
+                    className="scroll-mt-24"
                   >
-                    {React.cloneElement(item.icon, { size: 28 })}
-                  </div>
-
-                  <div>
-                    <h2 className="text-3xl font-extrabold mb-3">
-                      {item.title}
+                    <h2 className="text-2xl font-bold text-slate-900 mb-4">
+                      {section.title}
                     </h2>
-                    <p className="text-xl text-slate-700 mb-4">
-                      {item.shortDesc}
+                    <p className="leading-relaxed text-slate-600">
+                      {section.content}
                     </p>
-                    <p className="text-slate-600">{item.fullDesc}</p>
-                  </div>
-                </div>
-              </section>
-            ))}
-
-            {/* Support */}
-            <div className="grid md:grid-cols-2 gap-6 pt-10">
-              <div className="p-8 rounded bg-yellow-600 text-white">
-                <Globe size={32} className="mb-4 opacity-50" />
-                <h3 className="text-2xl font-bold mb-2">Regional Compliance</h3>
+                  </section>
+                ))}
               </div>
 
-              <div className="p-8 rounded bg-white border">
-                <Mail size={32} className="text-yellow-600 mb-4" />
-                <a
-                  href="mailto:privacy@realchoice.com"
-                  className="text-yellow-600 font-bold flex items-center gap-2"
-                >
-                  privacy@realchoice.com <ArrowUpRight size={18} />
-                </a>
+              {/* Footer Note */}
+              <div className="mt-16 pt-8 border-t border-slate-200">
+                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  Changes to This Policy
+                </h3>
+                <p className="text-sm">
+                  We may update our Privacy Policy from time to time. We will
+                  notify you of any changes by posting the new Privacy Policy on
+                  this page and updating the "Last updated" date at the top of
+                  this Privacy Policy.
+                </p>
+                <div className="mt-6">
+                  <a
+                    href="#"
+                    className="inline-flex items-center gap-1 text-yellow-600 font-bold hover:underline"
+                  >
+                    View Terms of Service <ArrowUpRight size={16} />
+                  </a>
+                </div>
               </div>
             </div>
           </main>
