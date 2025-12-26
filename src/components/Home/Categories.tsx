@@ -127,8 +127,19 @@ const HomeDiscovery = () => {
 
   const activeContent = useMemo(() => TAB_DATA[activeTab], [activeTab]);
 
-  const handleTabClick = (tab: TabKey): void => {
-    if (tab === activeTab) return;
+  return (
+    <section className="py-16 bg-white overflow-hidden">
+      <div className="max-w-322 mx-auto px-4 sm:px-6 lg:px-8">
+        
+        {/* Main Heading Animation */}
+        <motion.h2 
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="text-4xl font-extrabold text-[#2f363b] mb-10 text-center"
+        >
+          Discover how we can <span style={{ color: REALTOR_BLUE }}>help you</span>
+        </motion.h2>
 
     setShowCards(false);
 
