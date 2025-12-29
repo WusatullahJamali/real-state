@@ -90,7 +90,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
 
   return (
     <div
-      className="flex-shrink-0 w-[80%] sm:w-[45%] md:w-[32%] lg:w-[27%] mx-3 
+      className="shrink-0 w-[80%] sm:w-[45%] md:w-[32%] lg:w-[27%] mx-3 
       rounded-2xl bg-white shadow-md overflow-hidden transition-transform 
       duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]"
     >
@@ -101,7 +101,7 @@ const HomeCard: React.FC<HomeCardProps> = ({
           alt={address1}
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+        <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
         <span className="absolute top-3 left-3 bg-[#301366] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
           SOLD
         </span>

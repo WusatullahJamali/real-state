@@ -127,7 +127,7 @@ export default function CollectionsSection() {
                   />
 
                   {/* Overlay */}
-                  <div className="absolute inset-0 flex flex-col justify-end items-center md:items-start p-4 bg-gradient-to-t from-black/60 to-transparent">
+                  <div className="absolute inset-0 flex flex-col justify-end items-center md:items-start p-4 bg-linear-to-t from-black/60 to-transparent">
                     <h3 className="text-white font-bold text-xl">
                       {item.title}
                     </h3>

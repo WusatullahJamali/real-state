@@ -63,7 +63,7 @@ const FAQ = () => {
                   </h3>
 
                   {/* Chevron Icon */}
-                  <div className="flex-shrink-0">
+                  <div className="shrink-0">
                     {isOpen ? (
                       <ChevronUp className="w-6 h-6 text-black" />
                     ) : (

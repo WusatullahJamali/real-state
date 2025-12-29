@@ -81,11 +81,11 @@ export default function ContactBanner() {
   const [focus, setFocus] = useState<string | null>(null);
 
   return (
-    <section className="w-full min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-slate-100 flex items-center py-12 px-4 sm:px-6 lg:px-8">
+    <section className="w-full min-h-screen bg-linear-to-br from-slate-50 via-blue-50/30 to-slate-100 flex items-center py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto w-full">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-0">
           {/* LEFT BANNER PANEL */}
-          <div className="lg:col-span-5 relative overflow-hidden rounded-3xl lg:rounded-r-none bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 p-8 lg:p-12 flex flex-col justify-between min-h-[600px]">
+          <div className="lg:col-span-5 relative overflow-hidden rounded-3xl lg:rounded-r-none bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 p-8 lg:p-12 flex flex-col justify-between min-h-[600px]">
             {/* Animated Background Pattern */}
             <div className="absolute inset-0 opacity-10">
               <div className="absolute top-0 left-0 w-64 h-64 bg-blue-500 rounded-full blur-3xl"></div>
@@ -93,7 +93,7 @@ export default function ContactBanner() {
             </div>
 
             {/* Decorative Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:50px_50px]"></div>
+            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[50px_50px]"></div>
 
             <div className="relative z-10">
               {/* Badge */}
@@ -109,7 +109,7 @@ export default function ContactBanner() {
                 Find Your
                 <br />
                 <span className="relative inline-block">
-                  <span className="relative z-10 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  <span className="relative z-10 bg-linear-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
                     Dream Home
                   </span>
                   <Sparkles
@@ -250,7 +250,7 @@ export default function ContactBanner() {
                   name="message"
                 />
 
-                <button className="w-full bg-gradient-to-r from-slate-900 to-slate-700 hover:from-slate-800 hover:to-slate-600 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-all duration-300 active:scale-[0.98] shadow-lg shadow-slate-900/20 mt-6">
+                <button className="w-full bg-linear-to-r from-slate-900 to-slate-700 hover:from-slate-800 hover:to-slate-600 text-white py-4 rounded-xl flex items-center justify-center gap-2 font-semibold text-sm transition-all duration-300 active:scale-[0.98] shadow-lg shadow-slate-900/20 mt-6">
                   <Send size={18} />
                   Send Message
                 </button>

@@ -226,7 +226,7 @@ export default function ServiceDetailPage({
             ) : null}
           </div>
         </div>
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/60 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950 via-slate-950/60 to-transparent" />
 
         {/* Hero Content */}
         <div className="relative h-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-12 lg:pb-16">
@@ -331,7 +331,7 @@ export default function ServiceDetailPage({
             <div className="sticky top-6">
               <div className="bg-white rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 overflow-hidden relative">
                 {/* Top Accent */}
-                <div className="h-1.5 w-full bg-gradient-to-r from-yellow-400 to-yellow-600" />
+                <div className="h-1.5 w-full bg-linear-to-r from-yellow-400 to-yellow-600" />
 
                 <div className="p-6 md:p-8">
                   {/* Price Header */}

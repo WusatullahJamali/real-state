@@ -22,7 +22,7 @@ const ServiceHero: React.FC = () => {
           priority
           className="object-cover pointer-events-none brightness-[0.45]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-black/30" />
       </motion.div>
 
       {/* Content */}
@@ -64,7 +64,7 @@ const ServiceHero: React.FC = () => {
             }}
           >
             Your Trusted <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
+            <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-300 via-yellow-400 to-yellow-500">
               Home Services
             </span>
           </motion.h1>
@@ -100,7 +100,7 @@ const ServiceHero: React.FC = () => {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-t from-black to-transparent z-20" />
+      <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 bg-linear-to-t from-black to-transparent z-20" />
     </section>
   );
 };

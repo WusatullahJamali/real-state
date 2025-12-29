@@ -86,7 +86,7 @@ export default function PrivacyPolicy() {
       <div className="max-w-5xl mx-auto px-6 py-12">
         <div className="flex flex-col md:flex-row gap-12 lg:gap-20">
           {/* Sidebar Navigation - Sticky */}
-          <aside className="md:w-64 flex-shrink-0">
+          <aside className="md:w-64 shrink-0">
             <div className="sticky top-8">
               <h3 className="font-bold text-slate-900 mb-4 px-3">Contents</h3>
               <nav className="space-y-1">

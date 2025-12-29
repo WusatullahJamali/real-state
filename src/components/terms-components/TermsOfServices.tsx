@@ -146,7 +146,7 @@ export default function TermsOfService() {
       <div className="max-w-6xl mx-auto px-6 py-16">
         <div className="flex flex-col lg:flex-row gap-16">
           {/* Left: Sticky Table of Contents */}
-          <aside className="hidden lg:block w-64 flex-shrink-0">
+          <aside className="hidden lg:block w-64 shrink-0">
             <div className="sticky top-8">
               <h3 className="text-sm font-bold text-slate-900 uppercase tracking-wider mb-4 px-2">
                 Contents
@@ -156,7 +156,7 @@ export default function TermsOfService() {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`group flex items-center justify-between w-full text-left px-4 py-2.5 text-sm transition-all border-l-2 -ml-[2px] ${
+                    className={`group flex items-center justify-between w-full text-left px-4 py-2.5 text-sm transition-all border-l-2 -ml-0.5 ${
                       activeSection === item.id
                         ? "border-yellow-600 text-yellow-700 font-semibold bg-yellow-50/50"
                         : "border-transparent text-slate-500 hover:text-slate-900 hover:border-slate-300"

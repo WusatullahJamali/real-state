@@ -71,7 +71,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
     <motion.div
       variants={{
         hidden: { opacity: 0, y: 30 },
-        visible: { opacity: 1, y: 0 }
+        visible: { opacity: 1, y: 0 },
       }}
       transition={{ duration: 0.5 }}
     >
@@ -89,7 +89,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
           />
 
           {/* Gradient overlay */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60" />
 
           {/* Tag */}
           <span className="absolute top-3 left-3 bg-yellow-500 text-gray-900 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md z-10">
@@ -111,7 +111,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, index }) => {
           {/* FOOTER */}
           <div className="mt-4 flex justify-between items-center text-[11px] text-gray-500">
             <span className="font-semibold text-gray-800 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" /> {post.author}
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />{" "}
+              {post.author}
             </span>
             <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded font-bold">
               {post.readTime}
@@ -146,10 +147,10 @@ const FeaturedArticleBanner: React.FC = () => {
         />
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black/60" />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-        <motion.p 
+        <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
@@ -158,7 +159,7 @@ const FeaturedArticleBanner: React.FC = () => {
           Featured Story
         </motion.p>
 
-        <motion.h1 
+        <motion.h1
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7, duration: 0.8 }}
@@ -202,16 +203,16 @@ export default function BlogPage() {
 
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div 
+          <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-100px" }}
             variants={{
               visible: {
                 transition: {
-                  staggerChildren: 0.1
-                }
-              }
+                  staggerChildren: 0.1,
+                },
+              },
             }}
             className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
           >

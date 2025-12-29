@@ -349,7 +349,7 @@ export default function Navbar() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[60]"
+              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-60"
               onClick={() => setMobileOpen(false)}
             />
             <motion.div
@@ -357,7 +357,7 @@ export default function Navbar() {
               animate={{ x: 0 }}
               exit={{ x: "-100%" }}
               transition={{ type: "spring", damping: 25, stiffness: 200 }}
-              className="fixed left-0 top-0 h-full w-full max-w-xs bg-white text-black z-[70] p-5 overflow-y-auto shadow-2xl"
+              className="fixed left-0 top-0 h-full w-full max-w-xs bg-white text-black z-70 p-5 overflow-y-auto shadow-2xl"
             >
               <div className="flex justify-between items-center mb-6 border-b pb-4">
                 <Image
@@ -388,7 +388,7 @@ export default function Navbar() {
                             <Link
                               href={item.href}
                               onClick={() => setMobileOpen(false)}
-                              className="flex-grow py-3 font-medium text-gray-800 hover:text-yellow-600"
+                              className="grow py-3 font-medium text-gray-800 hover:text-yellow-600"
                             >
                               {item.name}
                             </Link>
