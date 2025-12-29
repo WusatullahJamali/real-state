@@ -104,7 +104,7 @@ export default function PrivacyPolicy() {
                   href="mailto:privacy@realchoice.com"
                   className="flex items-center gap-2 px-3 py-2 text-sm font-medium text-slate-900 hover:text-yellow-600"
                 >
-                  <Mail size={14} /> privacy@realchoice.com
+                  <Mail size={14} /> privacy@albasync.com
                 </a>
               </nav>
             </div>
