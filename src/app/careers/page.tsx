@@ -1,8 +1,6 @@
-
-import React from 'react'
-import CareerSection from '@/components/careers components/CareerSection'
-import CareerFooter from '@/components/careers components/CareerFooter'
-
+import React from "react";
+import CareerSection from "@/components/career-components/CareerSection";
+import CareerFooter from "@/components/career-components/CareerFooter";
 
 const page = () => {
   return (
@@ -10,7 +8,7 @@ const page = () => {
       <CareerSection />
       <CareerFooter />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

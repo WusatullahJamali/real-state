@@ -5,7 +5,7 @@ import BuyCards from "@/components/buy-components/BuyCards";
 import CombinedAd from "@/components/buy-components/LocalInfo";
 import PropertyCards from "@/components/buy-components/PropertyCards";
 import Hero from "@/components/Home/Hero";
-import Hero2 from "@/components/rent components/Hero2";
+import Hero2 from "@/components/rent-components/Hero2";
 
 import { row1, row2, row3, row4, row5 } from "@/data/properties";
 

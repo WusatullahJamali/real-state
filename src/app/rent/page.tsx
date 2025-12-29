@@ -1,10 +1,9 @@
 "use client";
 
-import ACards from "@/components/rent components/ACards";
-import AdviceCardsRow from "@/components/rent components/AdviceCard";
-import GeoFooter from "@/components/rent components/Footer3";
-import Hero from "@/components/rent components/Hero";
-import Hero2 from "@/components/rent components/Hero2";
+import AdviceCardsRow from "@/components/rent-components/AdviceCard";
+import GeoFooter from "@/components/rent-components/Footer3";
+import Hero from "@/components/Home/Hero";
+import Hero2 from "@/components/rent-components/Hero2";
 import ExploreAlaska from "@/components/rent-components/ExploreAlaska";
 import NewListings from "@/components/rent-components/NewListings";
 import OnlineApplications from "@/components/rent-components/OnlineApplications";
@@ -21,7 +20,7 @@ export default function Page() {
       <Pet />
       <OnlineApplications />
       <UnitLaundry />
-      <ACards />
+
       <Hero2 />
       <AdviceCardsRow />
 
