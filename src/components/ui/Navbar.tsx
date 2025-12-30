@@ -128,7 +128,7 @@ const megaMenuContent: MegaMenuContent = {
       {
         title: "Company",
         items: [
-          { text: "About Us", href: "/about", icon: Info },
+          { text: "About Us", href: "/en/about", icon: Info },
           { text: "Contact Us", href: "/contact", icon: BookOpen },
           { text: "Careers", href: "/careers", icon: Briefcase },
         ],
@@ -167,6 +167,14 @@ export default function Navbar() {
   window.location.href = `${window.location.origin}/${lang}`;
 };
 
+const getLangPrefix = () => {
+  if (typeof window === "undefined") return "";
+  const url = window.location.href; // full URL
+  const match = url.match(/https?:\/\/[^\/]+\/(en|ar|ku)/); // check for /en, /ar, /ku
+  return match ? `/${match[1]}` : "";
+};
+
+
 
   useEffect(() => {
     const handleResize = () => {
@@ -204,7 +212,10 @@ export default function Navbar() {
                 }
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <Link href={item.href}>{item.name}</Link>
+               <Link href={`${getLangPrefix()}${item.href}`}>
+  {item.name}
+</Link>
+
 
                 <AnimatePresence>
                   {hoveredMenu === item.name &&
@@ -231,9 +242,10 @@ export default function Navbar() {
                                 {col.items?.map((sub, j) => (
                                   <li key={j}>
                                     <Link
-                                      href={sub.href}
-                                      className="flex gap-3 p-3 rounded-lg hover:bg-yellow-50"
-                                    >
+  href={`${getLangPrefix()}${sub.href}`}
+  className="flex gap-3 p-3 rounded-lg hover:bg-yellow-50"
+>
+
                                       <sub.icon className="w-5 h-5 text-gray-500" />
                                       <span className="text-gray-800 text-sm font-semibold">
                                         {sub.text}
