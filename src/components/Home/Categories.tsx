@@ -13,12 +13,13 @@ import {
   CreditCard,
   Search,
   ShieldCheck,
+  LucideIcon,
 } from "lucide-react";
 
 const REALTOR_BLUE = "#efb93f";
 
 // Icon mapping helper
-const IconMap: Record<string, React.ComponentType<any>> = {
+const IconMap: Record<string, LucideIcon> = {
   DollarSign,
   Calculator,
   Home,
@@ -33,18 +34,20 @@ const IconMap: Record<string, React.ComponentType<any>> = {
 type TabKey = "Buying" | "Renting" | "Selling";
 
 const HomeDiscovery = () => {
+  // Accessing the 'home.discovery' namespace
   const t = useTranslations("home.discovery");
   const [activeTab, setActiveTab] = useState<TabKey>("Buying");
 
-  // Safe data fetching with fallback to avoid "map of undefined" errors
+  // Safe data fetching
   const rawContent = t.raw("content");
-  const activeContent = rawContent ? rawContent[activeTab] : null;
+  const activeContent =
+    rawContent && typeof rawContent === "object" ? rawContent[activeTab] : null;
   const tabList: TabKey[] = ["Buying", "Renting", "Selling"];
 
   return (
     <section className="py-16 bg-white overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Heading - FIXED t.rich usage */}
+        {/* ---------- MAIN HEADING ---------- */}
         <motion.h2
           initial={{ opacity: 0, y: -20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -58,7 +61,7 @@ const HomeDiscovery = () => {
           })}
         </motion.h2>
 
-        {/* Tabs */}
+        {/* ---------- TABS NAVIGATION ---------- */}
         <div className="flex justify-center mb-10">
           <div className="inline-flex rounded-full bg-white p-1 shadow-lg ring-1 ring-gray-200 relative">
             {tabList.map((tabKey) => (
@@ -84,7 +87,7 @@ const HomeDiscovery = () => {
           </div>
         </div>
 
-        {/* Content Animation */}
+        {/* ---------- CONTENT AREA ---------- */}
         <AnimatePresence mode="wait">
           {activeContent && (
             <motion.div
@@ -94,11 +97,16 @@ const HomeDiscovery = () => {
               exit={{ opacity: 0, x: -20 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              <h3
-                className="text-xl font-bold text-[#2f363b] mb-8 text-center"
-                dangerouslySetInnerHTML={{ __html: activeContent.heading }}
-              />
+              {/* SUB-HEADING: Using t.rich for highlighted text */}
+              <h3 className="text-xl font-bold text-[#2f363b] mb-8 text-center">
+                {t.rich(`content.${activeTab}.heading`, {
+                  highlight: (chunks) => (
+                    <span style={{ color: REALTOR_BLUE }}>{chunks}</span>
+                  ),
+                })}
+              </h3>
 
+              {/* CARDS GRID */}
               <motion.div
                 className="grid grid-cols-1 md:grid-cols-3 gap-6"
                 variants={{
@@ -107,49 +115,50 @@ const HomeDiscovery = () => {
                 initial="hidden"
                 animate="visible"
               >
-                {activeContent.cards.map((card: any, index: number) => {
-                  const IconComponent = IconMap[card.icon] || Home;
-                  return (
-                    <motion.div
-                      key={index}
-                      variants={{
-                        hidden: { opacity: 0, y: 20 },
-                        visible: { opacity: 1, y: 0 },
-                      }}
-                      whileHover={{ y: -8 }}
-                      className="group flex flex-col justify-between h-full p-6 space-y-4 bg-white rounded-xl shadow-md border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-yellow-500/30"
-                    >
-                      <div className="flex justify-between items-start">
-                        <h3 className="text-lg font-bold text-[#2f363b] pr-4 leading-tight rtl:pl-4 rtl:pr-0">
-                          {card.title}
-                        </h3>
-                        <IconComponent className="w-6 h-6 text-[#efb93f] shrink-0 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6" />
-                      </div>
-
-                      <p className="text-sm text-gray-600 leading-relaxed grow">
-                        {card.description}
-                      </p>
-
-                      <a
-                        href={card.href}
-                        className="pt-4 text-[#efb93f] font-bold text-sm hover:text-yellow-600 transition-colors flex items-center group/link"
+                {Array.isArray(activeContent.cards) &&
+                  activeContent.cards.map((card: any, index: number) => {
+                    const IconComponent = IconMap[card.icon] || Home;
+                    return (
+                      <motion.div
+                        key={index}
+                        variants={{
+                          hidden: { opacity: 0, y: 20 },
+                          visible: { opacity: 1, y: 0 },
+                        }}
+                        whileHover={{ y: -8 }}
+                        className="group flex flex-col justify-between h-full p-6 space-y-4 bg-white rounded-xl shadow-md border border-gray-100 transition-all duration-300 hover:shadow-2xl hover:border-yellow-500/30"
                       >
-                        {card.linkText}
-                        <motion.span
-                          className="ml-2 rtl:mr-2 rtl:ml-0 rtl:rotate-180"
-                          animate={{ x: [0, 4, 0] }}
-                          transition={{
-                            repeat: Infinity,
-                            duration: 1.5,
-                            ease: "easeInOut",
-                          }}
+                        <div className="flex justify-between items-start">
+                          <h3 className="text-lg font-bold text-[#2f363b] pr-4 leading-tight rtl:pl-4 rtl:pr-0">
+                            {card.title}
+                          </h3>
+                          <IconComponent className="w-6 h-6 text-[#efb93f] shrink-0 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-6" />
+                        </div>
+
+                        <p className="text-sm text-gray-600 leading-relaxed grow">
+                          {card.description}
+                        </p>
+
+                        <a
+                          href={card.href}
+                          className="pt-4 text-[#efb93f] font-bold text-sm hover:text-yellow-600 transition-colors flex items-center group/link"
                         >
-                          →
-                        </motion.span>
-                      </a>
-                    </motion.div>
-                  );
-                })}
+                          {card.linkText}
+                          <motion.span
+                            className="ml-2 rtl:mr-2 rtl:ml-0 rtl:rotate-180"
+                            animate={{ x: [0, 4, 0] }}
+                            transition={{
+                              repeat: Infinity,
+                              duration: 1.5,
+                              ease: "easeInOut",
+                            }}
+                          >
+                            →
+                          </motion.span>
+                        </a>
+                      </motion.div>
+                    );
+                  })}
               </motion.div>
             </motion.div>
           )}
