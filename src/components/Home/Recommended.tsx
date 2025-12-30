@@ -1,10 +1,87 @@
+// "use client";
+
+// import React from "react";
+// import Image from "next/image";
+// import Link from "next/link";
+// import { MapPin } from "lucide-react";
+// import { motion } from "framer-motion";
+// import { useTranslations } from "next-intl";
+
+// interface Location {
+//   id: number;
+//   name: string;
+//   mapColor: string;
+//   img: string;
+//   listings: number;
+//   medianPrice: string;
+// }
+
+// export default function RecommendedLocations() {
+//   const t = useTranslations("home");
+
+//   const locations = t("recommendedLocations.items", {
+//     returnObjects: true
+//   }) as Location[];
+
+//   return (
+//     <section className="py-12">
+//       <h2 className="text-3xl font-bold">
+//         {t("recommendedLocations.title")}
+//       </h2>
+
+//       <p className="text-gray-600 mb-8">
+//         {t("recommendedLocations.subtitle")}
+//       </p>
+
+//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+//         {locations.map((location) => (
+//           <motion.div key={location.id} whileHover={{ y: -8 }}>
+//             <Link href={`/CategoriesDATA/${location.id}`}>
+//               <div className="border rounded-xl overflow-hidden shadow-lg">
+//                 <div className="relative h-40">
+//                   <Image
+//                     src={location.img}
+//                     alt={location.name}
+//                     fill
+//                     className="object-cover"
+//                   />
+//                   <MapPin className="absolute top-2 right-2 text-red-600" />
+//                 </div>
+
+//                 <div className="p-4">
+//                   <h3 className="font-bold text-lg">{location.name}</h3>
+//                   <p>{location.listings} Listings</p>
+//                   <p className="text-yellow-500 font-bold">
+//                     {location.medianPrice}
+//                   </p>
+//                 </div>
+//               </div>
+//             </Link>
+//           </motion.div>
+//         ))}
+//       </div>
+//     </section>
+//   );
+// }
+
+
+
+
+
+
+
+
+
+
+
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import { MapPin } from "lucide-react";
 import Link from "next/link";
-import { motion } from "framer-motion"; // Added for animations
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 // --- Types ---
 interface Location {
@@ -20,46 +97,11 @@ interface LocationMapProps {
   name: string;
   mapColor: string;
   img: string;
+  mapLabel: string;
 }
 
-// --- Mock Data ---
-const RECOMMENDED_LOCATIONS: Location[] = [
-  {
-    id: 1,
-    name: "Baghdad",
-    mapColor: "bg-blue-200",
-    img: "/r1.webp",
-    listings: 850,
-    medianPrice: "$455,000",
-  },
-  {
-    id: 2,
-    name: "Mosul",
-    mapColor: "bg-green-100",
-    img: "/r2.jpg",
-    listings: 312,
-    medianPrice: "$1,200,000",
-  },
-  {
-    id: 3,
-    name: "Erbil",
-    mapColor: "bg-teal-200",
-    img: "/r3.webp",
-    listings: 198,
-    medianPrice: "$710,500",
-  },
-  {
-    id: 4,
-    name: "Basrah",
-    mapColor: "bg-gray-200",
-    img: "/r4.webp",
-    listings: 405,
-    medianPrice: "$595,000",
-  },
-];
-
 // --- Map / Image Component ---
-const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img }) => (
+const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img, mapLabel }) => (
   <div className="relative h-48 w-full overflow-hidden border-b border-gray-200">
     {img ? (
       <Image src={img} alt={`${name} map`} fill className="object-cover" />
@@ -69,14 +111,18 @@ const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img }) => (
 
     {/* Map Pin with Pulse Animation */}
     <motion.div
-      animate={{ 
+      animate={{
         y: [0, -5, 0],
-        filter: ["drop-shadow(0px 2px 2px rgba(0,0,0,0.2))", "drop-shadow(0px 8px 4px rgba(0,0,0,0.4))", "drop-shadow(0px 2px 2px rgba(0,0,0,0.2))"]
+        filter: [
+          "drop-shadow(0px 2px 2px rgba(0,0,0,0.2))",
+          "drop-shadow(0px 8px 4px rgba(0,0,0,0.4))",
+          "drop-shadow(0px 2px 2px rgba(0,0,0,0.2))",
+        ],
       }}
-      transition={{ 
-        duration: 2, 
-        repeat: Infinity, 
-        ease: "easeInOut" 
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        ease: "easeInOut",
       }}
       className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10"
     >
@@ -84,14 +130,17 @@ const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img }) => (
     </motion.div>
 
     {/* Overlay label */}
-    <div className="absolute bottom-2 right-2 rounded bg-white/70 px-2 py-1 text-xs text-gray-700 backdrop-blur-sm">
-      Map data ©2025
+    <div className="absolute bottom-2 right-2 rtl:right-auto rtl:left-2 rounded bg-white/70 px-2 py-1 text-xs text-gray-700 backdrop-blur-sm">
+      {mapLabel}
     </div>
   </div>
 );
 
 // --- Main Component ---
 export default function RecommendedLocations() {
+  const t = useTranslations("home.recommended");
+  const cities = t.raw("cities") as Location[];
+
   return (
     <div className="bg-white py-10 md:py-16 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -101,17 +150,18 @@ export default function RecommendedLocations() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="rtl:text-right"
         >
           <h2 className="mb-2 text-3xl font-bold text-gray-900">
-            Recommended cities
+            {t("title")}
           </h2>
           <p className="mb-8 text-lg text-gray-600 md:mb-12">
-            Based on your previous searches
+            {t("description")}
           </p>
         </motion.div>
 
         {/* Grid with Staggered Children */}
-        <motion.div 
+        <motion.div
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           initial="hidden"
           whileInView="show"
@@ -121,21 +171,21 @@ export default function RecommendedLocations() {
             show: {
               opacity: 1,
               transition: {
-                staggerChildren: 0.15
-              }
-            }
+                staggerChildren: 0.15,
+              },
+            },
           }}
         >
-          {RECOMMENDED_LOCATIONS.map((location) => (
+          {cities.map((location) => (
             <motion.div
               key={location.id}
               variants={{
                 hidden: { opacity: 0, y: 30 },
-                show: { opacity: 1, y: 0 }
+                show: { opacity: 1, y: 0 },
               }}
-              whileHover={{ 
+              whileHover={{
                 y: -10,
-                transition: { duration: 0.3 }
+                transition: { duration: 0.3 },
               }}
             >    
               <Link
@@ -147,10 +197,11 @@ export default function RecommendedLocations() {
                     name={location.name}
                     mapColor={location.mapColor}
                     img={location.img}
+                    mapLabel={t("mapData")}
                   />
 
                   {/* Content */}
-                  <div className="space-y-2 p-4">
+                  <div className="space-y-2 p-4 rtl:text-right">
                     <h3 className="text-xl font-bold text-gray-700 transition-colors group-hover:text-yellow-600">
                       {location.name}
                     </h3>
@@ -159,7 +210,7 @@ export default function RecommendedLocations() {
                       <span className="font-semibold text-gray-800">
                         {location.listings}
                       </span>{" "}
-                      Listings for sale
+                      {t("listingLabel")}
                     </p>
 
                     <div className="pt-2">
@@ -167,7 +218,7 @@ export default function RecommendedLocations() {
                         {location.medianPrice}
                       </p>
                       <p className="mt-1 text-xs text-gray-500 uppercase tracking-wider font-semibold">
-                        Median Listing Price
+                        {t("medianPriceLabel")}
                       </p>
                     </div>
                   </div>
