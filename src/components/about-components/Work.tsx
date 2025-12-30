@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Home, CheckCircle } from "lucide-react";
 
 const steps = [
-   {
+  {
     number: "01",
     title: "Find Your Location",
     text: "Browse verified properties across different cities and neighborhoods that fit your needs.",
@@ -35,17 +35,20 @@ export default function Work() {
   return (
     <section className="relative py-24 bg-white text-black overflow-hidden">
       {/* Soft Background Accents */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full  pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full text-black pointer-events-none" />
 
+      {/* CONTAINER */}
+      <div className="max-w-7xl mx-auto px-6">
         {/* HEADING */}
         <div className="text-center max-w-2xl mx-auto mb-14">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
             How Albasync Works
           </h1>
           <p className="text-gray-600 text-lg">
             A simple and transparent process to help you find your perfect home.
           </p>
+        </div>
 
         {/* STEPS */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -55,8 +58,9 @@ export default function Work() {
               <motion.div
                 whileHover={{ y: -8 }}
                 key={index}
-                className="group bg-white border border-gray-200 rounded-2xl p-8
-                           shadow-sm hover:shadow-xl transition-all duration-300"
+                className="relative w-full group bg-white border border-gray-200 
+                           rounded-2xl p-8 shadow-sm hover:shadow-xl 
+                           transition-all duration-300"
               >
                 {/* Top */}
                 <div className="flex items-center justify-between mb-6">
@@ -81,7 +85,8 @@ export default function Work() {
                 </p>
 
                 {/* Hover Progress */}
-                <div className="absolute bottom-0 left-0 h-1 bg-yellow-600 w-0 group-hover:w-full transition-all duration-700" />
+                <div className="absolute bottom-0 left-0 h-1 bg-yellow-600 
+                                w-0 group-hover:w-full transition-all duration-700 rounded-b-2xl" />
               </motion.div>
             );
           })}

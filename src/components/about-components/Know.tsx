@@ -8,8 +8,8 @@ export default function Know() {
   return (
     <section className="relative py-24 bg-white text-black overflow-hidden">
       {/* Soft Background Accent */}
-      <div className="absolute top-1/3 -left-32 w-96 h-96 bg-white  blur-[120px]" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-white  blur-[120px]" />
+      <div className="absolute top-1/3 -left-32 w-96 h-96 bg-white " />
+      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-white" />
 
       <div className="relative max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16">
 
@@ -24,22 +24,22 @@ export default function Know() {
             (Since 2018)
           </p>
 
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight mb-5">
+          <h1 className="text-4xl md:text-5xl font-bold text-black leading-tight mb-5">
             Get to Know Albasync
           </h1>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-            Welcome to Albasync Real Estate
+          <h2 className="text-2xl font-semibold text-black mb-4">
+            Welcome to Albasync 
           </h2>
 
-          <p className="text-gray-600 leading-relaxed mb-8">
+          <p className="text-black leading-relaxed mb-8">
             Albasync is a modern real estate platform dedicated to helping
             individuals and families find the right property with confidence.
             From apartments and houses to commercial spaces, we make property
             search simple, secure, and transparent.
           </p>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-black leading-relaxed">
             Our mission is to connect people with trusted property listings,
             verified sellers, and valuable local insights — all in one reliable
             platform.
@@ -90,7 +90,7 @@ export default function Know() {
          <div className="mt-6 bg-yellow-50 rounded-xl p-6 border border-yellow-200 
                 max-w-sm text-center">
   <p className="text-gray-900 font-bold text-lg">
-    Albasync Real Estate Team
+    Albasync 
   </p>
 
   <div className="flex justify-center items-end gap-2 mt-4">

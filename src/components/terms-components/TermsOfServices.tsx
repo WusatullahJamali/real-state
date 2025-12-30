@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import Link from "next/link";
 import { 
   Scale, 
   FileText, 
@@ -17,7 +18,7 @@ const termsData = [
   {
     id: "acceptance",
     title: "1. Acceptance of Terms",
-    content: "By accessing or using the RealChoice platform (the \"Service\"), you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service. These Terms apply to all visitors, users, and others who access or use the Service.",
+    content: "By accessing or using the Albasync platform (the \"Service\"), you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service. These Terms apply to all visitors, users, and others who access or use the Service.",
     icon: <Scale size={18} />
   },
   {
@@ -29,7 +30,7 @@ const termsData = [
   {
     id: "content",
     title: "3. Content & Listings",
-    content: "Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material (\"Content\"). You are responsible for the Content that you post to the Service, including its legality, reliability, and appropriateness. RealChoice reserves the right to remove any listing that violates our quality standards.",
+    content: "Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material (\"Content\"). You are responsible for the Content that you post to the Service, including its legality, reliability, and appropriateness. Albasync reserves the right to remove any listing that violates our quality standards.",
     icon: <FileText size={18} />
   },
   {
@@ -41,13 +42,13 @@ const termsData = [
   {
     id: "liability",
     title: "5. Limitation of Liability",
-    content: "In no event shall RealChoice, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.",
+    content: "In no event shall Albasync, nor its directors, employees, partners, agents, suppliers, or affiliates, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, goodwill, or other intangible losses, resulting from your access to or use of or inability to access or use the Service.",
     icon: <ShieldAlert size={18} />
   },
   {
     id: "governing",
     title: "6. Governing Law",
-    content: "These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which RealChoice operates, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.",
+    content: "These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which Albasync operates, without regard to its conflict of law provisions. Our failure to enforce any right or provision of these Terms will not be considered a waiver of those rights.",
     icon: <Gavel size={18} />
   }
 ];
@@ -158,7 +159,7 @@ export default function TermsOfService() {
               <div className="mt-8 p-6 bg-slate-50 rounded-lg border border-slate-100">
                 <p className="text-xs font-semibold text-slate-500 mb-2">Need legal help?</p>
                 <a href="mailto:legal@realchoice.com" className="text-sm font-bold text-slate-900 hover:underline">
-                  legal@realchoice.com
+                  legal@Albasync.com
                 </a>
               </div>
             </div>
@@ -198,16 +199,16 @@ export default function TermsOfService() {
             <div className="mt-16 p-8 bg-slate-50 border border-slate-200 rounded-xl">
               <h4 className="font-bold text-slate-900 mb-2">Disclaimer</h4>
               <p className="text-sm text-slate-500 leading-relaxed">
-                The materials on RealChoice's website are provided on an 'as is' basis. RealChoice makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
+                The materials on Albasync website are provided on an 'as is' basis. Albasync makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.
               </p>
               <div className="mt-6 flex gap-4">
-                <button className="text-sm font-bold text-yellow-600 hover:text-yellow-700 flex items-center gap-1">
-                  Privacy Policy <ArrowRight size={14} />
-                </button>
-                <button className="text-sm font-bold text-yellow-600 hover:text-yellow-700 flex items-center gap-1">
-                  Cookie Settings <ArrowRight size={14} />
-                </button>
-              </div>
+  <Link href="/privacy-policy" className="text-sm font-bold text-yellow-600 hover:text-yellow-700 flex items-center gap-1">
+    Privacy Policy <ArrowRight size={14} />
+  </Link>
+  <button className="text-sm font-bold text-yellow-600 hover:text-yellow-700 flex items-center gap-1">
+    Cookie Settings <ArrowRight size={14} />
+  </button>
+</div>
             </div>
           </main>
 

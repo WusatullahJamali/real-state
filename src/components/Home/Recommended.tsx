@@ -1,79 +1,3 @@
-// "use client";
-
-// import React from "react";
-// import Image from "next/image";
-// import Link from "next/link";
-// import { MapPin } from "lucide-react";
-// import { motion } from "framer-motion";
-// import { useTranslations } from "next-intl";
-
-// interface Location {
-//   id: number;
-//   name: string;
-//   mapColor: string;
-//   img: string;
-//   listings: number;
-//   medianPrice: string;
-// }
-
-// export default function RecommendedLocations() {
-//   const t = useTranslations("home");
-
-//   const locations = t("recommendedLocations.items", {
-//     returnObjects: true
-//   }) as Location[];
-
-//   return (
-//     <section className="py-12">
-//       <h2 className="text-3xl font-bold">
-//         {t("recommendedLocations.title")}
-//       </h2>
-
-//       <p className="text-gray-600 mb-8">
-//         {t("recommendedLocations.subtitle")}
-//       </p>
-
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-//         {locations.map((location) => (
-//           <motion.div key={location.id} whileHover={{ y: -8 }}>
-//             <Link href={`/CategoriesDATA/${location.id}`}>
-//               <div className="border rounded-xl overflow-hidden shadow-lg">
-//                 <div className="relative h-40">
-//                   <Image
-//                     src={location.img}
-//                     alt={location.name}
-//                     fill
-//                     className="object-cover"
-//                   />
-//                   <MapPin className="absolute top-2 right-2 text-red-600" />
-//                 </div>
-
-//                 <div className="p-4">
-//                   <h3 className="font-bold text-lg">{location.name}</h3>
-//                   <p>{location.listings} Listings</p>
-//                   <p className="text-yellow-500 font-bold">
-//                     {location.medianPrice}
-//                   </p>
-//                 </div>
-//               </div>
-//             </Link>
-//           </motion.div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 
 import React from "react";
@@ -113,7 +37,6 @@ const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img, mapLabel
       <div className={`${mapColor} h-full w-full`} />
     )}
 
-    {/* Map Pin with Pulse Animation */}
     <motion.div
       animate={{
         y: [0, -5, 0],
@@ -133,7 +56,6 @@ const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img, mapLabel
       <MapPin className="h-10 w-10 text-red-600" />
     </motion.div>
 
-    {/* Overlay label */}
     <div className="absolute bottom-2 right-2 rtl:right-auto rtl:left-2 rounded bg-white/70 px-2 py-1 text-xs text-gray-700 backdrop-blur-sm">
       {mapLabel}
     </div>
@@ -148,7 +70,7 @@ export default function RecommendedLocations() {
   return (
     <div className="bg-white py-10 md:py-16 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Title Group Animation */}
+
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -162,8 +84,8 @@ export default function RecommendedLocations() {
           <p className="mb-8 text-lg text-gray-600 md:mb-12">
             {t("description")}
           </p>
+        </motion.div> {/* ✅ FIXED: missing closing tag */}
 
-        {/* Grid with Staggered Children */}
         <motion.div
           className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4"
           initial="hidden"
@@ -173,9 +95,7 @@ export default function RecommendedLocations() {
             hidden: { opacity: 0 },
             show: {
               opacity: 1,
-              transition: {
-                staggerChildren: 0.15,
-              },
+              transition: { staggerChildren: 0.15 },
             },
           }}
         >
@@ -186,15 +106,9 @@ export default function RecommendedLocations() {
                 hidden: { opacity: 0, y: 30 },
                 show: { opacity: 1, y: 0 },
               }}
-              whileHover={{
-                y: -10,
-                transition: { duration: 0.3 },
-              }}
+              whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
-              <Link
-                href={`/CategoriesDATA/${location.id}`}
-                className="block group"
-              >
+              <Link href={`/CategoriesDATA/${location.id}`} className="block group">
                 <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-2xl">
                   <LocationMap
                     name={location.name}
@@ -203,7 +117,6 @@ export default function RecommendedLocations() {
                     mapLabel={t("mapData")}
                   />
 
-                  {/* Content */}
                   <div className="space-y-2 p-4 rtl:text-right">
                     <h3 className="text-xl font-bold text-gray-700 transition-colors group-hover:text-yellow-600">
                       {location.name}

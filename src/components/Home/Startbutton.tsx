@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -11,11 +10,10 @@ export default function PromoBanner() {
 
   return (
     <div className="w-full bg-white flex justify-center py-6">
-  <div
-    className="w-full max-w-[1216px] mx-auto bg-white border border-gray-200 shadow-sm rounded-xl 
-               p-4 flex flex-col sm:flex-row items-center gap-5"
-  >
-
+      <div
+        className="w-full max-w-[1216px] mx-auto bg-white border border-gray-200 shadow-sm rounded-xl 
+                   p-4 flex flex-col sm:flex-row items-center gap-5"
+      >
         {/* Left Image */}
         <div className="relative w-28 h-16 sm:w-36 sm:h-20 shrink-0">
           <Image
@@ -28,7 +26,7 @@ export default function PromoBanner() {
 
         {/* Text Section */}
         <div className="flex-1 text-center sm:text-left rtl:sm:text-right">
-          <motion.h2 
+          <motion.h2
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -37,7 +35,8 @@ export default function PromoBanner() {
           >
             {t("title")}
           </motion.h2>
-          <motion.p 
+
+          <motion.p
             initial={{ opacity: 0, x: -10 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -51,16 +50,11 @@ export default function PromoBanner() {
         {/* CTA Button */}
         <Link
           href="/sell/neighbourhood"
-          className={"px-4 py-2 bg-yellow-500 text-white rounded-lg text-sm sm:text-base hover:bg-yellow-600 transition shrink-0"}
+          className="px-6 py-2 bg-yellow-500 text-white font-medium rounded-lg text-sm sm:text-base hover:bg-yellow-600 transition inline-block whitespace-nowrap shadow-sm shrink-0"
         >
-          <Link
-            href="/sell/neighbourhood"
-            className="px-6 py-2 bg-yellow-500 text-white font-medium rounded-lg text-sm sm:text-base hover:bg-yellow-600 transition inline-block whitespace-nowrap shadow-sm"
-          >
-            {t("button")}
-          </Link>
-        </motion.div>
-      </motion.div>
+          {t("button")}
+        </Link>
+      </div>
     </div>
   );
 }
