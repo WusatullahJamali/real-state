@@ -1,0 +1,194 @@
+{
+  "home": {
+    "hero": {
+      "title": "لكي بيتك المثالي وخدمات موثوقة",
+      "description": "اكتشف عقارات بكل محافظات العراق واحجز مقدمي خدمات منزلية موثوقين. شراء، بيع، إيجار، أو مساعدة من خبراء — كله بمكان واحد.",
+      "backgroundImage": "/hero4.jpg",
+      "stats": [
+        { "value": "50,000+", "label": "عقارات معروضة" },
+        { "value": "15,000+", "label": "مزودي خدمات موثوقين" },
+        { "value": "18", "label": "محافظة" },
+        { "value": "4.9★", "label": "تقييم المستخدمين" }
+      ]
+    },
+    "searchBar": {
+      "tabs": ["شراء", "إيجار", "بيع", "خدمات"],
+      "location": {
+        "label": "الموقع",
+        "placeholder": "بغداد، أربيل، البصرة..."
+      },
+      "propertyType": {
+        "label": "نوع العقار",
+        "options": ["كل الأنواع", "شقة", "بيت", "أرض", "مكتب"]
+      },
+      "priceRange": {
+        "label": "نطاق السعر",
+        "options": ["أي سعر", "$0 - $100 ألف", "$100 ألف - $300 ألف", "$300 ألف+"]
+      },
+      "submit": "بحث"
+    },
+    "collections": {
+      "title": "مجموعات العقارات",
+      "description": "استكشف مجموعاتنا العقارية المختارة لكل مشترٍ ومستثمر.",
+      "viewButton": "عرض المجموعة",
+      "propertiesCount": "{count} عقار",
+      "items": [
+        {
+          "title": "منازل موصى بها",
+          "count": 17,
+          "img": "/img1.webp",
+          "href": "/CategoriesDATA/recommend"
+        },
+        {
+          "title": "إعلانات جديدة",
+          "count": 7,
+          "img": "/img2.avif",
+          "href": "/CategoriesDATA/new-listings"
+        },
+        {
+          "title": "سعر منخفض",
+          "count": 14,
+          "img": "/img3.webp",
+          "href": "/CategoriesDATA/price-reduced"
+        },
+        {
+          "title": "بيوت مفتوحة",
+          "count": 3,
+          "img": "/img4.jpeg",
+          "href": "/CategoriesDATA/open-houses"
+        },
+        {
+          "title": "مباعة مؤخراً",
+          "count": 168,
+          "img": "/img5.jpg",
+          "href": "/CategoriesDATA/recently-sold"
+        },
+        {
+          "title": "بناء جديد",
+          "count": 32,
+          "img": "/img6(2).jpg",
+          "href": "/CategoriesDATA/new-constructions"
+        },
+        {
+          "title": "مجتمعات سكنية جديدة",
+          "count": 2,
+          "img": "/img7.jpg",
+          "href": "/CategoriesDATA/communities"
+        },
+        {
+          "title": "أراضي",
+          "count": 29,
+          "img": "/img8.jpg",
+          "href": "/CategoriesDATA/land"
+        }
+      ]
+    },
+     "promoBanner": {
+    "title": "اكتشف أفضل الأحياء السكنية",
+    "description": "استكشف المنازل في أفضل المناطق المصممة خصيصاً لك.",
+    "button": "استكشف الآن",
+    "imageAlt": "عرض ترويجي"
+  },
+
+
+  "discovery": {
+    "title": "اكتشف كيف يمكننا {highlight}",
+    "highlight": "مساعدتك",
+    "tabs": {
+      "Buying": "شراء",
+      "Renting": "إيجار",
+      "Selling": "بيع"
+    },
+    "content": {
+      "Buying": {
+        "heading": "اكتشف طريقك نحو <span style='color:#efb93f'>تملك منزل</span>",
+        "cards": [
+          { "title": "هل تريد شراء منزل؟", "description": "اشترِ منزلاً ضمن ميزانيتك. خطط بذكاء مع رؤى واضحة حول القدرة التحملية.", "linkText": "ابدأ استكشاف المنازل اليوم", "href": "/buy", "icon": "DollarSign" },
+          { "title": "استكشف المنازل المباعة حديثاً", "description": "استكشف المنازل المباعة مؤخراً لاتخاذ قرارات شراء أذكى. قارن الأسعار وافهم اتجاهات السوق الحقيقية.", "linkText": "ابدأ استكشاف المنازل اليوم", "href": "/soldhomes", "icon": "Calculator" },
+          { "title": "استكشف العقارات", "description": "تصفح العقارات المتاحة واعثر على منزلك المثالي الذي يناسب احتياجاتك وميزانيتك.", "linkText": "عرض العقارات", "href": "/property", "icon": "CreditCard" }
+        ]
+      },
+      "Renting": {
+        "heading": "اعثر على <span style='color:#efb93f'>إيجارك</span> القادم بسهولة",
+        "cards": [
+          { "title": "البحث عن عقارات للإيجار", "description": "استكشف الآلاف من قوائم الإيجار في المنطقة المطلوبة. تصفية حسب السعر والحجم والمرافق.", "linkText": "ابدأ بحثك عن الإيجار الآن", "href": "/rent", "icon": "Search" },
+          { "title": "تحديد ميزانية آمنة", "description": "اكتشف الحد الأقصى للإيجار الذي يمكنك تحمله براحة بناءً على دخلك وأسلوب حياتك.", "linkText": "استكشف الشقق", "href": "/apartments-for-rent", "icon": "ShieldCheck" },
+          { "title": "اتصل بالمالك", "description": "تواصل مع الملاك مباشرة للاستفسار عن العقارات المتاحة وتفاصيل الإيجار.", "linkText": "تواصل الآن", "href": "/contact-rent-landlord", "icon": "KeyRound" }
+        ]
+      },
+      "Selling": {
+        "heading": "عظم <span style='color:#efb93f'>مبيعاتك</span> وقيمتك",
+        "cards": [
+          { "title": "ذكاء السوق المباشر", "description": "احصل على رؤى شاملة لسوق العقارات في العراق. ابقَ على اطلاع على الاتجاهات والأسعار وفرص الاستثمار.", "linkText": "شاهد الاتجاهات", "href": "/housing-market-trends", "icon": "Home" },
+          { "title": "استكشف المنازل المباعة مؤخراً", "description": "تحقق من المنازل التي بيعت مؤخراً واحصل على رؤى حول أسعار البيع النهائية واتجاهات السوق.", "linkText": "عرض المنازل المباعة", "href": "/recently-sold-homes", "icon": "TrendingUp" },
+          { "title": "تواصل مع وكيل", "description": "اعثر على أفضل وكيل عقاري محلي متخصص في بيع المنازل في حيك بسرعة وبأفضل سعر.", "linkText": "ابحث عن وكيل موثوق", "href": "/find-agent", "icon": "MapPin" }
+        ]
+      }
+    }
+  },
+
+
+
+  "recommended": {
+    "title": "المدن الموصى بها",
+    "description": "بناءً على عمليات بحثك السابقة",
+    "mapData": "بيانات الخريطة ©2025",
+    "listingLabel": "عقارات معروضة للبيع",
+    "medianPriceLabel": "متوسط سعر القائمة",
+    "cities": [
+      { "id": 1, "name": "بغداد", "mapColor": "bg-blue-200", "img": "/r1.webp", "listings": 850, "medianPrice": "$455,000" },
+      { "id": 2, "name": "الموصل", "mapColor": "bg-green-100", "img": "/r2.jpg", "listings": 312, "medianPrice": "$1,200,000" },
+      { "id": 3, "name": "أربيل", "mapColor": "bg-teal-200", "img": "/r3.webp", "listings": 198, "medianPrice": "$710,500" },
+      { "id": 4, "name": "البصرة", "mapColor": "bg-gray-200", "img": "/r4.webp", "listings": 405, "medianPrice": "$595,000" }
+    ]
+  },
+
+ "blog": {
+      "back": "العودة للرئيسية",
+      "featured": {
+        "label": "قصة مختارة",
+        "title": "نظرة داخل أسرع مدن العقارات نمواً في العراق",
+        "button": "اقرأ المقال",
+        "image": "/blog7.avif"
+      },
+      "posts": [
+        {
+          "id": 1,
+          "title": "اتجاهات سوق العقارات في بغداد 2025",
+          "snippet": "يستمر سوق العقارات في بغداد بالنمو بفضل تطوير البنية التحتية، والتوسع التجاري، وارتفاع الطلب السكني في المناطق الحيوية...",
+          "image": "/blog2.jpg",
+          "tag": "بغداد",
+          "author": "وسط",
+          "readTime": "4 دقائق قراءة"
+        },
+        {
+          "id": 2,
+          "title": "أفضل فرص الاستثمار في عقارات أربيل",
+          "snippet": "أصبحت أربيل واحدة من أقوى أسواق العقارات في العراق، حيث تجذب المستثمرين بفضل الاستقرار والمشاريع السكنية الحديثة...",
+          "image": "/blog3.jpg",
+          "tag": "أربيل",
+          "author": "ساحل",
+          "readTime": "5 دقائق قراءة"
+        },
+        {
+          "id": 3,
+          "title": "سوق عقارات البصرة: نمو سكني وتجاري",
+          "snippet": "يؤدي اقتصاد النفط في البصرة إلى زيادة الطلب على الشقق والمكاتب والعقارات التجارية، مما يجعلها مركزاً استثمارياً رئيسياً...",
+          "image": "/blog4.jpg",
+          "tag": "البصرة",
+          "author": "شهريب",
+          "readTime": "3 دقائق قراءة"
+        },
+        {
+          "id": 4,
+          "title": "النجف وكربلاء: مدن ذات طلب مرتفع للاستثمار العقاري",
+          "snippet": "تستمر السياحة الدينية في تعزيز الطلب القوي على الفنادق والشقق السكنية في النجف وكربلاء، مما يوفر عوائد ثابتة طويلة الأمد...",
+          "image": "/blog5.jpg",
+          "tag": "النجف وكربلاء",
+          "author": "شعيب (مطور أقدم)",
+          "readTime": "6 دقائق قراءة"
+        }
+      ]
+    }
+  }
+}
