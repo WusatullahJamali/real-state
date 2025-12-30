@@ -11,7 +11,6 @@
         { "value": "4.9★", "label": "User Rating" }
       ]
     },
-
     "searchBar": {
       "tabs": ["Buy", "Rent", "Sell", "Services"],
       "location": {
@@ -28,87 +27,198 @@
       },
       "submit": "Search"
     },
-
-     
-  
-  
-       "collections": {
-    "title": "Property Collections",
-    "description": "Explore our curated property collections for every buyer and investor.",
-    "viewButton": "View Collection",
-    "propertiesCount": "{count} properties",
-    "items": [
-      { "title": "Recommended Homes", "count": 17, "img": "/img1.webp", "href": "/CategoriesDATA/recommend" },
-      { "title": "New Listings", "count": 7, "img": "/img2.avif", "href": "/CategoriesDATA/new-listings" },
-      { "title": "Price Reduced", "count": 14, "img": "/img3.webp", "href": "/CategoriesDATA/price-reduced" },
-      { "title": "Open Houses", "count": 3, "img": "/img4.jpeg", "href": "/CategoriesDATA/open-houses" },
-      { "title": "Recently Sold", "count": 168, "img": "/img5.jpg", "href": "/CategoriesDATA/recently-sold" },
-      { "title": "New Constructions", "count": 32, "img": "/img6(2).jpg", "href": "/CategoriesDATA/new-constructions" },
-      { "title": "New Home Communities", "count": 2, "img": "/img7.jpg", "href": "/CategoriesDATA/communities" },
-      { "title": "Land", "count": 29, "img": "/img8.jpg", "href": "/CategoriesDATA/land" }
-    ]
-  },
-   "promoBanner": {
-    "title": "Discover Top Neighborhoods",
-    "description": "Explore homes in the best areas tailored just for you.",
-    "button": "Explore Now",
-    "imageAlt": "Promo"
-  },
-
-
-  "discovery": {
-  "title": "Discover how we can <highlight>help you</highlight>",
-  "highlight": "help you", 
-  "tabs": {
-    "Buying": "Buying",
-    "Renting": "Renting",
-    "Selling": "Selling"
-  },
-    "content": {
-      "Buying": {
-        "heading": "Discover your path to <span style='color:#efb93f'>Homeownership</span>",
-        "cards": [
-          { "title": "Want to Buy a Home?", "description": "Buy a home within your budget. Plan smarter with clear affordability insights.", "linkText": "Start exploring homes today", "href": "/buy", "icon": "DollarSign" },
-          { "title": "Explore recently sold homes", "description": "Explore recently sold homes to make smarter buying decisions. Compare prices and understand real market trends.", "linkText": "Start exploring homes today", "href": "/soldhomes", "icon": "Calculator" },
-          { "title": "Explore Properties", "description": "Browse available properties and find your perfect home that fits your needs and budget.", "linkText": "View Properties", "href": "/property", "icon": "CreditCard" }
-        ]
+    "collections": {
+      "title": "Property Collections",
+      "description": "Explore our curated property collections for every buyer and investor.",
+      "viewButton": "View Collection",
+      "propertiesCount": "{count} properties",
+      "items": [
+        {
+          "title": "Recommended Homes",
+          "count": 17,
+          "img": "/img1.webp",
+          "href": "/CategoriesDATA/recommend"
+        },
+        {
+          "title": "New Listings",
+          "count": 7,
+          "img": "/img2.avif",
+          "href": "/CategoriesDATA/new-listings"
+        },
+        {
+          "title": "Price Reduced",
+          "count": 14,
+          "img": "/img3.webp",
+          "href": "/CategoriesDATA/price-reduced"
+        },
+        {
+          "title": "Open Houses",
+          "count": 3,
+          "img": "/img4.jpeg",
+          "href": "/CategoriesDATA/open-houses"
+        },
+        {
+          "title": "Recently Sold",
+          "count": 168,
+          "img": "/img5.jpg",
+          "href": "/CategoriesDATA/recently-sold"
+        },
+        {
+          "title": "New Constructions",
+          "count": 32,
+          "img": "/img6(2).jpg",
+          "href": "/CategoriesDATA/new-constructions"
+        },
+        {
+          "title": "New Home Communities",
+          "count": 2,
+          "img": "/img7.jpg",
+          "href": "/CategoriesDATA/communities"
+        },
+        {
+          "title": "Land",
+          "count": 29,
+          "img": "/img8.jpg",
+          "href": "/CategoriesDATA/land"
+        }
+      ]
+    },
+    "promoBanner": {
+      "title": "Discover Top Neighborhoods",
+      "description": "Explore homes in the best areas tailored just for you.",
+      "button": "Explore Now",
+      "imageAlt": "Promo"
+    },
+    "discovery": {
+      "title": "Discover how we can <highlight>help you</highlight>",
+      "tabs": {
+        "Buying": "Buying",
+        "Renting": "Renting",
+        "Selling": "Selling"
       },
-      "Renting": {
-        "heading": "Find your next <span style='color:#efb93f'>Rental</span> effortlessly",
-        "cards": [
-          { "title": "Search rental properties", "description": "Explore thousands of rental listings in your desired area. Filter by price, size, and amenities.", "linkText": "Start your rental search now", "href": "/rent", "icon": "Search" },
-          { "title": "Determine safe budget", "description": "Find out the maximum rent you can afford comfortably based on your income and lifestyle.", "linkText": "Explore Apartments", "href": "/apartments-for-rent", "icon": "ShieldCheck" },
-          { "title": "Contact a Landlord", "description": "Get in touch with landlords directly to inquire about available properties and rental details.", "linkText": "Reach Out Now", "href": "/contact-rent-landlord", "icon": "KeyRound" }
-        ]
-      },
-      "Selling": {
-        "heading": "Maximize your <span style='color:#efb93f'>Sale</span> and value",
-        "cards": [
-          { "title": "Live Market Intelligence", "description": "Get comprehensive insights into Iraq's real estate market. Stay updated on trends, prices, and investment opportunities.", "linkText": "see the trends", "href": "/housing-market-trends", "icon": "Home" },
-          { "title": "Explore Recently Sold Homes", "description": "Check out homes that were recently sold and get insights into final sale prices and market trends.", "linkText": "View Sold Homes", "href": "/recently-sold-homes", "icon": "TrendingUp" },
-          { "title": "Connect with an agent", "description": "Find a top local real estate agent specializing in selling homes in your neighborhood quickly and for the best price.", "linkText": "Find a trusted agent", "href": "/find-agent", "icon": "MapPin" }
-        ]
+      "content": {
+        "Buying": {
+          "heading": "Discover your path to <highlight>Homeownership</highlight>",
+          "cards": [
+            {
+              "title": "Want to Buy a Home?",
+              "description": "Buy a home within your budget. Plan smarter with clear affordability insights.",
+              "linkText": "Start exploring homes today",
+              "href": "/buy",
+              "icon": "DollarSign"
+            },
+            {
+              "title": "Explore recently sold homes",
+              "description": "Explore recently sold homes to make smarter buying decisions. Compare prices and understand real market trends.",
+              "linkText": "Start exploring homes today",
+              "href": "/soldhomes",
+              "icon": "Calculator"
+            },
+            {
+              "title": "Explore Properties",
+              "description": "Browse available properties and find your perfect home that fits your needs and budget.",
+              "linkText": "View Properties",
+              "href": "/property",
+              "icon": "CreditCard"
+            }
+          ]
+        },
+        "Renting": {
+          "heading": "Find your next <highlight>Rental</highlight> effortlessly",
+          "cards": [
+            {
+              "title": "Search rental properties",
+              "description": "Explore thousands of rental listings in your desired area. Filter by price, size, and amenities.",
+              "linkText": "Start your rental search now",
+              "href": "/rent",
+              "icon": "Search"
+            },
+            {
+              "title": "Determine safe budget",
+              "description": "Find out the maximum rent you can afford comfortably based on your income and lifestyle.",
+              "linkText": "Explore Apartments",
+              "href": "/apartments-for-rent",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "Contact a Landlord",
+              "description": "Get in touch with landlords directly to inquire about available properties and rental details.",
+              "linkText": "Reach Out Now",
+              "href": "/contact-rent-landlord",
+              "icon": "KeyRound"
+            }
+          ]
+        },
+        "Selling": {
+          "heading": "Maximize your <highlight>Sale</highlight> and value",
+          "cards": [
+            {
+              "title": "Live Market Intelligence",
+              "description": "Get comprehensive insights into Iraq's real estate market. Stay updated on trends, prices, and investment opportunities.",
+              "linkText": "see the trends",
+              "href": "/housing-market-trends",
+              "icon": "Home"
+            },
+            {
+              "title": "Explore Recently Sold Homes",
+              "description": "Check out homes that were recently sold and get insights into final sale prices and market trends.",
+              "linkText": "View Sold Homes",
+              "href": "/recently-sold-homes",
+              "icon": "TrendingUp"
+            },
+            {
+              "title": "Connect with an agent",
+              "description": "Find a top local real estate agent specializing in selling homes in your neighborhood quickly and for the best price.",
+              "linkText": "Find a trusted agent",
+              "href": "/find-agent",
+              "icon": "MapPin"
+            }
+          ]
+        }
       }
-    }
-  },
-
-
-
-
-  "recommended": {
-    "title": "Recommended cities",
-    "description": "Based on your previous searches",
-    "mapData": "Map data ©2025",
-    "listingLabel": "Listings for sale",
-    "medianPriceLabel": "Median Listing Price",
-    "cities": [
-      { "id": 1, "name": "Baghdad", "mapColor": "bg-blue-200", "img": "/r1.webp", "listings": 850, "medianPrice": "$455,000" },
-      { "id": 2, "name": "Mosul", "mapColor": "bg-green-100", "img": "/r2.jpg", "listings": 312, "medianPrice": "$1,200,000" },
-      { "id": 3, "name": "Erbil", "mapColor": "bg-teal-200", "img": "/r3.webp", "listings": 198, "medianPrice": "$710,500" },
-      { "id": 4, "name": "Basrah", "mapColor": "bg-gray-200", "img": "/r4.webp", "listings": 405, "medianPrice": "$595,000" }
-    ]
-  },
- "blog": {
+    },
+    "recommended": {
+      "title": "Recommended cities",
+      "description": "Based on your previous searches",
+      "mapData": "Map data ©2025",
+      "listingLabel": "Listings for sale",
+      "medianPriceLabel": "Median Listing Price",
+      "cities": [
+        {
+          "id": 1,
+          "name": "Baghdad",
+          "mapColor": "bg-blue-200",
+          "img": "/r1.webp",
+          "listings": 850,
+          "medianPrice": "$455,000"
+        },
+        {
+          "id": 2,
+          "name": "Mosul",
+          "mapColor": "bg-green-100",
+          "img": "/r2.jpg",
+          "listings": 312,
+          "medianPrice": "$1,200,000"
+        },
+        {
+          "id": 3,
+          "name": "Erbil",
+          "mapColor": "bg-teal-200",
+          "img": "/r3.webp",
+          "listings": 198,
+          "medianPrice": "$710,500"
+        },
+        {
+          "id": 4,
+          "name": "Basrah",
+          "mapColor": "bg-gray-200",
+          "img": "/r4.webp",
+          "listings": 405,
+          "medianPrice": "$595,000"
+        }
+      ]
+    },
+    "blog": {
       "back": "Back to Home",
       "featured": {
         "label": "Featured Story",
@@ -155,52 +265,46 @@
         }
       ]
     }
-
   },
-
-
-  
-  "Footer": {
+  "footer": {
     "description": "Iraq’s premier platform for real estate and home services. Find your perfect property and book trusted service providers all in one place.",
-    "realEstate": "Real Estate",
-    "homeServices": "Home Services",
-    "company": "Company",
-    "support": "Support",
-    "rights": "© 2025 Albasync. All rights reserved.",
-    "links": {
-      "buyProperty": "Buy Property",
-      "rentProperty": "Rent Property",
-      "sellProperty": "Sell Property",
-      "findAgents": "Find Agents",
-      "allServices": "All Services",
-      "plumbing": "Plumbing",
-      "electrical": "Electrical",
-      "cleaning": "Cleaning",
-      "aboutUs": "About Us",
-      "careers": "Careers",
-      "blog": "Blog",
-      "contact": "Contact",
-      "faq": "FAQ",
-      "privacyPolicy": "Privacy Policy",
-      "termsOfService": "Terms of Service",
-      "privacy": "Privacy",
-      "terms": "Terms"
+    "copyright": "© {year} Albasync. All rights reserved.",
+    "sections": {
+      "realEstate": {
+        "title": "Real Estate",
+        "links": {
+          "buy": "Buy Property",
+          "rent": "Rent Property",
+          "sell": "Sell Property",
+          "agents": "Find Agents"
+        }
+      },
+      "services": {
+        "title": "Home Services",
+        "links": {
+          "all": "All Services",
+          "plumbing": "Plumbing",
+          "electrical": "Electrical",
+          "cleaning": "Cleaning"
+        }
+      },
+      "company": {
+        "title": "Company",
+        "links": {
+          "about": "About Us",
+          "careers": "Careers",
+          "blog": "Blog",
+          "contact": "Contact"
+        }
+      },
+      "support": {
+        "title": "Support",
+        "links": {
+          "faq": "FAQ",
+          "privacy": "Privacy Policy",
+          "terms": "Terms of Service"
+        }
+      }
     }
   }
 }
-
-
-
-
-
-  
-
-
-
-
-  
-
-
-
-
-

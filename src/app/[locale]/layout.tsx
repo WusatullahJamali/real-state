@@ -1,33 +1,36 @@
-import { NextIntlClientProvider } from 'next-intl';
-import { getMessages } from 'next-intl/server';
-import { notFound } from 'next/navigation';
-import { routing } from '@/i18n/routing';
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
+import { notFound } from "next/navigation";
+import { routing } from "@/i18n/routing";
+import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/ui/Footer";
 
 interface LocaleLayoutProps {
   children: React.ReactNode;
-  // UPDATE 1: Params is now a Promise in Next.js 15/16
-  params: Promise<{ locale: string }>; 
+  params: Promise<{ locale: string }>;
 }
 
-export default async function LocaleLayout({ children, params }: LocaleLayoutProps) {
-  // UPDATE 2: You must await params before accessing properties
+export default async function LocaleLayout({
+  children,
+  params,
+}: LocaleLayoutProps) {
   const { locale } = await params;
 
-  // Validate that the incoming locale is valid
   if (!routing.locales.includes(locale as any)) {
     notFound();
   }
 
-  const messages = await getMessages(); 
-  
-  // Handle RTL languages
-  const isRtl = locale === 'ar' || locale === 'ckb';
+  const messages = await getMessages();
+  const isRtl = locale === "ar" || locale === "ckb";
 
   return (
-    <html lang={locale} dir={isRtl ? 'rtl' : 'ltr'}>
+    <html lang={locale} dir={isRtl ? "rtl" : "ltr"}>
       <body>
-        <NextIntlClientProvider messages={messages}>
-          {children}
+        {/* Everything inside the provider can now use useTranslations() */}
+        <NextIntlClientProvider messages={messages} locale={locale}>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
         </NextIntlClientProvider>
       </body>
     </html>

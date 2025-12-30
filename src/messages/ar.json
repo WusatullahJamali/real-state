@@ -23,7 +23,12 @@
       },
       "priceRange": {
         "label": "نطاق السعر",
-        "options": ["أي سعر", "$0 - $100 ألف", "$100 ألف - $300 ألف", "$300 ألف+"]
+        "options": [
+          "أي سعر",
+          "$0 - $100 ألف",
+          "$100 ألف - $300 ألف",
+          "$300 ألف+"
+        ]
       },
       "submit": "بحث"
     },
@@ -83,67 +88,145 @@
         }
       ]
     },
-     "promoBanner": {
-    "title": "اكتشف أفضل الأحياء السكنية",
-    "description": "استكشف المنازل في أفضل المناطق المصممة خصيصاً لك.",
-    "button": "استكشف الآن",
-    "imageAlt": "عرض ترويجي"
-  },
-
-
-  "discovery": {
-    "title": "اكتشف كيف يمكننا {highlight}",
-    "highlight": "مساعدتك",
-    "tabs": {
-      "Buying": "شراء",
-      "Renting": "إيجار",
-      "Selling": "بيع"
+    "promoBanner": {
+      "title": "اكتشف أفضل الأحياء السكنية",
+      "description": "استكشف المنازل في أفضل المناطق المصممة خصيصاً لك.",
+      "button": "استكشف الآن",
+      "imageAlt": "عرض ترويجي"
     },
-    "content": {
-      "Buying": {
-        "heading": "اكتشف طريقك نحو <span style='color:#efb93f'>تملك منزل</span>",
-        "cards": [
-          { "title": "هل تريد شراء منزل؟", "description": "اشترِ منزلاً ضمن ميزانيتك. خطط بذكاء مع رؤى واضحة حول القدرة التحملية.", "linkText": "ابدأ استكشاف المنازل اليوم", "href": "/buy", "icon": "DollarSign" },
-          { "title": "استكشف المنازل المباعة حديثاً", "description": "استكشف المنازل المباعة مؤخراً لاتخاذ قرارات شراء أذكى. قارن الأسعار وافهم اتجاهات السوق الحقيقية.", "linkText": "ابدأ استكشاف المنازل اليوم", "href": "/soldhomes", "icon": "Calculator" },
-          { "title": "استكشف العقارات", "description": "تصفح العقارات المتاحة واعثر على منزلك المثالي الذي يناسب احتياجاتك وميزانيتك.", "linkText": "عرض العقارات", "href": "/property", "icon": "CreditCard" }
-        ]
+
+    "discovery": {
+      "title": "اكتشف كيف يمكننا <highlight>مساعدتك</highlight>",
+      "tabs": {
+        "Buying": "شراء",
+        "Renting": "إيجار",
+        "Selling": "بيع"
       },
-      "Renting": {
-        "heading": "اعثر على <span style='color:#efb93f'>إيجارك</span> القادم بسهولة",
-        "cards": [
-          { "title": "البحث عن عقارات للإيجار", "description": "استكشف الآلاف من قوائم الإيجار في المنطقة المطلوبة. تصفية حسب السعر والحجم والمرافق.", "linkText": "ابدأ بحثك عن الإيجار الآن", "href": "/rent", "icon": "Search" },
-          { "title": "تحديد ميزانية آمنة", "description": "اكتشف الحد الأقصى للإيجار الذي يمكنك تحمله براحة بناءً على دخلك وأسلوب حياتك.", "linkText": "استكشف الشقق", "href": "/apartments-for-rent", "icon": "ShieldCheck" },
-          { "title": "اتصل بالمالك", "description": "تواصل مع الملاك مباشرة للاستفسار عن العقارات المتاحة وتفاصيل الإيجار.", "linkText": "تواصل الآن", "href": "/contact-rent-landlord", "icon": "KeyRound" }
-        ]
-      },
-      "Selling": {
-        "heading": "عظم <span style='color:#efb93f'>مبيعاتك</span> وقيمتك",
-        "cards": [
-          { "title": "ذكاء السوق المباشر", "description": "احصل على رؤى شاملة لسوق العقارات في العراق. ابقَ على اطلاع على الاتجاهات والأسعار وفرص الاستثمار.", "linkText": "شاهد الاتجاهات", "href": "/housing-market-trends", "icon": "Home" },
-          { "title": "استكشف المنازل المباعة مؤخراً", "description": "تحقق من المنازل التي بيعت مؤخراً واحصل على رؤى حول أسعار البيع النهائية واتجاهات السوق.", "linkText": "عرض المنازل المباعة", "href": "/recently-sold-homes", "icon": "TrendingUp" },
-          { "title": "تواصل مع وكيل", "description": "اعثر على أفضل وكيل عقاري محلي متخصص في بيع المنازل في حيك بسرعة وبأفضل سعر.", "linkText": "ابحث عن وكيل موثوق", "href": "/find-agent", "icon": "MapPin" }
-        ]
+      "content": {
+        "Buying": {
+          "heading": "اكتشف طريقك نحو <highlight>تملك منزل</highlight>",
+          "cards": [
+            {
+              "title": "هل تريد شراء منزل؟",
+              "description": "اشترِ منزلاً ضمن ميزانيتك. خطط بذكاء مع رؤى واضحة حول القدرة التحملية.",
+              "linkText": "ابدأ استكشاف المنازل اليوم",
+              "href": "/buy",
+              "icon": "DollarSign"
+            },
+            {
+              "title": "استكشف المنازل المباعة حديثاً",
+              "description": "استكشف المنازل المباعة مؤخراً لاتخاذ قرارات شراء أذكى. قارن الأسعار وافهم اتجاهات السوق الحقيقية.",
+              "linkText": "ابدأ استكشاف المنازل اليوم",
+              "href": "/soldhomes",
+              "icon": "Calculator"
+            },
+            {
+              "title": "استكشف العقارات",
+              "description": "تصفح العقارات المتاحة واعثر على منزلك المثالي الذي يناسب احتياجاتك وميزانيتك.",
+              "linkText": "عرض العقارات",
+              "href": "/property",
+              "icon": "CreditCard"
+            }
+          ]
+        },
+        "Renting": {
+          "heading": "اعثر على <highlight>إيجارك</highlight> القادم بسهولة",
+          "cards": [
+            {
+              "title": "البحث عن عقارات للإيجار",
+              "description": "استكشف الآلاف من قوائم الإيجار في المنطقة المطلوبة. تصفية حسب السعر والحجم والمرافق.",
+              "linkText": "ابدأ بحثك عن الإيجار الآن",
+              "href": "/rent",
+              "icon": "Search"
+            },
+            {
+              "title": "تحديد ميزانية آمنة",
+              "description": "اكتشف الحد الأقصى للإيجار الذي يمكنك تحمله براحة بناءً على دخلك وأسلوب حياتك.",
+              "linkText": "استكشف الشقق",
+              "href": "/apartments-for-rent",
+              "icon": "ShieldCheck"
+            },
+            {
+              "title": "اتصل بالمالك",
+              "description": "تواصل مع الملاك مباشرة للاستفسار عن العقارات المتاحة وتفاصيل الإيجار.",
+              "linkText": "تواصل الآن",
+              "href": "/contact-rent-landlord",
+              "icon": "KeyRound"
+            }
+          ]
+        },
+        "Selling": {
+          "heading": "عظم <highlight>مبيعاتك</highlight> وقيمتك",
+          "cards": [
+            {
+              "title": "ذكاء السوق المباشر",
+              "description": "احصل على رؤى شاملة لسوق العقارات في العراق. ابقَ على اطلاع على الاتجاهات والأسعار وفرص الاستثمار.",
+              "linkText": "شاهد الاتجاهات",
+              "href": "/housing-market-trends",
+              "icon": "Home"
+            },
+            {
+              "title": "استكشف المنازل المباعة مؤخراً",
+              "description": "تحقق من المنازل التي بيعت مؤخراً واحصل على رؤى حول أسعار البيع النهائية واتجاهات السوق.",
+              "linkText": "عرض المنازل المباعة",
+              "href": "/recently-sold-homes",
+              "icon": "TrendingUp"
+            },
+            {
+              "title": "تواصل مع وكيل",
+              "description": "اعثر على أفضل وكيل عقاري محلي متخصص في بيع المنازل في حيك بسرعة وبأفضل سعر.",
+              "linkText": "ابحث عن وكيل موثوق",
+              "href": "/find-agent",
+              "icon": "MapPin"
+            }
+          ]
+        }
       }
-    }
-  },
+    },
 
+    "recommended": {
+      "title": "المدن الموصى بها",
+      "description": "بناءً على عمليات بحثك السابقة",
+      "mapData": "بيانات الخريطة ©2025",
+      "listingLabel": "عقارات معروضة للبيع",
+      "medianPriceLabel": "متوسط سعر القائمة",
+      "cities": [
+        {
+          "id": 1,
+          "name": "بغداد",
+          "mapColor": "bg-blue-200",
+          "img": "/r1.webp",
+          "listings": 850,
+          "medianPrice": "$455,000"
+        },
+        {
+          "id": 2,
+          "name": "الموصل",
+          "mapColor": "bg-green-100",
+          "img": "/r2.jpg",
+          "listings": 312,
+          "medianPrice": "$1,200,000"
+        },
+        {
+          "id": 3,
+          "name": "أربيل",
+          "mapColor": "bg-teal-200",
+          "img": "/r3.webp",
+          "listings": 198,
+          "medianPrice": "$710,500"
+        },
+        {
+          "id": 4,
+          "name": "البصرة",
+          "mapColor": "bg-gray-200",
+          "img": "/r4.webp",
+          "listings": 405,
+          "medianPrice": "$595,000"
+        }
+      ]
+    },
 
-
-  "recommended": {
-    "title": "المدن الموصى بها",
-    "description": "بناءً على عمليات بحثك السابقة",
-    "mapData": "بيانات الخريطة ©2025",
-    "listingLabel": "عقارات معروضة للبيع",
-    "medianPriceLabel": "متوسط سعر القائمة",
-    "cities": [
-      { "id": 1, "name": "بغداد", "mapColor": "bg-blue-200", "img": "/r1.webp", "listings": 850, "medianPrice": "$455,000" },
-      { "id": 2, "name": "الموصل", "mapColor": "bg-green-100", "img": "/r2.jpg", "listings": 312, "medianPrice": "$1,200,000" },
-      { "id": 3, "name": "أربيل", "mapColor": "bg-teal-200", "img": "/r3.webp", "listings": 198, "medianPrice": "$710,500" },
-      { "id": 4, "name": "البصرة", "mapColor": "bg-gray-200", "img": "/r4.webp", "listings": 405, "medianPrice": "$595,000" }
-    ]
-  },
-
- "blog": {
+    "blog": {
       "back": "العودة للرئيسية",
       "featured": {
         "label": "قصة مختارة",
@@ -189,6 +272,47 @@
           "readTime": "6 دقائق قراءة"
         }
       ]
+    }
+  },
+  "footer": {
+    "description": "منصة العراق الأولى للعقارات والخدمات المنزلية. اعثر على عقارك المثالي واحجز مزودي خدمات موثوقين، كل ذلك في مكان واحد.",
+    "copyright": "© {year} Albasync. جميع الحقوق محفوظة.",
+    "sections": {
+      "realEstate": {
+        "title": "العقارات",
+        "links": {
+          "buy": "شراء عقار",
+          "rent": "تأجير عقار",
+          "sell": "بيع عقار",
+          "agents": "البحث عن وكلاء"
+        }
+      },
+      "services": {
+        "title": "الخدمات المنزلية",
+        "links": {
+          "all": "جميع الخدمات",
+          "plumbing": "سباكة",
+          "electrical": "كهرباء",
+          "cleaning": "تنظيف"
+        }
+      },
+      "company": {
+        "title": "الشركة",
+        "links": {
+          "about": "من نحن",
+          "careers": "الوظائف",
+          "blog": "المدونة",
+          "contact": "اتصل بنا"
+        }
+      },
+      "support": {
+        "title": "الدعم",
+        "links": {
+          "faq": "الأسئلة الشائعة",
+          "privacy": "سياسة الخصوصية",
+          "terms": "شروط الخدمة"
+        }
+      }
     }
   }
 }
