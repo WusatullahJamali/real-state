@@ -3,16 +3,11 @@
 import React from "react";
 // import { Search } from "lucide-react";
 import Image from "next/image";
-import { motion } from "framer-motion"; // Added for animations
+import { motion } from "framer-motion";
 import SearchBar from "./Searchbar";
-const stats = [
-  { value: "50,000+", label: "Properties Listed" },
-  { value: "15,000+", label: "Verified Providers" },
-  { value: "18", label: "Governorates" },
-  { value: "4.9★", label: "User Rating" },
-];
+import { useTranslations } from "next-intl";
 
-// Animation Variants
+// Animation Variants (UNCHANGED)
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
   visible: { opacity: 1, y: 0 },
@@ -23,17 +18,26 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2, // Delay between each item
+      staggerChildren: 0.2,
     },
   },
 };
 
 const Hero = () => {
+  const t = useTranslations("home.hero");
+
+  const stats = [
+    { value: t("stats.0.value"), label: t("stats.0.label") },
+    { value: t("stats.1.value"), label: t("stats.1.label") },
+    { value: t("stats.2.value"), label: t("stats.2.label") },
+    { value: t("stats.3.value"), label: t("stats.3.label") },
+  ];
+
   return (
     <section className="relative w-full min-h-[94vh] flex items-center justify-center bg-cover bg-center overflow-hidden">
       {/* Background Image */}
       <Image
-        src="/hero4.jpg"
+        src={t("backgroundImage")}
         alt="hero image"
         fill
         priority
@@ -61,7 +65,7 @@ const Hero = () => {
             font-extrabold leading-tight mb-4 sm:mb-5
           "
         >
-          Find Your Perfect Home & Trusted Services
+          {t("title")}
         </motion.h1>
 
         <motion.h3
@@ -73,8 +77,7 @@ const Hero = () => {
             mb-8 sm:mb-10
           "
         >
-          Discover properties across IRAQ and book verified home service
-          providers. Buy, sell, rent, or get expert help — all in one platform.
+          {t("description")}
         </motion.h3>
 
         {/* Search */}
