@@ -129,7 +129,7 @@ const megaMenuContent: MegaMenuContent = {
       {
         title: "Company",
         items: [
-          { text: "About Us", href: "/about", icon: Info },
+          { text: "About Us", href: "/en/about", icon: Info },
           { text: "Contact Us", href: "/contact", icon: BookOpen },
           { text: "Careers", href: "/careers", icon: Briefcase },
         ],
@@ -158,6 +158,22 @@ export default function Navbar() {
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
+
+  /* -------- LANGUAGE SWITCHER STATE -------- */
+  const [langOpen, setLangOpen] = useState(false);
+
+  const switchLanguage = (lang: "en" | "ar" | "ku") => {
+    if (typeof window === "undefined") return;
+
+    window.location.href = `${window.location.origin}/${lang}`;
+  };
+
+  const getLangPrefix = () => {
+    if (typeof window === "undefined") return "";
+    const url = window.location.href; // full URL
+    const match = url.match(/https?:\/\/[^\/]+\/(en|ar|ku)/); // check for /en, /ar, /ku
+    return match ? `/${match[1]}` : "";
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -195,12 +211,8 @@ export default function Navbar() {
                 }
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <Link
-                  href={item.href}
-                  className="py-2 md:py-1 lg:py-2 text-white hover:text-yellow-500 transition-colors whitespace-nowrap"
-                >
-                  {item.name}
-                </Link>
+                <Link href={`${getLangPrefix()}${item.href}`}>{item.name}</Link>
+
                 <AnimatePresence>
                   {hoveredMenu === item.name &&
                     item.hasDropdown &&
@@ -228,20 +240,13 @@ export default function Navbar() {
                                 {col.items?.map((sub, j) => (
                                   <li key={j}>
                                     <Link
-                                      href={sub.href}
-                                      className="group flex gap-2 lg:gap-3 p-2 lg:p-3 rounded-lg hover:bg-yellow-50 transition"
+                                      href={`${getLangPrefix()}${sub.href}`}
+                                      className="flex gap-3 p-3 rounded-lg hover:bg-yellow-50"
                                     >
-                                      <sub.icon className="w-4 h-4 lg:w-5 lg:h-5 text-gray-500 group-hover:text-yellow-600 shrink-0" />
-                                      <div>
-                                        <div className="font-semibold text-gray-800 group-hover:text-yellow-600 text-xs lg:text-sm">
-                                          {sub.text}
-                                        </div>
-                                        {sub.description && (
-                                          <p className="text-[9px] lg:text-xs text-gray-500">
-                                            {sub.description}
-                                          </p>
-                                        )}
-                                      </div>
+                                      <sub.icon className="w-5 h-5 text-gray-500" />
+                                      <span className="text-gray-800 text-sm font-semibold">
+                                        {sub.text}
+                                      </span>
                                     </Link>
                                   </li>
                                 ))}
