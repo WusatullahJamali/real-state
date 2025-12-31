@@ -5,10 +5,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, CheckCircle, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 
 interface Provider {
   id: number;
-  name: string;
+  nameKey: string; // Changed to key
   category: string;
   location: string;
   rating: number;
@@ -17,13 +18,13 @@ interface Provider {
   unit: string;
   badges: string[];
   image: string;
-  description: string;
+  descriptionKey: string; // Changed to key
 }
 
 const providers: Provider[] = [
   {
     id: 1,
-    name: "Ali Electrical Services",
+    nameKey: "1",
     category: "Electrical",
     location: "Baghdad",
     rating: 4.9,
@@ -32,12 +33,11 @@ const providers: Provider[] = [
     unit: "hour",
     badges: ["Verified", "Licensed"],
     image: "/er.jpg",
-    description:
-      "Expert in smart home wiring, panel upgrades, and emergency electrical repairs.",
+    descriptionKey: "1",
   },
   {
     id: 2,
-    name: "Clean Home Pro",
+    nameKey: "2",
     category: "Cleaning",
     location: "Erbil",
     rating: 4.8,
@@ -46,12 +46,11 @@ const providers: Provider[] = [
     unit: "term",
     badges: ["Verified"],
     image: "/cl.jpg",
-    description:
-      "Deep cleaning specialists for residential and commercial spaces with eco-friendly products.",
+    descriptionKey: "2",
   },
   {
     id: 3,
-    name: "Cool Air Solutions",
+    nameKey: "3",
     category: "AC & HVAC",
     location: "Baghdad",
     rating: 4.9,
@@ -60,12 +59,11 @@ const providers: Provider[] = [
     unit: "visit",
     badges: ["Verified", "24/7"],
     image: "/ca.jpg",
-    description:
-      "Full-service HVAC maintenance, installation, and rapid cooling system diagnostics.",
+    descriptionKey: "3",
   },
   {
     id: 4,
-    name: "Perfect Plumbing",
+    nameKey: "4",
     category: "Plumbing",
     location: "Basra",
     rating: 4.7,
@@ -74,12 +72,11 @@ const providers: Provider[] = [
     unit: "hour",
     badges: ["Verified", "Emergency"],
     image: "/pl.jpg",
-    description:
-      "Solving complex leakages, pipe bursts, and bathroom fixture installations since 2015.",
+    descriptionKey: "4",
   },
   {
     id: 5,
-    name: "Home Renovators",
+    nameKey: "5",
     category: "Renovation",
     location: "Baghdad",
     rating: 4.9,
@@ -88,12 +85,11 @@ const providers: Provider[] = [
     unit: "project",
     badges: ["Verified", "Licensed"],
     image: "/hr.jpg",
-    description:
-      "Transforming kitchens and living rooms with high-quality craftsmanship and modern designs.",
+    descriptionKey: "5",
   },
   {
     id: 6,
-    name: "Garden Masters",
+    nameKey: "6",
     category: "Landscaping",
     location: "Erbil",
     rating: 4.6,
@@ -102,12 +98,11 @@ const providers: Provider[] = [
     unit: "visit",
     badges: ["Verified"],
     image: "/gm.jpg",
-    description:
-      "Professional lawn care, irrigation setup, and ornamental garden design.",
+    descriptionKey: "6",
   },
   {
     id: 7,
-    name: "Tech Repair Hub",
+    nameKey: "7",
     category: "Electronics",
     location: "Baghdad",
     rating: 4.8,
@@ -116,12 +111,11 @@ const providers: Provider[] = [
     unit: "hour",
     badges: ["Verified", "Fast Service"],
     image: "/rh.png",
-    description:
-      "Certified technicians for laptop, mobile, and home appliance motherboard repairs.",
+    descriptionKey: "7",
   },
   {
     id: 8,
-    name: "Paint Pro",
+    nameKey: "8",
     category: "Painting",
     location: "Mosul",
     rating: 4.7,
@@ -130,12 +124,11 @@ const providers: Provider[] = [
     unit: "room",
     badges: ["Verified", "Licensed"],
     image: "/ppp.jpg",
-    description:
-      "High-precision interior and exterior painting with durable, premium finishes.",
+    descriptionKey: "8",
   },
   {
     id: 9,
-    name: "Secure Locks",
+    nameKey: "9",
     category: "Locksmith",
     location: "Baghdad",
     rating: 4.9,
@@ -144,8 +137,7 @@ const providers: Provider[] = [
     unit: "service",
     badges: ["Verified", "24/7"],
     image: "/locks.jpg",
-    description:
-      "Advanced security lock installations and 24/7 emergency lockout assistance.",
+    descriptionKey: "9",
   },
 ];
 
@@ -163,24 +155,31 @@ const itemVariants = {
 };
 
 const FeaturedProviders = () => {
+  const t = useTranslations("FeaturedProviders");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   return (
-    <section className="bg-[#fdfcfb] py-16 px-6 font-sans overflow-hidden">
+    <section
+      className="bg-[#fdfcfb] py-16 px-6 font-sans overflow-hidden"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: isRtl ? 20 : -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
-          className="mb-10"
+          className="mb-10 text-left rtl:text-right"
         >
           <div className="flex items-center gap-2 text-green-700 mb-2">
             <Star size={14} fill="currentColor" />
             <span className="text-xs font-bold uppercase tracking-widest">
-              Top Rated
+              {t("badge")}
             </span>
           </div>
           <h2 className="text-3xl md:text-4xl -mb-9 font-serif font-bold text-gray-800">
-            Featured Service Providers
+            {t("title")}
           </h2>
         </motion.div>
 
@@ -200,11 +199,11 @@ const FeaturedProviders = () => {
               className="bg-white rounded-2xl border py-7 border-gray-100 shadow-sm hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col"
             >
               <div className="p-6">
-                <div className="flex gap-4 mb-4">
+                <div className="flex gap-4 mb-4 items-start">
                   <div className="w-16 h-16 rounded-xl overflow-hidden shrink-0 border border-gray-100 shadow-md">
                     <Image
                       src={p.image}
-                      alt={p.name}
+                      alt={t(`providers.${p.nameKey}.name`)}
                       width={64}
                       height={64}
                       className="object-cover w-full h-full"
@@ -213,12 +212,13 @@ const FeaturedProviders = () => {
 
                   <div className="flex flex-col justify-center">
                     <h3 className="font-bold text-gray-900 text-[26px] leading-tight">
-                      {p.name}
+                      {t(`providers.${p.nameKey}.name`)}
                     </h3>
                     <div className="flex items-center gap-1 text-gray-500 mt-0.5">
                       <MapPin size={12} className="text-green-600" />
                       <p className="text-sm font-medium">
-                        {p.category} • {p.location}
+                        {t(`categories.${p.category}`)} •{" "}
+                        {t(`locations.${p.location}`)}
                       </p>
                     </div>
                     <div className="flex items-center gap-1 mt-1 text-yellow-500">
@@ -231,7 +231,7 @@ const FeaturedProviders = () => {
                           }
                         />
                       ))}
-                      <span className="text-xs font-bold ml-1 text-gray-700">
+                      <span className="text-xs font-bold mx-1 text-gray-700">
                         {p.rating}
                       </span>
                       <span className="text-[10px] text-gray-400">
@@ -241,8 +241,8 @@ const FeaturedProviders = () => {
                   </div>
                 </div>
 
-                <p className="text-gray-600 text-[18px] leading-relaxed mb-4 line-clamp-2">
-                  {p.description}
+                <p className="text-gray-600 text-[18px] leading-relaxed mb-4 line-clamp-2 text-left rtl:text-right">
+                  {t(`providers.${p.descriptionKey}.desc`)}
                 </p>
 
                 <div className="flex gap-2 flex-wrap">
@@ -251,35 +251,33 @@ const FeaturedProviders = () => {
                       key={badge}
                       className="flex items-center gap-1 py-1 px-2 bg-green-50 text-green-700 text-[13px] font-bold rounded-md border border-green-100 uppercase"
                     >
-                      <CheckCircle size={13} /> {badge}
+                      <CheckCircle size={13} /> {t(`badges.${badge}`)}
                     </span>
                   ))}
                 </div>
               </div>
 
-              {/* Footer - FIXED */}
+              {/* Footer */}
               <div className="px-6 py-4 bg-gray-50/50 border-t border-gray-100 mt-auto flex flex-row items-center justify-between gap-3">
-                {/* Price */}
-                <div className="whitespace-nowrap">
+                <div className="whitespace-nowrap text-left rtl:text-right">
                   <span className="text-[12px] uppercase text-gray-400 font-bold">
-                    Starting From
+                    {t("startingFrom")}
                   </span>
                   <p className="text-md font-bold text-gray-900">
                     {p.price}
                     <span className="text-gray-500 font-normal italic">
                       {" "}
-                      / {p.unit}
+                      / {t(`units.${p.unit}`)}
                     </span>
                   </p>
                 </div>
 
-                {/* Book Button */}
                 <Link href={`/service/${p.id}`}>
                   <motion.div
                     whileTap={{ scale: 0.95 }}
                     className="bg-yellow-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-yellow-700 transition-all shadow-md cursor-pointer whitespace-nowrap"
                   >
-                    Book Now
+                    {t("bookNow")}
                   </motion.div>
                 </Link>
               </div>
