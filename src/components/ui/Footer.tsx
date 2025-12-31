@@ -36,7 +36,6 @@ const Footer: React.FC = () => {
     },
   };
 
-const Footer = () => {
   return (
     <footer className="bg-[#1B3A57] text-white pt-14 pb-6">
       <div className="max-w-7xl mx-auto px-4">
@@ -67,7 +66,6 @@ const Footer = () => {
               {t("description")}
             </p>
 
-            {/* FIXED: Changed space-x-4 to gap-4 for RTL compatibility */}
             <div className="flex gap-4 pt-2">
               {[Facebook, Linkedin, Instagram, Youtube].map(
                 (Icon: LucideIcon, i: number) => (
@@ -81,7 +79,7 @@ const Footer = () => {
                 )
               )}
             </div>
-          </div>
+          </motion.div>
 
           {/* ---------- REAL ESTATE ---------- */}
           <motion.div variants={itemVariants}>
@@ -105,7 +103,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* ---------- HOME SERVICES ---------- */}
           <motion.div variants={itemVariants}>
@@ -129,7 +127,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* ---------- COMPANY ---------- */}
           <motion.div variants={itemVariants}>
@@ -153,7 +151,7 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
 
           {/* ---------- SUPPORT ---------- */}
           <motion.div variants={itemVariants}>
@@ -176,8 +174,8 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         <motion.div
           initial={{ opacity: 0, scaleX: 0 }}
@@ -188,14 +186,11 @@ const Footer = () => {
         />
 
         {/* ---------- BOTTOM FOOTER ---------- */}
-        <div
-          className=" flex flex-col   sm:flex-row items-center justify-between text-sm text-gray-300 gap-4 "
-        >
+        <div className="flex flex-col sm:flex-row items-center justify-between text-sm text-gray-300 gap-4">
           <p className="text-center sm:text-left">
             {t("copyright", { year: 2025 })}
           </p>
 
-          {/* FIXED: Changed space-x-6 to gap-6 here as well */}
           <div className="flex gap-6">
             {[
               { key: "privacy", href: "/privacy-policy" },

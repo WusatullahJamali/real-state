@@ -18,6 +18,11 @@ interface BlogPost {
   readTime: string;
 }
 
+interface BlogCardProps {
+  post: BlogPost;
+}
+
+/* ---------------- BLOG CARD ---------------- */
 
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
@@ -57,7 +62,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 
           <div className="mt-4 flex justify-between items-center text-[11px] text-gray-500">
             <span className="font-semibold text-gray-800 flex items-center gap-1">
-              <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />{" "}
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />
               {post.author}
             </span>
             <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded font-bold">
@@ -65,6 +70,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
             </span>
           </div>
         </div>
+
         <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
       </Link>
     </motion.div>
@@ -74,7 +80,6 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 /* ---------------- HERO BANNER ---------------- */
 
 const FeaturedArticleBanner: React.FC = () => {
-  // Accessing the specific nested object
   const t = useTranslations("home.blog.featured");
 
   return (
@@ -136,13 +141,11 @@ const FeaturedArticleBanner: React.FC = () => {
 export default function BlogPage() {
   const t = useTranslations("home.blog");
 
-  // Using raw to get the posts array
-  // If t.raw fails, we ensure it's an empty array to prevent map errors
   let posts: BlogPost[] = [];
   try {
     posts = t.raw("posts");
   } catch (e) {
-    console.error("Failed to load blog posts from JSON", e);
+    console.error("Failed to load blog posts", e);
   }
 
   return (
@@ -160,23 +163,26 @@ export default function BlogPage() {
       <FeaturedArticleBanner />
 
       <section className="py-16 md:py-24">
-            variants={{
-              visible: {
-                transition: {
-                  staggerChildren: 0.1,
-                },
-              },
-            }}
-            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
-          >
-            {posts && posts.length > 0 ? (
-              posts.map((post) => <BlogCard key={post.id} post={post} />)
-            ) : (
-              <p className="col-span-full text-center text-gray-400">
-                No posts found.
-              </p>
-            )}
-        </div>
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={{
+            visible: {
+              transition: { staggerChildren: 0.1 },
+            },
+          }}
+          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {posts.length > 0 ? (
+            posts.map((post) => (
+              <BlogCard key={post.id} post={post} />
+            ))
+          ) : (
+            <p className="col-span-full text-center text-gray-400">
+              No posts found.
+            </p>
+          )}
+        </motion.div>
       </section>
     </div>
   );
