@@ -1,7 +1,12 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import { useTranslations } from "next-intl";
+
+/* ---------------- TYPES ---------------- */
 
 interface BlogPost {
   id: number;
@@ -13,163 +18,164 @@ interface BlogPost {
   readTime: string;
 }
 
-const blogs = [
-  {
-    id: 1,
-    title: "Real Estate Market Trends in Baghdad 2025",
-    snippet:
-      "Baghdad’s real estate market continues to grow due to infrastructure development, commercial expansion, and rising residential demand in prime districts...",
-    image: "/blog2.jpg",
-    tag: "Baghdad",
-    author: "Wusat",
-    readTime: "4 min read",
-  },
-  {
-    id: 2,
-    title: "Top Investment Opportunities in Erbil Real Estate",
-    snippet:
-      "Erbil has become one of Iraq’s strongest property markets, attracting investors due to stability, modern housing projects, and high rental demand...",
-    image: "/blog3.jpg",
-    tag: "Erbil",
-    author: "Sahil",
-    readTime: "5 min read",
-  },
-  {
-    id: 3,
-    title: "Basra Property Market: Residential & Commercial Growth",
-    snippet:
-      "Basra’s oil economy is driving demand for apartments, offices, and commercial properties, making it a key investment hub in southern Iraq...",
-    image: "/blog4.jpg",
-    tag: "Basra",
-    author: "Shahzaib",
-    readTime: "3 min read",
-  },
-  {
-    id: 4,
-    title: "Najaf & Karbala: High-Demand Cities for Property Investment",
-    snippet:
-      "Religious tourism continues to fuel strong rental and hotel apartment demand in Najaf and Karbala, offering consistent long-term returns...",
-    image: "/blog5.jpg",
-    tag: "Najaf & Karbala",
-    author: "Shoaib (Senior Developer)",
-    readTime: "6 min read",
-  },
-];
 
-
-interface BlogCardProps {
-  post: BlogPost;
-}
 const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
   return (
-    <Link
-      href={`/blog/${post.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-shadow duration-300"
+    <motion.div
+      variants={{
+        hidden: { opacity: 0, y: 30 },
+        visible: { opacity: 1, y: 0 },
+      }}
+      transition={{ duration: 0.5 }}
     >
-      {/* IMAGE */}
-      <div className="relative h-36 md:h-40 overflow-hidden">
-        <Image
-          src={post.image}
-          alt={post.title}
-          fill
-          className="object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-
-        {/* Gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-black/10 to-transparent" />
-
-        {/* Tag */}
-        <span className="absolute top-3 left-3 bg-yellow-500 text-gray-900 px-3 py-1 text-xs font-semibold rounded-full shadow-md">
-          {post.tag}
-        </span>
-      </div>
-
-      {/* CONTENT */}
-      <div className="flex-1 p-4 flex flex-col justify-between">
-        <div>
-          <h3 className="text-lg font-semibold text-gray-900 line-clamp-2 group-hover:text-yellow-600 transition-colors">
-            {post.title}
-          </h3>
-          <p className="mt-2 text-sm text-gray-600 line-clamp-3">
-            {post.snippet}
-          </p>
-        </div>
-
-        {/* FOOTER */}
-        <div className="mt-4 flex justify-between items-center text-xs text-gray-500">
-          <span className="font-medium text-gray-800">{post.author}</span>
-          <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-md font-medium">
-            {post.readTime}
+      <Link
+        href={`/blog/${post.id}`}
+        className="group relative flex flex-col h-full overflow-hidden rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-300"
+      >
+        <div className="relative h-36 md:h-40 overflow-hidden">
+          <Image
+            src={post.image || "/placeholder.jpg"}
+            alt={post.title}
+            fill
+            className="object-cover transition-transform duration-700 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+          <span className="absolute top-3 left-3 bg-yellow-500 text-gray-900 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md z-10">
+            {post.tag}
           </span>
         </div>
-      </div>
 
-      {/* Hover underline below the card */}
-      <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-300" />
-    </Link>
+        <div className="flex-1 p-4 flex flex-col justify-between">
+          <div>
+            <h3 className="text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-yellow-600 transition-colors leading-tight">
+              {post.title}
+            </h3>
+            <p className="mt-2 text-sm text-gray-600 line-clamp-3 leading-relaxed">
+              {post.snippet}
+            </p>
+          </div>
+
+          <div className="mt-4 flex justify-between items-center text-[11px] text-gray-500">
+            <span className="font-semibold text-gray-800 flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-yellow-500" />{" "}
+              {post.author}
+            </span>
+            <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded font-bold">
+              {post.readTime}
+            </span>
+          </div>
+        </div>
+        <span className="absolute bottom-0 left-0 w-full h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500" />
+      </Link>
+    </motion.div>
   );
 };
 
+/* ---------------- HERO BANNER ---------------- */
 
-// HERO BANNER
-const FeaturedArticleBanner = () => {
-  const BANNER_IMAGE = "/b2.avif";
+const FeaturedArticleBanner: React.FC = () => {
+  // Accessing the specific nested object
+  const t = useTranslations("home.blog.featured");
 
   return (
-    <section className="relative w-full h-[45vh] md:h-[70vh] overflow-hidden bg-gray-900">
-      <Image
-        src="/blog7.avif"
-        alt="Featured Article"
-        fill
-        className="object-cover brightness-75 hover:scale-105 transition duration-700"
-        priority
-      />
+    <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-gray-900">
+      <motion.div
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0"
+      >
+        <Image
+          src={t("image")}
+          alt={t("title")}
+          fill
+          className="object-cover brightness-50"
+          priority
+        />
+      </motion.div>
 
-      <div className="absolute inset-0 bg-black/30"></div>
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-        <p className="text-sm text-yellow-300 font-semibold tracking-widest uppercase">
-          Featured Story
-        </p>
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+          className="text-xs md:text-sm text-yellow-400 font-bold tracking-[0.2em] uppercase"
+        >
+          {t("label")}
+        </motion.p>
 
-        <h1 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-white max-w-3xl leading-tight mt-3">
-  Inside Iraq’s Fastest Growing Real Estate Cities
-</h1>
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 0.8 }}
+          className="text-3xl md:text-5xl lg:text-6xl font-extrabold text-white max-w-4xl leading-[1.1] mt-4"
+        >
+          {t("title")}
+        </motion.h1>
 
-
-        <Link href="/article/featured">
-          <button className="mt-6 px-8 py-3 bg-yellow-500 text-gray-900 font-semibold rounded-md hover:bg-yellow-600 shadow-lg transition">
-            Read Article
-          </button>
-        </Link>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 1, duration: 0.5 }}
+        >
+          <Link href="/article/featured">
+            <button className="mt-8 px-10 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full hover:bg-yellow-400 hover:scale-105 shadow-[0_10px_20px_rgba(234,179,8,0.3)] transition-all active:scale-95">
+              {t("button")}
+            </button>
+          </Link>
+        </motion.div>
       </div>
     </section>
   );
 };
 
+/* ---------------- PAGE ---------------- */
+
 export default function BlogPage() {
+  const t = useTranslations("home.blog");
+
+  // Using raw to get the posts array
+  // If t.raw fails, we ensure it's an empty array to prevent map errors
+  let posts: BlogPost[] = [];
+  try {
+    posts = t.raw("posts");
+  } catch (e) {
+    console.error("Failed to load blog posts from JSON", e);
+  }
+
   return (
-    <div className="min-h-screen bg-gray-50 text-black">
+    <div className="min-h-screen bg-white text-black">
       {/* MOBILE BACK BUTTON */}
       <div className="max-w-7xl mx-auto px-4 py-4 md:hidden">
         <Link
           href="/"
-          className="inline-block px-4 py-2 bg-yellow-500 text-black font-semibold rounded-lg hover:bg-yellow-600 transition"
+          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
         >
-          ← Back to Home
+          <span className="rtl:rotate-180">←</span> {t("back")}
         </Link>
       </div>
 
       <FeaturedArticleBanner />
 
-      {/* BLOG CARDS */}
-      <section className="py-14">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {blogs.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
+      <section className="py-16 md:py-24">
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {posts && posts.length > 0 ? (
+              posts.map((post) => <BlogCard key={post.id} post={post} />)
+            ) : (
+              <p className="col-span-full text-center text-gray-400">
+                No posts found.
+              </p>
+            )}
         </div>
       </section>
     </div>

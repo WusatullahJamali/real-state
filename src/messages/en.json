@@ -306,5 +306,109 @@
         }
       }
     }
+  },
+  "buyPage": {
+    "row1": { "title": "Homes around 400M IQD", "link": "View all in Baghdad" },
+    "row2": {
+      "title": "Newest Listings in Iraq",
+      "link": "View all properties"
+    },
+    "row3": { "title": "Hot Deals", "link": "View offers" },
+    "row4": { "title": "Upcoming Projects", "link": "View developments" },
+    "row5": { "title": "Affordable Homes", "link": "Budget-friendly homes" }
+  },
+  "buyCards": {
+    "currency": "IQD",
+    "propertyTypes": {
+      "singleFamily": "Single-Family Home",
+      "condo": "Condo",
+      "land": "Land"
+    },
+    "specs": {
+      "beds": "{count} {count, plural, =1 {bed} other {beds}}",
+      "baths": "{count} {count, plural, =1 {bath} other {baths}}",
+      "sqft": "{count} sqft",
+      "sqm": "{count} sqm"
+    },
+    "data": {
+      "p1": {
+        "address": "Street 14, Al-Mansour",
+        "city": "Baghdad, Al-Mansour"
+      },
+      "p2": { "address": "Dream City Complex", "city": "Baghdad, Al-Jadriya" },
+      "p3": { "address": "Street 60, Zayouna", "city": "Baghdad, Zayouna" },
+      "p4": { "address": "Palm Residence", "city": "Erbil, Ankawa" },
+      "p5": { "address": "Green Hills", "city": "Erbil, Italian City" },
+      "p6": { "address": "Mountain View Plot", "city": "Duhok, Amedi" },
+      "p7": { "address": "Family Villas", "city": "Najaf, Al-Askan" },
+      "p8": { "address": "Sunrise Towers", "city": "Basra, Al-Ashar" },
+      "p9": {
+        "address": "Palm Agricultural Land",
+        "city": "Karbala, Ain Al-Tamr"
+      },
+      "p10": { "address": "Al-Quds District", "city": "Mosul, Al-Zohour" }
+    }
+  },
+  "propertyCards": {
+    "categories": {
+      "trends": "Trends",
+      "uniqueHomes": "Unique Homes",
+      "celebrity": "Celebrity Real Estate",
+      "weather": "Weather"
+    },
+    "badges": {
+      "mostPopular": "Most Popular Homes"
+    },
+    "items": [
+      {
+        "id": 1,
+        "categoryKey": "trends",
+        "categoryColor": "bg-green-500",
+        "imageSrc": "/p1.jpg",
+        "title": "These Top Housing Markets Will Deliver Better Value Than Their..."
+      },
+      {
+        "id": 2,
+        "categoryKey": "uniqueHomes",
+        "categoryColor": "bg-indigo-600",
+        "imageSrc": "/p2.jpg",
+        "title": "Old Gold Mine Bunker Carved Into the Side of Arizona Mountain Hits...",
+        "badgeKey": "mostPopular",
+        "badgeBgColor": "bg-red-600"
+      },
+      {
+        "id": 3,
+        "categoryKey": "celebrity",
+        "categoryColor": "bg-blue-500",
+        "imageSrc": "/p3.jpg",
+        "title": "EXCLUSIVE: Late Shannen Doherty's Beloved Malibu Mansion..."
+      },
+      {
+        "id": 4,
+        "categoryKey": "weather",
+        "categoryColor": "bg-red-500",
+        "imageSrc": "/p4.jpg",
+        "title": "Tropical Storms Humberto and Imelda: Trackers See Storm's Path..."
+      }
+    ]
+  },
+  "hero2": {
+    "title": "What To Ask Before Renting a Home To Avoid Hidden Expenses",
+    "button": "Read Article",
+    "image": "/hero2.jpg"
+  },
+
+  "combinedAd": {
+    "section1": {
+      "title": "Need a home loan? Get pre-approved",
+      "description": "Find a lender who can offer competitive mortgage rates and help you with pre-approval.",
+      "button": "Get pre-approved now",
+      "disclosure": "Advertising disclosure"
+    },
+    "section2": {
+      "title": "Get Local Info",
+      "description": "Does it have pet-friendly rentals? How are the schools? Get important local information on the area you are most interested in.",
+      "placeholder": "Address, City, Zip or Neighbourhood"
+    }
   }
 }
