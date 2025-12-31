@@ -5,7 +5,21 @@ import React from "react";
 import Image from "next/image";
 import { useTranslations, useMessages, useLocale } from "next-intl";
 
-const InfoCard: React.FC<{ item: any; index: number }> = ({ item, index }) => {
+// Define an interface for the item to replace 'any'
+interface PropertyItem {
+  id: string | number;
+  imageSrc: string;
+  categoryKey: string;
+  categoryColor: string;
+  badgeKey?: string;
+  badgeBgColor?: string;
+  title: string;
+}
+
+const InfoCard: React.FC<{ item: PropertyItem; index: number }> = ({
+  item,
+  index,
+}) => {
   const t = useTranslations("propertyCards");
   const locale = useLocale();
   const isRtl = locale === "ar";
@@ -41,17 +55,19 @@ const InfoCard: React.FC<{ item: any; index: number }> = ({ item, index }) => {
         <div className="relative h-48 sm:h-52">
           <Image
             src={item.imageSrc}
-            alt="property-news"
+            alt={item.title}
             fill
             className="object-cover"
           />
 
           {/* CATEGORY BADGE */}
-          <span
-            className={`absolute top-3 left-3 rtl:left-auto rtl:right-3 px-3 py-1 text-[10px] font-bold text-white rounded-full uppercase ${item.categoryColor}`}
-          >
-            {t(`categories.${item.categoryKey}`)}
-          </span>
+          {item.categoryKey && (
+            <span
+              className={`absolute top-3 left-3 rtl:left-auto rtl:right-3 px-3 py-1 text-[10px] font-bold text-white rounded-full uppercase ${item.categoryColor}`}
+            >
+              {t(`categories.${item.categoryKey}`)}
+            </span>
+          )}
 
           {/* OPTIONAL BADGE */}
           {item.badgeKey && (
@@ -75,14 +91,17 @@ const InfoCard: React.FC<{ item: any; index: number }> = ({ item, index }) => {
 };
 
 const PropertyCards: React.FC = () => {
-  const messages = useMessages() as any;
-  const items = messages.propertyCards?.items || [];
+  const messages = useMessages();
+
+  // Safely extract items from messages with type casting
+  const propertyCards = (messages as any)?.propertyCards;
+  const items: PropertyItem[] = propertyCards?.items || [];
 
   return (
     <section className="bg-white py-14">
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((item: any, index: number) => (
+          {items.map((item, index) => (
             <InfoCard key={item.id} item={item} index={index} />
           ))}
         </div>
