@@ -1,17 +1,24 @@
-// components/Hero.tsx
 "use client";
 
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 
 const ServiceHero: React.FC = () => {
+  const t = useTranslations("ServiceHero");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   return (
-    <section className="relative w-full min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden font-sans">
+    <section
+      className="relative w-full min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden font-sans"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       {/* Background Image */}
       <motion.div
         className="absolute inset-0 z-0"
-        initial={{ scale: 1.15 }} // ❌ removed opacity: 0
+        initial={{ scale: 1.15 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1.8, ease: "easeOut" }}
       >
@@ -22,7 +29,7 @@ const ServiceHero: React.FC = () => {
           priority
           className="object-cover pointer-events-none brightness-[0.45]"
         />
-        <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/50 to-black/30" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30" />
       </motion.div>
 
       {/* Content */}
@@ -48,7 +55,7 @@ const ServiceHero: React.FC = () => {
               },
             }}
           >
-            Premium Home Solutions
+            {t("badge")}
           </motion.span>
 
           {/* Heading */}
@@ -63,9 +70,9 @@ const ServiceHero: React.FC = () => {
               },
             }}
           >
-            Your Trusted <br className="hidden sm:block" />
-            <span className="text-transparent bg-clip-text bg-linear-to-r from-yellow-300 via-yellow-400 to-yellow-500">
-              Home Services
+            {t("titleMain")} <br className="hidden sm:block" />
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-yellow-400 to-yellow-500">
+              {t("titleHighlight")}
             </span>
           </motion.h1>
 
@@ -81,11 +88,10 @@ const ServiceHero: React.FC = () => {
               },
             }}
           >
-            Reliable, affordable, and professional solutions designed to make
-            your home safer, smarter, and more comfortable.
+            {t("subtext")}
           </motion.p>
 
-          {/* CTA (unchanged, empty as provided) */}
+          {/* CTA Placeholder */}
           <motion.div
             variants={{
               hidden: { opacity: 0, scale: 0.95 },
@@ -100,7 +106,7 @@ const ServiceHero: React.FC = () => {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 bg-linear-to-t from-black to-transparent z-20" />
+      <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-t from-black to-transparent z-20" />
     </section>
   );
 };
