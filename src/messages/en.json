@@ -410,5 +410,193 @@
       "description": "Does it have pet-friendly rentals? How are the schools? Get important local information on the area you are most interested in.",
       "placeholder": "Address, City, Zip or Neighbourhood"
     }
+  },
+
+  "PropertyHero": {
+    "back": "Back",
+    "badge": "10 Premium Listings Available",
+    "titleLine1": "Find Your Dream",
+    "titleLine2": "Home in Iraq",
+    "subtitle": "Discover luxury villas in Baghdad, modern apartments in Erbil, and heritage homes across the nation.",
+    "searchPlaceholder": "City, Neighborhood...",
+    "allTypes": "All Property Types",
+    "searchBtn": "Search",
+    "popular": "Popular",
+    "types": {
+      "house": "House",
+      "apartment": "Apartment",
+      "villa": "Villa"
+    },
+    "cities": {
+      "Baghdad": "Baghdad",
+      "Erbil": "Erbil",
+      "Basra": "Basra",
+      "Mosul": "Mosul"
+    },
+
+    "PropertyCard": {
+      "cities": { "Baghdad": "Baghdad", "Erbil": "Erbil", "Basra": "Basra" },
+      "types": {
+        "Villa": "Villa",
+        "Apartment": "Apartment",
+        "House": "House",
+        "Land": "Land"
+      },
+      "labels": { "beds": "Beds", "baths": "Baths", "lot": "Lot" },
+      "unit": { "sqm": "m²" }
+    }
+  },
+
+  "ServiceHero": {
+    "badge": "Premium Home Solutions",
+    "titleMain": "Your Trusted",
+    "titleHighlight": "Home Services",
+    "subtext": "Reliable, affordable, and professional solutions designed to make your home safer, smarter, and more comfortable."
+  },
+
+  "FeatureService": {
+    "items": {
+      "plumbing": {
+        "title": "PLUMBING",
+        "desc": "Leak repairs, drain cleaning, water heater installation"
+      },
+      "electrical": {
+        "title": "ELECTRICAL",
+        "desc": "Wiring, outlets, lighting, panel upgrades"
+      },
+      "repairing": {
+        "title": "REPAIRING",
+        "desc": "Installation, repair, maintenance"
+      },
+      "hvac": {
+        "title": "AC & HVAC",
+        "desc": "Installation, repair, maintenance, air quality"
+      },
+      "painting": {
+        "title": "PAINTING",
+        "desc": "Interior, maintenance, commercial"
+      },
+      "gardening": {
+        "title": "GARDENING",
+        "desc": "Design, exterior, gardening"
+      },
+      "landscaping": {
+        "title": "LANDSCAPING",
+        "desc": "Design, maintenance, irrigation"
+      },
+      "cleaning": {
+        "title": "CLEANING",
+        "desc": "Deep cleaning, move in/out, regular service"
+      }
+    }
+  },
+
+  "FeaturedProviders": {
+    "badge": "Top Rated",
+    "title": "Featured Service Providers",
+    "startingFrom": "Starting From",
+    "bookNow": "Book Now",
+    "units": {
+      "hour": "hour",
+      "term": "term",
+      "visit": "visit",
+      "project": "project",
+      "room": "room",
+      "service": "service"
+    },
+    "categories": {
+      "Electrical": "Electrical",
+      "Cleaning": "Cleaning",
+      "AC & HVAC": "AC & HVAC",
+      "Plumbing": "Plumbing",
+      "Renovation": "Renovation",
+      "Landscaping": "Landscaping",
+      "Electronics": "Electronics",
+      "Painting": "Painting",
+      "Locksmith": "Locksmith"
+    },
+    "locations": {
+      "Baghdad": "Baghdad",
+      "Erbil": "Erbil",
+      "Basra": "Basra",
+      "Mosul": "Mosul"
+    },
+    "badges": {
+      "Verified": "Verified",
+      "Licensed": "Licensed",
+      "24/7": "24/7",
+      "Emergency": "Emergency",
+      "Fast Service": "Fast Service"
+    },
+    "providers": {
+      "1": {
+        "name": "Ali Electrical Services",
+        "desc": "Expert in smart home wiring, panel upgrades, and emergency electrical repairs."
+      },
+      "2": {
+        "name": "Clean Home Pro",
+        "desc": "Deep cleaning specialists for residential and commercial spaces with eco-friendly products."
+      },
+      "3": {
+        "name": "Cool Air Solutions",
+        "desc": "Full-service HVAC maintenance, installation, and rapid cooling system diagnostics."
+      },
+      "4": {
+        "name": "Perfect Plumbing",
+        "desc": "Solving complex leakages, pipe bursts, and bathroom fixture installations since 2015."
+      },
+      "5": {
+        "name": "Home Renovators",
+        "desc": "Transforming kitchens and living rooms with high-quality craftsmanship and modern designs."
+      },
+      "6": {
+        "name": "Garden Masters",
+        "desc": "Professional lawn care, irrigation setup, and ornamental garden design."
+      },
+      "7": {
+        "name": "Tech Repair Hub",
+        "desc": "Certified technicians for laptop, mobile, and home appliance motherboard repairs."
+      },
+      "8": {
+        "name": "Paint Pro",
+        "desc": "High-precision interior and exterior painting with durable, premium finishes."
+      },
+      "9": {
+        "name": "Secure Locks",
+        "desc": "Advanced security lock installations and 24/7 emergency lockout assistance."
+      }
+    }
+  },
+
+  "Contact": {
+    "badge": "Iraq Real Estate",
+    "heroTitle": "Let's build your",
+    "heroLegacy": "legacy.",
+    "heroDesc": "Connect with Iraq's premier property consultants. From Baghdad to Basra, we are here for you.",
+    "info": {
+      "phone": "Direct Line",
+      "email": "Email Us",
+      "address": "Headquarters",
+      "addressValue": "Al-Mansour, Baghdad"
+    },
+    "form": {
+      "title": "Send a Message",
+      "subTitle": "We typically reply within 2 hours.",
+      "nameLabel": "Full Name",
+      "namePlaceholder": "Omer-al-sayed",
+      "phoneLabel": "Phone Number",
+      "phonePlaceholder": "+964 1234 567 89",
+      "emailLabel": "Email Address",
+      "emailPlaceholder": "albasync@example.com",
+      "interestLabel": "I'm interested in",
+      "interests": {
+        "buying": "Buying",
+        "renting": "Renting",
+        "selling": "Selling"
+      },
+      "messageLabel": "Message",
+      "messagePlaceholder": "Tell us about the property...",
+      "submit": "Send Request"
+    }
   }
 }
