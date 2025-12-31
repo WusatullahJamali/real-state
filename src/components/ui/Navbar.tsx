@@ -161,20 +161,18 @@ export default function Navbar() {
   /* -------- LANGUAGE SWITCHER STATE -------- */
   const [langOpen, setLangOpen] = useState(false);
 
- const switchLanguage = (lang: "en" | "ar" | "ku") => {
-  if (typeof window === "undefined") return;
+  const switchLanguage = (lang: "en" | "ar" | "ku") => {
+    if (typeof window === "undefined") return;
 
-  window.location.href = `${window.location.origin}/${lang}`;
-};
+    window.location.href = `${window.location.origin}/${lang}`;
+  };
 
-const getLangPrefix = () => {
-  if (typeof window === "undefined") return "";
-  const url = window.location.href; // full URL
-  const match = url.match(/https?:\/\/[^\/]+\/(en|ar|ku)/); // check for /en, /ar, /ku
-  return match ? `/${match[1]}` : "";
-};
-
-
+  const getLangPrefix = () => {
+    if (typeof window === "undefined") return "";
+    const url = window.location.href; // full URL
+    const match = url.match(/https?:\/\/[^\/]+\/(en|ar|ku)/); // check for /en, /ar, /ku
+    return match ? `/${match[1]}` : "";
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -212,10 +210,7 @@ const getLangPrefix = () => {
                 }
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-               <Link href={`${getLangPrefix()}${item.href}`}>
-  {item.name}
-</Link>
-
+                <Link href={`${getLangPrefix()}${item.href}`}>{item.name}</Link>
 
                 <AnimatePresence>
                   {hoveredMenu === item.name &&
@@ -242,10 +237,9 @@ const getLangPrefix = () => {
                                 {col.items?.map((sub, j) => (
                                   <li key={j}>
                                     <Link
-  href={`${getLangPrefix()}${sub.href}`}
-  className="flex gap-3 p-3 rounded-lg hover:bg-yellow-50"
->
-
+                                      href={`${getLangPrefix()}${sub.href}`}
+                                      className="flex gap-3 p-3 rounded-lg hover:bg-yellow-50"
+                                    >
                                       <sub.icon className="w-5 h-5 text-gray-500" />
                                       <span className="text-gray-800 text-sm font-semibold">
                                         {sub.text}
