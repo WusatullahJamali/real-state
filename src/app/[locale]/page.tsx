@@ -1,6 +1,5 @@
 // 'use client';
 
-
 // import Hero from "@/components/Home/Hero";
 // import Hero2 from "@/components/Home/Hero2";
 // import Startbutton from "@/components/Home/Startbutton";
@@ -14,7 +13,6 @@
 // import RecentPropertiesSection from "@/components/Home/RecentProperty";
 // import BlogPage from "@/components/blog components/BlogPage";
 // import RecommendedLocations from "@/components/Home/Recommended";
-
 
 // export default function HomePage() {
 //   return (
@@ -32,12 +30,10 @@
 //       {/* <Footer1 />
 //       <Footer2 /> */}
 //       {/* <RecentPropertiesSection/> */}
-      
-      
+
 //     </>
 //   );
 // }
-
 
 // 'use client';
 
@@ -60,7 +56,7 @@
 // export default function HomePage() {
 //   // Translation hook
 //   const t = useTranslations("home");
-  
+
 //   return (
 //     <>
 //       {/* Hero Section */}
@@ -78,21 +74,11 @@
 //       {/* Recommended Locations */}
 //       <RecommendedLocations title={t('recommendedCities')} />
 
-    
 //       <BlogPage />
 //       </>
-   
+
 //   );
 // }
-
-
-
-
-
-
-
-
-
 
 "use client";
 
@@ -102,7 +88,7 @@ import CollectionsSection from "@/components/Home/Collections";
 import Startbutton from "@/components/Home/Startbutton";
 import RecommendedLocations from "@/components/Home/Recommended";
 import Categories from "@/components/Home/Categories";
-import BlogPage from "@/components/blog components/BlogPage"
+import BlogPage from "@/components/blog-components/BlogPage";
 
 export default function HomePage() {
   const t = useTranslations("home");
@@ -111,26 +97,26 @@ export default function HomePage() {
     <>
       {/* Hero */}
       <Hero
-        // title={t("hero.title")}
-        // description={t("hero.description")}
+      // title={t("hero.title")}
+      // description={t("hero.description")}
       />
 
       {/* Collections */}
       <CollectionsSection
-        // title={t("collections.title")}
-        // description={t("collections.description")}
+      // title={t("collections.title")}
+      // description={t("collections.description")}
       />
 
       {/* Start Button */}
-      <Startbutton  />
+      <Startbutton />
 
       {/* Categories */}
       <Categories />
 
       {/* Recommended Locations */}
       <RecommendedLocations
-        // title={t("recommendedLocations.title")}
-        // subtitle={t("recommendedLocations.subtitle")}
+      // title={t("recommendedLocations.title")}
+      // subtitle={t("recommendedLocations.subtitle")}
       />
 
       <BlogPage />
