@@ -1,28 +1,43 @@
 "use client";
 
-import { useParams, useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  MapPin,
-  Bed,
-  Bath,
-  Home,
-  ParkingCircle,
-  ChevronLeft,
-} from "lucide-react";
+import { MapPin, Bed, Bath, Home, ChevronLeft } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 import { getPropertyById } from "@/data/properties";
+
+// --- Interface ---
+interface Property {
+  id: string;
+  image: string;
+  typeKey: string;
+  price: number;
+  address: string;
+  cityStateZip: string; // Ensure your data file has this!
+  tags?: string[];
+  specs: {
+    beds?: number;
+    baths?: number;
+    sqft?: number;
+    lotSizeKey?: string;
+    lotSizeValue?: number;
+  };
+}
 
 export default function PropertyDetailsPage() {
   const params = useParams();
-  const router = useRouter();
+  const t = useTranslations("buyCards");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
-  const property = getPropertyById(params.id as string);
+  const property = getPropertyById(params.id as string) as Property | undefined;
 
   const images = property?.image
     ? [property.image, property.image, property.image]
     : [];
+
   const [currentImage, setCurrentImage] = useState(0);
 
   useEffect(() => {
@@ -34,6 +49,7 @@ export default function PropertyDetailsPage() {
     }
   }, [images.length]);
 
+  // 1. Move the check up and make it more robust
   if (!property) {
     return (
       <div className="bg-white min-h-screen flex flex-col items-center justify-center text-center p-6">
@@ -53,18 +69,22 @@ export default function PropertyDetailsPage() {
     );
   }
 
-  const formatPrice = (num: number) =>
-    new Intl.NumberFormat("en-US").format(num) + " IQD";
+  const formatPrice = (num: number) => {
+    const formatted = new Intl.NumberFormat(isRtl ? "ar-IQ" : "en-US").format(
+      num
+    );
+    return `${formatted} ${t("currency")}`;
+  };
 
   // --- MAP LOGIC ---
-  // This creates a URL-safe string from the address to show on Google Maps
+  // 2. Added safety check for mapQuery
   const mapQuery = encodeURIComponent(
-    `${property.address}, ${property.cityStateZip}`
+    `${property.address || ""}, ${property.cityStateZip || ""}`
   );
   const googleMapsUrl = `https://maps.google.com/maps?q=${mapQuery}&t=&z=15&ie=UTF8&iwloc=&output=embed`;
 
   return (
-    <div className="bg-white min-h-screen py-10">
+    <div className="bg-white min-h-screen py-10" dir={isRtl ? "rtl" : "ltr"}>
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* LEFT COLUMN */}
         <div className="lg:col-span-2">
@@ -72,8 +92,8 @@ export default function PropertyDetailsPage() {
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="col-span-3 relative">
               <Image
-                src={images[currentImage]}
-                alt={property.type}
+                src={images[currentImage] || "/placeholder-house.jpg"}
+                alt={property.typeKey || "Property"}
                 width={1200}
                 height={500}
                 className="rounded-2xl shadow-md w-full h-[380px] md:h-[480px] object-cover transition-opacity duration-500"
@@ -84,10 +104,10 @@ export default function PropertyDetailsPage() {
                 <button
                   key={index}
                   onClick={() => setCurrentImage(index)}
-                  className={`relative rounded-xl overflow-hidden border-2 h-[110px] ${
+                  className={`relative rounded-xl overflow-hidden border-2 h-[110px] transition-all ${
                     currentImage === index
-                      ? "border-yellow-500"
-                      : "border-transparent"
+                      ? "border-yellow-500 scale-95"
+                      : "border-transparent opacity-70"
                   }`}
                 >
                   <Image src={img} fill alt="thumb" className="object-cover" />
@@ -108,33 +128,40 @@ export default function PropertyDetailsPage() {
 
           <div className="mt-4">
             <h1 className="text-3xl font-extrabold text-black">
-              {property.type} in {property.cityStateZip.split(",")[0]}
+              {/* 3. Added safety check for split */}
+              {t(`propertyTypes.${property.typeKey}`)} in{" "}
+              {property.cityStateZip?.split(",")[0] || "Iraq"}
             </h1>
             <div className="flex items-center text-gray-500 mt-2">
-              <MapPin className="w-5 h-5 mr-1 text-yellow-600" />
+              <MapPin
+                className={`w-5 h-5 ${isRtl ? "ml-1" : "mr-1"} text-yellow-600`}
+              />
               {property.address}, {property.cityStateZip}
             </div>
           </div>
 
           {/* STATS BAR */}
           <div className="flex flex-wrap gap-6 mt-6 p-4 bg-gray-50 rounded-xl border border-gray-100 text-black font-semibold">
-            {"lotSize" in property.specs ? (
+            {property.specs?.lotSizeKey ? (
               <span className="flex items-center gap-2">
-                📏 {property.specs.lotSize}
+                📏{" "}
+                {t(`specs.${property.specs.lotSizeKey}`, {
+                  count: property.specs.lotSizeValue || 0,
+                })}
               </span>
             ) : (
               <>
                 <span className="flex items-center gap-2">
-                  <Bed className="w-5 h-5 text-yellow-600" />{" "}
-                  {property.specs.beds} Beds
+                  <Bed className="w-5 h-5 text-yellow-600" />
+                  {t("specs.beds", { count: property.specs?.beds || 0 })}
                 </span>
                 <span className="flex items-center gap-2">
-                  <Bath className="w-5 h-5 text-yellow-600" />{" "}
-                  {property.specs.baths} Baths
+                  <Bath className="w-5 h-5 text-yellow-600" />
+                  {t("specs.baths", { count: property.specs?.baths || 0 })}
                 </span>
                 <span className="flex items-center gap-2">
-                  <Home className="w-5 h-5 text-yellow-600" />{" "}
-                  {property.specs.sqft} Sq Ft
+                  <Home className="w-5 h-5 text-yellow-600" />
+                  {t("specs.sqft", { count: property.specs?.sqft || 0 })}
                 </span>
               </>
             )}
@@ -146,9 +173,10 @@ export default function PropertyDetailsPage() {
               Description
             </h2>
             <p className="text-gray-700 mt-4 leading-relaxed">
-              This stunning {property.type.toLowerCase()} located at{" "}
+              This stunning{" "}
+              {t(`propertyTypes.${property.typeKey}`).toLowerCase()} located at{" "}
               {property.address} offers a modern lifestyle in a prime district.
-              The property features high-quality finishes and breathtaking city
+              The property features high-quality finishes and breathtaking
               views.
             </p>
           </div>
@@ -165,7 +193,6 @@ export default function PropertyDetailsPage() {
                 "Central AC",
                 "Security System",
                 "Garage",
-                "Smart Home",
               ].map((item) => (
                 <div
                   key={item}
@@ -177,7 +204,7 @@ export default function PropertyDetailsPage() {
             </div>
           </div>
 
-          {/* --- VISIBLE MAP SECTION --- */}
+          {/* LOCATION MAP */}
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-black border-b pb-2">
               Location
@@ -186,18 +213,14 @@ export default function PropertyDetailsPage() {
               <iframe
                 width="100%"
                 height="100%"
-                frameBorder="0"
-                scrolling="no"
-                marginHeight={0}
-                marginWidth={0}
+                style={{ border: 0 }}
                 src={googleMapsUrl}
                 title="Property Location"
+                allowFullScreen
+                loading="lazy"
                 className="grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
-              ></iframe>
+              />
             </div>
-            <p className="mt-2 text-sm text-gray-500 text-center italic">
-              * Exact location details are provided upon verified inquiry.
-            </p>
           </div>
         </div>
 
@@ -212,7 +235,6 @@ export default function PropertyDetailsPage() {
               Negotiable • Financing Available
             </div>
 
-            {/* Agent Info */}
             <div className="flex items-center gap-4 mt-8 pb-6 border-b">
               <div className="w-12 h-12 rounded-full bg-yellow-400 flex items-center justify-center font-bold text-white">
                 SM
@@ -240,7 +262,10 @@ export default function PropertyDetailsPage() {
                 className="w-full p-3 bg-gray-50 border rounded-xl h-24 text-black outline-none focus:border-yellow-500"
                 placeholder="I'm interested..."
               ></textarea>
-              <button className="w-full bg-yellow-500 text-black py-4 rounded-xl font-bold hover:bg-yellow-600 transition shadow-lg">
+              <button
+                className="w-full bg-yellow-500 text-black py-4 rounded-xl font-bold hover:bg-yellow-600 transition shadow-lg"
+                type="button"
+              >
                 Request Tour
               </button>
             </form>
@@ -253,7 +278,8 @@ export default function PropertyDetailsPage() {
           href="/buy"
           className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold rounded-xl transition"
         >
-          <ChevronLeft className="w-5 h-5" /> Back to Listings
+          <ChevronLeft className={`w-5 h-5 ${isRtl ? "rotate-180" : ""}`} />{" "}
+          Back to Listings
         </Link>
       </div>
     </div>

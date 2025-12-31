@@ -1,4 +1,3 @@
-
 "use client";
 
 import React from "react";
@@ -40,7 +39,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
       >
         <div className="relative h-36 md:h-40 overflow-hidden">
           <Image
-            src={post.image}
+            src={post.image || "/placeholder.jpg"}
             alt={post.title}
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
@@ -80,8 +79,9 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 /* ---------------- HERO BANNER ---------------- */
 
 const FeaturedArticleBanner: React.FC = () => {
+  // Accessing the specific nested object
   const t = useTranslations("home.blog.featured");
-  
+
   return (
     <section className="relative w-full h-[50vh] md:h-[70vh] overflow-hidden bg-gray-900">
       <motion.div
@@ -140,9 +140,15 @@ const FeaturedArticleBanner: React.FC = () => {
 
 export default function BlogPage() {
   const t = useTranslations("home.blog");
-  
-  // Fetching the raw array from JSON safely
-  const posts: BlogPost[] = t.raw("posts") || [];
+
+  // Using raw to get the posts array
+  // If t.raw fails, we ensure it's an empty array to prevent map errors
+  let posts: BlogPost[] = [];
+  try {
+    posts = t.raw("posts");
+  } catch (e) {
+    console.error("Failed to load blog posts from JSON", e);
+  }
 
   return (
     <div className="min-h-screen bg-white text-black">
@@ -173,9 +179,13 @@ export default function BlogPage() {
             }}
             className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {posts.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
+            {posts && posts.length > 0 ? (
+              posts.map((post) => <BlogCard key={post.id} post={post} />)
+            ) : (
+              <p className="col-span-full text-center text-gray-400">
+                No posts found.
+              </p>
+            )}
           </motion.div>
         </div>
       </section>
