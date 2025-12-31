@@ -3,76 +3,15 @@
 import { motion, Variants } from "framer-motion";
 import React from "react";
 import Image from "next/image";
+import { useTranslations, useMessages, useLocale } from "next-intl";
 
-/* ---------------- TYPES ---------------- */
-interface CardData {
-  id: number;
-  category: string;
-  categoryColor: string;
-  imageSrc: string;
-  imageAlt: string;
-  title: string;
-  badgeContent?: string;
-  badgeBgColor?: string;
-}
+const InfoCard: React.FC<{ item: any; index: number }> = ({ item, index }) => {
+  const t = useTranslations("propertyCards");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
-/* ---------------- DATA ---------------- */
-const cardData: CardData[] = [
-  {
-    id: 1,
-    category: "Trends",
-    categoryColor: "bg-green-500",
-    imageSrc: "/p1.jpg",
-    imageAlt: "City view covered in snow with money symbols",
-    title: "These Top Housing Markets Will Deliver Better Value Than Their...",
-  },
-  {
-    id: 2,
-    category: "Unique homes",
-    categoryColor: "bg-indigo-600",
-    imageSrc: "/p2.jpg",
-    imageAlt: "Entrance to an old mine bunker",
-    title:
-      "Old Gold Mine Bunker Carved Into the Side of Arizona Mountain Hits...",
-    badgeContent: "Most Popular Homes",
-    badgeBgColor: "bg-red-600",
-  },
-  {
-    id: 3,
-    category: "Celebrity real estate",
-    categoryColor: "bg-blue-500",
-    imageSrc: "/p3.jpg",
-    imageAlt: "Shannen Doherty next to her Malibu Mansion",
-    title: "EXCLUSIVE: Late Shannen Doherty's Beloved Malibu Mansion...",
-  },
-  {
-    id: 4,
-    category: "Weather",
-    categoryColor: "bg-red-500",
-    imageSrc: "/p4.jpg",
-    imageAlt: "Storm trackers map",
-    title: "Tropical Storms Humberto and Imelda: Trackers See Storm's Path...",
-  },
-];
-
-/* ---------------- CARD ---------------- */
-const InfoCard: React.FC<{ data: CardData; index: number }> = ({
-  data,
-  index,
-}) => {
-  const {
-    category,
-    categoryColor,
-    imageSrc,
-    imageAlt,
-    title,
-    badgeContent,
-    badgeBgColor,
-  } = data;
-
-  // Right-to-left pop-up animation
-  const popRightToLeft: Variants = {
-    hidden: { opacity: 0, x: 50, scale: 0.8 },
+  const popAnimation: Variants = {
+    hidden: { opacity: 0, x: isRtl ? -50 : 50, scale: 0.8 },
     visible: {
       opacity: 1,
       x: 0,
@@ -81,62 +20,53 @@ const InfoCard: React.FC<{ data: CardData; index: number }> = ({
         type: "spring",
         stiffness: 100,
         damping: 20,
-        delay: index * 0.15,
+        delay: index * 0.1,
       },
     },
   };
 
-  // Hover effect
-  const hoverVariants: Variants = {
-    initial: { scale: 1 },
-    hover: { scale: 1.03 },
-  };
-
   return (
     <motion.div
-      variants={popRightToLeft}
+      variants={popAnimation}
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.3 }}
+      className="w-full"
     >
       <motion.div
-        variants={hoverVariants}
-        initial="initial"
-        whileHover="hover"
-        transition={{ type: "spring", stiffness: 260, damping: 20 }}
-        className="w-full max-w-sm overflow-hidden rounded-xl bg-white cursor-pointer"
+        whileHover={{ scale: 1.03 }}
+        className="w-full overflow-hidden rounded-xl bg-white border border-gray-100 shadow-sm cursor-pointer"
       >
-        {/* IMAGE */}
+        {/* IMAGE SECTION */}
         <div className="relative h-48 sm:h-52">
           <Image
-            src={imageSrc}
-            alt={imageAlt}
+            src={item.imageSrc}
+            alt="property-news"
             fill
             className="object-cover"
-            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
 
           {/* CATEGORY BADGE */}
           <span
-            className={`absolute top-3 left-3 px-3 py-1 text-xs font-semibold text-white rounded-full ${categoryColor}`}
+            className={`absolute top-3 left-3 rtl:left-auto rtl:right-3 px-3 py-1 text-[10px] font-bold text-white rounded-full uppercase ${item.categoryColor}`}
           >
-            {category}
+            {t(`categories.${item.categoryKey}`)}
           </span>
 
           {/* OPTIONAL BADGE */}
-          {badgeContent && (
+          {item.badgeKey && (
             <span
-              className={`absolute bottom-3 left-3 px-3 py-1 text-xs sm:text-sm font-bold text-white rounded-full ${badgeBgColor}`}
+              className={`absolute bottom-3 left-3 rtl:left-auto rtl:right-3 px-3 py-1 text-xs font-bold text-white rounded-full ${item.badgeBgColor}`}
             >
-              {badgeContent}
+              {t(`badges.${item.badgeKey}`)}
             </span>
           )}
         </div>
 
-        {/* CONTENT */}
-        <div className="p-4">
-          <p className="text-sm font-medium text-gray-800 line-clamp-2">
-            {title}
+        {/* TEXT SECTION */}
+        <div className="p-4 text-left rtl:text-right">
+          <p className="text-sm font-semibold text-gray-800 line-clamp-2 leading-relaxed">
+            {item.title}
           </p>
         </div>
       </motion.div>
@@ -144,14 +74,16 @@ const InfoCard: React.FC<{ data: CardData; index: number }> = ({
   );
 };
 
-/* ---------------- GRID ---------------- */
 const PropertyCards: React.FC = () => {
+  const messages = useMessages() as any;
+  const items = messages.propertyCards?.items || [];
+
   return (
     <section className="bg-white py-14">
       <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8 place-items-center">
-          {cardData.map((card, index) => (
-            <InfoCard key={card.id} data={card} index={index} />
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {items.map((item: any, index: number) => (
+            <InfoCard key={item.id} item={item} index={index} />
           ))}
         </div>
       </div>

@@ -3,7 +3,22 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import { Heart, Bed, Ruler, MapPin, ArrowRight, Sparkles } from "lucide-react";
-import { houseList, HouseType } from "./RentData";
+
+// --- IMPORT FIX ---
+// We import the data. If HouseType still causes errors,
+// we define it locally to ensure the build passes.
+import { houseList } from "./RentData";
+
+export interface HouseType {
+  id: number;
+  image: string;
+  title: string;
+  price: number;
+  location: string;
+  bedrooms: number;
+  areaSqFt: number;
+  amenities: string[];
+}
 
 const RentHouses = () => {
   const [favorites, setFavorites] = useState<number[]>([]);

@@ -4,9 +4,10 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { Search } from "lucide-react";
 import { motion, Variants } from "framer-motion";
+import { useTranslations } from "next-intl";
 
 /* ---------------- BUTTON ---------------- */
-const GradientButton: React.FC = () => {
+const GradientButton: React.FC<{ label: string }> = ({ label }) => {
   return (
     <button
       className="
@@ -18,13 +19,13 @@ const GradientButton: React.FC = () => {
         hover:bg-gray-800 transition
       "
     >
-      Get pre-approved now
+      {label}
     </button>
   );
 };
 
 /* ---------------- SEARCH BAR ---------------- */
-const SearchBar: React.FC = () => {
+const SearchBar: React.FC<{ placeholder: string }> = ({ placeholder }) => {
   const [value, setValue] = useState("");
 
   const handleSearch = () => {
@@ -37,7 +38,7 @@ const SearchBar: React.FC = () => {
       <div className="flex items-center rounded-full border bg-white p-1 shadow focus-within:ring-2 focus-within:ring-[#1B3A57]">
         <input
           type="text"
-          placeholder="Address, City, Zip or Neighbourhood"
+          placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
@@ -91,6 +92,8 @@ const slideRight: Variants = {
 
 /* ---------------- MAIN COMPONENT ---------------- */
 const CombinedAd: React.FC = () => {
+  const t = useTranslations("combinedAd");
+
   return (
     <section className="w-full bg-white mt-16 overflow-hidden">
       {/* -------- SECTION 1 -------- */}
@@ -121,21 +124,20 @@ const CombinedAd: React.FC = () => {
           viewport={{ once: true, amount: 0.25 }}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1B3A57] mb-4">
-            Need a home loan? Get pre-approved
+            {t("section1.title")}
           </h2>
 
           <p className="text-gray-600 text-sm sm:text-base mb-6 max-w-lg">
-            Find a lender who can offer competitive mortgage rates and help you
-            with pre-approval.
+            {t("section1.description")}
           </p>
 
-          <GradientButton />
+          <GradientButton label={t("section1.button")} />
 
           <a
             href="#"
             className="mt-6 text-xs text-gray-500 underline hover:text-gray-700"
           >
-            Advertising disclosure
+            {t("section1.disclosure")}
           </a>
         </motion.div>
       </div>
@@ -151,15 +153,14 @@ const CombinedAd: React.FC = () => {
           viewport={{ once: true, amount: 0.25 }}
         >
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1B3A57] mb-4">
-            Get Local Info
+            {t("section2.title")}
           </h2>
 
           <p className="text-gray-600 text-sm sm:text-base mb-6 max-w-lg">
-            Does it have pet-friendly rentals? How are the schools? Get
-            important local information on the area you are most interested in.
+            {t("section2.description")}
           </p>
 
-          <SearchBar />
+          <SearchBar placeholder={t("section2.placeholder")} />
         </motion.div>
 
         {/* IMAGE */}

@@ -1,19 +1,10 @@
-
-
 "use client";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import {
-  MapPin,
-  Bed,
-  Bath,
-  Home,
-  
-  ParkingCircle,
-} from "lucide-react";
-import { CategoriesDATA } from "../../app/CategoriesDATA/[id]/Data";
+import { MapPin, Bed, Bath, Home, ParkingCircle } from "lucide-react";
+import { CategoriesDATA } from "@/app/[locale]/CategoriesDATA/[id]/Data";
 
 export default function PropertyDetailsPage() {
   const { id } = useParams();
@@ -32,7 +23,6 @@ export default function PropertyDetailsPage() {
   if (!property) {
     return (
       <div className=" bg-white h-full mx-auto py-20 text-center">
-        
         <h1 className="text-3xl font-bold text-yellow-500">
           Property Not Found
         </h1>
@@ -40,7 +30,6 @@ export default function PropertyDetailsPage() {
           href="/"
           className="mt-4 inline-block bg-yellow-500 text-white px-5 py-3 rounded-md"
         >
-          
           Go Back
         </Link>
       </div>
@@ -49,13 +38,10 @@ export default function PropertyDetailsPage() {
   return (
     <div className="bg-white min-h-screen py-10 ">
       <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
-
         {/* LEFT --- MAIN CONTENT */}
         <div className="lg:col-span-2">
-
           {/* IMAGE GALLERY */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-
             {/* Big Image */}
             <div className="col-span-3">
               <Image
@@ -113,10 +99,20 @@ export default function PropertyDetailsPage() {
 
           {/* FEATURES */}
           <div className="flex flex-wrap gap-4 mt-4 text-black font-medium">
-            <span className="flex items-center gap-1"><Bed className="w-5 h-5 text-yellow-500" /> {property.bedrooms} Bedrooms</span>
-            <span className="flex items-center gap-1"><Bath className="w-5 h-5 text-yellow-500" /> {property.bathrooms} Bathrooms</span>
-            <span className="flex items-center gap-1"><Home className="w-5 h-5 text-yellow-500" /> {property.area} Sq Ft</span>
-            <span className="flex items-center gap-1"><ParkingCircle className="w-5 h-5 text-yellow-500" /> Parking</span>
+            <span className="flex items-center gap-1">
+              <Bed className="w-5 h-5 text-yellow-500" /> {property.bedrooms}{" "}
+              Bedrooms
+            </span>
+            <span className="flex items-center gap-1">
+              <Bath className="w-5 h-5 text-yellow-500" /> {property.bathrooms}{" "}
+              Bathrooms
+            </span>
+            <span className="flex items-center gap-1">
+              <Home className="w-5 h-5 text-yellow-500" /> {property.area} Sq Ft
+            </span>
+            <span className="flex items-center gap-1">
+              <ParkingCircle className="w-5 h-5 text-yellow-500" /> Parking
+            </span>
           </div>
 
           {/* SECTION — DESCRIPTION */}
@@ -164,14 +160,14 @@ export default function PropertyDetailsPage() {
               </div>
             </div>
           </div>
-
         </div>
 
         {/* RIGHT --- CONTACT SIDEBAR */}
         <div className="w-full gap-1">
           <div className="p-6 rounded-xl shadow-md border bg-white sticky  top-24">
-            
-            <div className="text-3xl font-bold text-black">{property.price}</div>
+            <div className="text-3xl font-bold text-black">
+              {property.price}
+            </div>
             <div className="text-gray-600 text-sm mt-1">
               Negotiable • Financing Available
             </div>
@@ -182,16 +178,33 @@ export default function PropertyDetailsPage() {
               <div>
                 <div className="font-semibold text-black">Wusat-albaloshi</div>
                 <div className="text-gray-600 text-sm">Licensed Agent</div>
-                <div className="text-yellow-500 text-sm">★★★★★ 4.9 (127 reviews)</div>
+                <div className="text-yellow-500 text-sm">
+                  ★★★★★ 4.9 (127 reviews)
+                </div>
               </div>
             </div>
 
             {/* FORM */}
             <form className="mt-6 space-y-3 text-black">
-              <input className="w-full p-3 border rounded-lg" type="text" placeholder="Your Name" />
-              <input className="w-full p-3 border rounded-lg" type="email" placeholder="Your Email" />
-              <input className="w-full p-3 border rounded-lg" type="tel" placeholder="Your Phone" />
-              <textarea className="w-full p-3 border rounded-lg h-28" placeholder="I'm interested in this property..." />
+              <input
+                className="w-full p-3 border rounded-lg"
+                type="text"
+                placeholder="Your Name"
+              />
+              <input
+                className="w-full p-3 border rounded-lg"
+                type="email"
+                placeholder="Your Email"
+              />
+              <input
+                className="w-full p-3 border rounded-lg"
+                type="tel"
+                placeholder="Your Phone"
+              />
+              <textarea
+                className="w-full p-3 border rounded-lg h-28"
+                placeholder="I'm interested in this property..."
+              />
 
               <button className="w-full bg-yellow-500 text-black py-3 rounded-lg font-semibold hover:bg-yellow-600">
                 Request Tour
@@ -220,7 +233,3 @@ export default function PropertyDetailsPage() {
     </div>
   );
 }
-
-
-
-

@@ -5,7 +5,7 @@ import { useParams } from "next/navigation";
 import {
   HouseType,
   houseList,
-} from "@/components/houses-rent-components/RentHouse";
+} from "@/components/houses-rent-components/RentData";
 import { Heart, Bed, Ruler, MapPin } from "lucide-react"; // fixed icon imports
 import Link from "next/link";
 
