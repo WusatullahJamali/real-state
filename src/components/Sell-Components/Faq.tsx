@@ -1,48 +1,42 @@
+"use client";
+
 import { useState } from "react";
 import { ChevronUp, ChevronDown } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 
-interface Faq {
+interface FaqItem {
   question: string;
   answer: string;
 }
 
-const faqs: Faq[] = [
-  {
-    question: "What's the best way to sell your house quickly?",
-    answer:
-      "The best way to sell your home quickly depends on the market in your area. A listing agent can help you to understand the market in your area and understand what options will help sell your home the fastest.",
-  },
-  {
-    question: "How can I estimate my home's value?",
-    answer:
-      "Samarix.com makes it easy for you to estimate your home's value. Simply visit the 'My Home' page to see your current estimated value and track it over time.",
-  },
-  {
-    question: "Who is best to sell your house with?",
-    answer:
-      "Local real estate agents who specialize in your area are usually the best choice. They understand the market and can help you get a great deal. You may also choose the 'For Sale By Owner (FSBO)' option if you prefer.",
-  },
-  {
-    question: "What is the #1 thing that determines the value of a home?",
-    answer:
-      "Comparable home sales — meaning recent sales of similar properties in your area — are the most important factor in determining market value. A real estate agent can prepare these comparisons to help you understand your home's worth.",
-  },
-];
-
 const FAQ = () => {
+  const t = useTranslations("FAQ");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+
+  // Accessing the array of FAQ items from JSON
+  const faqs = t.raw("items") as FaqItem[];
 
   const toggleFaq = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <div className="bg-white w-full flex justify-center py-12 px-4">
+    <div
+      className="bg-white w-full flex justify-center py-12 px-4"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div className="max-w-5xl w-full">
         {/* Title */}
         <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900">
-            Frequently asked questions
+          <h2
+            className={`text-3xl font-bold text-black ${
+              isRtl ? "text-right" : "text-left"
+            }`}
+          >
+            {t("title")}
           </h2>
         </div>
 
@@ -55,19 +49,25 @@ const FAQ = () => {
               <div key={index} className="py-6">
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="flex justify-between items-center w-full text-left focus:outline-none group"
+                  className={`flex justify-between items-center w-full focus:outline-none group ${
+                    isRtl ? "text-right" : "text-left"
+                  }`}
                 >
                   {/* Question */}
-                  <h3 className="text-lg font-semibold text-gray-900 pr-8">
+                  <h3
+                    className={`text-lg font-semibold text-black ${
+                      isRtl ? "pl-8" : "pr-8"
+                    }`}
+                  >
                     {item.question}
                   </h3>
 
                   {/* Chevron Icon */}
                   <div className="flex-shrink-0">
                     {isOpen ? (
-                      <ChevronUp className="w-6 h-6 text-gray-900" />
+                      <ChevronUp className="w-6 h-6 text-black" />
                     ) : (
-                      <ChevronDown className="w-6 h-6 text-gray-900" />
+                      <ChevronDown className="w-6 h-6 text-black" />
                     )}
                   </div>
                 </button>
@@ -78,7 +78,7 @@ const FAQ = () => {
                     isOpen ? "max-h-96 opacity-100 mt-4" : "max-h-0 opacity-0"
                   }`}
                 >
-                  <p className="text-gray-700 leading-relaxed">{item.answer}</p>
+                  <p className="text-black leading-relaxed">{item.answer}</p>
                 </div>
               </div>
             );

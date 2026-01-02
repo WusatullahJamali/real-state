@@ -1,15 +1,14 @@
-import Answer from '@/components/faqComponents/Answer'
-import FContact from '@/components/faqComponents/FContact'
-import FHero from '@/components/faqComponents/FHero'
+import Answer from "@/components/faq components/Answer";
+
+import FHero from "@/components/faq components/FHero";
 
 const page = () => {
   return (
     <div>
       <FHero />
       <Answer />
-      <FContact />
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

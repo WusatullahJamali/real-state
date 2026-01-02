@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
 const AboutHero = () => {
   return (
     <section className="relative w-full h-[60vh] md:h-[70vh] bg-gray-900 text-white overflow-hidden flex items-center justify-center">
-
       {/* Background Image */}
       <div className="absolute inset-0">
         <img
@@ -19,9 +18,8 @@ const AboutHero = () => {
           About Us
         </h1>
       </div>
-
     </section>
-  )
-}
+  );
+};
 
-export default AboutHero
+export default AboutHero;
