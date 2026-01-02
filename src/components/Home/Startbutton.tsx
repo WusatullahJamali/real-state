@@ -1,16 +1,21 @@
-
 "use client";
 
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl"; // 1. Added useLocale
 
 export default function PromoBanner() {
   const t = useTranslations("home.promoBanner");
+  const locale = useLocale(); // 2. Get current locale
+  const isRtl = locale === "ar";
 
   return (
-    <div className="w-full bg-white flex justify-center py-6 px-4 sm:px-6">
+    // 3. Added dir to handle RTL layout automatically
+    <div
+      className="w-full bg-white flex justify-center py-6 px-4 sm:px-6"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -20,7 +25,7 @@ export default function PromoBanner() {
                    p-4 flex flex-col sm:flex-row items-center gap-5 hover:shadow-md transition-shadow duration-300"
       >
         {/* Left Image */}
-        <motion.div 
+        <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
@@ -37,8 +42,8 @@ export default function PromoBanner() {
 
         {/* Text Section */}
         <div className="flex-1 text-center sm:text-left rtl:sm:text-right">
-          <motion.h2 
-            initial={{ opacity: 0, x: -10 }}
+          <motion.h2
+            initial={{ opacity: 0, x: isRtl ? 10 : -10 }} // Adjust animation direction
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3, duration: 0.5 }}
@@ -46,8 +51,8 @@ export default function PromoBanner() {
           >
             {t("title")}
           </motion.h2>
-          <motion.p 
-            initial={{ opacity: 0, x: -10 }}
+          <motion.p
+            initial={{ opacity: 0, x: isRtl ? 10 : -10 }} // Adjust animation direction
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.5 }}
@@ -67,7 +72,8 @@ export default function PromoBanner() {
           transition={{ delay: 0.5, duration: 0.5 }}
         >
           <Link
-            href="/sell/neighbourhood"
+            // 4. Updated href with locale prefix
+            href={`/${locale}/sell/neighbourhood`}
             className="px-6 py-2 bg-yellow-500 text-white font-medium rounded-lg text-sm sm:text-base hover:bg-yellow-600 transition inline-block whitespace-nowrap shadow-sm"
           >
             {t("button")}

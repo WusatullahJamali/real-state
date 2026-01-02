@@ -1,13 +1,15 @@
 "use client";
+
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Heart } from "lucide-react";
 
 const NewListings = () => {
   const listings = [
     {
       id: 1,
-      images: "/new1.webp",
+      image: "/a1.jpg",
       badge: "New units - 10 hours ago",
       type: "Single-Family Home",
       price: "$1,800",
@@ -19,7 +21,7 @@ const NewListings = () => {
     },
     {
       id: 2,
-      image: "/new2.webp",
+      image: "/a2.jpg",
       badge: "New units - 10 hours ago",
       type: "Apartment",
       price: "$650 - $850",
@@ -31,7 +33,7 @@ const NewListings = () => {
     },
     {
       id: 3,
-      image: "/new4.jpg",
+      image: "/a3.jpg",
       badge: "New units - 10 hours ago",
       type: "Apartment",
       price: "$750",
@@ -43,7 +45,7 @@ const NewListings = () => {
     },
     {
       id: 4,
-      image: "/new3.webp",
+      image: "/a4.jpg",
       badge: "New units - 22 hours ago",
       type: "Apartment",
       price: "$700",
@@ -83,11 +85,15 @@ const NewListings = () => {
               className="block"
             >
               <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
-                <div className="relative">
-                  <img
+                {/* IMAGE */}
+                <div className="relative w-full h-48">
+                  <Image
                     src={listing.image}
                     alt={listing.address}
-                    className="w-full h-48 object-cover"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover"
+                    priority={listing.id === 1}
                   />
 
                   <span className="absolute top-3 left-3 bg-yellow-600 text-white text-xs px-3 py-1 rounded-full">
@@ -113,6 +119,7 @@ const NewListings = () => {
                   </button>
                 </div>
 
+                {/* CONTENT */}
                 <div className="p-4">
                   <div className="flex items-center gap-2 mb-2">
                     <span className="w-2 h-2 bg-green-500 rounded-full" />

@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { MapPin, Phone, Home, CheckCircle } from "lucide-react";
 
 const steps = [
-   {
+  {
     number: "01",
     title: "Find Your Location",
     text: "Browse verified properties across different cities and neighborhoods that fit your needs.",
@@ -33,55 +33,57 @@ const steps = [
 
 export default function Work() {
   return (
-    <section className="relative py-24 bg-white text-black overflow-hidden">
-      {/* Soft Background Accents */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-white rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-white rounded-full blur-[120px] pointer-events-none" />
+    <section className="relative py-24 bg-white overflow-hidden">
+      {/* Background Decor */}
+      <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
+        <div className="absolute top-10 left-10 w-64 h-64 bg-yellow-400 rounded-full blur-3xl" />
+        <div className="absolute bottom-10 right-10 w-64 h-64 bg-blue-400 rounded-full blur-3xl" />
+      </div>
 
-        {/* HEADING */}
-        <div className="text-center max-w-2xl mx-auto mb-14">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        {/* Header */}
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <h2 className="text-4xl md:text-5xl font-black text-black mb-6 tracking-tight">
             How Albasync Works
-          </h1>
-          <p className="text-gray-600 text-lg">
+          </h2>
+          <p className="text-gray-700 text-lg font-medium">
             A simple and transparent process to help you find your perfect home.
           </p>
+        </div>
 
-        {/* STEPS */}
+        {/* Steps Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {steps.map((item, index) => {
+          {steps.map((item, idx) => {
             const Icon = item.icon;
             return (
               <motion.div
-                whileHover={{ y: -8 }}
-                key={index}
-                className="group bg-white border border-gray-200 rounded-2xl p-8
-                           shadow-sm hover:shadow-xl transition-all duration-300"
+                key={item.number}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                whileHover={{ y: -10 }}
+                className="group relative bg-white border border-gray-200 rounded-3xl p-8 shadow-sm hover:shadow-2xl hover:border-yellow-500/50 transition-all duration-300"
               >
-                {/* Top */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-full bg-yellow-100 text-yellow-600
-                                  flex items-center justify-center text-sm font-bold">
+                <div className="flex items-center justify-between mb-8">
+                  <span className="text-4xl font-black text-gray-100 group-hover:text-yellow-100 transition-colors">
                     {item.number}
+                  </span>
+                  <div className="w-14 h-14 rounded-2xl bg-yellow-500 flex items-center justify-center text-white shadow-lg shadow-yellow-200 group-hover:rotate-12 transition-transform">
+                    <Icon size={28} />
                   </div>
-
-                  <Icon
-                    className="text-yellow-500 group-hover:scale-110 transition"
-                    size={28}
-                  />
                 </div>
 
-                {/* Content */}
-                <h3 className="text-lg font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-bold text-black mb-4 group-hover:text-yellow-600 transition-colors">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-600 text-sm leading-relaxed">
+                <p className="text-gray-600 leading-relaxed font-medium">
                   {item.text}
                 </p>
 
-                {/* Hover Progress */}
-                <div className="absolute bottom-0 left-0 h-1 bg-yellow-600 w-0 group-hover:w-full transition-all duration-700" />
+                {/* Bottom Decorative Line */}
+                <div className="absolute bottom-0 left-8 right-8 h-1 bg-yellow-500 scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left rounded-full" />
               </motion.div>
             );
           })}

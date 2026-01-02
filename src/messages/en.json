@@ -598,5 +598,1268 @@
       "messagePlaceholder": "Tell us about the property...",
       "submit": "Send Request"
     }
+  },
+
+  "CompareAgents": {
+    "title": "Compare agents with",
+    "subTitle": "Selling, find a trusted expert",
+    "steps": {
+      "one": "Enter your selling address",
+      "two": "View proposals, no commitment",
+      "three": "Choose the right agent, confidently"
+    },
+    "inputPlaceholder": "Enter home address",
+    "buttonText": "Get started"
+  },
+
+  "AgentsGrid": {
+    "title": "Skilled Local Agents",
+    "description": "Work with top-rated and highly experienced real estate experts",
+    "ctaButton": "Find your agent",
+    "stats": {
+      "sold": "Sold last year",
+      "experience": "years Experience"
+    },
+    "agents": [
+      { "name": "Gregg Klar", "company": "Gregg's Team/Keller Williams" },
+      { "name": "Cris Herrera", "company": "LPT Realty LLC" },
+      { "name": "Sam Lemelle", "company": "Central Metro Realty" },
+      { "name": "Steven Nusinow", "company": "Avenue Austin Realty" },
+      { "name": "Kent Redding", "company": "Berkshire Hathaway Texas" }
+    ]
+  },
+
+  "HomeValueTracker": {
+    "chartTitle": "RealEstimate",
+    "chartLegend": {
+      "analytics": "Collateral Analytics",
+      "corelogic": "CoreLogic",
+      "quantarium": "Quantarium"
+    },
+    "title": "Track your home value",
+    "description": "Our {realEstimate} data is sourced from multiple valuation providers independent of Albasync and trusted by the lending industry.",
+    "button": "Start tracking"
+  },
+
+  "RecentlySold": {
+    "title": "Recently Sold Homes",
+    "subTitle": "Colorado's top-performing homes for 2025",
+    "linkText": "Homes like yours",
+    "badge": "SOLD",
+    "contactPrice": "Contact for price",
+    "labels": {
+      "bed": "Bed",
+      "bath": "Bath",
+      "sqft": "sqft"
+    },
+    "homes": [
+      {
+        "status": "Sold - Sep 5, 2025",
+        "price": "Contact for price",
+        "address1": "927 Walters Pt",
+        "address2": "Monument, CO 80132"
+      },
+      {
+        "status": "Sold - Aug 15, 2025",
+        "price": "$397,000",
+        "address1": "2717 S Troy Way",
+        "address2": "Aurora, CO 80014"
+      },
+      {
+        "status": "Sold - Aug 15, 2025",
+        "price": "$545,000",
+        "address1": "1007 N Weber St",
+        "address2": "Colorado Springs, CO 80903"
+      },
+      {
+        "status": "Sold - Aug 4, 2025",
+        "price": "$512,500",
+        "address1": "6330 Wind River Pt",
+        "address2": "Colorado Springs, CO 80923"
+      },
+      {
+        "status": "Sold - Jul 30, 2025",
+        "price": "Contact for price",
+        "address1": "7246 Clove Hill Ct",
+        "address2": "Colorado Springs, CO 80922"
+      }
+    ]
+  },
+
+  "SellerGuides": {
+    "title": "Seller Guides",
+    "description": "Everything you need to know before selling your home — clear, simple, and trusted.",
+    "completeGuide": "Complete guide",
+    "guides": [
+      {
+        "title": "Should I sell my home now?",
+        "description": "Questions to ask to help you figure out if selling makes sense for you right now."
+      },
+      {
+        "title": "How much is my home worth?",
+        "description": "Tools and advice to help you understand your home's value."
+      },
+      {
+        "title": "How should I sell my home?",
+        "description": "Steps and tips to make the selling process easier and stress-free."
+      },
+      {
+        "title": "What costs should I expect?",
+        "description": "A breakdown of fees, commissions, and closing costs when selling."
+      }
+    ]
+  },
+
+  "FAQ": {
+    "title": "Frequently asked questions",
+    "items": [
+      {
+        "question": "What's the best way to sell your house quickly?",
+        "answer": "The best way to sell your home quickly depends on the market in your area. A listing agent can help you to understand the market in your area and understand what options will help sell your home the fastest."
+      },
+      {
+        "question": "How can I estimate my home's value?",
+        "answer": "Samarix.com makes it easy for you to estimate your home's value. Simply visit the 'My Home' page to see your current estimated value and track it over time."
+      },
+      {
+        "question": "Who is best to sell your house with?",
+        "answer": "Local real estate agents who specialize in your area are usually the best choice. They understand the market and can help you get a great deal. You may also choose the 'For Sale By Owner (FSBO)' option if you prefer."
+      },
+      {
+        "question": "What is the #1 thing that determines the value of a home?",
+        "answer": "Comparable home sales — meaning recent sales of similar properties in your area — are the most important factor in determining market value. A real estate agent can prepare these comparisons to help you understand your home's worth."
+      }
+    ]
+  },
+
+  "SellGuide": {
+    "pageTitle": "The Ultimate Home Selling Guide",
+    "backButton": "← Back to Home",
+    "stepLabel": "Step",
+    "steps": [
+      {
+        "title": "Preparation: Strengthen Your Home’s First Impression",
+        "shortDescription": "Proper preparation sets the foundation for a smoother sale and helps your home stand out.",
+        "detailedContent": "Before listing your home, focus on creating a clean, welcoming, and neutral environment that appeals to the widest range of buyers. Start by deep cleaning every room, decluttering closets and storage spaces, and removing personal items such as family photos. Small upgrades like fresh paint, repaired fixtures, modern lighting, and well-maintained landscaping can significantly increase perceived value. Curb appeal is especially important—buyers often decide how they feel about a home before stepping inside. A well-prepared home not only attracts more interest but can also lead to stronger offers and faster sales.",
+        "imageAlt": "Well-organized and staged living room"
+      },
+      {
+        "title": "Pricing Strategy: Position Your Home for Maximum Demand",
+        "shortDescription": "Pricing correctly determines how quickly your home sells and how many buyers it attracts.",
+        "detailedContent": "Effective pricing begins with a detailed Comparative Market Analysis (CMA), examining recently sold homes, active listings, and local market trends. Overpricing can cause your home to sit unsold, leading to price reductions that weaken buyer confidence. Competitive pricing, on the other hand, generates more showings, increases urgency, and may result in multiple offers. A strategic price positions your home as a strong value in the market while maximizing your final sale price.",
+        "imageAlt": "Charts showing market comparison and pricing analysis"
+      },
+      {
+        "title": "Listing & Marketing: Make Your Property Unmissable",
+        "shortDescription": "High-quality marketing ensures your listing reaches the right audience.",
+        "detailedContent": "Modern buyers begin their home search online, making professional marketing essential. High-quality photography, video tours, and detailed descriptions help your listing stand out among competing properties. Strategic online exposure through real estate platforms, social media, email campaigns, and agent networks ensures maximum visibility. A strong marketing plan not only attracts more buyers but also positions your home as desirable and well-presented from the start.",
+        "imageAlt": "Marketing dashboard showing digital promotion tools"
+      },
+      {
+        "title": "Negotiation & Offers: Protect Your Interests",
+        "shortDescription": "Reviewing offers and negotiating terms requires attention to detail.",
+        "detailedContent": "When offers arrive, it’s important to look beyond the purchase price. Factors such as financing strength, contingencies, closing timelines, and buyer flexibility all play a critical role. Skilled negotiation helps you secure favorable terms while keeping buyers engaged. Strategic counteroffers can improve pricing, reduce risk, and ensure a smoother transaction from contract to closing.",
+        "imageAlt": "Contract signing during home negotiation"
+      },
+      {
+        "title": "Closing Process: Finalize and Transition Smoothly",
+        "shortDescription": "The closing stage ensures legal and financial readiness.",
+        "detailedContent": "During the closing process, your home undergoes appraisal, final inspections, and legal documentation review. Any remaining conditions must be resolved before ownership is transferred. Coordinating paperwork, timelines, and final walkthroughs ensures a smooth transition. Once funds are transferred and documents are signed, the sale is officially complete, allowing you to move forward with confidence and peace of mind.",
+        "imageAlt": "Keys and closing documents on a table"
+      }
+    ]
+  },
+
+  "Hero": {
+    "topText": "Find Community — Find Home",
+    "mainHeading": "Discover Your",
+    "highlightedText": "Dream Lifestyle",
+    "subText": "Explore diverse neighborhoods, discover local amenities, and find the community that perfectly matches your lifestyle.",
+    "buttonText": "ADD PROPERTY"
+  },
+
+  "FeaturedCommunities": {
+    "sectionTitle": "Featured Communities",
+    "communities": [
+      {
+        "id": 1,
+        "title": "Willow Creek",
+        "location": "Austin, TX"
+      },
+      {
+        "id": 2,
+        "title": "Willow Creek",
+        "location": "8Kap7, 7I9 or Kayand"
+      },
+      {
+        "id": 3,
+        "title": "Pet Friendly",
+        "location": "Family Firstdeby"
+      }
+    ]
+  },
+
+  "RecentProperties": {
+    "badge": "Comfort Building",
+    "title": "Recent Property",
+    "tabs": {
+      "sale": "For Sale",
+      "rent": "For Rent"
+    },
+    "filters": {
+      "all": "All Listings",
+      "new": "New Listing",
+      "hot": "Hot Offer"
+    },
+    "labels": {
+      "sale": "For Sale",
+      "rent": "For Rent",
+      "newBatch": "NEW LISTING",
+      "hotBatch": "HOT OFFER",
+      "viewDetails": "View Details"
+    },
+    "data": {
+      "sale": [
+        {
+          "id": 1,
+          "title": "Harmony House",
+          "city": "Baghdad",
+          "beds": "03 Beds",
+          "baths": "03 Baths",
+          "size": "Sq.ft- 234,560",
+          "price": "$7,656.00",
+          "batch": "New Listing"
+        },
+        {
+          "id": 2,
+          "title": "Mountain View Villa",
+          "city": "Erbil",
+          "beds": "02 Beds",
+          "baths": "02 Baths",
+          "size": "Sq.ft- 345,556",
+          "price": "$3,650.00",
+          "batch": null
+        },
+        {
+          "id": 3,
+          "title": "Paradise Heights",
+          "city": "Basra",
+          "beds": "04 Beds",
+          "baths": "04 Baths",
+          "size": "Sq.ft- 234,560",
+          "price": "$17,780.00",
+          "batch": "Hot Offer"
+        },
+        {
+          "id": 4,
+          "title": "Golden Estate House",
+          "city": "Najaf",
+          "beds": "05 Beds",
+          "baths": "04 Baths",
+          "size": "Sq.ft- 400,000",
+          "price": "$25,900.00",
+          "batch": "New Listing"
+        },
+        {
+          "id": 5,
+          "title": "Royal Palm Residency",
+          "city": "Karbala",
+          "beds": "06 Beds",
+          "baths": "05 Baths",
+          "size": "Sq.ft- 500,230",
+          "price": "$32,500.00",
+          "batch": "Hot Offer"
+        },
+        {
+          "id": 6,
+          "title": "Elite Signature Villa",
+          "city": "Sulaymaniyah",
+          "beds": "04 Beds",
+          "baths": "04 Baths",
+          "size": "Sq.ft- 350,000",
+          "price": "$21,750.00",
+          "batch": null
+        }
+      ],
+      "rent": [
+        {
+          "id": 10,
+          "title": "Urban Comfort Apartment",
+          "city": "Baghdad",
+          "beds": "02 Beds",
+          "baths": "01 Bath",
+          "size": "Sq.ft- 120,000",
+          "price": "$1,200.00 /mo",
+          "batch": "Hot Offer"
+        },
+        {
+          "id": 11,
+          "title": "City Center Condo",
+          "city": "Erbil",
+          "beds": "03 Beds",
+          "baths": "02 Baths",
+          "size": "Sq.ft- 150,340",
+          "price": "$2,560.00 /mo",
+          "batch": null
+        },
+        {
+          "id": 12,
+          "title": "Budget Family Home",
+          "city": "Basra",
+          "beds": "04 Beds",
+          "baths": "03 Baths",
+          "size": "Sq.ft- 200,000",
+          "price": "$1,850.00 /mo",
+          "batch": "New Listing"
+        },
+        {
+          "id": 13,
+          "title": "Modern Studio Flat",
+          "city": "Najaf",
+          "beds": "01 Bed",
+          "baths": "01 Bath",
+          "size": "Sq.ft- 80,000",
+          "price": "$950.00 /mo",
+          "batch": "New Listing"
+        },
+        {
+          "id": 14,
+          "title": "Luxury Penthouse",
+          "city": "Karbala",
+          "beds": "03 Beds",
+          "baths": "03 Baths",
+          "size": "Sq.ft- 210,000",
+          "price": "$4,900.00 /mo",
+          "batch": "Hot Offer"
+        },
+        {
+          "id": 15,
+          "title": "Cozy Suburban Home",
+          "city": "Sulaymaniyah",
+          "beds": "03 Beds",
+          "baths": "02 Baths",
+          "size": "Sq.ft- 150,000",
+          "price": "$1,450.00 /mo",
+          "batch": null
+        }
+      ]
+    }
+  },
+
+  "MarketTrends": {
+    "liveIntelligence": "Live Market Intelligence",
+    "mainTitle": "IRAQ MARKET",
+    "mainSubtitle": "Comprehensive insights into Iraq's real estate trends, investment opportunities, and regional performance.",
+    "stats": [
+      {
+        "label": "Avg. Sq. Meter Price",
+        "value": "$1,450",
+        "change": "+8.4%",
+        "info": "Based on Baghdad & Erbil primary zones."
+      },
+      {
+        "label": "Market Inventory",
+        "value": "12,400",
+        "change": "-2.1%",
+        "info": "Total active listings across major governorates."
+      },
+      {
+        "label": "Sales Volume",
+        "value": "$2.4B",
+        "change": "+15%",
+        "info": "Total transaction value in Q4 2025."
+      },
+      {
+        "label": "Foreign Investment",
+        "value": "18%",
+        "change": "+4.5%",
+        "info": "Rise in regional investor participation."
+      }
+    ],
+    "chart": {
+      "title": "Price Appreciation Trend",
+      "subtitle": "Baghdad Metro Area (2023 - 2025)",
+      "labels": ["JAN 2024", "JUN 2024", "JAN 2025", "PRESENT"]
+    },
+    "verdict": {
+      "title": "Market Verdict",
+      "points": [
+        "Baghdad's Karkh district is seeing record-breaking demand.",
+        "Commercial property yields hit a 5-year high of 9%.",
+        "New residency laws attract expat investors.",
+        "Infrastructure projects boost land value in Basra."
+      ],
+      "cta": "Speak to an Analyst"
+    },
+    "regional": {
+      "title": "Regional Performance",
+      "searchPlaceholder": "Search Governorates...",
+      "table": {
+        "gov": "Governorate",
+        "growth": "Annual Growth",
+        "price": "Avg. Price",
+        "status": "Market Status",
+        "action": "Action"
+      },
+      "data": [
+        {
+          "name": "Baghdad",
+          "growth": "12.5",
+          "status": "High Demand",
+          "price": "$1,800/sqm"
+        },
+        {
+          "name": "Erbil",
+          "growth": "10.2",
+          "status": "Steady",
+          "price": "$1,250/sqm"
+        },
+        {
+          "name": "Basra",
+          "growth": "6.8",
+          "status": "Emerging",
+          "price": "$950/sqm"
+        },
+        {
+          "name": "Sulaymaniyah",
+          "growth": "5.4",
+          "status": "Stable",
+          "price": "$1,100/sqm"
+        }
+      ]
+    },
+    "tfooter": {
+      "title": "Ready to Invest in Iraq?",
+      "quote": "\"We provide the localized data and legal expertise you need to navigate the Iraqi market safely.\"",
+      "btn1": "View Premium Listings",
+      "btn2": "Consult an Expert"
+    }
+  },
+
+  "ContactRent": {
+    "header": {
+      "title": "Contact the Landlord",
+      "subtitle": "Inquire about this property",
+      "description": "Fill out the form below to reach the landlord directly. Serious inquiries only — responses are typically quick."
+    },
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "John Smith",
+      "phone": "Phone Number",
+      "phonePlaceholder": "(555) 000-0000",
+      "email": "Email Address",
+      "emailPlaceholder": "john@example.com",
+      "inquiryType": "Inquiry Type",
+      "message": "Your Message",
+      "messagePlaceholder": "I'm interested in this property because...",
+      "submitBtn": "Send Inquiry Now",
+      "successTitle": "Message Sent!",
+      "successDesc": "Your inquiry has been delivered. Keep an eye on your inbox!",
+      "resetBtn": "Send another message",
+      "agreement": "By clicking \"Send Inquiry Now\", you agree to our Terms of Service and Privacy Policy.",
+      "options": [
+        { "value": "scheduleVisit", "label": "Schedule a Visit" },
+        { "value": "askQuestion", "label": "Ask Questions" }
+      ]
+    },
+    "property": {
+      "badge": "For Rent",
+      "locationTag": "Prime Location",
+      "address": "123 Main St, Anytown, USA",
+      "price": "$1,500",
+      "period": "/ month",
+      "details": "2 Beds • 1 Bath • 1,050 sqft",
+      "viewDetails": "View Property Details",
+      "trustBadge": "Verified Listing: This property has been manually checked for accuracy."
+    }
+  },
+
+  "FHero": {
+    "title": "Welcome to Albasync",
+    "subtitle": "Discover your dream home with ease and confidence.",
+    "altText": "Hero background"
+  },
+
+  "fFAQ": {
+    "badge": "Support Center",
+    "title": "Frequently Asked",
+    "titleHighlight": "Questions",
+    "description": "Everything you need to know about the modern real estate market, simplified by our team of experts.",
+    "searchPlaceholder": "Search topics, keywords, or processes...",
+    "allCategory": "All",
+    "learnMore": "Learn more about this",
+    "noResults": "No results found",
+    "noResultsDesc": "Try adjusting your search or category filters.",
+    "footerText": "Still have questions?",
+    "footerLink": "Contact our support team",
+    "footerSuffix": "for personalized assistance.",
+    "categories": {
+      "Buying": "Buying",
+      "Selling": "Selling",
+      "Property": "Property",
+      "Agents": "Agents"
+    },
+    "items": [
+      {
+        "q": "What is the process of buying a home?",
+        "a": "The buying process typically involves pre-approval for a mortgage, searching for properties, making an offer, conducting inspections and appraisals, and finally, closing the deal.",
+        "category": "Buying"
+      },
+      {
+        "q": "What is the process of selling a home?",
+        "a": "Selling a home involves determining market value, preparing the property (repairs/staging), listing, showing the home, negotiating offers, and completing the necessary legal paperwork.",
+        "category": "Selling"
+      },
+      {
+        "q": "How do I determine the value of my property?",
+        "a": "Property value is primarily determined through a Comparative Market Analysis (CMA) conducted by an agent, or a formal appraisal by a licensed appraiser.",
+        "category": "Property"
+      },
+      {
+        "q": "What should I look for in a property inspection?",
+        "a": "A thorough inspection should cover structural integrity, roofing, foundation, electrical systems, plumbing, and HVAC systems.",
+        "category": "Property"
+      },
+      {
+        "q": "What is the role of a real estate agent in the negotiation process?",
+        "a": "A real estate agent acts as your advocate, providing market data, advising on price and terms, and communicating with the other party's agent.",
+        "category": "Agents"
+      }
+    ]
+  },
+
+  "PrivacyPolicy": {
+    "lastUpdated": "December 26, 2025",
+    "badge": "Legal Documentation",
+    "title": "Privacy Policy",
+    "btnPrint": "Print",
+    "btnContact": "Contact Support",
+    "sidebarTitle": "Contents",
+    "intro": "At Albasync, we value your trust. This Privacy Policy outlines how we handle your personal data when you use our website and services to buy, sell, or rent properties. By using our platform, you agree to the collection and use of information in accordance with this policy.",
+    "footerTitle": "Changes to This Policy",
+    "footerText": "We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the 'Last updated' date at the top of this Privacy Policy.",
+    "footerLink": "View Terms of Service",
+    "policies": [
+      {
+        "id": "identity",
+        "title": "1. Data Identity & Collection",
+        "content": "We collect essential identifiers including your full name, encrypted email address, and verified phone number. This data allows us to create a secure environment for property transactions and prevents unauthorized access to your sensitive real estate documents."
+      },
+      {
+        "id": "analytics",
+        "title": "2. Usage Analytics",
+        "content": "Our systems analyze search patterns, saved properties, and duration of sessions. We use this anonymized data to train our recommendation engine, ensuring that the properties you see first are the ones most relevant to your lifestyle needs."
+      },
+      {
+        "id": "cookies",
+        "title": "3. Tracking & Cookies",
+        "content": "We use 'strictly necessary' cookies for security and 'functional' cookies to remember your filters. You can opt-out of performance cookies through our preference center without losing access to core search features."
+      },
+      {
+        "id": "third-party",
+        "title": "4. Third-Party Sharing",
+        "content": "Information is only shared with licensed agents and financial institutions when you explicitly request a viewing or pre-approval. We perform quarterly security audits on all third-party vendors."
+      },
+      {
+        "id": "encryption",
+        "title": "5. Security & Encryption",
+        "content": "All property documents and personal chat logs are protected by AES-256 encryption. We utilize hardware security modules (HSM) and multi-factor authentication (MFA) to ensure that only you can access your private data."
+      },
+      {
+        "id": "rights",
+        "title": "6. Your Legal Rights",
+        "content": "Under global privacy laws (including GDPR and CCPA), you have the right to request a full export of your data or its permanent deletion. We process all requests within 48 business hours."
+      }
+    ]
+  },
+
+  "TermsOfService": {
+    "badge": "Legal Compliance",
+    "title": "Terms of Service",
+    "description": "Please read these terms carefully before using our services.",
+    "lastUpdated": "Last updated: {date}",
+    "date": "December 26, 2025",
+    "btnPrint": "Print",
+    "btnDownload": "Download PDF",
+    "sidebarTitle": "Contents",
+    "helpTitle": "Need legal help?",
+    "disclaimerTitle": "Disclaimer",
+    "disclaimerText": "The materials on Albasync's website are provided on an 'as is' basis. Albasync makes no warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation, implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property or other violation of rights.",
+    "links": {
+      "privacy": "Privacy Policy",
+      "cookies": "Cookie Settings"
+    },
+    "items": [
+      {
+        "id": "acceptance",
+        "title": "1. Acceptance of Terms",
+        "content": "By accessing or using the Albasync platform (the \"Service\"), you agree to be bound by these Terms. If you disagree with any part of the terms, you may not access the Service. These Terms apply to all visitors, users, and others who access or use the Service."
+      },
+      {
+        "id": "accounts",
+        "title": "2. User Accounts & Security",
+        "content": "When you create an account with us, you must provide information that is accurate, complete, and current. Failure to do so constitutes a breach of the Terms, which may result in immediate termination of your account. You are responsible for safeguarding the password that you use to access the Service."
+      },
+      {
+        "id": "content",
+        "title": "3. Content & Listings",
+        "content": "Our Service allows you to post, link, store, share and otherwise make available certain information, text, graphics, videos, or other material (\"Content\"). You are responsible for the Content that you post to the Service, including its legality, reliability, and appropriateness."
+      },
+      {
+        "id": "prohibited",
+        "title": "4. Prohibited Activities",
+        "content": "You agree not to engage in any of the following prohibited activities: (i) copying, distributing, or disclosing any part of the Service in any medium; (ii) using any automated system, including \"robots\" and \"spiders,\" to access the Service; (iii) attempting to interfere with system integrity."
+      },
+      {
+        "id": "liability",
+        "title": "5. Limitation of Liability",
+        "content": "In no event shall Albasync, nor its directors, employees, or partners, be liable for any indirect, incidental, special, consequential or punitive damages, including without limitation, loss of profits, data, use, or other intangible losses."
+      },
+      {
+        "id": "governing",
+        "title": "6. Governing Law",
+        "content": "These Terms shall be governed and construed in accordance with the laws of the jurisdiction in which Albasync operates, without regard to its conflict of law provisions."
+      }
+    ]
+  },
+
+  "CategoriesListing": {
+    "backHome": "Back to Home",
+    "pageTitle": "All Price Reduced Properties"
+  },
+
+  "PropertyDetails": {
+    "notFound": "Property Not Found",
+    "goBack": "Go Back",
+    "featured": "Featured",
+    "verified": "Verified",
+    "bedrooms": "Bedrooms",
+    "bathrooms": "Bathrooms",
+    "sqft": "Sq Ft",
+    "parking": "Parking",
+    "description": "Description",
+    "amenities": "Amenities",
+    "location": "Location",
+    "negotiable": "Negotiable • Financing Available",
+    "agentTitle": "Licensed Agent",
+    "requestTour": "Request Tour",
+    "callAgent": "Call Agent",
+    "backToListings": "Back to Listings",
+    "form": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "phone": "Your Phone",
+      "message": "I'm interested in this property..."
+    },
+    "amenityList": {
+      "pool": "Private Pool",
+      "garden": "Garden",
+      "ac": "Central AC",
+      "security": "Security System",
+      "garage": "Garage",
+      "smart": "Smart Home"
+    }
+  },
+  "navbar": {
+    "menu": {
+      "home": "HOME",
+      "buy": "BUY",
+      "sale": "SALE",
+      "rent": "RENT",
+      "services": "SERVICES",
+      "blogs": "BLOGS",
+      "contact": "CONTACT US"
+    },
+    "titles": {
+      "marketInsights": "Market Insights",
+      "buyingEssentials": "Buying Essentials",
+      "rentalTypes": "Rental Types",
+      "landlordResources": "Landlord Resources",
+      "company": "Company",
+      "resources": "Resources",
+      "legal": "Legal"
+    },
+    "items": {
+      "soldHomes": "Sold Homes",
+      "property": "Property",
+      "homesForSale": "Homes for Sale",
+
+      "recentlySold": "Recently Sold",
+      "exploreNeighborhoods": "Explore Neighborhoods",
+      "marketTrends": "Housing Market Trends",
+      "apartments": "Apartments",
+      "houses": "Houses",
+      "manageRentals": "Manage Rentals",
+      "listRentals": "List Rentals",
+      "contactLandlord": "Contact Landlord",
+      "aboutUs": "About Us",
+      "contactUs": "Contact Us",
+      "careers": "Careers",
+      "blog": "Blog",
+      "faq": "FAQ",
+      "terms": "Terms",
+      "privacy": "Privacy"
+    },
+    "auth": {
+      "login": "LOGIN",
+      "register": "REGISTER",
+      "menu": "Menu"
+    }
+  },
+  "blog": {
+    "back": "Back to Blog",
+    "shareLabel": "Share this article:",
+    "posts": [
+      {
+        "id": 1,
+        "title": "Iraq Real Estate Market Trends",
+        "tag": "Market Insights",
+        "author": "Market Research Team",
+        "date": "Dec 15, 2024",
+        "readTime": "6 min read",
+        "image": "/blog[1].jpg",
+        "snippet": "Iraq’s real estate sector is entering a new phase of opportunity in 2025, driven by economic recovery.",
+        "fullContent": {
+          "intro": "Iraq’s real estate sector is entering a new phase of opportunity in 2025, driven by economic recovery, infrastructure investment, and rising housing demand. From Baghdad’s commercial corridors to Erbil’s residential expansion, investors are closely watching Iraq’s evolving property landscape.",
+          "quote": "Iraq’s real estate market in 2025 offers long-term value for investors willing to enter early and focus on high-growth regions.",
+          "sections": [
+            {
+              "title": "Baghdad: The Core of Commercial Growth",
+              "text": "Baghdad continues to dominate Iraq’s commercial real estate market. Office spaces, mixed-use developments, and retail hubs are experiencing increased demand due to government projects and private-sector expansion."
+            },
+            {
+              "title": "Erbil: Stability Driving Residential Demand",
+              "text": "Erbil remains one of Iraq’s most stable and investor-friendly cities. Gated communities, luxury apartments, and serviced residences are seeing consistent appreciation."
+            }
+          ]
+        }
+      }
+    ]
+  },
+
+  "buyCardsDetail": {
+    "currency": "USD",
+    "backToListings": "Back to Listings",
+    "featured": "FEATURED",
+    "verified": "VERIFIED",
+    "description": "Description",
+    "amenities": "Amenities",
+    "location": "Location",
+    "negotiable": "Negotiable • Financing Available",
+    "requestTour": "Request Tour",
+    "agentTitle": "Licensed Agent",
+    "propertyNotFound": "Property Not Found",
+    "propertyNotFoundText": "The listing you are looking for does not exist.",
+    "goBack": "Go Back",
+    "in": "in",
+    "placeholders": {
+      "name": "Your Name",
+      "email": "Your Email",
+      "message": "I'm interested..."
+    },
+    "specs": {
+      "beds": "{count} Beds",
+      "baths": "{count} Baths",
+      "sqft": "{count} Sq Ft",
+      "lotSize": "{count} m²"
+    },
+    "propertyTypes": {
+      "singleFamily": "Single Family Home",
+      "villa": "Luxury Villa",
+      "apartment": "Modern Apartment",
+      "house": "Family House",
+      "land": "Residential Land",
+      "condo": "Modern Condo"
+    },
+    "amenitiesList": {
+      "pool": "Private Pool",
+      "garden": "Garden",
+      "ac": "Central AC",
+      "security": "Security System",
+      "garage": "Garage",
+      "gym": "Fitness Center"
+    }
+  },
+
+  "houses": {
+    "collection": "Premium Collection",
+    "titleMain": "Find Your Next",
+    "titleItalic": "Dream Home",
+    "description": "Discover the most exclusive properties in Iraq's most sought-after locations.",
+    "exploreAll": "Explore All Properties",
+    "verified": "Verified",
+    "sqft": "sq.ft",
+    "month": "mo",
+    "exploreProperty": "View Details",
+    "data": {
+      "luxuryVilla": "Luxury Garden Villa",
+      "modernApartment": "Modern Skyline Apartment",
+      "cozyStudio": "Urban Studio",
+      "beachsideVilla": "Riverside Estate",
+      "penthouseSuite": "Royal Penthouse",
+      "luxuryCondo": "Premium Condo",
+      "townhouse": "Classic Townhouse",
+      "bungalow": "Modern Bungalow"
+    },
+    "amenities": {
+      "security": "24/7 Security",
+      "pool": "Swimming Pool",
+      "gym": "Gym",
+      "garage": "Garage",
+      "elevator": "Elevator",
+      "garden": "Garden",
+      "terrace": "Rooftop Terrace",
+      "beach": "Beach Access",
+      "pets": "Pet-Friendly",
+      "parking": "Parking"
+    }
+  },
+
+  "apartments": {
+    "heading": "Apartments for Rent",
+    "searchPlaceholder": "Search apartments, locations...",
+    "filterBedrooms": "Bedrooms",
+    "filterBedUnit": "{count} Bed",
+    "filterCities": "All Cities",
+    "filterSort": "Sort Price",
+    "sortLow": "Low to High",
+    "sortHigh": "High to Low",
+    "viewDetails": "View Details",
+    "month": "month",
+    "beds": "Bedrooms",
+    "data": {
+      "luxury": "Luxury Apartment",
+      "studio": "Modern Studio",
+      "family": "Family Apartment",
+      "penthouse": "Penthouse View",
+      "executive": "Executive Residence",
+      "loft": "Stylish Loft",
+      "student": "Student Apartment",
+      "cozy": "Cozy Family Home"
+    },
+    "locations": {
+      "separator": ", ",
+      "baghdad": "Baghdad",
+      "erbil": "Erbil",
+      "basra": "Basra",
+      "mosul": "Mosul",
+      "neighborhoods": {
+        "greenZone": "Green Zone",
+        "ankawa": "Ankawa",
+        "alFao": "Al-Fao",
+        "karrada": "Karrada",
+        "center": "City Center",
+        "alMaqal": "Al-Maqal",
+        "downtown": "Downtown"
+      }
+    }
+  },
+
+  "recentSold": {
+    "title": "Recently",
+    "titleHighlight": "Sold",
+    "searchPlaceholder": "Search by address or city...",
+    "labels": {
+      "beds": "Beds",
+      "baths": "Baths",
+      "sqft": "Sqft"
+    },
+    "listings": {
+      "1": {
+        "address": "Al-Mansour District",
+        "city": "Baghdad, Iraq",
+        "status": "Sold - Dec 13, 2025"
+      },
+      "2": {
+        "address": "Dream City",
+        "city": "Erbil, Kurdistan Region",
+        "status": "Sold - Dec 13, 2025"
+      },
+      "3": {
+        "address": "Al-Jadriya",
+        "city": "Baghdad, Iraq",
+        "status": "Sold - Dec 12, 2025"
+      },
+      "4": {
+        "address": "Italian Village",
+        "city": "Erbil, Kurdistan Region",
+        "status": "Sold - Dec 14, 2025"
+      },
+      "6": {
+        "address": "Al-Mansour District",
+        "city": "Baghdad, Iraq",
+        "status": "Sold - Dec 13, 2025"
+      },
+      "7": {
+        "address": "Dream City",
+        "city": "Erbil, Kurdistan Region",
+        "status": "Sold - Dec 13, 2025"
+      },
+      "8": {
+        "address": "Al-Jadriya",
+        "city": "Baghdad, Iraq",
+        "status": "Sold - Dec 12, 2025"
+      },
+      "9": {
+        "address": "Italian Village",
+        "city": "Erbil, Kurdistan Region",
+        "status": "Sold - Dec 14, 2025"
+      }
+    }
+  },
+
+  "rent": {
+    "labels": {
+      "bed": "Bed",
+      "bath": "Bath",
+      "sqft": "Sqft"
+    },
+    "sections": {
+      "newListings": {
+        "title": "New Listings",
+        "badge": "New",
+        "items": {
+          "1": {
+            "address": "123 Main St",
+            "city": "Baghdad",
+            "type": "Apartment"
+          },
+          "2": { "address": "456 High St", "city": "Erbil", "type": "Condo" },
+          "3": { "address": "789 Park Rd", "city": "Basra", "type": "House" },
+          "4": { "address": "101 View Ln", "city": "Duhok", "type": "Flat" }
+        }
+      },
+      "explore": {
+        "title": "Explore Apartments",
+        "subtitle": "View all",
+        "badge": "Popular",
+        "items": {
+          "101": {
+            "address": "Al-Mansour",
+            "city": "Baghdad",
+            "type": "Suite"
+          },
+          "102": { "address": "Zayouna", "city": "Baghdad", "type": "House" },
+          "103": { "address": "Bakhtiari", "city": "Erbil", "type": "Modern" },
+          "104": {
+            "address": "Empire World",
+            "city": "Erbil",
+            "type": "Luxury"
+          }
+        }
+      },
+      "petFriendly": {
+        "title": "Pet Friendly",
+        "badge": "Pets allowed",
+        "items": {
+          "201": {
+            "address": "Riverside",
+            "city": "Baghdad",
+            "type": "Garden"
+          },
+          "202": { "address": "Pet Park", "city": "Erbil", "type": "Flat" },
+          "203": { "address": "Green Zone", "city": "Basra", "type": "Home" },
+          "204": { "address": "Skyline", "city": "Duhok", "type": "Studio" }
+        }
+      },
+      "onlineApp": {
+        "title": "Online Applications",
+        "badge": "Apply now",
+        "items": {
+          "301": {
+            "address": "Digital Way",
+            "city": "Baghdad",
+            "type": "Modern"
+          },
+          "302": { "address": "Cloud Blvd", "city": "Erbil", "type": "Flat" },
+          "303": { "address": "Network St", "city": "Basra", "type": "Condo" },
+          "304": { "address": "Link Road", "city": "Duhok", "type": "House" }
+        }
+      },
+      "laundry": {
+        "title": "In-Unit Laundry",
+        "badge": "Amenities",
+        "items": {
+          "401": { "address": "Wash Ave", "city": "Baghdad", "type": "Family" },
+          "402": {
+            "address": "Clean Circle",
+            "city": "Erbil",
+            "type": "Studio"
+          },
+          "403": {
+            "address": "Dryer St",
+            "city": "Basra",
+            "type": "Apartment"
+          },
+          "404": { "address": "Soap Ln", "city": "Duhok", "type": "House" }
+        }
+      }
+    },
+    "aCards": {
+      "card1": {
+        "text": "Looking for apartments for rent in your area?",
+        "linkText": "Find apartments near you"
+      },
+      "card2": {
+        "text": "Want to list your rental for free in minutes?",
+        "linkText": "Learn about landlord tools by Avail"
+      }
+    },
+
+    "advice": {
+      "badge": "Advice / Rent",
+      "cards": {
+        "1": "New Bill Could Help Nonprofits Save Affordable Apartments",
+        "2": "Winter Heating Tips for Renters: Stay Warm Without High Bills",
+        "3": "7 Surprising Renter Pain Points, According to DIY Landlords",
+        "4": "How HOA Leasing Requests Can Block Homeowners From Renting"
+      }
+    }
+  },
+  "manageRentals": {
+    "card1": {
+      "title": "Level up your rental management with Albasync — supporting landlords every step of the way",
+      "description": "Publish rental listings, find and screen renters, sign leases, collect rent, and more with the Avail property management tools built specifically for DIY landlords.",
+      "button": "Get Started"
+    },
+    "card2": {
+      "title": "One-Click Rental Listings",
+      "description": "Effortlessly publish your rental listing to the top 20 rental sites, including Realtor.com, Trulia, Zumper, and Rent., to reach millions of renters and fill vacancies fast.",
+      "button": "Learn more"
+    },
+    "card3": {
+      "title": "Applications and Screening",
+      "description": "Albasync features customizable applications and robust TransUnion® screening options to help you find and choose the right renter for your property with confidence.",
+      "button": "Learn More"
+    },
+    "card4": {
+      "title": "Lawyer-Reviewed Leases",
+      "description": "Customize the state-specific, lawyer-reviewed lease templates on Avail and seamlessly collect signatures from renters using built-in eSign options.",
+      "button": "Learn More"
+    },
+    "card5": {
+      "title": "Secure Online Rent Collection",
+      "description": "Simplify payment collection by managing all rental payments, deposits, and fees through a single site. Feel secure knowing your payments are protected with Avail via Plaid and Stripe, while staying tax compliant.",
+      "button": "Learn More"
+    },
+    "card6": {
+      "title": "Discover all the tools available on Albasync",
+      "description": "Albasync includes everything you need to manage your rentals effortlessly and professionally. Uncover the full suite of Avail features to simplify your day-to-day operations while maximizing your profit.",
+      "button": "Learn More"
+    },
+    "card7": {
+      "title": "Are you a renter? Albasync is here for you, too!",
+      "description": "Feel secure communicating with Albasync-verified landlords through the built-in messaging system. Schedule rent payments in advance via credit card or ACH, and build your credit using CreditBoost, reporting on-time rent payments to TransUnion®.",
+      "button": "Learn More"
+    }
+  },
+
+  "listRentals": {
+    "hero": {
+      "title": "Reach millions of renters — list your property for free across the top 20 rental sites",
+      "description": "With robust features designed to help you fill vacancies faster, Albasync unlocks the full potential of your rental listing.",
+      "button": "List your rentals"
+    },
+    "list1": {
+      "title": "Build and publish your rental listing effortlessly",
+      "description": "Albasync offers step-by-step guidance and resources to help you build your listing with confidence. Publish your listing to 20 of the most popular listing syndication sites with a single click."
+    },
+    "list2": {
+      "title": "Promote your listing to rent your property faster",
+      "description": "Maximize your listing’s exposure by upgrading your listing to prioritized placement to quickly receive leads and lease your property fast."
+    },
+    "list3": {
+      "title": "Automate tour scheduling for your property",
+      "description": "Empower renters to book a tour directly from your listing on partner sites. Landlords who enable this feature are nearly 4x more likely to receive a completed application."
+    },
+    "list4": {
+      "title": "Get direct applications from partner listing sites",
+      "description": "Enable the option for renters to apply directly from your listing on Albasync partner sites to help applicants complete their applications nearly 2x faster than standard leads."
+    }
+  },
+
+  "ServiceDetail": {
+    "overview": "Service Overview",
+    "fastResponse": "Fast Response",
+    "fastResponseDesc": "Available for same-day emergency calls in {location}.",
+    "licensedPro": "Licensed Pro",
+    "licensedProDesc": "Verified government ID and professional certifications.",
+    "satisfactionTitle": "Satisfaction Guarantee",
+    "satisfactionDesc": "All services booked through IraqHomes are protected by our satisfaction guarantee. Funds are only released to the provider once you confirm the job is done.",
+    "startingFrom": "Starting From",
+    "active": "24/7 Active",
+    "reviews": "reviews",
+    "labels": {
+      "name": "Your Name",
+      "email": "Email Address",
+      "phone": "Phone",
+      "date": "Date",
+      "requirements": "Requirements"
+    },
+    "placeholders": {
+      "name": "Full Name",
+      "email": "example@mail.com",
+      "phone": "0770xxxxxxxx",
+      "requirements": "Describe your Requirements"
+    },
+    "bookBtn": "Book Appointment",
+    "processing": "Processing...",
+    "noPayment": "No payment required until service completion.",
+    "needHelp": "Need Help?",
+    "callSupport": "Call Support: 800-IRAQ-HOME",
+    "success": "Booking Request Sent Successfully!"
+  },
+  "Providers": {
+    "p1": {
+      "name": "Ali Electrical Services",
+      "category": "Electrical",
+      "location": "Baghdad",
+      "price": "$25",
+      "unit": "hour",
+      "badges": ["Verified", "Licensed"],
+      "description": "Expert in smart home wiring, panel upgrades, and emergency electrical repairs. Our team utilizes advanced thermal imaging to detect hidden faults before they become fire hazards."
+    },
+    "p2": {
+      "name": "Clean Home Pro",
+      "category": "Cleaning",
+      "location": "Erbil",
+      "price": "$50",
+      "unit": "session",
+      "badges": ["Verified"],
+      "description": "Deep cleaning specialists for residential and commercial spaces with eco-friendly products. We employ industrial-grade HEPA filtration vacuums."
+    },
+    "p3": {
+      "name": "Cool Air Solutions",
+      "category": "AC & HVAC",
+      "location": "Baghdad",
+      "price": "$35",
+      "unit": "visit",
+      "badges": ["Verified", "24/7"],
+      "description": "Full-service HVAC maintenance, installation, and rapid cooling system diagnostics."
+    },
+    "p4": {
+      "name": "Perfect Plumbing",
+      "category": "Plumbing",
+      "location": "Basra",
+      "price": "$30",
+      "unit": "hour",
+      "badges": ["Verified", "Emergency"],
+      "description": "Solving complex leakages, pipe bursts, and bathroom fixture installations since 2015. Using advanced leak detection technology and hydro-jetting systems, we handle everything from minor repairs to major plumbing emergencies."
+    },
+    "p5": {
+      "name": "Home Renovators",
+      "category": "Renovation",
+      "location": "Baghdad",
+      "price": "$100",
+      "unit": "project",
+      "badges": ["Verified", "Licensed"],
+      "description": "Transforming kitchens and living rooms with high-quality craftsmanship and modern designs. We provide full home makeovers with 3D design previews and premium materials."
+    },
+    "p6": {
+      "name": "Garden Masters",
+      "category": "Landscaping",
+      "location": "Erbil",
+      "price": "$40",
+      "unit": "visit",
+      "badges": ["Verified"],
+      "description": "Professional lawn care, irrigation setup, and ornamental garden design. We create drought-resistant landscapes tailored to your climate."
+    },
+    "p7": {
+      "name": "Tech Repair Hub",
+      "category": "Electronics",
+      "location": "Baghdad",
+      "price": "$20",
+      "unit": "hour",
+      "badges": ["Verified", "Fast Service"],
+      "description": "Specializing in motherboard-level repairs, micro-soldering, and advanced diagnostics for laptops, consoles, and mobile devices."
+    },
+    "p8": {
+      "name": "Paint Pro",
+      "category": "Painting",
+      "location": "Mosul",
+      "price": "$45",
+      "unit": "room",
+      "badges": ["Verified", "Licensed"],
+      "description": "Premium interior and exterior painting services using low-VOC paints, moisture protection layers, and modern decorative techniques."
+    },
+    "p9": {
+      "name": "Secure Locks",
+      "category": "Locksmith",
+      "location": "Baghdad",
+      "price": "$35",
+      "unit": "service",
+      "badges": ["Verified", "24/7"],
+      "description": "Advanced security solutions including biometric locks, emergency lockouts, master key systems, and access control installations."
+    }
+  },
+  "construction": {
+    "hero": {
+      "label": "Machine Marketplace",
+      "title": "Your Perfect \n Collaborator On \n Any Project.",
+      "description": "Premium construction machinery rentals and sales. We provide high-quality equipment to ensure your projects are completed efficiently and safely.",
+      "button": "Get Started"
+    },
+
+    "about": {
+      "label": "About Us",
+      "title": "Working Through \n Dirt & Dust",
+      "desc1": "We provide the heavy-duty machinery you need to get the job done. Our fleet is maintained to the highest standards to ensure reliability on every site.",
+      "desc2": "With decades of experience in the Iraq construction market, we understand the local challenges and provide the best equipment solutions.",
+      "points": [
+        "On-Site Support",
+        "View accurate rates",
+        "Rent and manage equipment",
+        "Full Satisfaction Guaranteed"
+      ],
+      "callLabel": "Call Us 24/7",
+      "phone": "123-4567-890",
+      "button": "More About Us"
+    },
+    "rentals": {
+      "label": "How It Works",
+      "title": "Get Your Rentals In Easy 4 Steps",
+      "steps": [
+        {
+          "title": "Search Your Equipment",
+          "desc": "Browse our extensive fleet of high-quality machinery tailored for any project scale."
+        },
+        {
+          "title": "Compare Your Selection",
+          "desc": "Check specifications, performance ratings, and pricing to find the perfect match."
+        },
+        {
+          "title": "Reserve The Equipment",
+          "desc": "Secure your machinery with our simple booking process and flexible rental terms."
+        },
+        {
+          "title": "Get Start Your Project",
+          "desc": "Receive your equipment on-site and begin your work with 24/7 technical support."
+        }
+      ]
+    },
+    "team": {
+      "label": "Our Team",
+      "title": "Meet Our Professional Team",
+      "viewMore": "View More",
+      "achievements": {
+        "title": "Our Achievements",
+        "description": "With a legacy of excellence, we have consistently delivered top-tier machinery and technical expertise to Iraq's largest infrastructure projects.",
+        "stats": [
+          {
+            "value": "15+",
+            "label": "Years of Experience in the heavy machinery industry."
+          },
+          {
+            "value": "120+",
+            "label": "Professional Team members providing 24/7 support."
+          },
+          {
+            "value": "5K+",
+            "label": "Customer Reviews from satisfied project managers."
+          }
+        ]
+      },
+      "members": ["Ahmed Hassan", "Sarah Yaseen", "Omar Ali"]
+    }
   }
 }

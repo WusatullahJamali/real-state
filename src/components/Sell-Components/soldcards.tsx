@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useRef, useEffect, useState } from "react";
+import Image from "next/image";
 import {
   Bed,
   Bath,
@@ -10,6 +11,7 @@ import {
   MoveRight,
   DollarSign,
 } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 
 // Interfaces
 interface HomeDetail {
@@ -28,53 +30,13 @@ interface HomeCardProps {
   imageUrl: string;
 }
 
-// Mock Data
-const homesData: HomeCardProps[] = [
-  {
-    id: crypto.randomUUID(),
-    status: "Sold - Sep 5, 2025",
-    price: "Contact for price",
-    details: { beds: 4, baths: 3, sqft: 3268 },
-    address1: "927 Walters Pt",
-    address2: "Monument, CO 80132",
-    imageUrl: "/home1.jpeg",
-  },
-  {
-    id: crypto.randomUUID(),
-    status: "Sold - Aug 15, 2025",
-    price: "$397,000",
-    details: { beds: 2, baths: 2, sqft: 1432 },
-    address1: "2717 S Troy Way",
-    address2: "Aurora, CO 80014",
-    imageUrl: "/home2.jpeg",
-  },
-  {
-    id: crypto.randomUUID(),
-    status: "Sold - Aug 15, 2025",
-    price: "$545,000",
-    details: { beds: 4, baths: 2, sqft: 2500 },
-    address1: "1007 N Weber St",
-    address2: "Colorado Springs, CO 80903",
-    imageUrl: "/home3.jpg",
-  },
-  {
-    id: crypto.randomUUID(),
-    status: "Sold - Aug 4, 2025",
-    price: "$512,500",
-    details: { beds: 4, baths: 3, sqft: 3174 },
-    address1: "6330 Wind River Pt",
-    address2: "Colorado Springs, CO 80923",
-    imageUrl: "/home4.jpg",
-  },
-  {
-    id: crypto.randomUUID(),
-    status: "Sold - Jul 30, 2025",
-    price: "Contact for price",
-    details: { beds: 3, baths: 2.5, sqft: 1850 },
-    address1: "7246 Clove Hill Ct",
-    address2: "Colorado Springs, CO 80922",
-    imageUrl: "/home5.jpg",
-  },
+// Static metadata that doesn't need translation
+const STATIC_METADATA = [
+  { imageUrl: "/home1.jpeg", beds: 4, baths: 3, sqft: 3268 },
+  { imageUrl: "/home2.jpeg", beds: 2, baths: 2, sqft: 1432 },
+  { imageUrl: "/home3.jpg", beds: 4, baths: 2, sqft: 2500 },
+  { imageUrl: "/home4.jpg", beds: 4, baths: 3, sqft: 3174 },
+  { imageUrl: "/hourse2.png", beds: 3, baths: 2.5, sqft: 1850 },
 ];
 
 // CARD COMPONENT
@@ -86,7 +48,11 @@ const HomeCard: React.FC<HomeCardProps> = ({
   address2,
   imageUrl,
 }) => {
-  const isContact = price.toLowerCase().includes("contact");
+  const t = useTranslations("RecentlySold");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+  const isContact =
+    price.toLowerCase().includes("contact") || price.includes("اتصل");
 
   return (
     <div
@@ -94,51 +60,56 @@ const HomeCard: React.FC<HomeCardProps> = ({
       rounded-2xl bg-white shadow-md overflow-hidden transition-transform 
       duration-500 hover:shadow-xl hover:-translate-y-2 hover:scale-[1.02]"
     >
-      {/* Image */}
       <div className="relative h-52 md:h-60 overflow-hidden group">
-        <img
+        <Image
           src={imageUrl}
           alt={address1}
-          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+          fill
+          sizes="(max-width: 640px) 80vw, (max-width: 768px) 45vw, (max-width: 1024px) 32vw, 27vw"
+          className="object-cover transition-transform duration-700 group-hover:scale-110"
+          priority={false}
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-        <span className="absolute top-3 left-3 bg-[#301366] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-          SOLD
+        <span
+          className={`absolute top-3 bg-[#301366] text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg ${
+            isRtl ? "right-3" : "left-3"
+          }`}
+        >
+          {t("badge")}
         </span>
         <div className="absolute bottom-0 w-full h-[3px] bg-yellow-400"></div>
       </div>
 
-      {/* Content */}
       <div className="p-5">
         <p className="text-xs text-black font-bold mb-1">{status}</p>
         <h3 className="text-lg font-bold text-gray-900 mb-3 flex items-center">
           {isContact ? (
             <>
-              <DollarSign className="w-4 h-4 mr-1 text-yellow-500" />
+              <DollarSign
+                className={`w-4 h-4 text-yellow-500 ${isRtl ? "ml-1" : "mr-1"}`}
+              />
               {price}
             </>
           ) : (
-            price
+            <span dir="ltr">{price}</span>
           )}
         </h3>
 
-        {/* Details */}
         <div className="flex justify-between text-sm font-medium border-t pt-3 mb-2">
           <div className="flex items-center gap-1">
             <Bed className="w-4 h-4 text-yellow-500" />
-            {details.beds} Bed
+            {details.beds} {t("labels.bed")}
           </div>
           <div className="flex items-center gap-1">
             <Bath className="w-4 h-4 text-yellow-500" />
-            {details.baths} Bath
+            {details.baths} {t("labels.bath")}
           </div>
           <div className="flex items-center gap-1">
             <LayoutGrid className="w-4 h-4 text-yellow-500" />
-            {details.sqft.toLocaleString()} sqft
+            {details.sqft.toLocaleString()} {t("labels.sqft")}
           </div>
         </div>
 
-        {/* Address */}
         <div className="text-sm text-black leading-tight">
           <p>{address1}</p>
           <p>{address2}</p>
@@ -150,80 +121,135 @@ const HomeCard: React.FC<HomeCardProps> = ({
 
 // MAIN COMPONENT
 export default function RecentlySoldHomes() {
+  const t = useTranslations("RecentlySold");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
   const scrollRef = useRef<HTMLDivElement>(null);
-  const [cards] = useState([...homesData, ...homesData, ...homesData]);
 
-  // Infinite auto-scroll
+  // Merge JSON data with static metadata
+  const initialHomes: HomeCardProps[] = (t.raw("homes") as any[]).map(
+    (home, index) => ({
+      id: `home-${index}`,
+      ...home,
+      imageUrl: STATIC_METADATA[index].imageUrl,
+      details: {
+        beds: STATIC_METADATA[index].beds,
+        baths: STATIC_METADATA[index].baths,
+        sqft: STATIC_METADATA[index].sqft,
+      },
+    })
+  );
+
+  const [cards] = useState([...initialHomes, ...initialHomes, ...initialHomes]);
+  const [isHovered, setIsHovered] = useState(false);
+
   useEffect(() => {
     const container = scrollRef.current;
-    if (!container) return;
-    const speed = 1;
+    if (!container || isHovered) return;
+
+    const speed = isRtl ? -1 : 1; // Reverse scroll for RTL
     let animation: number;
 
     const step = () => {
-      container.scrollLeft += speed;
-      if (container.scrollLeft >= container.scrollWidth / 3) {
-        container.scrollLeft = 0;
+      if (container) {
+        container.scrollLeft += speed;
+
+        // Infinite loop logic
+        const third = container.scrollWidth / 3;
+        if (isRtl) {
+          if (Math.abs(container.scrollLeft) >= third * 2)
+            container.scrollLeft = -third;
+        } else {
+          if (container.scrollLeft >= third * 2) container.scrollLeft = third;
+        }
       }
       animation = requestAnimationFrame(step);
     };
 
     animation = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animation);
-  }, []);
+  }, [isHovered, isRtl]);
 
-  // Manual scroll
   const scroll = (dir: "left" | "right") => {
     if (!scrollRef.current) return;
-    scrollRef.current.scrollBy({
-      left: dir === "right" ? 300 : -300,
+    const container = scrollRef.current;
+    const firstCard = container.querySelector("div");
+    if (!firstCard) return;
+
+    const cardWidth = firstCard.offsetWidth + 24;
+    // For RTL, "right" actually means negative scrollLeft
+    const multiplier = isRtl ? -1 : 1;
+    const scrollAmount =
+      (dir === "right" ? cardWidth : -cardWidth) * multiplier;
+
+    container.scrollBy({
+      left: scrollAmount,
       behavior: "smooth",
     });
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center p-6 bg-white">
-      <div className="w-full max-w-7xl relative p-6 md:p-8 rounded-3xl bg-white">
+    <div
+      className="min-h-[70vh] flex items-center justify-center p-6 bg-white"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
+      <div
+        className="w-full max-w-7xl relative p-6 md:p-8 rounded-3xl bg-white"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
         {/* Header */}
         <div className="flex items-start md:items-end justify-between border-b pb-4 mb-6">
           <div>
-            <h1 className="text-3xl font-bold text-black">
-              Recently Sold Homes
-            </h1>
-            <p className="text-black">
-              Colorado's top-performing homes for 2025
-            </p>
+            <h1 className="text-3xl font-bold text-black">{t("title")}</h1>
+            <p className="text-black">{t("subTitle")}</p>
           </div>
           <a
             href="#"
             className="font-semibold flex items-center text-yellow-600 hover:text-yellow-500"
           >
-            Homes like yours
-            <MoveRight className="w-4 h-4 ml-1" />
+            {t("linkText")}
+            <MoveRight
+              className={`w-4 h-4 ${isRtl ? "mr-1 rotate-180" : "ml-1"}`}
+            />
           </a>
         </div>
 
         {/* Arrows */}
         <button
           onClick={() => scroll("left")}
-          className="absolute left-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-20 hover:scale-110 transition"
+          aria-label="Scroll Left"
+          className={`absolute top-1/2 -translate-y-1/2 bg-white p-3 text-black rounded-full shadow-lg z-20 hover:scale-110 active:scale-95 transition ${
+            isRtl ? "right-2" : "left-2"
+          }`}
         >
-          <ArrowLeft className="w-5 h-5" />
+          {isRtl ? (
+            <ArrowRight className="w-5 h-5" />
+          ) : (
+            <ArrowLeft className="w-5 h-5" />
+          )}
         </button>
         <button
           onClick={() => scroll("right")}
-          className="absolute right-2 top-1/2 -translate-y-1/2 bg-white p-3 rounded-full shadow-lg z-20 hover:scale-110 transition"
+          aria-label="Scroll Right"
+          className={`absolute top-1/2 -translate-y-1/2 bg-white p-3 text-black rounded-full shadow-lg z-20 hover:scale-110 active:scale-95 transition ${
+            isRtl ? "left-2" : "right-2"
+          }`}
         >
-          <ArrowRight className="w-5 h-5" />
+          {isRtl ? (
+            <ArrowLeft className="w-5 h-5" />
+          ) : (
+            <ArrowRight className="w-5 h-5" />
+          )}
         </button>
 
         {/* Scroll Container */}
         <div
           ref={scrollRef}
-          className="flex gap-4 py-4 overflow-x-auto no-scrollbar"
+          className="flex gap-0 py-4 text-black overflow-x-auto no-scrollbar scroll-smooth"
           style={{
-            scrollbarWidth: "none", 
-            msOverflowStyle: "none", 
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
           }}
         >
           {cards.map((home, i) => (

@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useTranslations } from "next-intl"; // Added this
 
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -25,156 +26,134 @@ import LoginModal from "@/components/Auth/loginModal";
 import SignupModal from "@/components/Auth/SignupModal";
 
 /* ---------------- TYPES ---------------- */
-type MenuItem = { name: string; href: string; hasDropdown: boolean };
+type MenuItem = { nameKey: string; href: string; hasDropdown: boolean };
 type MegaMenuSubItem = {
-  text: string;
+  textKey: string;
   href: string;
   icon: React.ComponentType<{ className?: string }>;
-  description?: string;
 };
 type MegaMenuColumn = {
-  title: string;
+  titleKey: string;
   items?: MegaMenuSubItem[];
 };
 type MegaMenuContent = Record<string, { columns: MegaMenuColumn[] }>;
 
-/* ---------------- DATA ---------------- */
-const menuItems: MenuItem[] = [
-  { name: "HOME", href: "/", hasDropdown: false },
-  { name: "BUY", href: "/buy", hasDropdown: true },
-  { name: "SALE", href: "/sell", hasDropdown: true },
-  { name: "RENT", href: "/rent", hasDropdown: true },
-  { name: "SERVICES", href: "/service", hasDropdown: false },
-  { name: "BLOGS", href: "/blog", hasDropdown: true },
-  { name: "CONTACT US", href: "/contact", hasDropdown: false },
-];
-
-const megaMenuContent: MegaMenuContent = {
-  BUY: {
-    columns: [
-      {
-        title: "Market Insights",
-        items: [{ text: "Sold Homes", href: "/soldhomes", icon: Building }],
-      },
-      {
-        title: "Buying Essentials",
-        items: [{ text: "Property", href: "/property", icon: Briefcase }],
-      },
-    ],
-  },
-
-  SALE: {
-    columns: [
-      {
-        title: "Buying Essentials",
-        items: [
-          {
-            text: "Homes for Sale",
-            href: "/sell/home-for-sale",
-            icon: Home,
-          },
-          {
-            text: "New Construction",
-            href: "/new-construction",
-            icon: Building,
-          },
-          {
-            text: "Recently Sold",
-            href: "/recently-sold-homes",
-            icon: House,
-          },
-        ],
-      },
-      {
-        title: "Market Insight",
-        items: [
-          {
-            text: "Explore Neighborhoods",
-            href: "/sell/neighbourhood",
-            icon: Info,
-          },
-          {
-            text: "Housing Market Trends",
-            href: "/housing-market-trends",
-            icon: Briefcase,
-          },
-        ],
-      },
-    ],
-  },
-
-  RENT: {
-    columns: [
-      {
-        title: "Rental Types",
-        items: [
-          { text: "Apartments", href: "/apartments-for-rent", icon: Building },
-          { text: "Houses", href: "/houses-for-rent", icon: House },
-        ],
-      },
-      {
-        title: "Landlord Resources",
-        items: [
-          { text: "Manage Rentals", href: "/manage-rentals", icon: Briefcase },
-          { text: "List Rentals", href: "/list-your-rentals", icon: Plus },
-          {
-            text: "Contact Landlord",
-            href: "/contact-rent-landlord",
-            icon: User,
-          },
-        ],
-      },
-    ],
-  },
-
-  SERVICES: {
-    columns: [
-      {
-        title: "Company",
-        items: [
-          { text: "About Us", href: "/en/about", icon: Info },
-          { text: "Contact Us", href: "/contact", icon: BookOpen },
-          { text: "Careers", href: "/careers", icon: Briefcase },
-        ],
-      },
-      {
-        title: "Resources",
-        items: [
-          { text: "Blog", href: "/blog", icon: BookOpen },
-          { text: "FAQ", href: "/faq", icon: Info },
-        ],
-      },
-      {
-        title: "Legal",
-        items: [
-          { text: "Terms", href: "/terms-of-service", icon: Layers },
-          { text: "Privacy", href: "/privacy-policy", icon: Layers },
-        ],
-      },
-    ],
-  },
-};
-
 export default function Navbar() {
+  const t = useTranslations("navbar"); // Hook for translations
   const [hoveredMenu, setHoveredMenu] = useState<string | null>(null);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [mobileExpanded, setMobileExpanded] = useState<string | null>(null);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [authModal, setAuthModal] = useState<"login" | "signup" | null>(null);
-
-  /* -------- LANGUAGE SWITCHER STATE -------- */
   const [langOpen, setLangOpen] = useState(false);
+
+  /* ---------------- DATA MAPPED TO KEYS ---------------- */
+  const menuItems: MenuItem[] = [
+    { nameKey: "home", href: "/", hasDropdown: false },
+    { nameKey: "buy", href: "/buy", hasDropdown: true },
+    { nameKey: "sale", href: "/sell", hasDropdown: true },
+    { nameKey: "rent", href: "/rent", hasDropdown: true },
+    { nameKey: "services", href: "/service", hasDropdown: false },
+    { nameKey: "blogs", href: "/blog", hasDropdown: true },
+    { nameKey: "contact", href: "/contact", hasDropdown: false },
+  ];
+
+  const megaMenuContent: MegaMenuContent = {
+    buy: {
+      columns: [
+        {
+          titleKey: "marketInsights",
+          items: [{ textKey: "soldHomes", href: "/soldhomes", icon: Building }],
+        },
+        {
+          titleKey: "buyingEssentials",
+          items: [{ textKey: "property", href: "/property", icon: Briefcase }],
+        },
+      ],
+    },
+    sale: {
+      columns: [
+        {
+          titleKey: "buyingEssentials",
+          items: [
+            {
+              textKey: "homesForSale",
+              href: "/sell/home-for-sale",
+              icon: Home,
+            },
+
+            {
+              textKey: "recentlySold",
+              href: "/recently-sold-homes",
+              icon: House,
+            },
+          ],
+        },
+        {
+          titleKey: "marketInsights",
+          items: [
+            {
+              textKey: "exploreNeighborhoods",
+              href: "/sell/neighbourhood",
+              icon: Info,
+            },
+            {
+              textKey: "marketTrends",
+              href: "/housing-market-trends",
+              icon: Briefcase,
+            },
+          ],
+        },
+      ],
+    },
+    rent: {
+      columns: [
+        {
+          titleKey: "rentalTypes",
+          items: [
+            {
+              textKey: "apartments",
+              href: "/apartments-for-rent",
+              icon: Building,
+            },
+            { textKey: "houses", href: "/houses-for-rent", icon: House },
+          ],
+        },
+        {
+          titleKey: "landlordResources",
+          items: [
+            {
+              textKey: "manageRentals",
+              href: "/manage-rentals",
+              icon: Briefcase,
+            },
+            { textKey: "listRentals", href: "/list-your-rentals", icon: Plus },
+            {
+              textKey: "contactLandlord",
+              href: "/contact-rent-landlord",
+              icon: User,
+            },
+          ],
+        },
+      ],
+    },
+  };
 
   const switchLanguage = (lang: "en" | "ar" | "ku") => {
     if (typeof window === "undefined") return;
-
-    window.location.href = `${window.location.origin}/${lang}`;
+    const url = window.location.href;
+    const cleanedUrl = url.replace(/\/(en|ar|ku)(?=\/|$)/, "");
+    const newUrl = cleanedUrl.replace(
+      window.location.origin,
+      `${window.location.origin}/${lang}`
+    );
+    window.location.href = newUrl;
   };
 
   const getLangPrefix = () => {
     if (typeof window === "undefined") return "";
-    const url = window.location.href; // full URL
-    const match = url.match(/https?:\/\/[^\/]+\/(en|ar|ku)/); // check for /en, /ar, /ku
+    const url = window.location.href;
+    const match = url.match(/https?:\/\/[^\/]+\/(en|ar|ku)/);
     return match ? `/${match[1]}` : "";
   };
 
@@ -188,10 +167,8 @@ export default function Navbar() {
 
   return (
     <>
-      {/* NAVBAR */}
       <motion.nav className="bg-[#1B3A57] shadow-sm sticky top-0 z-50 text-white">
         <div className="max-w-9xl mx-auto px-4 sm:px-6 py-1 flex justify-between items-center gap-5">
-          {/* LOGO */}
           <Link href="/" className="shrink-0 flex items-center">
             <Image
               src="/albasync-01.png"
@@ -203,23 +180,23 @@ export default function Navbar() {
             />
           </Link>
 
-          {/* DESKTOP MENU */}
           <ul className="hidden md:flex items-center gap-2 lg:gap-4 text-sm lg:text-base">
             {menuItems.map((item) => (
               <li
-                key={item.name}
-                className="relative px-6"
+                key={item.nameKey}
+                className="relative px-3 lg:px-4 xl:px-6"
                 onMouseEnter={() =>
-                  item.hasDropdown && setHoveredMenu(item.name)
+                  item.hasDropdown && setHoveredMenu(item.nameKey)
                 }
                 onMouseLeave={() => setHoveredMenu(null)}
               >
-                <Link href={`${getLangPrefix()}${item.href}`}>{item.name}</Link>
-
+                <Link href={`${getLangPrefix()}${item.href}`}>
+                  {t(`menu.${item.nameKey}`)}
+                </Link>
                 <AnimatePresence>
-                  {hoveredMenu === item.name &&
+                  {hoveredMenu === item.nameKey &&
                     item.hasDropdown &&
-                    megaMenuContent[item.name] && (
+                    megaMenuContent[item.nameKey] && (
                       <motion.div
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -230,32 +207,34 @@ export default function Navbar() {
                           className="p-6 grid gap-6"
                           style={{
                             gridTemplateColumns: `repeat(${
-                              megaMenuContent[item.name].columns.length
+                              megaMenuContent[item.nameKey].columns.length
                             },1fr)`,
                           }}
                         >
-                          {megaMenuContent[item.name].columns.map((col, i) => (
-                            <div key={i}>
-                              <h4 className="uppercase text-xs font-bold text-gray-500 mb-4">
-                                {col.title}
-                              </h4>
-                              <ul className="space-y-1">
-                                {col.items?.map((sub, j) => (
-                                  <li key={j}>
-                                    <Link
-                                      href={`${getLangPrefix()}${sub.href}`}
-                                      className="flex gap-3 p-3 rounded-lg hover:bg-yellow-50"
-                                    >
-                                      <sub.icon className="w-5 h-5 text-gray-500" />
-                                      <span className="text-gray-800 text-sm font-semibold">
-                                        {sub.text}
-                                      </span>
-                                    </Link>
-                                  </li>
-                                ))}
-                              </ul>
-                            </div>
-                          ))}
+                          {megaMenuContent[item.nameKey].columns.map(
+                            (col, i) => (
+                              <div key={i}>
+                                <h4 className="uppercase text-xs font-bold text-gray-500 mb-4">
+                                  {t(`titles.${col.titleKey}`)}
+                                </h4>
+                                <ul className="space-y-1">
+                                  {col.items?.map((sub, j) => (
+                                    <li key={j}>
+                                      <Link
+                                        href={`${getLangPrefix()}${sub.href}`}
+                                        className="flex gap-3 p-3 rounded-lg hover:bg-yellow-50"
+                                      >
+                                        <sub.icon className="w-5 h-5 text-gray-500" />
+                                        <span className="text-gray-800 text-sm font-semibold">
+                                          {t(`items.${sub.textKey}`)}
+                                        </span>
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )
+                          )}
                         </div>
                       </motion.div>
                     )}
@@ -264,9 +243,7 @@ export default function Navbar() {
             ))}
           </ul>
 
-          {/* RIGHT ACTIONS */}
           <div className="flex items-center gap-3">
-            {/* LANGUAGE SWITCHER */}
             <div className="relative">
               <button
                 onClick={() => setLangOpen(!langOpen)}
@@ -274,7 +251,6 @@ export default function Navbar() {
               >
                 <Globe className="w-5 h-5" />
               </button>
-
               <AnimatePresence>
                 {langOpen && (
                   <motion.div
@@ -306,26 +282,23 @@ export default function Navbar() {
               </AnimatePresence>
             </div>
 
-            {/* LOGIN / REGISTER */}
             {!isLoggedIn && (
-              <div className="hidden xl:flex items-center gap-3">
+              <div className="hidden lg:flex items-center gap-3">
                 <button
                   onClick={() => setAuthModal("login")}
                   className="flex items-center text-sm font-medium hover:text-yellow-500"
                 >
                   <User className="w-4 h-4 mr-1" />
-                  LOGIN
+                  {t("auth.login")}
                 </button>
-
                 <button
                   onClick={() => setAuthModal("signup")}
                   className="px-4 py-2 rounded-lg bg-yellow-500 text-black text-sm font-medium hover:bg-yellow-400"
                 >
-                  REGISTER
+                  {t("auth.register")}
                 </button>
               </div>
             )}
-
             <button
               onClick={() => setMobileOpen(true)}
               className="md:hidden p-2 rounded-md hover:bg-white/10"
@@ -336,7 +309,93 @@ export default function Navbar() {
         </div>
       </motion.nav>
 
-      {/* AUTH MODAL */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.div
+            initial={{ x: "100%" }}
+            animate={{ x: 0 }}
+            exit={{ x: "100%" }}
+            transition={{ type: "tween", duration: 0.3 }}
+            className="fixed inset-y-0 right-0 w-[70%] sm:w-[60%] md:w-auto md:hidden h-screen overflow-y-auto z-50 bg-white text-black"
+          >
+            <div className="flex items-center justify-between px-4 py-4 border-b border-white/20">
+              <span className="text-lg font-semibold">{t("auth.menu")}</span>
+              <button onClick={() => setMobileOpen(false)}>
+                <X className="w-7 h-7" />
+              </button>
+            </div>
+            <ul className="flex flex-col px-4 py-6 space-y-2">
+              {menuItems.map((item) => {
+                const isOpen = mobileExpanded === item.nameKey;
+                return (
+                  <li
+                    key={item.nameKey}
+                    className="border-b border-white/10 pb-2"
+                  >
+                    <div className="w-full flex items-center justify-between py-2">
+                      <Link
+                        href={`${getLangPrefix()}${item.href}`}
+                        onClick={() => setMobileOpen(false)}
+                        className="text-base font-medium"
+                      >
+                        {t(`menu.${item.nameKey}`)}
+                      </Link>
+                      {item.hasDropdown && (
+                        <button
+                          onClick={() =>
+                            setMobileExpanded(isOpen ? null : item.nameKey)
+                          }
+                          className="p-1"
+                        >
+                          <ChevronDown
+                            className={`w-5 h-5 transition-transform ${
+                              isOpen ? "rotate-180" : ""
+                            }`}
+                          />
+                        </button>
+                      )}
+                    </div>
+                    <AnimatePresence>
+                      {isOpen && megaMenuContent[item.nameKey] && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          className="overflow-hidden pl-4 pb-3"
+                        >
+                          {megaMenuContent[item.nameKey].columns.map(
+                            (col, i) => (
+                              <div key={i} className="mb-3">
+                                <h4 className="text-xs uppercase text-white/60 mb-2">
+                                  {t(`titles.${col.titleKey}`)}
+                                </h4>
+                                <ul className="space-y-2">
+                                  {col.items?.map((sub, j) => (
+                                    <li key={j}>
+                                      <Link
+                                        href={`${getLangPrefix()}${sub.href}`}
+                                        onClick={() => setMobileOpen(false)}
+                                        className="flex items-center gap-3 text-sm py-1"
+                                      >
+                                        <sub.icon className="w-4 h-4 text-white/70" />
+                                        <span>{t(`items.${sub.textKey}`)}</span>
+                                      </Link>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </li>
+                );
+              })}
+            </ul>
+          </motion.div>
+        )}
+      </AnimatePresence>
       {authModal === "login" && (
         <LoginModal
           onClose={() => setAuthModal(null)}
