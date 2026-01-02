@@ -1,6 +1,6 @@
-"use client ";
+"use client";
 
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { Phone, Mail, MapPin, ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
