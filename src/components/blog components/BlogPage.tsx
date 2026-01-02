@@ -43,7 +43,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post, locale }) => {
             fill
             className="object-cover transition-transform duration-700 group-hover:scale-110"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-60" />
+          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent opacity-60" />
           <span className="absolute top-3 left-3 bg-yellow-500 text-gray-900 px-3 py-1 text-[10px] font-bold uppercase tracking-wider rounded-full shadow-md z-10">
             {post.tag}
           </span>
@@ -99,7 +99,7 @@ const FeaturedArticleBanner: React.FC<{ locale: string }> = ({ locale }) => {
         />
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60" />
+      <div className="absolute inset-0 bg-linear-to-b from-transparent via-black/20 to-black/60" />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <motion.p
