@@ -9,7 +9,7 @@ import { useTranslations, useLocale } from "next-intl";
 
 interface Provider {
   id: number;
-  nameKey: string; // Changed to key
+  nameKey: string;
   category: string;
   location: string;
   rating: number;
@@ -18,7 +18,7 @@ interface Provider {
   unit: string;
   badges: string[];
   image: string;
-  descriptionKey: string; // Changed to key
+  descriptionKey: string;
 }
 
 const providers: Provider[] = [
@@ -272,7 +272,8 @@ const FeaturedProviders = () => {
                   </p>
                 </div>
 
-                <Link href={`/service/${p.id}`}>
+                {/* Updated Link with Locale prefix */}
+                <Link href={`/${locale}/service/${p.id}`} className="block">
                   <motion.div
                     whileTap={{ scale: 0.95 }}
                     className="bg-yellow-600 text-white px-6 py-2.5 rounded-full text-xs font-bold hover:bg-yellow-700 transition-all shadow-md cursor-pointer whitespace-nowrap"

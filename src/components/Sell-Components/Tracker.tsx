@@ -1,9 +1,22 @@
+"use client";
+
 import React from "react";
 import { MoveRight } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
 
 const HomeValueTracker = () => {
+  const t = useTranslations("HomeValueTracker");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
+  // We define the value for {realEstimate} here to match your JSON
+  const realEstimateValue = t("chartTitle");
+
   return (
-    <div className="flex items-center justify-center bg-white py-16 px-4">
+    <div
+      className="flex items-center justify-center bg-white py-16 px-4"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div className="w-full max-w-7xl">
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
@@ -11,47 +24,31 @@ const HomeValueTracker = () => {
           <div className="flex justify-center lg:justify-start">
             <div className="relative w-full max-w-md">
               {/* Chart overlay */}
-              <div className="absolute top-6 left-6 bg-white rounded-lg shadow-xl p-6 z-10 w-64">
+              <div
+                className={`absolute top-6 bg-white rounded-lg shadow-xl p-6 z-10 w-64 ${
+                  isRtl ? "right-6" : "left-6"
+                }`}
+              >
                 <h3 className="text-lg font-bold text-black mb-4">
-                  RealEstimate<sup className="text-xs">SM</sup>
+                  {t("chartTitle")}
+                  <sup className="text-xs">SM</sup>
                 </h3>
 
                 {/* Simple chart representation */}
                 <div className="relative h-40 mb-4">
                   <svg viewBox="0 0 200 100" className="w-full h-full">
                     {/* Grid lines */}
-                    <line
-                      x1="0"
-                      y1="80"
-                      x2="200"
-                      y2="80"
-                      stroke="#e5e7eb"
-                      strokeWidth="1"
-                    />
-                    <line
-                      x1="0"
-                      y1="60"
-                      x2="200"
-                      y2="60"
-                      stroke="#e5e7eb"
-                      strokeWidth="1"
-                    />
-                    <line
-                      x1="0"
-                      y1="40"
-                      x2="200"
-                      y2="40"
-                      stroke="#e5e7eb"
-                      strokeWidth="1"
-                    />
-                    <line
-                      x1="0"
-                      y1="20"
-                      x2="200"
-                      y2="20"
-                      stroke="#e5e7eb"
-                      strokeWidth="1"
-                    />
+                    {[20, 40, 60, 80].map((y) => (
+                      <line
+                        key={y}
+                        x1="0"
+                        y1={y}
+                        x2="200"
+                        y2={y}
+                        stroke="#e5e7eb"
+                        strokeWidth="1"
+                      />
+                    ))}
 
                     {/* Line 1 - Purple dashed */}
                     <polyline
@@ -84,7 +81,10 @@ const HomeValueTracker = () => {
                   </svg>
 
                   {/* X-axis labels */}
-                  <div className="flex justify-between text-xs text-black mt-1">
+                  <div
+                    className="flex justify-between text-xs text-black mt-1"
+                    dir="ltr"
+                  >
                     <span>2021</span>
                     <span>2022</span>
                     <span>2023</span>
@@ -98,26 +98,35 @@ const HomeValueTracker = () => {
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-0.5 border-t-2 border-dashed border-purple-500"></div>
                       <span className="text-gray-600">
-                        Collateral Analytics
+                        {t("chartLegend.analytics")}
                       </span>
                     </div>
-                    <span className="font-semibold text-gray-800">$446K</span>
+                    <span className="font-semibold text-gray-800" dir="ltr">
+                      $446K
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-0.5 bg-teal-500"></div>
                       <span className="text-gray-600">
-                        CoreLogic<sup>™</sup>
+                        {t("chartLegend.corelogic")}
+                        <sup>™</sup>
                       </span>
                     </div>
-                    <span className="font-semibold text-black">$445K</span>
+                    <span className="font-semibold text-black" dir="ltr">
+                      $445K
+                    </span>
                   </div>
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-0.5 border-t-2 border-dashed border-yellow-500"></div>
-                      <span className="text-black">Quantarium</span>
+                      <span className="text-black">
+                        {t("chartLegend.quantarium")}
+                      </span>
                     </div>
-                    <span className="font-semibold text-black">$438K</span>
+                    <span className="font-semibold text-black" dir="ltr">
+                      $438K
+                    </span>
                   </div>
                 </div>
               </div>
@@ -125,8 +134,8 @@ const HomeValueTracker = () => {
               {/* Building Image */}
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="/track.webp"
-                  alt="Red brick building"
+                  src="/tracker.jpeg"
+                  alt="Property"
                   className="w-full h-96 object-cover"
                 />
               </div>
@@ -134,25 +143,31 @@ const HomeValueTracker = () => {
           </div>
 
           {/* RIGHT — Text and CTA */}
-          <div className="flex flex-col items-start space-y-6">
+          <div
+            className={`flex flex-col space-y-6 ${
+              isRtl ? "items-start" : "items-start"
+            }`}
+          >
             <div>
               <h1 className="text-4xl md:text-5xl font-bold text-black mb-4">
-                Track your home value
+                {t("title")}
               </h1>
 
               <p className="text-black text-lg leading-relaxed">
-                Our{" "}
-                <span className="font-semibold">
-                  RealEstimate<sup className="text-xs">SM</sup>
-                </span>{" "}
-                data is sourced from multiple valuation providers independent of
-                Realtor.com and trusted by the lending industry.
+                {/* This maps the {realEstimate} variable in your JSON to the value of chartTitle */}
+                {t("description", { realEstimate: realEstimateValue })}
               </p>
             </div>
 
-            <button className="group relative flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold text-lg border-2  rounded-full hover:border-yellow-500 transition-all duration-300">
-              <span>Start tracking</span>
-              <MoveRight className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" />
+            <button className="group relative flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold text-lg border-2 rounded-full hover:border-yellow-500 transition-all duration-300">
+              <span>{t("button")}</span>
+              <MoveRight
+                className={`w-5 h-5 transition-transform duration-300 ${
+                  isRtl
+                    ? "group-hover:-translate-x-1 rotate-180"
+                    : "group-hover:translate-x-1"
+                }`}
+              />
             </button>
           </div>
         </div>

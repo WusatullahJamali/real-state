@@ -2,182 +2,208 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronDown, Search, Zap } from "lucide-react"; // Added Zap for flair
+import { ChevronDown, Search, HelpCircle, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { useTranslations, useLocale } from "next-intl";
 
-// --- Data Structure (Keep as is) ---
 type FAQItem = {
   q: string;
   a: string;
   category: string;
 };
 
-const faqs: FAQItem[] = [
-  {
-    q: "What is the process of buying a home?",
-    a: "The buying process typically involves pre-approval for a mortgage, searching for properties, making an offer, conducting inspections and appraisals, and finally, closing the deal. Consulting with a real estate professional is highly recommended.",
-    category: "Buying",
-  },
-  {
-    q: "What is the process of selling a home?",
-    a: "Selling a home involves determining market value, preparing the property (repairs/staging), listing, showing the home, negotiating offers, and completing the necessary legal paperwork and closing procedures.",
-    category: "Selling",
-  },
-  {
-    q: "How do I determine the value of my property?",
-    a: "Property value is primarily determined through a Comparative Market Analysis (CMA) conducted by an agent, or a formal appraisal by a licensed appraiser. They evaluate recent sales of comparable homes in your area.",
-    category: "Property",
-  },
-  {
-    q: "What should I look for in a property inspection?",
-    a: "A thorough inspection should cover structural integrity, roofing, foundation, electrical systems, plumbing, and HVAC systems. It helps identify any major hidden defects before finalizing the purchase.",
-    category: "Property",
-  },
-  {
-    q: "What is the role of a real estate agent in the negotiation process?",
-    a: "A real estate agent acts as your advocate, providing market data, advising on price and terms, preparing all documents, and communicating with the other party's agent to achieve the best possible outcome for you.",
-    category: "Agents",
-  },
-  {
-    q: "What are some common contingencies in a purchase agreement?",
-    a: "Common contingencies include financing (loan approval), inspection (passing the property inspection), and appraisal (the property value meeting the loan amount). These protect the buyer if certain conditions aren't met.",
-    category: "Buying",
-  },
-  {
-    q: "How long does it typically take to sell a property?",
-    a: "The time to sell varies greatly by market, but generally, from listing to closing, it can take anywhere from 60 to 120 days. Proper pricing and preparation are the biggest factors in speeding up the timeline.",
-    category: "Selling",
-  },
-];
-
-// --- Component ---
 export default function FAQ() {
+  // Changed namespace to fFAQ
+  const t = useTranslations("fFAQ");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   const [openIndexes, setOpenIndexes] = useState<number[]>([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  const categories = ["All", ...Array.from(new Set(faqs.map((f) => f.category)))];
+  const faqs: FAQItem[] = t.raw("items");
+  const categoryLabels = t.raw("categories");
+
+  // Create category list starting with "All"
+  const categories = ["All", ...Object.keys(categoryLabels)];
 
   const filteredFAQs = faqs.filter(
     (f) =>
       (selectedCategory === "All" || f.category === selectedCategory) &&
-      f.q.toLowerCase().includes(searchQuery.toLowerCase())
+      (f.q.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        f.a.toLowerCase().includes(searchQuery.toLowerCase()))
   );
 
   const toggleIndex = (index: number) => {
-    // Only allow one open at a time (Accordion behavior)
-    if (openIndexes.includes(index)) {
-      setOpenIndexes([]);
-    } else {
-      setOpenIndexes([index]);
-    }
+    setOpenIndexes(openIndexes.includes(index) ? [] : [index]);
   };
 
   return (
-    <section className="py-20 bg-gray-50 text-black">
-      <div className="max-w-6xl mx-auto px-6">
-        
-        {/* Heading */}
+    <section
+      className="py-24 bg-[#F8FAFC] min-h-screen font-sans selection:bg-indigo-100 selection:text-black"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
+      <div className="max-w-4xl mx-auto px-6">
+        {/* --- Header Section --- */}
         <div className="text-center mb-16">
-          <p className="text-sm font-semibold uppercase tracking-widest text-yellow-600 mb-2 flex items-center justify-center gap-2">
-            <Zap className="w-4 h-4" /> Quick Answers
-          </p>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-gray-900">
-            Real Estate FAQs
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white border border-indigo-100 text-yellow-600 text-xs font-bold uppercase tracking-widest mb-4"
+          >
+            <HelpCircle className="w-3.5 h-3.5" /> {t("badge")}
+          </motion.div>
+          <h1 className="text-4xl md:text-5xl font-semibold text-black tracking-tight mb-6">
+            {t("title")}{" "}
+            <span className="text-yellow-600">{t("titleHighlight")}</span>
           </h1>
-          <p className="text-gray-600 mt-4 max-w-2xl mx-auto text-lg">
-            Find clarity on the complex world of property transactions. Your reliable source for buying, selling, and general property insights.
+          <p className="text-black text-lg max-w-xl mx-auto leading-relaxed">
+            {t("description")}
           </p>
         </div>
 
-        {/* Filters & Search Container - **Shadow Removed** */}
-        <div className="bg-white p-6 rounded-2xl mb-12 border border-gray-100">
-          
-          {/* Search Input */}
-          <div className="relative mb-6">
-            <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+        {/* --- Search & Filter Bar --- */}
+        <div className="mb-12 space-y-6">
+          <div className="relative group">
+            <Search
+              className={`absolute ${
+                isRtl ? "right-5" : "left-5"
+              } top-1/2 -translate-y-1/2 w-5 h-5 text-black group-focus-within:text-yellow-500 transition-colors`}
+            />
             <input
               type="text"
-              placeholder="Search by keyword, e.g., 'contingency' or 'value'..."
+              placeholder={t("searchPlaceholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              // **Shadow Removed** (Used border and background for definition instead)
-              className="w-full pl-12 pr-4 py-3 rounded-xl border-2 border-gray-200 focus:outline-none focus:border-yellow-500 transition bg-gray-50"
+              className={`w-full ${
+                isRtl ? "pr-14 pl-6" : "pl-14 pr-6"
+              } py-4 rounded-2xl bg-white border border-slate-200 focus:outline-none focus:ring-4 focus:ring-yellow-500/5 focus:border-yellow-500 transition-all text-black shadow-sm placeholder:text-gray-600`}
             />
           </div>
 
-          {/* Category Tabs */}
-          <div className="flex gap-3 flex-wrap justify-center">
-            {categories.map((cat) => (
+          <div
+            className={`flex gap-2 flex-wrap justify-center ${
+              isRtl ? "sm:justify-end" : "sm:justify-start"
+            }`}
+          >
+            {categories.map((catKey) => (
               <button
-                key={cat}
-                onClick={() => setSelectedCategory(cat)}
-                className={`px-5 py-2 rounded-full font-medium text-sm transition-all duration-200 ${
-                  selectedCategory === cat
-                    // **Shadow Removed** (Active state uses color and scale transform)
-                    ? "bg-yellow-500 text-white transform scale-105" 
-                    : "bg-gray-100 text-gray-700 hover:bg-yellow-100 hover:text-yellow-700"
+                key={catKey}
+                onClick={() => setSelectedCategory(catKey)}
+                className={`px-5 py-2 rounded-xl text-sm font-medium transition-all duration-300 border ${
+                  selectedCategory === catKey
+                    ? "bg-slate-900 border-slate-900 text-white shadow-md shadow-slate-200"
+                    : "bg-white border-slate-200 text-black hover:border-yellow-300 hover:text-yellow-600"
                 }`}
               >
-                {cat}
+                {catKey === "All" ? t("allCategory") : categoryLabels[catKey]}
               </button>
             ))}
           </div>
         </div>
 
-        {/* Accordion */}
-        <div className="space-y-6">
-          {filteredFAQs.length === 0 && (
-            <p className="text-gray-600 text-center py-10 text-xl italic border-y border-gray-200">
-              No FAQs match your search or category selection. Try a different query.
-            </p>
-          )}
-          {filteredFAQs.map((item, index) => {
-            const isOpen = openIndexes.includes(index);
-            return (
-              <motion.div
-                key={index}
-                layout
-                initial={{ borderRadius: 16 }}
-                className={`bg-white p-7 rounded-2xl cursor-pointer transition-all duration-300 ${
-                  isOpen 
-                    // **Shadow Removed** (Focus state uses ring and border)
-                    ? "ring-4 ring-yellow-100 border border-yellow-500" 
-                    // **Shadow Removed** (No shadow on hover)
-                    : "border border-gray-200 hover:border-gray-300"
-                }`}
-                onClick={() => toggleIndex(index)}
-              >
-                {/* Question Row */}
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-bold text-gray-900 pr-4">
-                    {item.q}
-                  </h3>
+        {/* --- FAQ List --- */}
+        <div className="space-y-4">
+          <AnimatePresence mode="popLayout">
+            {filteredFAQs.length > 0 ? (
+              filteredFAQs.map((item, index) => {
+                const isOpen = openIndexes.includes(index);
+                return (
                   <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.3 }}
-                    className={`p-1 rounded-full transition-colors ${isOpen ? 'bg-yellow-500 text-white' : 'bg-gray-100 text-gray-600'}`}
+                    key={item.q}
+                    layout
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    className={`overflow-hidden rounded-2xl transition-all duration-500 border ${
+                      isOpen
+                        ? "bg-white border-indigo-200 shadow-xl shadow-indigo-500/5"
+                        : "bg-white border-slate-200 hover:border-yellow-300"
+                    }`}
                   >
-                    <ChevronDown className="w-5 h-5" />
-                  </motion.div>
-                </div>
-
-                {/* Answer */}
-                <AnimatePresence>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0, marginTop: 0 }}
-                      animate={{ opacity: 1, height: "auto", marginTop: "1rem" }}
-                      exit={{ opacity: 0, height: 0, marginTop: 0 }}
-                      transition={{ duration: 0.4, ease: "easeInOut" }} 
-                      className="text-gray-700 leading-relaxed pt-4 border-t border-gray-100" 
+                    <button
+                      onClick={() => toggleIndex(index)}
+                      className="w-full text-left p-6 md:p-8 flex justify-between items-center gap-4"
                     >
-                      {item.a}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
+                      <span
+                        className={`text-lg font-medium transition-colors duration-300 ${
+                          isRtl ? "text-right" : "text-left"
+                        } ${isOpen ? "text-yellow-600" : "text-black"}`}
+                      >
+                        {item.q}
+                      </span>
+                      <div
+                        className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-300 ${
+                          isOpen
+                            ? "bg-yellow-600 text-white rotate-180"
+                            : "bg-slate-100 text-black"
+                        }`}
+                      >
+                        <ChevronDown className="w-4 h-4" />
+                      </div>
+                    </button>
+
+                    <AnimatePresence>
+                      {isOpen && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                        >
+                          <div
+                            className={`px-8 pb-8 text-black leading-relaxed border-t border-slate-50 pt-6 ${
+                              isRtl ? "text-right" : "text-left"
+                            }`}
+                          >
+                            <p className="max-w-[90%] mx-auto md:mx-0">
+                              {item.a}
+                            </p>
+                            <div
+                              className={`mt-6 flex items-center gap-2 text-sm font-semibold text-yellow-600 cursor-pointer hover:underline ${
+                                isRtl ? "flex-row-reverse" : ""
+                              }`}
+                            >
+                              {t("learnMore")}{" "}
+                              <ArrowRight
+                                className={`w-3.5 h-3.5 ${
+                                  isRtl ? "rotate-180" : ""
+                                }`}
+                              />
+                            </div>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </motion.div>
+                );
+              })
+            ) : (
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-center py-20 bg-slate-50 rounded-3xl border-2 border-dashed border-slate-200"
+              >
+                <div className="bg-white w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-4 shadow-sm">
+                  <Search className="w-5 h-5 text-slate-300" />
+                </div>
+                <h3 className="text-black font-medium">{t("noResults")}</h3>
+                <p className="text-black text-sm mt-1">{t("noResultsDesc")}</p>
               </motion.div>
-            );
-          })}
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* --- Footer Note --- */}
+        <div className="mt-16 text-center">
+          <p className="text-black text-sm">
+            {t("footerText")}{" "}
+            <span className="text-yellow-600 font-semibold cursor-pointer hover:text-yellow-700 transition-colors">
+              <Link href="/contact">{t("footerLink")}</Link>
+            </span>{" "}
+            {t("footerSuffix")}
+          </p>
         </div>
       </div>
     </section>

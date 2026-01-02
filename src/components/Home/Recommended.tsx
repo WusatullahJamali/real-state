@@ -1,79 +1,3 @@
-// "use client";
-
-// import React from "react";
-// import Image from "next/image";
-// import Link from "next/link";
-// import { MapPin } from "lucide-react";
-// import { motion } from "framer-motion";
-// import { useTranslations } from "next-intl";
-
-// interface Location {
-//   id: number;
-//   name: string;
-//   mapColor: string;
-//   img: string;
-//   listings: number;
-//   medianPrice: string;
-// }
-
-// export default function RecommendedLocations() {
-//   const t = useTranslations("home");
-
-//   const locations = t("recommendedLocations.items", {
-//     returnObjects: true
-//   }) as Location[];
-
-//   return (
-//     <section className="py-12">
-//       <h2 className="text-3xl font-bold">
-//         {t("recommendedLocations.title")}
-//       </h2>
-
-//       <p className="text-gray-600 mb-8">
-//         {t("recommendedLocations.subtitle")}
-//       </p>
-
-//       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-//         {locations.map((location) => (
-//           <motion.div key={location.id} whileHover={{ y: -8 }}>
-//             <Link href={`/CategoriesDATA/${location.id}`}>
-//               <div className="border rounded-xl overflow-hidden shadow-lg">
-//                 <div className="relative h-40">
-//                   <Image
-//                     src={location.img}
-//                     alt={location.name}
-//                     fill
-//                     className="object-cover"
-//                   />
-//                   <MapPin className="absolute top-2 right-2 text-red-600" />
-//                 </div>
-
-//                 <div className="p-4">
-//                   <h3 className="font-bold text-lg">{location.name}</h3>
-//                   <p>{location.listings} Listings</p>
-//                   <p className="text-yellow-500 font-bold">
-//                     {location.medianPrice}
-//                   </p>
-//                 </div>
-//               </div>
-//             </Link>
-//           </motion.div>
-//         ))}
-//       </div>
-//     </section>
-//   );
-// }
-
-
-
-
-
-
-
-
-
-
-
 "use client";
 
 import React from "react";
@@ -81,7 +5,7 @@ import Image from "next/image";
 import { MapPin } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl"; // 1. Added useLocale
 
 // --- Types ---
 interface Location {
@@ -101,7 +25,12 @@ interface LocationMapProps {
 }
 
 // --- Map / Image Component ---
-const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img, mapLabel }) => (
+const LocationMap: React.FC<LocationMapProps> = ({
+  name,
+  mapColor,
+  img,
+  mapLabel,
+}) => (
   <div className="relative h-48 w-full overflow-hidden border-b border-gray-200">
     {img ? (
       <Image src={img} alt={`${name} map`} fill className="object-cover" />
@@ -139,14 +68,20 @@ const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img, mapLabel
 // --- Main Component ---
 export default function RecommendedLocations() {
   const t = useTranslations("home.recommended");
+  const locale = useLocale(); // 2. Get current locale (en/ar)
+  const isRtl = locale === "ar";
   const cities = t.raw("cities") as Location[];
 
   return (
-    <div className="bg-white py-10 md:py-16 overflow-hidden">
+    // 3. Added dir attribute for RTL support
+    <div
+      className="bg-white py-10 md:py-16 overflow-hidden"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        {/* Title Group Animation */}     
+        {/* Title Group Animation */}
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: isRtl ? 20 : -20 }} // Flip initial animation direction
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -166,7 +101,7 @@ export default function RecommendedLocations() {
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          variants={{      
+          variants={{
             hidden: { opacity: 0 },
             show: {
               opacity: 1,
@@ -187,9 +122,10 @@ export default function RecommendedLocations() {
                 y: -10,
                 transition: { duration: 0.3 },
               }}
-            >    
+            >
               <Link
-                href={`/CategoriesDATA/${location.id}`}
+                // 4. Updated href with locale prefix
+                href={`/${locale}/CategoriesDATA/${location.id}`}
                 className="block group"
               >
                 <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-2xl">

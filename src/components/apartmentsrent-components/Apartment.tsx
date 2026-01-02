@@ -1,24 +1,14 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import { Heart } from "lucide-react";
-
-
-// apartmentData.ts (Mock Data)
-export interface ApartmentType {
-  id: number;
-  title: string;
-  price: number;
-  bedrooms: number;
-  location: string;
-  image: string;
-  description: string;
-  amenities: string[];
-  areaSqFt: number;
-}
-
+import { useTranslations, useLocale } from "next-intl";
 
 const Apartment = () => {
+  const t = useTranslations("apartments");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+
   const [search, setSearch] = useState("");
   const [bedrooms, setBedrooms] = useState("");
   const [city, setCity] = useState("");
@@ -26,144 +16,92 @@ const Apartment = () => {
   const [favorites, setFavorites] = useState<number[]>([]);
 
   const toggleFav = (id: number) => {
-    if (favorites.includes(id)) {
-      setFavorites(favorites.filter((fav) => fav !== id));
-    } else {
-      setFavorites([...favorites, id]);
-    }
+    setFavorites((prev) =>
+      prev.includes(id) ? prev.filter((f) => f !== id) : [...prev, id]
+    );
   };
 
-  const apartments = [
-  {
-    id: 1,
-    title: "Luxury Apartment",
-    price: 1200,
-    bedrooms: 3,
-    location: "Green Zone, Baghdad",
-    image: "/a1.jpg",
-  },
-  {
-    id: 2,
-    title: "Modern Studio",
-    price: 800,
-    bedrooms: 1,
-    location: "Ankawa, Erbil",
-    image: "/a2.jpg",
-  },
-  {
-    id: 3,
-    title: "Family Apartment",
-    price: 1000,
-    bedrooms: 2,
-    location: "Al-Fao Street, Basra",
-    image: "/a3.jpg",
-  },
-  {
-    id: 4,
-    title: "Penthouse View",
-    price: 1500,
-    bedrooms: 4,
-    location: "Karrada, Baghdad",
-    image: "/a4.jpg",
-  },
-  {
-    id: 5,
-    title: "Executive Residence",
-    price: 1100,
-    bedrooms: 3,
-    location: "Center District, Erbil",
-    image: "/a5.jpg",
-  },
-  {
-    id: 6,
-    title: "Stylish Loft",
-    price: 950,
-    bedrooms: 2,
-    location: "Al-Maqal, Basra",
-    image: "/a6.avif",
-  },
-  {
-    id: 7,
-    title: "Budget Studio",
-    price: 650,
-    bedrooms: 1,
-    location: "Al-Rashid Street, Kirkuk",
-    image: "/a7.jpg",
-  },
-  {
-    id: 8,
-    title: "Corner Apartment",
-    price: 1050,
-    bedrooms: 3,
-    location: "Old City, Mosul",
-    image: "/a8.jpg",
-  },
-  {
-    id: 9,
-    title: "Luxury High Rise",
-    price: 1300,
-    bedrooms: 3,
-    location: "Baghdad Tower Area, Baghdad",
-    image: "/a9.jpg",
-  },
-  {
-    id: 10,
-    title: "Student Apartment",
-    price: 550,
-    bedrooms: 1,
-    location: "University District, Erbil",
-    image: "/a10.webp",
-  },
-  {
-    id: 11,
-    title: "Serviced Apartment",
-    price: 1600,
-    bedrooms: 4,
-    location: "Green Zone, Baghdad",
-    image: "/a11.jpg",
-  },
-  {
-    id: 12,
-    title: "Cozy Family Home",
-    price: 850,
-    bedrooms: 2,
-    location: "Al-Mutanabbi Street, Baghdad",
-    image: "/a12.jpg",
-  },
-  {
-    id: 13,
-    title: "Cozy Family Home",
-    price: 850,
-    bedrooms: 2,
-    location: "Center District, Basra",
-    image: "/ap14.jpg",
-  },
-  {
-    id: 14,
-    title: "Cozy Family Home",
-    price: 850,
-    bedrooms: 2,
-    location: "Faihaa District, Mosul",
-    image: "/ap15.jpg",
-  },
-  {
-    id: 15,
-    title: "Cozy Family Home",
-    price: 850,
-    bedrooms: 2,
-    location: "Al-Sa’a District, Erbil",
-    image: "/a16.webp",
-  },
-];
+  /**
+   * Safe Translation Helper
+   * Prevents "MISSING_MESSAGE" errors by checking if key exists before calling t()
+   */
+  const getLoc = (neighborhood: string, cityName: string) => {
+    const n = t.has(`locations.neighborhoods.${neighborhood}`)
+      ? t(`locations.neighborhoods.${neighborhood}`)
+      : neighborhood;
+    const sep = t.has("locations.separator") ? t("locations.separator") : ", ";
+    const c = t.has(`locations.${cityName}`)
+      ? t(`locations.${cityName}`)
+      : cityName;
 
+    return `${n}${sep}${c}`;
+  };
 
-  // FILTER + SORT
+  // Data synchronized with your JSON (Missing keys removed)
+  const apartments = useMemo(
+    () => [
+      {
+        id: 1,
+        title: t("data.luxury"),
+        price: 1200,
+        bedrooms: 3,
+        location: getLoc("greenZone", "baghdad"),
+        image: "/a1.jpg",
+      },
+      {
+        id: 2,
+        title: t("data.studio"),
+        price: 800,
+        bedrooms: 1,
+        location: getLoc("ankawa", "erbil"),
+        image: "/a2.jpg",
+      },
+      {
+        id: 3,
+        title: t("data.family"),
+        price: 1000,
+        bedrooms: 2,
+        location: getLoc("alFao", "basra"),
+        image: "/a3.jpg",
+      },
+      {
+        id: 4,
+        title: t("data.penthouse"),
+        price: 1500,
+        bedrooms: 4,
+        location: getLoc("karrada", "baghdad"),
+        image: "/a4.jpg",
+      },
+      {
+        id: 5,
+        title: t("data.executive"),
+        price: 1100,
+        bedrooms: 3,
+        location: getLoc("center", "erbil"),
+        image: "/a5.jpg",
+      },
+      {
+        id: 6,
+        title: t("data.loft"),
+        price: 950,
+        bedrooms: 2,
+        location: getLoc("alMaqal", "basra"),
+        image: "/a6.avif",
+      },
+    ],
+    [t]
+  );
+
   const filtered = apartments
-    .filter((apt) => apt.title.toLowerCase().includes(search.toLowerCase()))
+    .filter((apt) => {
+      const searchLower = search.toLowerCase();
+      return (
+        apt.title.toLowerCase().includes(searchLower) ||
+        apt.location.toLowerCase().includes(searchLower)
+      );
+    })
     .filter((apt) => (bedrooms ? apt.bedrooms === Number(bedrooms) : true))
-    .filter((apt) =>
-      city ? apt.location.toLowerCase().includes(city.toLowerCase()) : true
-    )
+    .filter((apt) => (city ? apt.location.includes(city) : true))
     .sort((a, b) => {
       if (sort === "high") return b.price - a.price;
       if (sort === "low") return a.price - b.price;
@@ -171,149 +109,120 @@ const Apartment = () => {
     });
 
   return (
-    <section className="py-14 px-6 bg-white text-black">
-      <h2 className="text-3xl font-bold text-center mb-10">
-        Apartments for Rent
-      </h2>
+    <section
+      className="py-14 px-6 bg-white text-black"
+      dir={isRTL ? "rtl" : "ltr"}
+    >
+      <h2 className="text-3xl font-bold text-center mb-10">{t("heading")}</h2>
 
       {/* FILTERS */}
-      <div className="grid md:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
-  {/* Search */}
-  <input
-    placeholder="Search apartments, locations..."
-    value={search}
-    onChange={(e) => setSearch(e.target.value)}
-    className="
-      w-full
-      rounded-lg
-      border border-gray-300
-      px-4 py-3
-      text-sm
-      text-gray-700
-      placeholder-gray-400
-      shadow-sm
-      transition
-      focus:outline-none
-      focus:ring-2
-      focus:ring-yellow-400
-      focus:border-yellow-400
-    "
-  />
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 max-w-6xl mx-auto mb-10">
+        <input
+          placeholder={t("searchPlaceholder")}
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full rounded-lg border border-gray-300 px-4 py-3 text-sm focus:ring-2 focus:ring-yellow-400 focus:outline-none"
+        />
 
-  {/* Bedrooms */}
-  <select
-    onChange={(e) => setBedrooms(e.target.value)}
-    className="
-      w-full
-      rounded-lg
-      border border-gray-300
-      px-4 py-3
-      text-sm
-      text-gray-700
-      shadow-sm
-      transition
-      focus:outline-none
-      focus:ring-2
-      focus:ring-yellow-400
-      focus:border-yellow-400
-      bg-white
-    "
-  >
-    <option value="">Bedrooms</option>
-    <option value="1">1 Bed</option>
-    <option value="2">2 Bed</option>
-    <option value="3">3 Bed</option>
-    <option value="4">4 Bed</option>
-  </select>
+        <select
+          value={bedrooms}
+          onChange={(e) => setBedrooms(e.target.value)}
+          className="rounded-lg border border-gray-300 px-4 py-3 text-sm bg-white cursor-pointer"
+        >
+          <option value="">{t("filterBedrooms")}</option>
+          {[1, 2, 3, 4].map((n) => (
+            <option key={n} value={n}>
+              {t("filterBedUnit", { count: n })}
+            </option>
+          ))}
+        </select>
 
-  {/* City */}
-  <select
-    onChange={(e) => setCity(e.target.value)}
-    className="
-      w-full
-      rounded-lg
-      border border-gray-300
-      px-4 py-3
-      text-sm
-      text-gray-700
-      shadow-sm
-      transition
-      focus:outline-none
-      focus:ring-2
-      focus:ring-yellow-400
-      focus:border-yellow-400
-      bg-white
-    "
-  >
-    <option value="">All Cities</option>
-    <option value="Baghdad">Baghdad</option>
-    <option value="Erbil">Erbil</option>
-    <option value="Basra">Basra</option>
-    <option value="Mosul">Mosul</option>
-    <option value="Kirkuk">Kirkuk</option>
-  </select>
+        <select
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          className="rounded-lg border border-gray-300 px-4 py-3 text-sm bg-white cursor-pointer"
+        >
+          <option value="">{t("filterCities")}</option>
+          {/* Removed "kirkuk" and "mosul" as they were causing errors */}
+          {["baghdad", "erbil", "basra"].map((cKey) => (
+            <option key={cKey} value={t(`locations.${cKey}`)}>
+              {t(`locations.${cKey}`)}
+            </option>
+          ))}
+        </select>
 
-  {/* Sort */}
-  <select
-    onChange={(e) => setSort(e.target.value)}
-    className="
-      w-full
-      rounded-lg
-      border border-gray-300
-      px-4 py-3
-      text-sm
-      text-gray-700
-      shadow-sm
-      transition
-      focus:outline-none
-      focus:ring-2
-      focus:ring-yellow-400
-      focus:border-yellow-400
-      bg-white
-    "
-  >
-    <option value="">Sort Price</option>
-    <option value="low">Low to High</option>
-    <option value="high">High to Low</option>
-  </select>
-</div>
+        <select
+          value={sort}
+          onChange={(e) => setSort(e.target.value)}
+          className="rounded-lg border border-gray-300 px-4 py-3 text-sm bg-white cursor-pointer"
+        >
+          <option value="">{t("filterSort")}</option>
+          <option value="low">{t("sortLow")}</option>
+          <option value="high">{t("sortHigh")}</option>
+        </select>
+      </div>
 
       {/* LISTINGS */}
-      <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-        {filtered.map((apt) => (
-          <div key={apt.id} className="bg-white shadow border border-gray-500 rounded-xl overflow-hidden hover:shadow-xl transition cursor-pointer">
-            <div className="relative">
-              <img src={apt.image} className="w-full h-56 object-cover" />
-
-              {/* ❤️ Lucide Heart Icon */}
-              <button
-                onClick={() => toggleFav(apt.id)}
-                className="absolute top-3 right-3 bg-white rounded-full p-2 shadow hover:scale-110 transition"
-              >
-                <Heart
-                  className={`text-xl ${favorites.includes(apt.id) ? "text-red-500" : "text-gray-400"}`}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        {filtered.length > 0 ? (
+          filtered.map((apt) => (
+            <div
+              key={apt.id}
+              className="bg-white shadow-md border border-gray-100 rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 group"
+            >
+              <div className="relative">
+                <img
+                  src={apt.image}
+                  alt={apt.title}
+                  className="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-              </button>
+                <button
+                  onClick={() => toggleFav(apt.id)}
+                  className={`absolute top-3 ${
+                    isRTL ? "left-3" : "right-3"
+                  } bg-white/90 backdrop-blur-sm rounded-full p-2 shadow-md hover:scale-110 transition`}
+                >
+                  <Heart
+                    className={`w-5 h-5 ${
+                      favorites.includes(apt.id)
+                        ? "fill-red-500 text-red-500"
+                        : "text-gray-400"
+                    }`}
+                  />
+                </button>
+              </div>
+
+              <div className="p-5">
+                <h3 className="text-xl font-bold text-slate-900">
+                  {apt.title}
+                </h3>
+                <p className="text-gray-500 text-sm mb-2">{apt.location}</p>
+                <div className="flex justify-between items-center mt-4 border-t pt-4 border-gray-50">
+                  <span className="text-blue-600 font-extrabold text-lg">
+                    ${apt.price}{" "}
+                    <span className="text-xs font-medium text-gray-400">
+                      /{t("month")}
+                    </span>
+                  </span>
+                  <span className="text-sm font-medium bg-slate-100 px-2 py-1 rounded text-slate-600">
+                    {apt.bedrooms} {t("beds")}
+                  </span>
+                </div>
+
+                <Link
+                  href={`/${locale}/apartment/${apt.id}`}
+                  className="mt-6 block bg-yellow-500 text-slate-900 py-3 text-center rounded-lg font-bold hover:bg-yellow-600 transition-colors"
+                >
+                  {t("viewDetails")}
+                </Link>
+              </div>
             </div>
-
-            <div className="p-5">
-              <h3 className="text-xl font-semibold">{apt.title}</h3>
-              <p className="text-gray-500">{apt.location}</p>
-
-              <p className="text-blue-600 font-semibold mt-2">
-                ${apt.price}/month
-              </p>
-              <p className="text-sm text-gray-600">{apt.bedrooms} Bedrooms</p>
-
-              <Link
-                href={`/apartment/${apt.id}`}
-                className="mt-4 block bg-yellow-600 text-white py-2 text-center rounded hover:bg-yellow-700 transition"
-              >
-                View Details
-              </Link>
-            </div>
+          ))
+        ) : (
+          <div className="col-span-full text-center py-20 text-gray-400">
+            No apartments found matching your search.
           </div>
-        ))}
+        )}
       </div>
     </section>
   );

@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 
 interface Property {
   id: number;
@@ -17,157 +18,20 @@ interface Property {
   batch?: "Hot Offer" | "New Listing" | null;
 }
 
-// ----- SALE PROPERTIES -----
-export const FOR_SALE_PROPERTIES: Property[] = [
-  {
-    id: 1,
-    title: "Harmony House",
-    city: "Baghdad",
-    beds: "03 Beds",
-    baths: "03 Baths",
-    size: "Sq.ft- 234,560",
-    price: "$7,656.00",
-    image: "/property1.jpg",
-    status: "sale",
-    batch: "New Listing",
-  },
-  {
-    id: 2,
-    title: "Mountain View Villa",
-    city: "Erbil",
-    beds: "02 Beds",
-    baths: "02 Baths",
-    size: "Sq.ft- 345,556",
-    price: "$3,650.00",
-    image: "/property2.webp",
-    status: "sale",
-    batch: null,
-  },
-  {
-    id: 3,
-    title: "Paradise Heights",
-    city: "Basra",
-    beds: "04 Beds",
-    baths: "04 Baths",
-    size: "Sq.ft- 234,560",
-    price: "$17,780.00",
-    image: "/property3.webp",
-    status: "sale",
-    batch: "Hot Offer",
-  },
-  {
-    id: 4,
-    title: "Golden Estate House",
-    city: "Najaf",
-    beds: "05 Beds",
-    baths: "04 Baths",
-    size: "Sq.ft- 400,000",
-    price: "$25,900.00",
-    image: "/h1.jpeg",
-    status: "sale",
-    batch: "New Listing",
-  },
-  {
-    id: 5,
-    title: "Royal Palm Residency",
-    city: "Karbala",
-    beds: "06 Beds",
-    baths: "05 Baths",
-    size: "Sq.ft- 500,230",
-    price: "$32,500.00",
-    image: "/h2.jpg",
-    status: "sale",
-    batch: "Hot Offer",
-  },
-  {
-    id: 6,
-    title: "Elite Signature Villa",
-    city: "Sulaymaniyah",
-    beds: "04 Beds",
-    baths: "04 Baths",
-    size: "Sq.ft- 350,000",
-    price: "$21,750.00",
-    image: "/h3.jpeg",
-    status: "sale",
-    batch: null,
-  },
-];
-
-// ----- RENT PROPERTIES -----
-export const FOR_RENT_PROPERTIES: Property[] = [
-  {
-    id: 10,
-    title: "Urban Comfort Apartment",
-    city: "Baghdad",
-    beds: "02 Beds",
-    baths: "01 Bath",
-    size: "Sq.ft- 120,000",
-    price: "$1,200.00 /mo",
-    image: "/property4.jpg",
-    status: "rent",
-    batch: "Hot Offer",
-  },
-  {
-    id: 11,
-    title: "City Center Condo",
-    city: "Erbil",
-    beds: "03 Beds",
-    baths: "02 Baths",
-    size: "Sq.ft- 150,340",
-    price: "$2,560.00 /mo",
-    image: "/property5.webp",
-    status: "rent",
-    batch: null,
-  },
-  {
-    id: 12,
-    title: "Budget Family Home",
-    city: "Basra",
-    beds: "04 Beds",
-    baths: "03 Baths",
-    size: "Sq.ft- 200,000",
-    price: "$1,850.00 /mo",
-    image: "/property6.webp",
-    status: "rent",
-    batch: "New Listing",
-  },
-  {
-    id: 13,
-    title: "Modern Studio Flat",
-    city: "Najaf",
-    beds: "01 Bed",
-    baths: "01 Bath",
-    size: "Sq.ft- 80,000",
-    price: "$950.00 /mo",
-    image: "/h4.avif",
-    status: "rent",
-    batch: "New Listing",
-  },
-  {
-    id: 14,
-    title: "Luxury Penthouse",
-    city: "Karbala",
-    beds: "03 Beds",
-    baths: "03 Baths",
-    size: "Sq.ft- 210,000",
-    price: "$4,900.00 /mo",
-    image: "/h5.jpg",
-    status: "rent",
-    batch: "Hot Offer",
-  },
-  {
-    id: 15,
-    title: "Cozy Suburban Home",
-    city: "Sulaymaniyah",
-    beds: "03 Beds",
-    baths: "02 Baths",
-    size: "Sq.ft- 150,000",
-    price: "$1,450.00 /mo",
-    image: "/h6.jpg",
-    status: "rent",
-    batch: null,
-  },
-];
+const STATIC_IMAGES: Record<number, string> = {
+  1: "/property1.jpg",
+  2: "/property2.webp",
+  3: "/property3.webp",
+  4: "/h1.jpeg",
+  5: "/h2.jpg",
+  6: "/h3.jpeg",
+  10: "/property4.jpg",
+  11: "/property5.webp",
+  12: "/property6.webp",
+  13: "/h4.avif",
+  14: "/h5.jpg",
+  15: "/h6.jpg",
+};
 
 interface TabButtonProps {
   id: "sale" | "rent";
@@ -197,6 +61,10 @@ const TabButton: React.FC<TabButtonProps> = ({
 );
 
 const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
+  const t = useTranslations("RecentProperties.labels");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -207,23 +75,33 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
     >
       <div className="relative h-56 w-full">
         <div
-          className={`absolute top-4 left-4 z-10 px-3 py-1 rounded-full text-xs font-semibold ${
+          className={`absolute top-4 ${
+            isRtl ? "right-4" : "left-4"
+          } z-10 px-3 py-1 rounded-full text-xs font-semibold ${
             property.status === "sale"
               ? "bg-green-600 text-white"
               : "bg-blue-600 text-white"
           }`}
         >
-          {property.status === "sale" ? "For Sale" : "For Rent"}
+          {property.status === "sale" ? t("sale") : t("rent")}
         </div>
 
         {property.batch === "New Listing" && (
-          <div className="absolute top-4 right-4 z-10 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-            NEW LISTING
+          <div
+            className={`absolute top-4 ${
+              isRtl ? "left-4" : "right-4"
+            } z-10 bg-yellow-500 text-white text-xs font-bold px-3 py-1 rounded-full`}
+          >
+            {t("newBatch")}
           </div>
         )}
         {property.batch === "Hot Offer" && (
-          <div className="absolute top-4 right-4 z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full">
-            HOT OFFER
+          <div
+            className={`absolute top-4 ${
+              isRtl ? "left-4" : "right-4"
+            } z-10 bg-red-600 text-white text-xs font-bold px-3 py-1 rounded-full`}
+          >
+            {t("hotBatch")}
           </div>
         )}
 
@@ -235,10 +113,14 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
         />
       </div>
 
-      <div className="p-5">
-        <div className="mb-2 text-sm text-gray-500 flex items-center">
+      <div className={`p-5 ${isRtl ? "text-right" : "text-left"}`}>
+        <div
+          className={`mb-2 text-sm text-gray-500 flex items-center ${
+            isRtl ? "flex-row-reverse" : ""
+          }`}
+        >
           <svg
-            className="w-4 h-4 mr-1 text-yellow-500"
+            className={`w-4 h-4 ${isRtl ? "ml-1" : "mr-1"} text-yellow-500`}
             fill="currentColor"
             viewBox="0 0 20 20"
           >
@@ -246,14 +128,18 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
               fillRule="evenodd"
               d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a3 3 0 100-6 3 3 0 000 6z"
               clipRule="evenodd"
-            ></path>
+            />
           </svg>
           {property.city}
         </div>
 
         <h5 className="text-xl font-semibold mb-3">{property.title}</h5>
 
-        <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-600 border-b pb-4 mb-4">
+        <ul
+          className={`flex flex-wrap gap-x-4 gap-y-2 text-sm text-gray-600 border-b pb-4 mb-4 ${
+            isRtl ? "flex-row-reverse" : ""
+          }`}
+        >
           <li>
             <span className="text-xs font-medium bg-gray-100 px-2 py-1 rounded">
               {property.beds}
@@ -271,12 +157,16 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
           </li>
         </ul>
 
-        <div className="flex items-center justify-between">
+        <div
+          className={`flex items-center justify-between ${
+            isRtl ? "flex-row-reverse" : ""
+          }`}
+        >
           <div className="text-2xl font-bold text-gray-900">
             {property.price}
           </div>
           <button className="px-4 py-2 bg-yellow-500 text-white text-sm font-medium rounded-lg">
-            View Details
+            {t("viewDetails")}
           </button>
         </div>
       </div>
@@ -285,11 +175,19 @@ const ProductCard: React.FC<{ property: Property }> = ({ property }) => {
 };
 
 export default function RecentPropertiesSection() {
+  const t = useTranslations("RecentProperties");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   const [activeTab, setActiveTab] = useState<"sale" | "rent">("sale");
   const [filter, setFilter] = useState<"all" | "new" | "hot">("all");
 
-  const selectedList =
-    activeTab === "sale" ? FOR_SALE_PROPERTIES : FOR_RENT_PROPERTIES;
+  const rawData = t.raw(`data.${activeTab}`) as any[];
+  const selectedList: Property[] = rawData.map((item) => ({
+    ...item,
+    status: activeTab,
+    image: STATIC_IMAGES[item.id],
+  }));
 
   const filteredProperties = selectedList.filter((p) => {
     if (filter === "all") return true;
@@ -299,29 +197,37 @@ export default function RecentPropertiesSection() {
   });
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-16 bg-white" dir={isRtl ? "rtl" : "ltr"}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12">
-          <div>
+        <div
+          className={`flex flex-col lg:flex-row lg:items-end lg:justify-between mb-12 ${
+            isRtl ? "lg:flex-row-reverse" : ""
+          }`}
+        >
+          <div className={isRtl ? "text-right" : "text-left"}>
             <span className="text-sm font-medium text-yellow-500 uppercase">
-              Comfort Building
+              {t("badge")}
             </span>
             <h2 className="text-4xl font-bold text-gray-900 mt-1">
-              Recent Property
+              {t("title")}
             </h2>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div
+            className={`flex flex-col sm:flex-row gap-4 mt-6 lg:mt-0 ${
+              isRtl ? "sm:flex-row-reverse" : ""
+            }`}
+          >
             <div className="flex gap-4">
               <TabButton
                 id="sale"
-                label="For Sale"
+                label={t("tabs.sale")}
                 active={activeTab === "sale"}
                 onClick={setActiveTab}
               />
               <TabButton
                 id="rent"
-                label="For Rent"
+                label={t("tabs.rent")}
                 active={activeTab === "rent"}
                 onClick={setActiveTab}
               />
@@ -332,13 +238,13 @@ export default function RecentPropertiesSection() {
               onChange={(e) =>
                 setFilter(e.target.value as "all" | "new" | "hot")
               }
-              className="px-4 py-2 border rounded-lg text-sm font-medium text-gray-700"
+              className="px-4 py-2 border rounded-lg text-sm font-medium text-gray-700 outline-none"
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.97 }}
             >
-              <option value="all">All Listings</option>
-              <option value="new">New Listing</option>
-              <option value="hot">Hot Offer</option>
+              <option value="all">{t("filters.all")}</option>
+              <option value="new">{t("filters.new")}</option>
+              <option value="hot">{t("filters.hot")}</option>
             </motion.select>
           </div>
         </div>

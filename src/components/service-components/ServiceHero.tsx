@@ -12,15 +12,15 @@ const ServiceHero: React.FC = () => {
 
   return (
     <section
-      className="relative w-full min-h-[90vh] sm:min-h-screen flex items-center justify-center overflow-hidden font-sans"
+      className="relative w-full min-h-[70vh] sm:min-h-[80vh] flex items-center justify-center overflow-hidden font-sans"
       dir={isRtl ? "rtl" : "ltr"}
     >
       {/* Background Image */}
       <motion.div
         className="absolute inset-0 z-0"
-        initial={{ scale: 1.15 }}
+        initial={{ scale: 1.12 }}
         animate={{ scale: 1 }}
-        transition={{ duration: 1.8, ease: "easeOut" }}
+        transition={{ duration: 1.6, ease: "easeOut" }}
       >
         <Image
           src="/srr.avif"
@@ -35,23 +35,23 @@ const ServiceHero: React.FC = () => {
       {/* Content */}
       <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-12">
         <motion.div
-          className="flex flex-col items-center text-center max-w-4xl mx-auto"
+          className="flex flex-col items-center text-center max-w-3xl mx-auto"
           initial="hidden"
           animate="show"
           variants={{
             hidden: {},
-            show: { transition: { staggerChildren: 0.2 } },
+            show: { transition: { staggerChildren: 0.18 } },
           }}
         >
           {/* Badge */}
           <motion.span
-            className="mb-6 px-4 py-1.5 text-xs sm:text-sm font-semibold tracking-widest uppercase rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 backdrop-blur"
+            className="mb-4 px-4 py-1.5 text-xs font-semibold tracking-widest uppercase rounded-full bg-yellow-500/10 text-yellow-400 border border-yellow-500/30 backdrop-blur"
             variants={{
-              hidden: { opacity: 0, y: -20 },
+              hidden: { opacity: 0, y: -16 },
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.6 },
+                transition: { duration: 0.5 },
               },
             }}
           >
@@ -60,13 +60,13 @@ const ServiceHero: React.FC = () => {
 
           {/* Heading */}
           <motion.h1
-            className="text-4xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 leading-tight drop-shadow-2xl"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black tracking-tight text-white mb-4 leading-tight drop-shadow-xl"
             variants={{
-              hidden: { opacity: 0, y: 40 },
+              hidden: { opacity: 0, y: 30 },
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.9, ease: "easeOut" },
+                transition: { duration: 0.8, ease: "easeOut" },
               },
             }}
           >
@@ -78,13 +78,13 @@ const ServiceHero: React.FC = () => {
 
           {/* Subtext */}
           <motion.p
-            className="max-w-2xl text-base sm:text-lg md:text-xl lg:text-2xl font-medium text-neutral-200 mb-10 leading-relaxed"
+            className="max-w-xl text-sm sm:text-base md:text-lg font-medium text-neutral-200 mb-6 leading-relaxed"
             variants={{
-              hidden: { opacity: 0, y: 20 },
+              hidden: { opacity: 0, y: 16 },
               show: {
                 opacity: 1,
                 y: 0,
-                transition: { duration: 0.7, ease: "easeOut" },
+                transition: { duration: 0.6, ease: "easeOut" },
               },
             }}
           >
@@ -94,11 +94,11 @@ const ServiceHero: React.FC = () => {
           {/* CTA Placeholder */}
           <motion.div
             variants={{
-              hidden: { opacity: 0, scale: 0.95 },
+              hidden: { opacity: 0, scale: 0.96 },
               show: {
                 opacity: 1,
                 scale: 1,
-                transition: { duration: 0.6 },
+                transition: { duration: 0.5 },
               },
             }}
           ></motion.div>
@@ -106,7 +106,7 @@ const ServiceHero: React.FC = () => {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 w-full h-24 sm:h-32 bg-gradient-to-t from-black to-transparent z-20" />
+      <div className="absolute bottom-0 left-0 w-full h-20 sm:h-24 bg-gradient-to-t from-black to-transparent z-20" />
     </section>
   );
 };

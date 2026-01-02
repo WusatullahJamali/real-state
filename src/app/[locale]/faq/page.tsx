@@ -1,5 +1,5 @@
 import Answer from "@/components/faqComponents/Answer";
-import FContact from "@/components/faqComponents/FContact";
+
 import FHero from "@/components/faqComponents/FHero";
 
 const page = () => {
@@ -7,7 +7,6 @@ const page = () => {
     <div>
       <FHero />
       <Answer />
-      <FContact />
     </div>
   );
 };
