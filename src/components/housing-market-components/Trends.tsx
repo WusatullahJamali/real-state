@@ -235,7 +235,7 @@ export default function MarketTrendsPage() {
                       <button className="p-2 rounded-lg hover:bg-yellow-600 hover:text-white transition-all text-black">
                         <ArrowUpRight
                           size={20}
-                          className={isRtl ? "rotate-[-90deg]" : ""}
+                          className={isRtl ? "rotate-90deg" : ""}
                         />
                       </button>
                     </td>

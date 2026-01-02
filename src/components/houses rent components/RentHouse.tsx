@@ -143,7 +143,7 @@ const RentHouses = () => {
           >
             {t("exploreAll")}{" "}
             <ArrowUpRight
-              className={`w-4 h-4 ${isRTL ? "rotate-[270deg]" : ""}`}
+              className={`w-4 h-4 ${isRTL ? "rotate-270deg" : ""}`}
             />
           </Link>
         </div>
@@ -153,10 +153,10 @@ const RentHouses = () => {
           {houseList.map((house) => (
             <div
               key={house.id}
-              className="group bg-white rounded-[2rem] border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden flex flex-col"
+              className="group bg-white rounded-4xl border border-gray-100 transition-all duration-500 hover:shadow-xl hover:-translate-y-2 overflow-hidden flex flex-col"
             >
               {/* Image Container */}
-              <div className="relative aspect-[4/3] overflow-hidden">
+              <div className="relative aspect-4/3 overflow-hidden">
                 <img
                   src={house.image}
                   alt={house.title}
@@ -196,7 +196,7 @@ const RentHouses = () => {
               </div>
 
               {/* Content Container */}
-              <div className="p-7 flex flex-col flex-grow">
+              <div className="p-7 flex flex-col grow">
                 <div className="flex justify-between items-start mb-4">
                   <div className={isRTL ? "text-right" : "text-left"}>
                     <h3 className="text-xl font-bold text-gray-900 mb-1 group-hover:text-yellow-600 transition-colors">
@@ -253,7 +253,7 @@ const RentHouses = () => {
                   <ArrowUpRight
                     className={`w-4 h-4 z-10 transition-transform ${
                       isRTL
-                        ? "rotate-[270deg] group-hover/btn:-translate-x-1"
+                        ? "rotate-270deg group-hover/btn:-translate-x-1"
                         : "group-hover/btn:translate-x-1"
                     } group-hover/btn:-translate-y-1`}
                   />

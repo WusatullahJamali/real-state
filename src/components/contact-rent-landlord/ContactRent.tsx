@@ -9,13 +9,13 @@ const PropertyImage = ({ badge }: { badge: string }) => {
   const isRtl = locale === "ar";
 
   return (
-    <div className="group relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-lg transition-transform duration-500 hover:scale-[1.02]">
+    <div className="group relative w-full aspect-4/3 rounded-2xl overflow-hidden shadow-lg transition-transform duration-500 hover:scale-[1.02]">
       <img
         src="/l1.jpg"
         alt="Property"
         className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+      <div className="absolute inset-0 bg--to-t from-black/40 to-transparent" />
       <span
         className={`absolute top-4 ${
           isRtl ? "right-4" : "left-4"
