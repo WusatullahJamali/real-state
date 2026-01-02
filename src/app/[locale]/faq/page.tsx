@@ -1,6 +1,6 @@
-import Answer from "@/components/faq components/Answer";
+import Answer from "@/components/faqComponents/Answer";
 
-import FHero from "@/components/faq components/FHero";
+import FHero from "@/components/faqComponents/FHero";
 
 const page = () => {
   return (

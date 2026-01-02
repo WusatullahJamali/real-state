@@ -108,7 +108,7 @@ const CombinedAd: React.FC = () => {
       {/* -------- SECTION 2 -------- */}
       <div className="w-full flex flex-col-reverse lg:flex-row">
         {/* CONTENT */}
-        <div className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center">
+        <motion.div className="w-full lg:w-1/2 px-5 sm:px-8 lg:px-16 py-8 sm:py-10 flex flex-col justify-center">
           <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#1B3A57] mb-4">
             {t("section2.title")}
           </h2>
