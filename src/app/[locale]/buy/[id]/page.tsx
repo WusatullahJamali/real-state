@@ -15,7 +15,7 @@ interface Property {
   typeKey: string;
   price: number;
   address: string;
-  cityStateZip: string; // Ensure your data file has this!
+  cityStateZip: string;
   tags?: string[];
   specs: {
     beds?: number;
@@ -28,7 +28,7 @@ interface Property {
 
 export default function PropertyDetailsPage() {
   const params = useParams();
-  const t = useTranslations("buyCards");
+  const t = useTranslations("buyCardsDetail");
   const locale = useLocale();
   const isRtl = locale === "ar";
 
@@ -49,21 +49,18 @@ export default function PropertyDetailsPage() {
     }
   }, [images.length]);
 
-  // 1. Move the check up and make it more robust
   if (!property) {
     return (
       <div className="bg-white min-h-screen flex flex-col items-center justify-center text-center p-6">
         <h1 className="text-3xl font-bold text-yellow-500">
-          Property Not Found
+          {t("propertyNotFound")}
         </h1>
-        <p className="text-gray-600 mt-2">
-          The listing you are looking for does not exist.
-        </p>
+        <p className="text-gray-600 mt-2">{t("propertyNotFoundText")}</p>
         <Link
-          href="/buy"
+          href={`/${locale}/buy`}
           className="mt-6 inline-block bg-yellow-500 text-black px-6 py-3 rounded-md font-bold"
         >
-          Go Back
+          {t("goBack")}
         </Link>
       </div>
     );
@@ -76,8 +73,6 @@ export default function PropertyDetailsPage() {
     return `${formatted} ${t("currency")}`;
   };
 
-  // --- MAP LOGIC ---
-  // 2. Added safety check for mapQuery
   const mapQuery = encodeURIComponent(
     `${property.address || ""}, ${property.cityStateZip || ""}`
   );
@@ -87,7 +82,7 @@ export default function PropertyDetailsPage() {
     <div className="bg-white min-h-screen py-10" dir={isRtl ? "rtl" : "ltr"}>
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-3 gap-10">
         {/* LEFT COLUMN */}
-        <div className="lg:col-span-2">
+        <div className={`lg:col-span-2 ${isRtl ? "text-right" : "text-left"}`}>
           {/* IMAGE GALLERY */}
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
             <div className="col-span-3 relative">
@@ -119,22 +114,21 @@ export default function PropertyDetailsPage() {
           {/* BADGES & TITLE */}
           <div className="flex items-center gap-2 mt-6">
             <span className="bg-yellow-500 text-black px-3 py-1 rounded-md text-xs font-bold">
-              FEATURED
+              {t("featured")}
             </span>
             <span className="bg-green-600 text-white px-3 py-1 rounded-md text-xs font-bold">
-              VERIFIED
+              {t("verified")}
             </span>
           </div>
 
           <div className="mt-4">
             <h1 className="text-3xl font-extrabold text-black">
-              {/* 3. Added safety check for split */}
-              {t(`propertyTypes.${property.typeKey}`)} in{" "}
+              {t(`propertyTypes.${property.typeKey}`)} {t("in")}{" "}
               {property.cityStateZip?.split(",")[0] || "Iraq"}
             </h1>
             <div className="flex items-center text-gray-500 mt-2">
               <MapPin
-                className={`w-5 h-5 ${isRtl ? "ml-1" : "mr-1"} text-yellow-600`}
+                className={`w-5 h-5 ${isRtl ? "ml-2" : "mr-2"} text-yellow-600`}
               />
               {property.address}, {property.cityStateZip}
             </div>
@@ -170,21 +164,25 @@ export default function PropertyDetailsPage() {
           {/* DESCRIPTION */}
           <div className="mt-10">
             <h2 className="text-2xl font-bold text-black border-b pb-2">
-              Description
+              {t("description")}
             </h2>
             <p className="text-gray-700 mt-4 leading-relaxed">
-              This stunning{" "}
-              {t(`propertyTypes.${property.typeKey}`).toLowerCase()} located at{" "}
-              {property.address} offers a modern lifestyle in a prime district.
-              The property features high-quality finishes and breathtaking
-              views.
+              {isRtl
+                ? `هذا الـ ${t(
+                    `propertyTypes.${property.typeKey}`
+                  )} المذهل يقع في ${property.address} ويوفر أسلوب حياة عصري.`
+                : `This stunning ${t(
+                    `propertyTypes.${property.typeKey}`
+                  ).toLowerCase()} located at ${
+                    property.address
+                  } offers a modern lifestyle in a prime district.`}
             </p>
           </div>
 
           {/* AMENITIES */}
           <div className="mt-10">
             <h2 className="text-2xl font-bold text-black border-b pb-2">
-              Amenities
+              {t("amenities")}
             </h2>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-4 mt-6">
               {[
@@ -207,7 +205,7 @@ export default function PropertyDetailsPage() {
           {/* LOCATION MAP */}
           <div className="mt-12">
             <h2 className="text-2xl font-bold text-black border-b pb-2">
-              Location
+              {t("location")}
             </h2>
             <div className="mt-6 w-full h-[400px] rounded-2xl overflow-hidden border-2 border-gray-100 shadow-inner relative">
               <iframe
@@ -218,7 +216,6 @@ export default function PropertyDetailsPage() {
                 title="Property Location"
                 allowFullScreen
                 loading="lazy"
-                className="grayscale-[0.2] hover:grayscale-0 transition-all duration-500"
               />
             </div>
           </div>
@@ -232,7 +229,7 @@ export default function PropertyDetailsPage() {
             </div>
             <div className="text-gray-500 text-sm mt-1 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              Negotiable • Financing Available
+              {t("negotiable")}
             </div>
 
             <div className="flex items-center gap-4 mt-8 pb-6 border-b">
@@ -241,7 +238,7 @@ export default function PropertyDetailsPage() {
               </div>
               <div>
                 <div className="font-bold text-black">Sahil Meymon</div>
-                <div className="text-gray-500 text-xs">Licensed Agent</div>
+                <div className="text-gray-500 text-xs">{t("agentTitle")}</div>
               </div>
             </div>
 
@@ -249,24 +246,24 @@ export default function PropertyDetailsPage() {
               <input
                 className="w-full p-3 bg-gray-50 border rounded-xl text-black outline-none focus:border-yellow-500"
                 type="text"
-                placeholder="Your Name"
+                placeholder={t("placeholders.name")}
                 required
               />
               <input
                 className="w-full p-3 bg-gray-50 border rounded-xl text-black outline-none focus:border-yellow-500"
                 type="email"
-                placeholder="Your Email"
+                placeholder={t("placeholders.email")}
                 required
               />
               <textarea
                 className="w-full p-3 bg-gray-50 border rounded-xl h-24 text-black outline-none focus:border-yellow-500"
-                placeholder="I'm interested..."
+                placeholder={t("placeholders.message")}
               ></textarea>
               <button
                 className="w-full bg-yellow-500 text-black py-4 rounded-xl font-bold hover:bg-yellow-600 transition shadow-lg"
                 type="button"
               >
-                Request Tour
+                {t("requestTour")}
               </button>
             </form>
           </div>
@@ -275,11 +272,11 @@ export default function PropertyDetailsPage() {
 
       <div className="max-w-7xl mx-auto px-6 mt-16 border-t pt-8">
         <Link
-          href="/buy"
+          href={`/${locale}/buy`}
           className="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-bold rounded-xl transition"
         >
           <ChevronLeft className={`w-5 h-5 ${isRtl ? "rotate-180" : ""}`} />{" "}
-          Back to Listings
+          {t("backToListings")}
         </Link>
       </div>
     </div>

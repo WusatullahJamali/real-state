@@ -2,8 +2,9 @@
 
 import React, { useState, FormEvent, useEffect } from "react";
 import Image from "next/image";
-import { Search, ArrowRight } from "lucide-react";
-import Link from "next/link";
+import { ArrowRight } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 
 // --- Carousel Data ---
 const CAROUSEL_IMAGES = ["/sample-proposals.png", "/c2.png", "/c3.png"];
@@ -26,6 +27,10 @@ const Step: React.FC<StepProps> = ({ number, text }) => (
 
 // --- Main Component --- //
 export default function CompareAgents() {
+  const t = useTranslations("CompareAgents");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   const [address, setAddress] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -44,27 +49,32 @@ export default function CompareAgents() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8">
+    <div
+      className="min-h-screen flex items-center justify-center bg-white py-12 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div className="w-full max-w-7xl">
         {/* Content Grid */}
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          {/* LEFT SIDE: Steps + Search Form */}
-          <div className="order-2 lg:order-1">
-            {/* Header */}
+          {/* LEFT SIDE: Content */}
+          <motion.div
+            className="order-1 lg:order-1"
+            initial={{ opacity: 0, x: isRtl ? 50 : -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+          >
             <h1 className="text-4xl sm:text-5xl font-bold text-black leading-tight mb-2">
-              Compare agents with{" "}
-              <span className="text-yellow-500">Real</span>
-              <span className="text-black">Choice™</span>
+              {t("title")} <span className="text-yellow-500">Alba</span>
+              <span className="text-black">sync™</span>
             </h1>
-            <p className="text-2xl text-black mb-10">
-              Selling, find a trusted expert
-            </p>
+            <p className="text-2xl text-black mb-10">{t("subTitle")}</p>
 
             {/* Steps */}
             <div className="space-y-6 mb-10">
-              <Step number={1} text="Enter your selling address" />
-              <Step number={2} text="View proposals, no commitment" />
-              <Step number={3} text="Choose the right agent, confidently" />
+              <Step number={1} text={t("steps.one")} />
+              <Step number={2} text={t("steps.two")} />
+              <Step number={3} text={t("steps.three")} />
             </div>
 
             {/* Search Form */}
@@ -72,49 +82,63 @@ export default function CompareAgents() {
               <div className="relative">
                 <input
                   type="text"
-                  placeholder="Enter home address"
+                  placeholder={t("inputPlaceholder")}
                   value={address}
                   onChange={(e) => setAddress(e.target.value)}
-                  className={"w-full h-16 pl-6 pr-48 rounded-full border-2 border-gray-300 placeholder-black focus:outline-none  focus:border-gray-400 transition duration-200  text-gray-900 text-lg"}
+                  className={`w-full h-16 rounded-full border-2 border-gray-300 placeholder-black focus:outline-none focus:border-gray-400 transition duration-200 text-gray-900 text-lg ${
+                    isRtl ? "pr-6 pl-48" : "pl-6 pr-48"
+                  }`}
                   required
                 />
                 <button
                   type="submit"
-                  className="
-                    absolute right-2 top-1/2 -translate-y-1/2
-                    flex items-center gap-2
-                    px-8 py-3 h-12
-                    bg-yellow-600 hover:bg-yellow-500
-                    text-white font-semibold
-                    rounded-full
-                    transition-colors duration-200
-                  "
+                  className={`absolute top-1/2 -translate-y-1/2 flex items-center gap-2 px-8 py-3 h-12 bg-yellow-600 hover:bg-yellow-500 text-white font-semibold rounded-full transition-colors duration-200 ${
+                    isRtl ? "left-2" : "right-2"
+                  }`}
                 >
-                  Get started
-                  <ArrowRight className="w-5 h-5" />
+                  {t("buttonText")}
+                  <ArrowRight
+                    className={`w-5 h-5 ${isRtl ? "rotate-180" : ""}`}
+                  />
                 </button>
               </div>
             </form>
           </div>
 
           {/* RIGHT SIDE: Carousel */}
-          <div className="order-1 lg:order-2 flex items-center justify-center relative h-[500px]">
-            {CAROUSEL_IMAGES.map((src, index) => (
-              <Image
-                key={index}
-                src={src}
-                alt={`Agent proposal mockup ${index + 1}`}
-                fill
-                style={{ objectFit: "contain" }}
-                className={`transition-opacity duration-700 ease-in-out ${
-                  index === currentImageIndex ? "opacity-100" : "opacity-0"
-                }`}
-                priority={index === 0}
-              />
-            ))}
+          <motion.div
+            className="order-2 lg:order-2 flex items-center justify-center relative h-[300px] sm:h-[400px] lg:h-[500px]"
+            initial={{ opacity: 0, x: isRtl ? -50 : 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
+            <div className="relative w-full h-full">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={currentImageIndex}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 1.05 }}
+                  transition={{ duration: 0.6 }}
+                  className="absolute inset-0"
+                >
+                  <Image
+                    src={CAROUSEL_IMAGES[currentImageIndex]}
+                    alt={`Agent proposal mockup ${currentImageIndex + 1}`}
+                    fill
+                    style={{ objectFit: "contain" }}
+                    priority
+                  />
+                </motion.div>
+              </AnimatePresence>
+            </div>
 
             {/* Carousel Dots */}
-            <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+            <div
+              className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10"
+              dir="ltr"
+            >
               {CAROUSEL_IMAGES.map((_, index) => (
                 <button
                   key={index}

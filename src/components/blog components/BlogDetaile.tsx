@@ -2,7 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useParams } from "next/navigation"; // To get the blog ID from URL
 import { motion } from "framer-motion";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Facebook,
   Twitter,
@@ -14,14 +16,25 @@ import {
 } from "lucide-react";
 
 export default function BlogDetails() {
-  return (
-    <div className="bg-white text-slate-900">
+  const t = useTranslations("home.blog");
+  const locale = useLocale();
+  const params = useParams();
+  const isRtl = locale === "ar";
 
+  // 1. Get all posts from JSON
+  const posts = t.raw("posts") as any[];
+
+  // 2. Find the specific post based on the ID in the URL
+  // (Assuming your URL is /blog/[id])
+  const post = posts.find((p) => p.id.toString() === params.id) || posts[0];
+
+  return (
+    <div className="bg-white text-slate-900" dir={isRtl ? "rtl" : "ltr"}>
       {/* HERO */}
       <section className="relative h-[70vh] min-h-[500px]">
         <Image
-          src="/blog[1].jpg"
-          alt="Iraq Real Estate Market"
+          src={post.image || "/blog[1].jpg"}
+          alt={post.title}
           fill
           priority
           className="object-cover"
@@ -38,23 +51,22 @@ export default function BlogDetails() {
           className="absolute bottom-16 left-1/2 -translate-x-1/2 w-full max-w-5xl px-6 text-center"
         >
           <span className="inline-block bg-yellow-400 text-black px-4 py-1 rounded-full text-sm font-semibold mb-4">
-            Market Insights
+            {post.tag}
           </span>
 
           <h1 className="text-white text-4xl md:text-5xl lg:text-6xl font-extrabold leading-tight">
-            Iraq Real Estate Market Trends  
-            <span className="block text-yellow-400">2025 Investment Outlook</span>
+            {post.title}
           </h1>
 
           <div className="mt-6 flex justify-center gap-6 text-white/80 text-sm flex-wrap">
             <span className="flex items-center gap-2">
-              <Calendar size={16} /> Dec 15, 2024
+              <Calendar size={16} /> {post.date || "Dec 15, 2024"}
             </span>
             <span className="flex items-center gap-2">
-              <User size={16} /> Market Research Team
+              <User size={16} /> {post.author}
             </span>
             <span className="flex items-center gap-2">
-              <Clock size={16} /> 6 min read
+              <Clock size={16} /> {post.readTime}
             </span>
           </div>
         </motion.div>
@@ -67,64 +79,44 @@ export default function BlogDetails() {
         transition={{ delay: 0.2 }}
         className="max-w-4xl mx-auto px-6 py-20 space-y-12"
       >
-        {/* Intro */}
+        {/* Intro - Using snippet or a specific 'content' field from your JSON */}
         <p className="text-xl leading-9 text-slate-700">
-          Iraq’s real estate sector is entering a new phase of opportunity in 2025,
-          driven by economic recovery, infrastructure investment, and rising housing demand.
-          From Baghdad’s commercial corridors to Erbil’s residential expansion, investors are
-          closely watching Iraq’s evolving property landscape.
+          {post.fullContent?.intro || post.snippet}
         </p>
 
-        {/* Sections */}
-        {[
-          {
-            title: "Baghdad: The Core of Commercial Growth",
-            text:
-              "Baghdad continues to dominate Iraq’s commercial real estate market. Office spaces, mixed-use developments, and retail hubs are experiencing increased demand due to government projects and private-sector expansion.",
-          },
-          {
-            title: "Erbil: Stability Driving Residential Demand",
-            text:
-              "Erbil remains one of Iraq’s most stable and investor-friendly cities. Gated communities, luxury apartments, and serviced residences are seeing consistent appreciation, especially among expatriates and business professionals.",
-          },
-          {
-            title: "Basra: Oil Economy Fueling Commercial Expansion",
-            text:
-              "Basra’s strategic importance in Iraq’s oil sector drives strong demand for warehouses, logistics centers, and staff housing. Infrastructure upgrades are further strengthening investor confidence.",
-          },
-          {
-            title: "Najaf & Karbala: Tourism-Based Rental Returns",
-            text:
-              "Religious tourism continues to generate high-yield rental opportunities. Hotels, furnished apartments, and short-term rentals benefit from year-round pilgrimage traffic.",
-          },
-        ].map((section, i) => (
-          <motion.section
-            key={i}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="space-y-4"
-          >
-            <h2 className="text-3xl font-bold text-slate-900">
-              {section.title}
-            </h2>
-            <p className="text-lg leading-8 text-slate-700">
-              {section.text}
-            </p>
-          </motion.section>
-        ))}
+        {/* Sections - Dynamically mapping from JSON if they exist */}
+        {post.fullContent?.sections ? (
+          post.fullContent.sections.map((section: any, i: number) => (
+            <motion.section
+              key={i}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              viewport={{ once: true }}
+              className="space-y-4"
+            >
+              <h2 className="text-3xl font-bold text-slate-900">
+                {section.title}
+              </h2>
+              <p className="text-lg leading-8 text-slate-700">{section.text}</p>
+            </motion.section>
+          ))
+        ) : (
+          /* Fallback content if JSON doesn't have sections yet */
+          <p className="text-lg leading-8 text-slate-700">{post.snippet}</p>
+        )}
 
         {/* Quote Highlight */}
-        <blockquote className="border-l-4 border-yellow-400 pl-6 italic text-xl text-slate-800 bg-yellow-50 py-6 rounded-r-xl">
-          “Iraq’s real estate market in 2025 offers long-term value for investors
-          willing to enter early and focus on high-growth regions.”
-        </blockquote>
+        {post.fullContent?.quote && (
+          <blockquote className="border-l-4 rtl:border-l-0 rtl:border-r-4 border-yellow-400 pl-6 rtl:pl-0 rtl:pr-6 italic text-xl text-slate-800 bg-yellow-50 py-6 rounded-r-xl rtl:rounded-r-none rtl:rounded-l-xl">
+            “{post.fullContent.quote}”
+          </blockquote>
+        )}
 
         {/* Share */}
         <div className="pt-10 border-t">
           <div className="flex items-center gap-4">
-            <span className="font-semibold text-slate-800">Share this article:</span>
+            <span className="font-semibold text-slate-800"></span>
             {[Facebook, Twitter, Linkedin].map((Icon, i) => (
               <button
                 key={i}
@@ -138,11 +130,11 @@ export default function BlogDetails() {
 
         {/* Back */}
         <Link
-          href="/blog"
+          href={`/${locale}/blog`}
           className="inline-flex items-center gap-2 text-yellow-600 font-semibold hover:underline pt-6"
         >
-          <ArrowLeft size={18} />
-          Back to Blog
+          <ArrowLeft size={18} className="rtl:rotate-180" />
+          {t("back")}
         </Link>
       </motion.article>
     </div>

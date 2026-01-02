@@ -30,7 +30,8 @@ export default function BuyCards({
         <div className="mb-4 flex flex-col items-start rtl:items-start">
           <h2 className="text-2xl font-bold text-gray-900">{title}</h2>
           <Link
-            href={linkHref}
+            // Updated link to include locale prefix
+            href={`/${locale}${linkHref}`}
             className="text-sm text-gray-700 hover:text-gray-900 hover:underline w-fit"
           >
             {linkText} {locale === "ar" ? "←" : "→"}
@@ -83,7 +84,8 @@ const PropertyCard = ({ property }: { property: any }) => {
   };
 
   return (
-    <Link href={`/buy/${property.id}`} className="block h-full">
+    // Updated link to include locale prefix and dynamic ID
+    <Link href={`/${locale}/buy/${property.id}`} className="block h-full">
       <motion.div
         className="flex flex-col bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-lg h-full transition-all"
         whileHover={{ y: -5 }}
@@ -91,7 +93,6 @@ const PropertyCard = ({ property }: { property: any }) => {
       >
         {/* Image & Overlay Section */}
         <div className="relative h-44 w-full bg-gray-100 overflow-hidden">
-          {/* Skeleton Loader */}
           <AnimatePresence>
             {isImageLoading && (
               <motion.div
@@ -112,7 +113,6 @@ const PropertyCard = ({ property }: { property: any }) => {
             onLoadingComplete={() => setIsImageLoading(false)}
           />
 
-          {/* Favorite Button */}
           <button
             onClick={(e) => {
               e.preventDefault();

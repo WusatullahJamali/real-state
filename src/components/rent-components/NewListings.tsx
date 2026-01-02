@@ -2,10 +2,62 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Heart } from "lucide-react";
 import { newListings } from "./RentData";
 
 const NewListings = () => {
+  const listings = [
+    {
+      id: 1,
+      image: "/a1.jpg",
+      badge: "New units - 10 hours ago",
+      type: "Single-Family Home",
+      price: "$1,800",
+      beds: 4,
+      baths: 2,
+      sqft: "1,750",
+      address: "Al-Yarmouk District",
+      city: "Baghdad, Iraq",
+    },
+    {
+      id: 2,
+      image: "/a2.jpg",
+      badge: "New units - 10 hours ago",
+      type: "Apartment",
+      price: "$650 - $850",
+      beds: "Studio - 2",
+      baths: 1,
+      sqft: null,
+      address: "Dream City",
+      city: "Erbil, Kurdistan Region",
+    },
+    {
+      id: 3,
+      image: "/a3.jpg",
+      badge: "New units - 10 hours ago",
+      type: "Apartment",
+      price: "$750",
+      beds: 2,
+      baths: 1,
+      sqft: null,
+      address: "Al-Ashar",
+      city: "Basra, Iraq",
+    },
+    {
+      id: 4,
+      image: "/a4.jpg",
+      badge: "New units - 22 hours ago",
+      type: "Apartment",
+      price: "$700",
+      beds: 2,
+      baths: 1,
+      sqft: "1,150",
+      address: "Al-Mansour",
+      city: "Baghdad, Iraq",
+    },
+  ];
+
   const [saved, setSaved] = useState<number[]>([]);
 
   const toggleSave = (id: number) => {
@@ -23,12 +75,21 @@ const NewListings = () => {
           const isSaved = saved.includes(listing.id);
 
           return (
-            <Link key={listing.id} href={`/rent/${listing.id}`}>
-              <div className="bg-white border rounded-lg overflow-hidden hover:shadow-lg">
-                <div className="relative">
-                  <img
+            <Link
+              key={listing.id}
+              href={`/listings/${listing.id}`}
+              className="block"
+            >
+              <div className="bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-lg transition-shadow">
+                {/* IMAGE */}
+                <div className="relative w-full h-48">
+                  <Image
                     src={listing.image}
-                    className="w-full h-48 object-cover"
+                    alt={listing.address}
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    className="object-cover"
+                    priority={listing.id === 1}
                   />
 
                   {listing.badge && (
@@ -54,6 +115,7 @@ const NewListings = () => {
                   </button>
                 </div>
 
+                {/* CONTENT */}
                 <div className="p-4">
                   <div className="font-bold text-xl">{listing.price}</div>
                   <div className="text-sm text-gray-600">

@@ -5,7 +5,7 @@ import Image from "next/image";
 import { MapPin } from "lucide-react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl"; // 1. Added useLocale
 
 interface Location {
   id: number;
@@ -24,7 +24,12 @@ interface LocationMapProps {
 }
 
 // --- Map / Image Component ---
-const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img, mapLabel }) => (
+const LocationMap: React.FC<LocationMapProps> = ({
+  name,
+  mapColor,
+  img,
+  mapLabel,
+}) => (
   <div className="relative h-48 w-full overflow-hidden border-b border-gray-200">
     {img ? (
       <Image
@@ -65,14 +70,20 @@ const LocationMap: React.FC<LocationMapProps> = ({ name, mapColor, img, mapLabel
 // --- Main Component ---
 export default function RecommendedLocations() {
   const t = useTranslations("home.recommended");
+  const locale = useLocale(); // 2. Get current locale (en/ar)
+  const isRtl = locale === "ar";
   const cities = t.raw("cities") as Location[];
 
   return (
-    <div className="bg-white py-10 md:py-16 overflow-hidden">
+    // 3. Added dir attribute for RTL support
+    <div
+      className="bg-white py-10 md:py-16 overflow-hidden"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         <motion.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={{ opacity: 0, x: isRtl ? 20 : -20 }} // Flip initial animation direction
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
@@ -108,7 +119,11 @@ export default function RecommendedLocations() {
               }}
               whileHover={{ y: -10, transition: { duration: 0.3 } }}
             >
-              <Link href={`/CategoriesDATA/${location.id}`} className="block group">
+              <Link
+                // 4. Updated href with locale prefix
+                href={`/${locale}/CategoriesDATA/${location.id}`}
+                className="block group"
+              >
                 <div className="overflow-hidden rounded-xl border border-gray-100 bg-white shadow-lg transition-shadow duration-300 group-hover:shadow-2xl">
                   <LocationMap
                     name={location.name}

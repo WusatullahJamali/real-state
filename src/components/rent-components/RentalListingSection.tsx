@@ -3,24 +3,29 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { Heart } from "lucide-react";
-import { RentListing } from "./RentData";
 import { useTranslations, useLocale } from "next-intl";
+import {
+  RentListing,
+  newListings,
+  exploreApartments,
+  petFriendlyRentals,
+  onlineApplications,
+  inUnitLaundryRentals,
+} from "./RentData";
 
-interface Props {
-  title: string;
-  subtitle?: string;
-  listings: RentListing[];
-  linkHref?: string;
-  sectionKey: string; // "newListings", "explore", etc.
-}
-
-export function ListingGrid({
+function ListingGrid({
   title,
   subtitle,
   listings,
   linkHref,
   sectionKey,
-}: Props) {
+}: {
+  title: string;
+  subtitle?: string;
+  listings: RentListing[];
+  linkHref?: string;
+  sectionKey: string;
+}) {
   const t = useTranslations("rent");
   const locale = useLocale();
   const isRTL = locale === "ar";
@@ -53,21 +58,27 @@ export function ListingGrid({
         {listings.map((listing) => {
           const isSaved = saved.includes(listing.id);
 
-          // LOOKUP TRANSLATED TEXT FOR THIS SPECIFIC ITEM
-          const itemText = t.raw(`sections.${sectionKey}.items.${listing.id}`);
+          // Safer way to fetch dynamic item data
+          let itemText = { type: "Property", address: "Loading...", city: "" };
+          try {
+            itemText = t.raw(`sections.${sectionKey}.items.${listing.id}`);
+          } catch (e) {
+            console.error(`Missing translation for ID: ${listing.id}`);
+          }
+
           const badgeText = t(`sections.${sectionKey}.badge`);
 
           return (
             <Link
               key={listing.id}
-              href={`/rent/${listing.id}`}
+              href={`/${locale}/rent/${listing.id}`}
               className="block"
             >
               <div className="bg-white rounded-xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300">
                 <div className="relative">
                   <img
                     src={listing.image}
-                    alt={itemText.address}
+                    alt="Property"
                     className="w-full h-48 object-cover"
                   />
                   <span
@@ -125,6 +136,43 @@ export function ListingGrid({
           );
         })}
       </div>
+    </div>
+  );
+}
+
+export default function RentListingSections() {
+  const t = useTranslations("rent.sections");
+
+  const sections = [
+    { key: "newListings", data: newListings, title: t("newListings.title") },
+    {
+      key: "explore",
+      data: exploreApartments,
+      title: t("explore.title"),
+      subtitle: t("explore.subtitle"),
+      link: "/search",
+    },
+    {
+      key: "petFriendly",
+      data: petFriendlyRentals,
+      title: t("petFriendly.title"),
+    },
+    { key: "onlineApp", data: onlineApplications, title: t("onlineApp.title") },
+    { key: "laundry", data: inUnitLaundryRentals, title: t("laundry.title") },
+  ];
+
+  return (
+    <div className="space-y-12 py-10">
+      {sections.map((sec) => (
+        <ListingGrid
+          key={sec.key}
+          sectionKey={sec.key}
+          title={sec.title}
+          subtitle={sec.subtitle}
+          listings={sec.data}
+          linkHref={sec.link}
+        />
+      ))}
     </div>
   );
 }

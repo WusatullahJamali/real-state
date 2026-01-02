@@ -1,173 +1,154 @@
 "use client";
 
 import React, { useState } from "react";
-import { useRouter } from "next/navigation";
 import Image from "next/image";
-import {
-  Search,
-  SlidersHorizontal,
-  ChevronDown,
-  MapPin,
-  X,
-  Bed,
-} from "lucide-react";
-import { properties } from "./RecentSoldData";
+import { useTranslations, useLocale } from "next-intl";
+import { Search, MapPin, Bed, Bath, Move, ArrowUpRight } from "lucide-react";
+import { soldListings } from "./RecentSoldData";
 
 const RecentSold = () => {
-  const router = useRouter();
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
-  const [filters, setFilters] = useState({
-    search: "",
-    price: "All",
-    rooms: "All",
-    type: "All",
-  });
+  const t = useTranslations("recentSold");
+  const locale = useLocale();
+  const isRTL = locale === "ar";
+  const [searchQuery, setSearchQuery] = useState("");
 
-  const priceOptions = ["All", "Under 150k", "150k - 250k", "250k - 350k", "350k+"];
-  const roomsOptions = ["All", "1+", "2+", "3+", "4+", "5+"];
-  const typeOptions = ["All", "Single-Family Home", "Condo", "Townhouse"];
-
-  const filteredProperties = properties.filter((p) => {
-    const matchesSearch =
-      p.address.toLowerCase().includes(filters.search.toLowerCase()) ||
-      p.city.toLowerCase().includes(filters.search.toLowerCase());
-
-    let matchesPrice = true;
-    if (filters.price === "Under 150k") matchesPrice = p.price < 150000;
-    if (filters.price === "150k - 250k")
-      matchesPrice = p.price >= 150000 && p.price <= 250000;
-    if (filters.price === "250k - 350k")
-      matchesPrice = p.price >= 250000 && p.price <= 350000;
-    if (filters.price === "350k+") matchesPrice = p.price > 350000;
-
-    let matchesRooms = true;
-    if (filters.rooms !== "All") {
-      matchesRooms = p.beds >= Number(filters.rooms.replace("+", ""));
-    }
-
-    const matchesType = filters.type === "All" || p.type === filters.type;
-
-    return matchesSearch && matchesPrice && matchesRooms && matchesType;
+  const filteredListings = soldListings.filter((item) => {
+    const address = t(`listings.${item.id}.address`).toLowerCase();
+    const city = t(`listings.${item.id}.city`).toLowerCase();
+    const query = searchQuery.toLowerCase();
+    return address.includes(query) || city.includes(query);
   });
 
   return (
-    <div className="w-full bg-[#FBFCFD] min-h-screen font-sans text-black">
-      <div className="max-w-7xl mx-auto p-4 md:p-6">
+    <div
+      className="w-full bg-[#F8FAFC] text-slate-900 min-h-screen py-20"
+      dir={isRTL ? "rtl" : "ltr"}
+    >
+      <div className="max-w-7xl mx-auto px-6">
+        {/* HEADER SECTION */}
+        <div className="mb-16 flex flex-col lg:flex-row lg:items-center justify-between gap-8">
+          <div className="space-y-2">
+            <h1 className="text-5xl md:text-6xl font-extrabold tracking-tighter text-slate-900">
+              {t("title")}{" "}
+              <span className="text-yellow-500 relative inline-block">
+                {t("titleHighlight")}
+                <span className="absolute -bottom-2 left-0 w-full h-1.5 bg-yellow-500/20 rounded-full"></span>
+              </span>
+            </h1>
+            <p className="text-slate-500 font-medium text-lg max-w-md">
+              Explore our most successful transactions and premium properties
+              recently closed.
+            </p>
+          </div>
 
-        {/* HEADER */}
-        <div className="mb-10 space-y-6">
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight uppercase">
-            Recently <span className="text-yellow-500">Sold</span>
-          </h1>
-
-          {/* FILTER BAR */}
-          <div className="bg-white p-3 rounded-[2rem] shadow border border-gray-100">
-            <div className="flex flex-col lg:flex-row gap-3 items-center">
-
-              {/* SEARCH */}
-              <div className="relative ">
-                <Search className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-700" />
-                <input
-                  type="text"
-                  placeholder="Search by address or city..."
-                  className="w-full pl-14 pr-5 py-4 rounded-[1.5rem] bg-gray-50 text-sm font-semibold outline-none focus:ring-2 focus:ring-yellow-500"
-                  value={filters.search}
-                  onChange={(e) =>
-                    setFilters({ ...filters, search: e.target.value })
-                  }
-                />
-              </div>
-
-              {/* MOBILE FILTER BUTTON */}
-              <button
-                onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="lg:hidden w-full flex items-center justify-center gap-2 bg-black text-white py-4 rounded-[1.5rem] font-bold text-sm"
-              >
-                {isFilterOpen ? <X size={16} /> : <SlidersHorizontal size={16} />}
-                {isFilterOpen ? "Close Filters" : "Filters"}
-              </button>
-
-              {/* FILTERS */}
-              <div
-                className={`${
-                  isFilterOpen ? "flex" : "hidden"
-                } lg:flex flex-wrap gap-2 w-full lg:w-auto`}
-              >
-                {[ 
-                  { key: "price", label: "Price", options: priceOptions },
-                  { key: "rooms", label: "Beds", options: roomsOptions },
-                  { key: "type", label: "Type", options: typeOptions },
-                ].map((f) => (
-                  <div key={f.key} className="relative min-w-[140px]">
-                    <select
-                      value={filters[f.key as keyof typeof filters]}
-                      onChange={(e) =>
-                        setFilters({ ...filters, [f.key]: e.target.value })
-                      }
-                      className="appearance-none w-full bg-gray-50 py-3 pl-4 pr-10 rounded-xl text-[11px] font-bold uppercase tracking-widest outline-none"
-                    >
-                      {f.options.map((o) => (
-                        <option key={o} value={o}>
-                          {o === "All" ? f.label : o}
-                        </option>
-                      ))}
-                    </select>
-                    <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-3 h-3" />
-                  </div>
-                ))}
-              </div>
-            </div>
+          <div className="relative group w-full lg:w-[450px]">
+            <Search
+              className={`absolute ${
+                isRTL ? "right-5" : "left-5"
+              } top-1/2 -translate-y-1/2 text-slate-400 group-focus-within:text-yellow-500 transition-colors`}
+              size={22}
+            />
+            <input
+              type="text"
+              placeholder={t("searchPlaceholder")}
+              className={`w-full py-5 ${
+                isRTL ? "pr-14 pl-6" : "pl-14 pr-6"
+              } rounded-3xl bg-white border border-slate-200 shadow-sm outline-none focus:ring-4 focus:ring-yellow-500/10 focus:border-yellow-500 transition-all text-lg`}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
           </div>
         </div>
 
-        {/* GRID */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-          {filteredProperties.map((property) => (
+        {/* LISTING GRID */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {filteredListings.map((item) => (
             <div
-              key={property.id}
-              onClick={() => router.push(`/recently-sold-homes/${property.id}`)}
-              className="group cursor-pointer bg-white rounded-[1.5rem] overflow-hidden border border-gray-100
-              transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_35px_70px_rgba(0,0,0,0.08)]"
+              key={item.id}
+              className="group relative bg-white rounded-[2.5rem] overflow-hidden border border-slate-100 shadow-sm hover:shadow-2xl hover:-translate-y-2 transition-all duration-500"
             >
-              {/* IMAGE */}
-              <div className="relative h-60 md:h-72 overflow-hidden">
+              {/* IMAGE SECTION */}
+              <div className="relative h-72 overflow-hidden">
                 <Image
-                  src={property.image}
-                  alt={property.address}
+                  src={item.image}
+                  alt="Property"
                   fill
                   className="object-cover transition-transform duration-1000 group-hover:scale-110"
                 />
-                <span className="absolute top-5 left-5 bg-white/90 px-4 py-2 rounded-xl text-[9px] font-bold tracking-widest uppercase">
-                  {property.status}
-                </span>
+
+                {/* SOLD OVERLAY */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
+
+                <div
+                  className={`absolute top-6 ${
+                    isRTL ? "right-6" : "left-6"
+                  } flex flex-col gap-2`}
+                >
+                  <span className="bg-yellow-500 text-black text-[11px] font-black uppercase tracking-widest px-4 py-2 rounded-full shadow-lg">
+                    {t(`listings.${item.id}.status`)}
+                  </span>
+                </div>
+
+                <div
+                  className={`absolute bottom-6 ${
+                    isRTL ? "left-6" : "right-6"
+                  }`}
+                >
+                  <div className="w-12 h-12 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
+                    <ArrowUpRight className="text-black" size={24} />
+                  </div>
+                </div>
               </div>
 
-              {/* CONTENT */}
-              <div className="p-6 md:p-8 space-y-6">
-                <div className="text-3xl font-extrabold tracking-tight">
-                  ${property.price.toLocaleString()}
+              {/* CONTENT SECTION */}
+              <div className="p-8">
+                <div className="flex justify-between items-start mb-4">
+                  <div className="text-3xl font-bold tracking-tight text-slate-900">
+                    {item.price}
+                  </div>
                 </div>
 
-                <div className="flex items-center gap-4 text-[11px] font-semibold border-b pb-4">
-                  <div className="flex items-center gap-1">
-                    <Bed className="w-4 h-4 text-yellow-500" /> {property.beds} Beds
+                <div className="flex items-center gap-6 mb-8 py-4 border-y border-slate-50">
+                  <div className="flex items-center gap-2">
+                    <Bed size={20} className="text-slate-400" />
+                    <span className="text-sm font-bold text-slate-700">
+                      {item.beds}{" "}
+                      <span className="text-slate-400 font-medium">
+                        {t("labels.beds")}
+                      </span>
+                    </span>
                   </div>
-                  <span>|</span>
-                  <div>{property.baths} Baths</div>
-                  <span>|</span>
-                  <div>{property.sqft} Sqft</div>
+                  <div className="flex items-center gap-2">
+                    <Bath size={20} className="text-slate-400" />
+                    <span className="text-sm font-bold text-slate-700">
+                      {item.baths}{" "}
+                      <span className="text-slate-400 font-medium">
+                        {t("labels.baths")}
+                      </span>
+                    </span>
+                  </div>
+                  {item.sqft && (
+                    <div className="flex items-center gap-2">
+                      <Move size={20} className="text-slate-400" />
+                      <span className="text-sm font-bold text-slate-700">
+                        {item.sqft}{" "}
+                        <span className="text-slate-400 font-medium">
+                          {t("labels.sqft")}
+                        </span>
+                      </span>
+                    </div>
+                  )}
                 </div>
 
-                <div className="flex items-start gap-3">
-                  <div className="bg-gray-50 p-2.5 rounded-xl group-hover:bg-yellow-500 transition">
-                    <MapPin className="w-4 h-4" />
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center group-hover:bg-yellow-500 transition-colors duration-300">
+                    <MapPin size={22} className="text-slate-900" />
                   </div>
-                  <div className="min-w-0">
-                    <p className="font-bold text-sm uppercase truncate">
-                      {property.address}
-                    </p>
-                    <p className="text-[11px] tracking-widest font-semibold uppercase text-gray-600">
-                      {property.city}
+                  <div>
+                    <h4 className="font-bold text-lg text-slate-900 group-hover:text-yellow-600 transition-colors">
+                      {t(`listings.${item.id}.address`)}
+                    </h4>
+                    <p className="text-sm text-slate-400 font-semibold uppercase tracking-widest">
+                      {t(`listings.${item.id}.city`)}
                     </p>
                   </div>
                 </div>
@@ -177,10 +158,14 @@ const RecentSold = () => {
         </div>
 
         {/* EMPTY STATE */}
-        {filteredProperties.length === 0 && (
-          <div className="text-center py-20 bg-white rounded-3xl">
-            <Search className="w-12 h-12 text-black mx-auto mb-4" />
-            <h3 className="text-lg font-bold uppercase">No properties found</h3>
+        {filteredListings.length === 0 && (
+          <div className="text-center py-32 bg-white rounded-[4rem] border border-dashed border-slate-200">
+            <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-6">
+              <Search size={32} className="text-slate-300" />
+            </div>
+            <p className="text-slate-400 font-bold uppercase tracking-widest">
+              {t("noResults")}
+            </p>
           </div>
         )}
       </div>

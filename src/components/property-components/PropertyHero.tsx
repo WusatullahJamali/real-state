@@ -47,7 +47,7 @@ const PropertyHero: React.FC = () => {
         <h1 className="text-3xl sm:text-5xl lg:text-7xl font-extrabold leading-tight mb-4">
           {t("titleLine1")}
           <br />
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 to-yellow-500">
+          <span className="text-transparent bg-clip-text bg-linear-to-r from-amber-200 to-yellow-500">
             {t("titleLine2")}
           </span>
         </h1>

@@ -2,7 +2,8 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl"; // 1. Added useLocale
+import Link from "next/link"; // 2. Import Link
 import {
   DollarSign,
   Calculator,
@@ -18,7 +19,6 @@ import {
 
 const REALTOR_BLUE = "#efb93f";
 
-// Icon mapping helper
 const IconMap: Record<string, LucideIcon> = {
   DollarSign,
   Calculator,
@@ -43,11 +43,11 @@ type Card = {
 };
 
 const HomeDiscovery = () => {
-  // Accessing the 'home.discovery' namespace
   const t = useTranslations("home.discovery");
+  const locale = useLocale(); // 3. Get current locale
+  const isRtl = locale === "ar";
   const [activeTab, setActiveTab] = useState<TabKey>("Buying");
 
-  // Safe data fetching
   const rawContent = t.raw("content");
   const activeContent =
     rawContent && typeof rawContent === "object" ? rawContent[activeTab] : null;
@@ -69,7 +69,10 @@ const HomeDiscovery = () => {
   );
 
   return (
-    <section className="py-16 bg-white overflow-hidden">
+    <section
+      className="py-16 bg-white overflow-hidden"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* ---------- MAIN HEADING ---------- */}
         <motion.h2
@@ -110,11 +113,11 @@ const HomeDiscovery = () => {
           {activeContent && (
             <motion.div
               key={activeTab}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              exit={{ opacity: 0, x: isRtl ? 20 : -20 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
             >
-              {/* SUB-HEADING: Using t.rich for highlighted text */}
               <h3 className="text-xl font-bold text-[#2f363b] mb-8 text-center">
                 {t.rich(`content.${activeTab}.heading`, {
                   highlight: (chunks) => (
@@ -123,7 +126,6 @@ const HomeDiscovery = () => {
                 })}
               </h3>
 
-              {/* CARDS GRID */}
               <motion.div
                 className="grid grid-cols-1 md:grid-cols-3 gap-6"
                 variants={{
@@ -156,14 +158,15 @@ const HomeDiscovery = () => {
                           {card.description}
                         </p>
 
-                        <a
-                          href={card.href}
+                        {/* 4. Updated to Link component with locale prefix */}
+                        <Link
+                          href={`/${locale}${card.href}`}
                           className="pt-4 text-[#efb93f] font-bold text-sm hover:text-yellow-600 transition-colors flex items-center group/link"
                         >
                           {card.linkText}
                           <motion.span
                             className="ml-2 rtl:mr-2 rtl:ml-0 rtl:rotate-180"
-                            animate={{ x: [0, 4, 0] }}
+                            animate={{ x: isRtl ? [0, -4, 0] : [0, 4, 0] }}
                             transition={{
                               repeat: Infinity,
                               duration: 1.5,
@@ -172,7 +175,7 @@ const HomeDiscovery = () => {
                           >
                             →
                           </motion.span>
-                        </a>
+                        </Link>
                       </motion.div>
                     );
                   })}

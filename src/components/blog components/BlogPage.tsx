@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 /* ---------------- TYPES ---------------- */
 
@@ -20,11 +20,10 @@ interface BlogPost {
 
 interface BlogCardProps {
   post: BlogPost;
+  locale: string;
 }
 
-/* ---------------- BLOG CARD ---------------- */
-
-const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
+const BlogCard: React.FC<BlogCardProps> = ({ post, locale }) => {
   return (
     <motion.div
       variants={{
@@ -34,7 +33,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
       transition={{ duration: 0.5 }}
     >
       <Link
-        href={`/blog/${post.id}`}
+        href={`/${locale}/blog/${post.id}`}
         className="group relative flex flex-col h-full overflow-hidden rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-2xl transition-all duration-300"
       >
         <div className="relative h-36 md:h-40 overflow-hidden">
@@ -50,7 +49,7 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
           </span>
         </div>
 
-        <div className="flex-1 p-4 flex flex-col justify-between">
+        <div className="flex-1 p-4 flex flex-col justify-between rtl:text-right">
           <div>
             <h3 className="text-lg font-bold text-gray-900 line-clamp-2 group-hover:text-yellow-600 transition-colors leading-tight">
               {post.title}
@@ -79,7 +78,8 @@ const BlogCard: React.FC<BlogCardProps> = ({ post }) => {
 
 /* ---------------- HERO BANNER ---------------- */
 
-const FeaturedArticleBanner: React.FC = () => {
+const FeaturedArticleBanner: React.FC<{ locale: string }> = ({ locale }) => {
+  // Using 'blog' namespace
   const t = useTranslations("home.blog.featured");
 
   return (
@@ -124,13 +124,7 @@ const FeaturedArticleBanner: React.FC = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ delay: 1, duration: 0.5 }}
-        >
-          <Link href="/article/featured">
-            <button className="mt-8 px-10 py-4 bg-yellow-500 text-gray-900 font-bold rounded-full hover:bg-yellow-400 hover:scale-105 shadow-[0_10px_20px_rgba(234,179,8,0.3)] transition-all active:scale-95">
-              {t("button")}
-            </button>
-          </Link>
-        </motion.div>
+        ></motion.div>
       </div>
     </section>
   );
@@ -140,6 +134,8 @@ const FeaturedArticleBanner: React.FC = () => {
 
 export default function BlogPage() {
   const t = useTranslations("home.blog");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
 
   let posts: BlogPost[] = [];
   try {
@@ -149,40 +145,48 @@ export default function BlogPage() {
   }
 
   return (
-    <div className="min-h-screen bg-white text-black">
+    <div
+      className="min-h-screen bg-white text-black"
+      dir={isRtl ? "rtl" : "ltr"}
+    >
       {/* MOBILE BACK BUTTON */}
       <div className="max-w-7xl mx-auto px-4 py-4 md:hidden">
         <Link
-          href="/"
+          href={`/${locale}`}
           className="inline-flex items-center gap-2 px-4 py-2 text-sm font-bold text-gray-700 border border-gray-200 rounded-lg hover:bg-gray-50 transition"
         >
           <span className="rtl:rotate-180">←</span> {t("back")}
         </Link>
       </div>
 
-      <FeaturedArticleBanner />
+      <FeaturedArticleBanner locale={locale} />
 
       <section className="py-16 md:py-24">
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={{
-            visible: {
-              transition: { staggerChildren: 0.1 },
-            },
-          }}
-          className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {posts.length > 0 ? (
-            posts.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))
-          ) : (
-            <p className="col-span-full text-center text-gray-400">
-              No posts found.
-            </p>
-          )}
-        </motion.div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-100px" }}
+            variants={{
+              visible: {
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+            }}
+            className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4"
+          >
+            {posts && posts.length > 0 ? (
+              posts.map((post) => (
+                <BlogCard key={post.id} post={post} locale={locale} />
+              ))
+            ) : (
+              <p className="col-span-full text-center text-gray-400">
+                No posts found.
+              </p>
+            )}
+          </motion.div>
+        </div>
       </section>
     </div>
   );

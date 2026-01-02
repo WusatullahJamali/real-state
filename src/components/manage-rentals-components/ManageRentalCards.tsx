@@ -5,54 +5,27 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { useTranslations, useLocale } from "next-intl";
 
-const ListRentals = () => {
-  const t = useTranslations("listRentals");
+const ManageRentals = () => {
+  const t = useTranslations("manageRentals");
   const locale = useLocale();
   const isRTL = locale === "ar";
 
+  // Data mapping to match your images and section IDs
   const sections = [
-    {
-      id: "hero",
-      img: "/list1.png",
-      hasButton: true,
-      bg: "bg-white",
-      type: "contain",
-    },
-    {
-      id: "list1",
-      img: "/m1.png",
-      hasButton: false,
-      bg: "bg-white",
-      type: "contain",
-    },
-    {
-      id: "list2",
-      img: "/list2.png",
-      hasButton: false,
-      bg: "bg-white",
-      type: "contain",
-    },
-    {
-      id: "list3",
-      img: "/list3.png",
-      hasButton: false,
-      bg: "bg-white",
-      type: "cover",
-    },
-    {
-      id: "list4",
-      img: "/list4.png",
-      hasButton: false,
-      bg: "bg-white",
-      type: "cover",
-    },
+    { id: "card1", img: "/a15.webp", bg: "bg-white", type: "cover" },
+    { id: "card2", img: "/m1.png", bg: "bg-white", type: "cover" },
+    { id: "card3", img: "/m3.png", bg: "bg-white", type: "contain" },
+    { id: "card4", img: "/m4.png", bg: "bg-white", type: "contain" },
+    { id: "card5", img: "/m5.png", bg: "bg-gray-50", type: "contain" },
+    { id: "card6", img: "/m6.png", bg: "bg-white", type: "contain" },
+    { id: "card7", img: "/m7.png", bg: "bg-gray-50", type: "contain" },
   ];
 
   return (
     <div dir={isRTL ? "rtl" : "ltr"}>
       {sections.map((section, index) => {
-        // Hero is always text first. Others alternate.
-        const isImageRight = section.id === "hero" ? true : index % 2 === 0;
+        // Logic: Alternate image side based on index (Even = Text Left, Odd = Text Right)
+        const isImageRight = index % 2 === 0;
 
         return (
           <section
@@ -60,7 +33,7 @@ const ListRentals = () => {
             className={`${section.bg} py-16 overflow-hidden`}
           >
             <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-              {/* TEXT CONTENT */}
+              {/* CONTENT SIDE */}
               <motion.div
                 initial={{ opacity: 0, x: isRTL ? 50 : -50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -70,31 +43,22 @@ const ListRentals = () => {
                   isRTL ? "text-right" : "text-left"
                 }`}
               >
-                <h1
-                  className={`${
-                    section.id === "hero"
-                      ? "text-3xl md:text-4xl lg:text-5xl"
-                      : "text-2xl md:text-3xl lg:text-4xl"
-                  } font-bold text-black leading-tight mb-6`}
-                >
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-black leading-tight mb-6">
                   {t(`${section.id}.title`)}
-                </h1>
+                </h2>
                 <p className="text-black text-lg mb-8 max-w-xl leading-relaxed">
                   {t(`${section.id}.description`)}
                 </p>
-
-                {section.hasButton && (
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-yellow-600 text-white font-semibold hover:bg-yellow-800 transition-colors shadow-md"
-                  >
-                    {t(`${section.id}.button`)}
-                  </motion.button>
-                )}
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-yellow-600 text-white hover:bg-yellow-700 px-8 py-3.5 rounded-full font-bold transition-all shadow-md"
+                >
+                  {t(`${section.id}.button`)}
+                </motion.button>
               </motion.div>
 
-              {/* IMAGE CONTENT */}
+              {/* IMAGE SIDE */}
               <motion.div
                 initial={{ opacity: 0, x: isRTL ? -50 : 50 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -108,10 +72,10 @@ const ListRentals = () => {
                   src={section.img}
                   alt={t(`${section.id}.title`)}
                   fill
-                  priority={section.id === "hero"}
+                  priority={index === 0}
                   className={`${
                     section.type === "cover"
-                      ? "object-cover rounded-xl"
+                      ? "object-cover rounded-2xl shadow-sm"
                       : "object-contain"
                   }`}
                   sizes="(max-width: 768px) 100vw, 50vw"
@@ -125,4 +89,4 @@ const ListRentals = () => {
   );
 };
 
-export default ListRentals;
+export default ManageRentals;
