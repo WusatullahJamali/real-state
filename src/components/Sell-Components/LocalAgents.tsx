@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
 
 // Counter that animates when visible
 const useCounter = (end: number, duration = 1200) => {
@@ -65,6 +64,56 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
   const { count: exp, ref: expRef } = useCounter(agent.yearsExperience);
 
   return (
+    <div className="flex flex-col items-center p-4 transition-all hover:-translate-y-1 duration-300">
+      <div className="mb-4">
+        <img
+          src={agent.image}
+          alt={agent.name}
+          className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover transform hover:scale-110 transition duration-300"
+        />
+      </div>
+
+      <h3 className="text-lg sm:text-xl font-semibold text-black mb-1 text-center">
+        {agent.name}
+      </h3>
+
+      <p className="text-sm text-black mb-3 text-center px-2">
+        {agent.company} {agent.id}
+      </p>
+
+      <div className="text-center space-y-2">
+        <div ref={soldRef} className="flex items-baseline justify-center gap-1">
+          <span className="text-2xl sm:text-3xl font-bold text-black">
+            {sold}
+          </span>
+          <span className="text-sm text-black">{t("stats.sold")}</span>
+        </div>
+
+        <div ref={expRef} className="flex items-baseline justify-center gap-1">
+          <span className="text-2xl sm:text-3xl font-bold text-black">
+            {exp}
+          </span>
+          <span className="text-sm text-black">{t("stats.experience")}</span>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const AgentsGrid: React.FC = () => {
+  const t = useTranslations("AgentsGrid");
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
+  // Combine translated text with static metadata
+  const agentsData: Agent[] = (t.raw("agents") as any[]).map(
+    (agent, index) => ({
+      ...agent,
+      ...AGENTS_METADATA[index],
+    })
+  );
+
+  return (
     <section className="py-12 sm:py-16" dir={isRtl ? "rtl" : "ltr"}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-12 gap-4">
@@ -92,6 +141,13 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* GRID for tablet/desktop */}
+        <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {agentsData.map((agent, index) => (
+            <AgentCard key={index} agent={agent} />
+          ))}
         </div>
       </div>
     </section>
