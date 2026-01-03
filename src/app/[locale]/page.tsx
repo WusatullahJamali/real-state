@@ -80,8 +80,6 @@
 //   );
 // }
 
-"use client";
-
 import { useTranslations } from "next-intl";
 import Hero from "@/components/Home/Hero";
 import CollectionsSection from "@/components/Home/Collections";

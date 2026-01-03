@@ -1861,5 +1861,240 @@
       },
       "members": ["Ahmed Hassan", "Sarah Yaseen", "Omar Ali"]
     }
+  },
+
+  "AboutHero": {
+    "title": "About Us",
+    "imageAlt": "About background"
+  },
+
+  "Work": {
+    "title": "How Albasync Works",
+    "description": "A simple and transparent process to help you find your perfect home.",
+    "steps": {
+      "step1": {
+        "title": "Find Your Location",
+        "text": "Browse verified properties across different cities and neighborhoods that fit your needs."
+      },
+      "step2": {
+        "title": "Contact Albasync",
+        "text": "Get in touch directly with property owners or agents through our secure platform."
+      },
+      "step3": {
+        "title": "Confirm & Pay",
+        "text": "Finalize your agreement with transparent pricing and clear payment options."
+      },
+      "step4": {
+        "title": "Move In",
+        "text": "Receive your keys and enjoy your new home with complete peace of mind."
+      }
+    }
+  },
+
+  "Know": {
+    "badge": "(Since 2018)",
+    "mainTitle": "Get to Know Albasync",
+    "subTitle": "Welcome to Albasync Real Estate",
+    "description1": "Albasync is a modern real estate platform dedicated to helping individuals and families find the right property with confidence. From apartments and houses to commercial spaces, we make property search simple, secure, and transparent.",
+    "description2": "Our mission is to connect people with trusted property listings, verified sellers, and valuable local insights — all in one reliable platform.",
+    "cards": {
+      "homes": {
+        "title": "Homes for Sale & Rent",
+        "text": "Discover a wide range of verified residential properties across prime locations."
+      },
+      "quality": {
+        "title": "High-Quality & Trusted Listings",
+        "text": "Every property is carefully reviewed to ensure quality, transparency, and reliability."
+      }
+    },
+    "experience": {
+      "team": "Albasync Real Estate Team",
+      "number": "05",
+      "unit": "Years",
+      "label": "of Industry Experience"
+    }
+  },
+
+  "FindHero": {
+    "title": "Find Trusted Real Estate Agents in Iraq",
+    "subtitle": "Connect with professional agents across Baghdad, Erbil, Basra, and more.",
+    "tabs": {
+      "Buy": "Buying",
+      "Sell": "Selling",
+      "Both": "Buying & Selling"
+    },
+    "placeholders": {
+      "agent": "Agent name (optional)",
+      "location": "City or area (Baghdad, Erbil, Basra...)"
+    },
+    "searchButton": "Search"
+  },
+
+  "FindCards": {
+    "headerTitle": "Connect with trusted agents in Iraq",
+    "headerDesc": "We help buyers, sellers, and renters find reliable real estate agents across Baghdad, Erbil, Basra, Najaf, Karbala, and beyond.",
+    "cards": {
+      "support": {
+        "title": "Get support from local Iraqi agents",
+        "desc": "Tell us about your property needs and a local agent from Baghdad, Erbil, Basra, or other cities will guide you."
+      },
+      "expertise": {
+        "title": "Find the perfect agent for your property",
+        "desc": "Tap into the expertise of certified real estate agents across Iraq to help you buy, sell, or rent your property."
+      },
+      "fees": {
+        "title": "No fees, no obligations",
+        "desc": "Connect with an agent in minutes for free. Choose the best fit for your needs, or switch agents anytime."
+      }
+    },
+    "ctaButton": "Connect with an Agent"
+  },
+
+  "Agent1": {
+    "networkTitle": "IRAQ REAL ESTATE AGENTS NETWORK",
+    "mainHeading": "Why choose our agents in Iraq?",
+    "introText": "Our certified real estate agents across Baghdad, Erbil, Basra, Najaf, Karbala, and other cities provide professional support for buying, selling, and renting properties.",
+    "features": {
+      "professionalism": {
+        "title": "Professionalism",
+        "desc": "Our agents follow strict standards of professionalism, ensuring transparent transactions and protecting the interests of both buyers and sellers."
+      },
+      "expertise": {
+        "title": "Local Expertise",
+        "desc": "Agents have in-depth knowledge of local markets, neighborhoods, and pricing trends to help you make informed decisions."
+      },
+      "experience": {
+        "title": "Certifications & Experience",
+        "desc": "Our agents hold relevant certifications and have years of experience facilitating property transactions across Iraq."
+      }
+    },
+    "ctaButton": "Find an Agent in Iraq"
+  },
+
+  "Agent2": {
+    "title": "Frequently Asked Questions about Iraqi Real Estate Agents",
+    "description": "Learn how our certified agents in Iraq help you buy, sell, or rent properties safely and efficiently, while providing expert guidance and local insights.",
+    "ctaButton": "Connect with an Iraqi Agent",
+    "faqs": {
+      "whyWork": {
+        "question": "Why should I work with a real estate agent in Iraq?",
+        "answer": "A local Iraqi real estate agent has professional expertise, knowledge of neighborhoods in Baghdad, Erbil, Basra, Najaf, Karbala, and other cities, negotiation skills, and handles all paperwork to make buying or selling smooth and secure."
+      },
+      "howFind": {
+        "question": "How do I find the right agent in Iraq?",
+        "answer": "Look for agents experienced in your specific city or property type, read client reviews, and speak with multiple agents to choose one that understands your needs and communicates clearly."
+      },
+      "howChosen": {
+        "question": "How is the agent I’m connected to chosen?",
+        "answer": "The matching process considers the agent's experience, specialization (buying, selling, or renting), familiarity with local markets, and client feedback scores in Iraq."
+      },
+      "privacy": {
+        "question": "What information is shared with my agent?",
+        "answer": "Only the details you provide, such as your contact info, property preferences, and timeline, are shared to help the agent connect with you efficiently."
+      },
+      "fees": {
+        "question": "Do agents charge any hidden fees?",
+        "answer": "No. Our connected agents operate transparently, and any commission or fee is agreed upon before proceeding with transactions in Iraq."
+      }
+    }
+  },
+
+  "IraqAgentContact": {
+    "brand": {
+      "first": "IRAQ",
+      "second": "HOMES",
+      "concierge": "Exclusive {br} {realEstate} {br} Concierge.",
+      "realEstate": "Real Estate",
+      "description": "Connect with luxury property experts from Baghdad to Erbil. Secure your future today.",
+      "copyright": "© 2026 IRAQ HOMES PVT."
+    },
+    "details": {
+      "phone": "Direct Line",
+      "email": "Email Address",
+      "office": "Office",
+      "address": "Al-Mansour, Baghdad"
+    },
+    "form": {
+      "header": "Send a Message",
+      "confidentiality": "Your information is handled with absolute confidentiality.",
+      "intent": "I am looking to",
+      "submit": "Submit Request",
+      "secure": "Secure Professional Connection"
+    },
+    "types": {
+      "Buying": "Buying",
+      "Selling": "Selling",
+      "Invest": "Invest"
+    },
+    "inputs": {
+      "name": { "label": "Full Name", "placeholder": "John Doe" },
+      "phone": {
+        "label": "Contact Number",
+        "placeholder": "+964 --- --- ----"
+      },
+      "email": { "label": "Email", "placeholder": "office@company.iq" },
+      "msg": { "label": "Message", "placeholder": "How can we assist you?" }
+    }
+  },
+  "Careers": {
+    "badge": "We are hiring",
+    "title": "Build the Future of",
+    "titleAccent": "Iraqi Real Estate",
+    "description": "Join the leading property marketplace in Iraq. From Baghdad to Basra, we are connecting people with their dream homes.",
+    "viewDetails": "View Details",
+    "postedLabel": "Posted",
+    "footerTitle": "Can't Find a Role That Fits?",
+    "footerDesc": "Submit your resume and we will keep you in mind for future real estate opportunities.",
+    "submitBtn": "Submit Resume",
+    "jobs": [
+      {
+        "id": 1,
+        "title": "Senior Sales Consultant",
+        "dept": "Sales",
+        "loc": "Baghdad",
+        "type": "Full-Time",
+        "time": "2 days ago"
+      },
+      {
+        "id": 2,
+        "title": "Property Manager",
+        "dept": "Operations",
+        "loc": "Basra",
+        "type": "Full-Time",
+        "time": "1 week ago"
+      },
+      {
+        "id": 3,
+        "title": "Senior Sales Consultant",
+        "dept": "Sales",
+        "loc": "Baghdad",
+        "type": "Full-Time",
+        "time": "2 days ago"
+      },
+      {
+        "id": 4,
+        "title": "Property Manager",
+        "dept": "Operations",
+        "loc": "Basra",
+        "type": "Full-Time",
+        "time": "1 week ago"
+      },
+      {
+        "id": 5,
+        "title": "Senior Sales Consultant",
+        "dept": "Sales",
+        "loc": "Baghdad",
+        "type": "Full-Time",
+        "time": "2 days ago"
+      },
+      {
+        "id": 6,
+        "title": "Property Manager",
+        "dept": "Operations",
+        "loc": "Basra",
+        "type": "Full-Time",
+        "time": "1 week ago"
+      }
+    ]
   }
 }
