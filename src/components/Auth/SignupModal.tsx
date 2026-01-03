@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useLocale } from "next-intl"; // Added to detect language
 
 type Props = {
   onClose: () => void;
@@ -9,8 +10,14 @@ type Props = {
 };
 
 export default function SignupModal({ onClose, openLogin }: Props) {
+  const locale = useLocale();
+  const isRtl = locale === "ar";
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+    <div 
+      className="fixed inset-0 z-50 flex items-center justify-center p-4" 
+      dir={isRtl ? "rtl" : "ltr"} // Sets direction for Arabic
+    >
       {/* Overlay */}
       <div
         className="absolute inset-0 bg-black/40"
@@ -20,10 +27,10 @@ export default function SignupModal({ onClose, openLogin }: Props) {
       {/* Modal */}
       <div className="relative bg-white rounded-2xl min-h-[450px] shadow-xl w-full max-w-3xl overflow-hidden z-10">
 
-        {/* Close Button */}
+        {/* Close Button - FIXED: Changed right-3 to end-3 */}
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-gray-500 cursor-pointer hover:text-black text-2xl"
+          className="absolute top-3 end-3 text-gray-500 cursor-pointer hover:text-black text-2xl z-20"
         >
           ×
         </button>
@@ -54,7 +61,7 @@ export default function SignupModal({ onClose, openLogin }: Props) {
                   onClose();
                   openLogin();
                 }}
-                className="text-[#efb93f] hover:underline font-medium"
+                className="text-[#efb93f] hover:underline font-medium cursor-pointer"
               >
                 Log In
               </button>
@@ -108,7 +115,7 @@ export default function SignupModal({ onClose, openLogin }: Props) {
 
               <button
                 type="submit"
-                className="w-full bg-[#efb93f] text-white py-2.5 rounded-lg font-semibold hover:opacity-90"
+                className="w-full bg-[#efb93f] text-white py-2.5 rounded-lg font-semibold hover:opacity-90 cursor-pointer"
               >
                 Sign Up
               </button>

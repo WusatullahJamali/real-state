@@ -384,7 +384,8 @@ export default function Navbar() {
                                   ))}
                                 </ul>
                               </div>
-                            )
+                              
+                            ) 
                           )}
                         </motion.div>
                       )}
@@ -393,6 +394,27 @@ export default function Navbar() {
                 );
               })}
             </ul>
+            <div className="px-4 pb-6 space-y-3 border-t border-white/10 pt-4">
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setAuthModal("login");
+                  }}
+                  className="w-full flex items-center justify-center gap-2 py-3 rounded-lg border-2 border-gray-300 text-base font-medium hover:bg-gray-50"
+                >
+                  <User className="w-5 h-5" />
+                  {t("auth.login")}
+                </button>
+                <button
+                  onClick={() => {
+                    setMobileOpen(false);
+                    setAuthModal("signup");
+                  }}
+                  className="w-full py-3 rounded-lg bg-yellow-500 text-white text-base font-semibold hover:bg-yellow-400"
+                >
+                  {t("auth.register")}
+                </button>
+              </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -400,6 +422,13 @@ export default function Navbar() {
         <LoginModal
           onClose={() => setAuthModal(null)}
           openSignup={() => setAuthModal("signup")}
+        />
+      )}
+      
+      {authModal === "signup" && (
+        <SignupModal
+          onClose={() => setAuthModal(null)}
+          openLogin={() => setAuthModal("login")}
         />
       )}
     </>
