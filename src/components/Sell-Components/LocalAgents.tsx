@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { ArrowRight } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
-import Image from "next/image";
 
 // Counter that animates when visible
 const useCounter = (end: number, duration = 1200) => {
@@ -67,11 +66,9 @@ const AgentCard: React.FC<{ agent: Agent }> = ({ agent }) => {
   return (
     <div className="flex flex-col items-center p-4 transition-all hover:-translate-y-1 duration-300">
       <div className="mb-4">
-        <Image
+        <img
           src={agent.image}
           alt={agent.name}
-          width={200}
-          height={200}
           className="w-28 h-28 sm:w-32 sm:h-32 rounded-full object-cover transform hover:scale-110 transition duration-300"
         />
       </div>
@@ -144,6 +141,13 @@ const AgentsGrid: React.FC = () => {
               </div>
             ))}
           </div>
+        </div>
+
+        {/* GRID for tablet/desktop */}
+        <div className="hidden sm:grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
+          {agentsData.map((agent, index) => (
+            <AgentCard key={index} agent={agent} />
+          ))}
         </div>
       </div>
     </section>
