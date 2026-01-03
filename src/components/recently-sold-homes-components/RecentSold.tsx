@@ -35,10 +35,6 @@ const RecentSold = () => {
                 <span className="absolute -bottom-2 left-0 w-full h-1.5 bg-yellow-500/20 rounded-full"></span>
               </span>
             </h1>
-            <p className="text-slate-500 font-medium text-lg max-w-md">
-              Explore our most successful transactions and premium properties
-              recently closed.
-            </p>
           </div>
 
           <div className="relative group w-full lg:w-[450px]">
