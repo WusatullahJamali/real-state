@@ -9,7 +9,7 @@ import { useTranslations } from "next-intl";
 // Animation Variants (UNCHANGED)
 const fadeInUp = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
+  visible: { opacity: 1, y: 0 },
 };
 
 const staggerContainer = {
@@ -17,9 +17,9 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.2
-    }
-  }
+      staggerChildren: 0.2,
+    },
+  },
 };
 
 const Hero = () => {
@@ -29,7 +29,7 @@ const Hero = () => {
     { value: t("stats.0.value"), label: t("stats.0.label") },
     { value: t("stats.1.value"), label: t("stats.1.label") },
     { value: t("stats.2.value"), label: t("stats.2.label") },
-    { value: t("stats.3.value"), label: t("stats.3.label") }
+    { value: t("stats.3.value"), label: t("stats.3.label") },
   ];
 
   return (
@@ -40,6 +40,7 @@ const Hero = () => {
         alt="hero image"
         fill
         priority
+        sizes="100vw"
         className="object-cover"
       />
 
@@ -93,7 +94,7 @@ const Hero = () => {
               variants={fadeInUp}
               whileHover={{
                 scale: 1.05,
-                transition: { duration: 0.2 }
+                transition: { duration: 0.2 },
               }}
               className="
                 flex-1 min-w-[110px] sm:min-w-[130px]
