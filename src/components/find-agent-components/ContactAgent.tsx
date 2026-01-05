@@ -15,60 +15,38 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
-/* ---------------- Reusable Sub-Components ---------------- */
+const UI = {
+  label:
+    "text-[10px] uppercase font-bold tracking-widest text-black mb-1 block px-1",
+  input:
+    "w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-black placeholder:text-gray-400 focus:bg-white focus:ring-2 focus:ring-yellow-500 focus:shadow-md outline-none transition-all resize-none",
+};
+
 const ContactDetail = ({ icon: Icon, title, value }: any) => (
   <div className="flex items-start gap-4 p-4 rounded-2xl bg-white border border-gray-100 transition-all hover:shadow-sm">
     <div className="w-12 h-12 rounded-xl bg-white shadow-sm text-yellow-500 flex items-center justify-center shrink-0 border border-gray-100">
       <Icon size={20} />
     </div>
     <div>
-      <p className="text-[10px] uppercase font-bold tracking-widest text-black mb-0.5">
-        {title}
-      </p>
+      <p className={UI.label}>{title}</p>
       <p className="text-black font-semibold">{value}</p>
     </div>
   </div>
 );
 
-const PremiumInput = ({
-  label,
-  type = "text",
-  placeholder,
-  name,
-  focus,
-  setFocus,
-  isArea = false,
-}: any) => {
+const PremiumInput = ({ label, isArea, ...props }: any) => {
   const InputTag = isArea ? "textarea" : "input";
   return (
-    <div className="space-y-2">
-      <label className="text-xs font-bold text-black uppercase tracking-wider block px-1">
-        {label}
-      </label>
-      <div
-        className={`relative transition-all duration-300 rounded-xl ${
-          focus === name ? "ring-2 ring-yellow-500 shadow-md" : ""
-        }`}
-      >
-        <InputTag
-          rows={isArea ? 3 : undefined}
-          onFocus={() => setFocus(name)}
-          onBlur={() => setFocus(null)}
-          placeholder={placeholder}
-          className="w-full bg-gray-50 border border-gray-100 rounded-xl px-4 py-3 text-black placeholder:text-gray-400 focus:bg-white outline-none transition-all resize-none"
-        />
-      </div>
+    <div className="space-y-1">
+      <label className={UI.label}>{label}</label>
+      <InputTag rows={isArea ? 3 : undefined} className={UI.input} {...props} />
     </div>
   );
 };
 
-/* ---------------- Main Component ---------------- */
 export default function ContactAgent() {
   const t = useTranslations("IraqAgentContact");
-  const locale = useLocale();
-  const isRtl = locale === "ar";
-
-  const [focus, setFocus] = useState<string | null>(null);
+  const isRtl = useLocale() === "ar";
   const [activeType, setActiveType] = useState("Buying");
 
   const propertyTypes = useMemo(
@@ -80,44 +58,41 @@ export default function ContactAgent() {
     []
   );
 
+  const ArrowIcon = isRtl ? ArrowLeft : ArrowRight;
+
   return (
     <section
-      className="min-h-screen bg-gray-50/30 flex items-center justify-center p-4 lg:p-12"
+      className="min-h-screen text-black bg-gray-50/30 flex items-center justify-center p-4 lg:p-12"
       dir={isRtl ? "rtl" : "ltr"}
     >
-      <div className="max-w-7xl w-full grid lg:grid-cols-12 bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-2xl shadow-gray-200/50">
+      <div className="max-w-7xl w-full grid lg:grid-cols-12 bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-2xl">
         {/* LEFT PANEL */}
         <motion.div
           initial={{ opacity: 0, x: isRtl ? 20 : -20 }}
           animate={{ opacity: 1, x: 0 }}
-          className="lg:col-span-5 bg-white p-8 md:p-16 text-black flex flex-col justify-between relative border-e border-gray-50"
+          className="lg:col-span-5 p-8 md:p-16 border-e border-gray-50 flex flex-col justify-between"
         >
-          <div className="relative z-10">
+          <div>
             <div className="flex items-center gap-3 mb-12">
               <div className="w-10 h-10 bg-yellow-400 rounded-lg flex items-center justify-center">
-                <ShieldCheck className="text-black" size={24} />
+                <ShieldCheck size={24} />
               </div>
-              <span className="font-bold tracking-tighter text-xl text-black">
+              <span className="font-bold text-xl">
                 {t("brand.first")}
                 <span className="text-yellow-500">{t("brand.second")}</span>
               </span>
             </div>
-
-            <h1 className="text-4xl xl:text-5xl font-light leading-[1.2] mb-6 text-black">
+            <h1 className="text-4xl xl:text-5xl font-light leading-tight mb-6">
               {t.rich("brand.concierge", {
                 br: () => <br />,
-                realEstate: (chunks) => (
-                  <span className="font-bold text-yellow-500 italic">
-                    {chunks}
-                  </span>
+                realEstate: (c) => (
+                  <span className="font-bold text-yellow-500 italic">{c}</span>
                 ),
               })}
             </h1>
-
-            <p className="text-gray-600 text-lg max-w-sm leading-relaxed mb-12">
+            <p className="text-gray-600 text-lg max-w-sm mb-12">
               {t("brand.description")}
             </p>
-
             <div className="space-y-4">
               <ContactDetail
                 icon={Phone}
@@ -136,16 +111,12 @@ export default function ContactAgent() {
               />
             </div>
           </div>
-
-          <div className="relative z-10 mt-12 pt-8 border-t border-gray-100 flex items-center justify-between text-black text-[10px] font-bold tracking-widest opacity-60">
+          <div className="mt-12 pt-8 border-t flex justify-between text-[20px] font-bold opacity-60">
             <span>{t("brand.copyright")}</span>
             <div className="flex gap-4">
-              {["FB", "IG", "LN"].map((social) => (
-                <span
-                  key={social}
-                  className="cursor-pointer hover:text-yellow-500 transition"
-                >
-                  {social}
+              {["FB", "IG", "LN"].map((s) => (
+                <span key={s} className="hover:text-yellow-500 cursor-pointer">
+                  {s}
                 </span>
               ))}
             </div>
@@ -156,38 +127,35 @@ export default function ContactAgent() {
         <motion.div
           initial={{ opacity: 0, x: isRtl ? -20 : 20 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.2 }}
-          className="lg:col-span-7 p-8 md:p-16 lg:p-20 flex flex-col justify-center bg-white"
+          className="lg:col-span-7 p-8 md:p-16 lg:p-20 bg-white"
         >
-          <div className="max-w-xl w-full mx-auto">
+          <div className="max-w-xl mx-auto">
             <header className="mb-10 text-center lg:text-start">
-              <h2 className="text-4xl font-black text-black mb-2 uppercase tracking-tight">
+              <h2 className="text-4xl font-black uppercase tracking-tight">
                 {t("form.header")}
               </h2>
-              <div className="w-16 h-1.5 bg-yellow-400 mb-4 mx-auto lg:mx-0 rounded-full" />
+              <div className="w-16 h-1.5 bg-yellow-400 my-4 mx-auto lg:mx-0 rounded-full" />
               <p className="text-gray-500">{t("form.confidentiality")}</p>
             </header>
 
             <form className="space-y-6" onSubmit={(e) => e.preventDefault()}>
               <div className="space-y-3">
-                <label className="text-xs font-bold text-black uppercase tracking-wider px-1">
-                  {t("form.intent")}
-                </label>
+                <label className={UI.label}>{t("form.intent")}</label>
                 <div className="grid grid-cols-3 gap-4">
-                  {propertyTypes.map((type) => (
+                  {propertyTypes.map(({ key, icon: Icon }) => (
                     <button
-                      key={type.key}
+                      key={key}
                       type="button"
-                      onClick={() => setActiveType(type.key)}
+                      onClick={() => setActiveType(key)}
                       className={`flex flex-col items-center gap-2 py-4 rounded-2xl border-2 transition-all ${
-                        activeType === type.key
-                          ? "border-yellow-500 bg-yellow-50 text-black shadow-sm"
-                          : "border-gray-50 bg-gray-50 text-black hover:border-gray-200"
+                        activeType === key
+                          ? "border-yellow-500 bg-yellow-50 shadow-sm"
+                          : "border-gray-50 bg-gray-50 hover:border-gray-200"
                       }`}
                     >
-                      <type.icon size={20} />
-                      <span className="text-[10px] font-bold uppercase tracking-widest">
-                        {t(`types.${type.key}`)}
+                      <Icon size={20} />
+                      <span className="text-[10px] font-bold uppercase">
+                        {t(`types.${key}`)}
                       </span>
                     </button>
                   ))}
@@ -197,56 +165,36 @@ export default function ContactAgent() {
               <div className="grid md:grid-cols-2 gap-6">
                 <PremiumInput
                   label={t("inputs.name.label")}
-                  name="user"
                   placeholder={t("inputs.name.placeholder")}
-                  focus={focus}
-                  setFocus={setFocus}
                 />
                 <PremiumInput
                   label={t("inputs.phone.label")}
-                  name="phone"
                   type="tel"
                   placeholder={t("inputs.phone.placeholder")}
-                  focus={focus}
-                  setFocus={setFocus}
                 />
               </div>
 
               <PremiumInput
                 label={t("inputs.email.label")}
-                name="email"
                 type="email"
                 placeholder={t("inputs.email.placeholder")}
-                focus={focus}
-                setFocus={setFocus}
               />
-
               <PremiumInput
                 label={t("inputs.msg.label")}
-                name="msg"
                 isArea
                 placeholder={t("inputs.msg.placeholder")}
-                focus={focus}
-                setFocus={setFocus}
               />
 
-              <button className="group w-full bg-black text-white hover:bg-yellow-400 hover:text-black transition-all duration-300 py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg">
+              <button className="group w-full bg-black text-white hover:bg-yellow-400 hover:text-black transition-all py-5 rounded-2xl font-bold text-lg flex items-center justify-center gap-3 shadow-lg">
                 {t("form.submit")}
-                {isRtl ? (
-                  <ArrowLeft
-                    size={20}
-                    className="group-hover:-translate-x-1 transition-transform"
-                  />
-                ) : (
-                  <ArrowRight
-                    size={20}
-                    className="group-hover:translate-x-1 transition-transform"
-                  />
-                )}
+                <ArrowIcon
+                  size={20}
+                  className="group-hover:translate-x-1 rtl:group-hover:-translate-x-1 transition-transform"
+                />
               </button>
 
-              <div className="flex items-center justify-center gap-2 text-black text-[10px] uppercase font-bold tracking-widest mt-6">
-                <ShieldCheck size={14} className="text-yellow-500" />
+              <div className="flex items-center justify-center gap-2 text-[10px] font-bold mt-6">
+                <ShieldCheck size={14} className="text-yellow-500" />{" "}
                 {t("form.secure")}
               </div>
             </form>
