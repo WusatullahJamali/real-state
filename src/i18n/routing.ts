@@ -1,9 +1,8 @@
+// src/i18n/routing.ts
 import {defineRouting} from 'next-intl/routing';
-import {createNavigation} from 'next-intl/navigation';
- 
+
 export const routing = defineRouting({
   locales: ['en', 'ar', 'ckb'],
-  defaultLocale: 'en'
+  defaultLocale: 'en',
+  localePrefix: 'always' // Added this back for consistency
 });
- 
-export const {Link, redirect, usePathname, useRouter} = createNavigation(routing);
